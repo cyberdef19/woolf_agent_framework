@@ -1,5 +1,5 @@
-from errors import ErrorInfo, ErrorSeverity
-from exceptions import BaseFrameworkException
+from .errors import ErrorInfo, ErrorSeverity
+from .exceptions import BaseFrameworkException
 
 
 def error_info_from_exception(

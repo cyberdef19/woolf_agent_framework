@@ -1,6 +1,6 @@
 from enum import StrEnum
 from pydantic import BaseModel, Field, ConfigDict
-from errors import ErrorInfo
+from .errors import ErrorInfo
 
 class ExecutionStatus(StrEnum):
     """Final status of an agent or workflow execution."""
