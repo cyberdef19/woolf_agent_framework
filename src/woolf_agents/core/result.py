@@ -1,5 +1,6 @@
 from enum import StrEnum
 from pydantic import BaseModel, Field, ConfigDict
+from errors import ErrorInfo
 
 class ExecutionStatus(StrEnum):
     """Final status of an agent or workflow execution."""
@@ -33,7 +34,7 @@ class BaseExecutionResult(BaseModel):
             when no usable result could be produced.
             """
         )
-    errors: list[str] = Field(
+    errors: list[ErrorInfo] = Field(
         default_factory=list,
         description=""" 
         Human-readable error messages collected during execution. 
