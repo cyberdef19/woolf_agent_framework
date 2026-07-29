@@ -9,6 +9,7 @@ class BaseFrameworkException(Exception):
     Python exceptions.
     """
     default_code = "BaseFramework_ERROR"
+    default_retry = False
 
     def __init__(
         self,
@@ -17,6 +18,7 @@ class BaseFrameworkException(Exception):
         code: str | None = None,
         context: dict[str, Any] | None = None,
         recoverable: bool = False,
+        retryable: bool | None = None
     ) -> None:
         super().__init__(message)
 
@@ -24,6 +26,11 @@ class BaseFrameworkException(Exception):
         self.code = code or self.default_code
         self.context = context or {}
         self.recoverable = recoverable
+        self.retryable = (
+            self.default_retry 
+            if retryable is None
+            else retryable
+        )
         
 
 class IntegrationError(BaseFrameworkException):

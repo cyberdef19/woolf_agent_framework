@@ -25,7 +25,15 @@ class ErrorInfo(BaseModel):
     It represents information about an error and does not replace the original
     Python exception used for runtime flow control.
     """
-
+    retrayable: bool = Field(
+        default_factory=False,
+        description="Indicates whether the failed operation may succeed if it is "
+                    "executed again. A value of 'true' means the runtime may retry the "
+                    "operation according to the configured retry policy. A value of "
+                    "'false' means that repeating the same operation without changing "
+                    "its inputs or configuration is not expected to resolve the error."
+    )
+    
     error_id: UUID = Field(
         default_factory=uuid4,
         description=(
@@ -86,5 +94,30 @@ class ErrorInfo(BaseModel):
         description=(
             "Sanitized structured context useful for diagnostics and auditing. "
             "Sensitive values and raw external payloads must not be stored."
+        ),
+    )
+    
+    attempt: int | None = Field(
+        default=None,
+        ge=1,
+        description=(
+            "Number of the execution attempt during which the error occurred."
+        ),
+    )
+
+    max_attempts: int | None = Field(
+        default=None,
+        ge=1,
+        description=(
+            "Maximum number of attempts allowed by the active retry policy."
+        ),
+    )
+
+    retry_delay_seconds: float | None = Field(
+        default=None,
+        ge=0,
+        description=(
+            "Delay before the next retry, or null when no further retry is "
+            "scheduled."
         ),
     )
