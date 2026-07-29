@@ -38,7 +38,7 @@ class IntegrationError(BaseFrameworkException):
     Raised when an operation involving an external service, provider,
     database, API, or infrastructure component fails.
     """
-    default_code = "IntegrationError"
+    default_code = "INTEGRATION_ERROR"
 
 class ConfigurationError(BaseFrameworkException):
     """Raised when platform configuration is missing or invalid."""
