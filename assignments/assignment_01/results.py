@@ -1,26 +1,33 @@
 from src.woolf_agents.core.result import BaseExecutionResult
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
+class SpecificResult(BaseModel):
+    """Загальний клас для конкретних результатів"""
+    config = ConfigDict(
+            extra="forbid"
+        )    
 
-class MetadataFile(BaseModel):
+class MetadataFile(SpecificResult):
     """Отримує метадані файлу"""
     filename: str
     filepath: str
     filesize_bytes: int
     extension: str| None = None
 
-class FileHash(BaseModel):
+class FileHash(SpecificResult):
     """Отримує хеш файлу"""
+   
     algorithm: str
     value: str
 
-class ExtractedStrings(BaseModel):
+class ExtractedStrings(SpecificResult):
     """Отримує рядки з файлу"""
     strings: list[str]
     total_count: int
 
-class SuspiciousIndicators(BaseModel):
+class SuspiciousIndicators(SpecificResult):
     """Отримує список підозрілих індикаторів з файла"""
+
     indicators: list[str]
     total_count: int
     
