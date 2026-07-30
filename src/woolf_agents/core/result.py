@@ -52,3 +52,6 @@ class BaseExecutionResult(BaseModel):
          """
         
     )
+    summary: str = Field(
+        description="""Узагальнюючий фінальний підсумок результата"""
+    )
