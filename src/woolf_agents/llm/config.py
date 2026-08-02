@@ -2,9 +2,10 @@ from enum import StrEnum
 
 from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
+from .apikey import config
 
 class ConfigApiKey(StrEnum):
-    GOOGLEGEMINI = "AQ.Ab8RN6Lih7vFp3Xrm04yL2FqaMd9UdoOV2hFFr-S3OvZ3ELkVA"
+    GOOGLEGEMINI = config.get("GEMINIAPYKEY", None)
 
 class LLMProvider(StrEnum):
     OPENAI = "openai"

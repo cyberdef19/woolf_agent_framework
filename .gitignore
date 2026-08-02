@@ -10,3 +10,5 @@ env/
 # IDE
 .vscode/
 .idea
+
+*apikey.py
