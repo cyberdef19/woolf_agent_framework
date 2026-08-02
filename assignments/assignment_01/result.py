@@ -3,7 +3,7 @@ from src.woolf_agents.domains.artifacts.schemas.contracts import (
     MetadataFileResult,
     FileHashResult,
     ExtractedStringsResult,
-    SuspiciousIndicatorsResult
+    
     )
 
 class AssignmentResult01(BaseExecutionResult):
@@ -11,4 +11,4 @@ class AssignmentResult01(BaseExecutionResult):
     metadata: MetadataFileResult
     filehash: FileHashResult
     extracted_strings: ExtractedStringsResult
-    suspicious_artifacts: SuspiciousIndicatorsResult
+   
