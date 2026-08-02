@@ -5,7 +5,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 from .apikey import config
 
 class ConfigGoogleAPI(StrEnum):
-    GOOGLEGEMINI = config.get("GEMINIAPYKEY", None)
+    GOOGLEGEMINI = config.get("GEMINIAPY", None)
 
 class LLMProvider(StrEnum):
     OPENAI = "openai"
