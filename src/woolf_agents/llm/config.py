@@ -4,7 +4,7 @@ from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from .apikey import config
 
-class ConfigApiKey(StrEnum):
+class ConfigGoogleAPI(StrEnum):
     GOOGLEGEMINI = config.get("GEMINIAPYKEY", None)
 
 class LLMProvider(StrEnum):
