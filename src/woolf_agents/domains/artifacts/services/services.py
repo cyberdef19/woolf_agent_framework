@@ -11,6 +11,7 @@ from src.woolf_agents.domains.artifacts.schemas.contracts import(
 from pathlib import Path
 from datetime import datetime, timezone
 from collections.abc import Iterable
+from typing import Protocol
 
 
 
@@ -67,7 +68,7 @@ class MetadataService:
              )
         )
 
-from typing import Protocol
+
 
 #---------------------------------------------Сервіс вилучення рядків з файла----------------------------------
 class StringExtractionStrategy(Protocol):

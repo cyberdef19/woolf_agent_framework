@@ -5,13 +5,17 @@ from src.woolf_agents.core.result import BaseExecutionResult
 from enum import Enum
 from datetime import datetime
 
-HashAlgorithms = Literal["md5", "sha1", "sha256"]
+
+class HashAlgorithm(str, Enum):
+    MD5 = "md5",
+    SHA1 = "sha1",
+    SHA256 = "sha256"
 
 class CalculateHashInput(SpecificInput):
     """Вхідні параметри для інструмента розрахунку хеша"""
    
-    algorithm: HashAlgorithms = Field(
-        default_factory="sha256",
+    algorithm: HashAlgorithm = Field(
+        default_factory=HashAlgorithm.SHA256,
         description="""
                      Алгоритм за яким відбувається хешування
                     """            
@@ -26,7 +30,7 @@ class CalculateHashInput(SpecificInput):
             raise ValueError("Поле алгоритму не може бути пустим")
         if not isinstance(value, str):
             raise TypeError("В поле алгоритму має передатися рядок")
-        if not value in HashAlgorithms:
+        if not value in list(HashAlgorithm):
             raise ValueError("В полі алгоритму має бути дозволене значення зі списку")
 
 class MetadataLevel(str, Enum):
@@ -102,13 +106,13 @@ class ExtractStringsInput(SpecificInput):
                     """ 
     )
     
-    mode:StringExtractMode = Field(
+    """mode:StringExtractMode = Field(
         default_factory=StringExtractMode.BOTH,
-        description="""
-                    Режим декодування рядка        
-                    """
+        description=
+                          
+                    
         
-    )
+    )"""
     
     @field_validator("encoding", mode="before")
     @classmethod
@@ -120,15 +124,16 @@ class ExtractStringsInput(SpecificInput):
         if not value in allow_encoding:
             raise ValueError("Недопустиме значення аргументу")
     
-    @field_validator("mode", mode="before")
+    """@field_validator("mode", mode="before")
     @classmethod
     def validate_mode(cls, value: StringExtractMode):
-        """Валідація значення в полі mode"""
+        "Валідація значення в полі mode"
         if not isinstance(value, StringExtractMode):
             raise TypeError("Аргумент має бути типом StringExtractMode")
         allow_modes = [item.value for item in StringExtractMode]
         if not value in allow_modes:
             raise ValueError("Недопустиме значення аргументу")
+    """
 
 class TypeIndicators(str, Enum):
     """Типи підозрілих індикаторів """
