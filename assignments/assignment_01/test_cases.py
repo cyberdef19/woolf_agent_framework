@@ -48,7 +48,7 @@ TEST_CASES = [
         case_id="extract_strings",
         input_query=(
             "Витягни читабельні текстові рядки з файла "
-            "samples/sample.bin."
+            "samples/artifact_sample.bin."
         ),
         expected_result=(
             "Агент повинен використати інструмент "
@@ -65,7 +65,7 @@ TEST_CASES = [
         case_id="detect_indicators",
         input_query=(
             "Знайди потенційні IP, URL, домени та email "
-            "у файлі samples/sample.bin."
+            "у файлі samples/artifact_sample.bin."
         ),
         expected_result=(
             "Агент повинен виконати пошук індикаторів "
@@ -82,7 +82,7 @@ TEST_CASES = [
         case_id="full_analysis",
         input_query=(
             "Проведи первинний аналіз файла "
-            "samples/sample.bin: отримай метадані, "
+            "samples/artifact_sample.bin: отримай метадані, "
             "SHA-256, рядки та потенційні індикатори."
         ),
         expected_result=(
