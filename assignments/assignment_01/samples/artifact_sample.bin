@@ -1,0 +1,17 @@
+Woolf Forensic Test Artifact
+Version: 1.0
+Created for LangGraph agent testing.
+
+Server URL: https://api.example.com/v1/status
+Backup URL: http://192.168.10.25:8080/health
+Email: admin@example.com
+Domain: telemetry.example.net
+IPv4: 192.168.10.25
+
+Username: service_user
+Password: test-password-not-real
+API_KEY=DEMO-KEY-123456
+DEVICE_ID=SHAHED-TEST-001
+
+System started successfully.
+Connection failed: timeout while contacting telemetry server.
