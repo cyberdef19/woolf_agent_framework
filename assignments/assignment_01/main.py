@@ -4,11 +4,12 @@ from src.woolf_agents.llm.factory import LLMFactory
 from src.woolf_agents.core.agent_spec import AgentSpec
 from src.woolf_agents.core.retry import RetryPolicyAgent, RetrySettings
 from src.woolf_agents.llm.executor import LLMExecutor
+from assignments.assignment_01.result import AssignmentResult01
 from typing import Literal
 from langgraph.graph import StateGraph, START, END
 from langgraph.prebuilt import ToolNode
 from assignments.assignment_01.tools import get_metadata_local_file, extract_strings_local_file, hashing_local_file
-from assignments.assignment_01.result import AssignmentResult01
+from src.woolf_agents.core.result import BaseExecutionResult
 from assignments.assignment_01.state import Assignment01AgentState
 from src.woolf_agents.workflows.tool_calling_graph import ToolCallingGraph
 from src.woolf_agents.workflows.base_graph import BaseGraph
@@ -25,7 +26,7 @@ import asyncio
 
 settings = LLMSettings(
     provider=LLMProvider.OPENROUTER,
-    model = LLMModel.GPTOSS20bFREE,
+    model = LLMModel.GOOGLEGEMMA426BA4BFREE,
     base_url=url_modelrouter["openrouter_url"],
     api_key = ConfigModelAPI.OPENROUTERKEY
 )
@@ -77,7 +78,7 @@ tool_calling_graph: BaseGraph = ToolCallingGraph(
 )
 
 compiled_graph = tool_calling_graph.build()
-graph_settings = AgentRuntimeSettings()
+graph_settings = AgentRuntimeSettings(timeout_seconds=6000)
 agent_graph_runner = AgentGraphRunner(
     graph=compiled_graph,
     settings=graph_settings,
@@ -108,55 +109,13 @@ async def main()->None:
     structured_response = result.get(
         "structured_response"
         )
-    print(structured_response)
+    print(f"Результат: status {structured_response["status"]}")
+    print(f"Підсумок: summary {structured_response["summary"]}")
+    print(f"Метадані: {structured_response["metadata"]}")
+    print(f"Хеш-файла: {structured_response["filehash"]}")
+    print(f"Рядки з байтового файла: {structured_response["extracted_strings"]}")
+    
 
 if __name__=="__main__":
     asyncio.run(main())
 
-"""llm_with_tools = llm.bind_tools(tools=tools)
-structured_llm_output = llm.with_structured_output(
-    AssignmentResult01
-)
-
-def agent_node(state: Assignment01AgentState)->dict:
-    "Вузол формує виклик інструментів"
-    response = llm_with_tools.invoke(
-        state["messages"]
-    )
-    return {
-        "messages":response
-    }
-def structured_output_node(state:Assignment01AgentState)->dict:
-    "Формує структорвану відповідь"
-    response = structured_llm_output.invoke(
-        state["messages"]
-    )
-    return {
-        "structured_output": response
-    }
-
-def route_after_agent(state: Assignment01AgentState)->Literal["tools", "structured_output_node"]:
-    "Обирає чи продовжувати виклики інструментів чи йти до повернення результату"
-    last_message = state["messages"][-1]
-    
-    if getattr(last_message, "tool_calls", None):
-        return "tools"
-    return "structured_output_node"
-
-graph_builder = StateGraph(Assignment01AgentState)
-graph_builder.add_node("agent_node", agent_node)
-graph_builder.add_node("tools", ToolNode(tools))
-graph_builder.add_node("structured_output_node", structured_output_node)
-graph_builder.add_edge(START, "agent_node")
-graph_builder.add_conditional_edges(
-    "agent_node", 
-    route_after_agent,
-    {
-        "tools",
-        "structured_output_node"
-    }
-    )
-graph_builder.add_edge("tools", "agent_node")
-graph_builder.add_edge("structured_output_node", END)
-
-graph_builder.compile()"""

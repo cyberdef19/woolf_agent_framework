@@ -1,7 +1,8 @@
 from typing import Literal, Annotated
 from typing_extensions import NotRequired
 from src.woolf_agents.workflows.state import MessageAgentState
-from .result import AssignmentResult01
+from src.woolf_agents.core.result import BaseExecutionResult
+from src.woolf_agents.domains.artifacts.schemas.contracts import MetadataFileResult, FileHashResult, ExtractedStringsResult
 from pathlib import Path
 
 
@@ -29,4 +30,9 @@ class Assignment01AgentState(MessageAgentState, total=False):
     """
     artifact_path: Path
     execution_status: NotRequired[AnalysisStatus]
-    structured_response: NotRequired[AssignmentResult01]
+    structured_response: NotRequired[BaseExecutionResult]
+    metadata_result: NotRequired[MetadataFileResult]
+    hashing_result: NotRequired[FileHashResult]
+    extracted_result: NotRequired[ExtractedStringsResult]
+    summary: NotRequired[str]
+    

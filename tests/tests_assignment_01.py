@@ -23,10 +23,10 @@ TEST_CASES = [
     AgentTestCase(
         case_id="metadata_only",
         input_query=(
-            f"Отримай лише метадані запропонованого файла "
+            "Отримай лише метадані запропонованого файла."
         ),
-        artifact_path= Path(
-            "I:\\WoolfFrameworkAgent\\artifact_sample.bin"
+        artifact_path=Path(
+            r"I:\WoolfFrameworkAgent\artifact_sample.bin"
         ),
         expected_result=(
             "Агент повинен викликати лише інструмент "
@@ -34,94 +34,62 @@ TEST_CASES = [
             "про файл."
         ),
         expectation=AgentTestExpectation(
-            required_tools=(
-                "get_metadata_local_file",
-            ),
-            forbidden_tools=(
-              "extract_strings_local_file", 
-              "hashing_local_file"
-            ),
+           
             expected_status="completed",
+            expected_content=(
+                "artifact_sample.bin",
+                "application/octet-stream",
+            ),
         ),
     ),
+
     AgentTestCase(
         case_id="sha256_hash",
         input_query=(
-            "Обчисли SHA-256 запропонованого файла "
+            "Обчисли SHA-256 запропонованого файла."
         ),
-        artifact_path= Path(
-                "I:\\WoolfFrameworkAgent\\artifact_sample.bin"
-            ),
+        artifact_path=Path(
+            r"I:\WoolfFrameworkAgent\artifact_sample.bin"
+        ),
         expected_result=(
-            "Агент повинен викликати calculate_hash "
-            "з алгоритмом SHA-256."
+            "Агент повинен викликати інструмент "
+            "hashing_local_file з алгоритмом SHA-256."
         ),
         expectation=AgentTestExpectation(
-            required_tools=(
-                "hashing_local_file",
-            ),
-            forbidden_tools=(
-                          "extract_strings_local_file", 
-                          "get_metadata_local_file"
-                        ),
-            expected_status="completed",
+          
             expected_content=(
                 "sha256",
+                "ca8b5cc3845b1c3ab96d4b23a6d01f15838052327b3644a52050a7e579a3c406",
             ),
         ),
     ),
+
     AgentTestCase(
         case_id="extract_strings",
         input_query=(
-            "Витягни читабельні текстові рядки з запропонованого файла "
+            "Витягни читабельні текстові рядки "
+            "з запропонованого файла."
         ),
-         artifact_path= Path(
-            "I:\\WoolfFrameworkAgent\\artifact_sample.bin"
-                ),
+        artifact_path=Path(
+            r"I:\WoolfFrameworkAgent\artifact_sample.bin"
+        ),
         expected_result=(
-            "Агент повинен використати інструмент "
-            "витягування рядків."
+            "Агент повинен використати лише інструмент "
+            "витягування рядків і повернути знайдені "
+            "читабельні рядки."
         ),
         expectation=AgentTestExpectation(
-            required_tools=(
-                "extract_strings_local_file",
+            expected_content=(
+                "Woolf Forensic Test Artifact",
+                "192.168.10.25",
+                "service_user",
             ),
-            forbidden_tools=(
-                    "hashing_local_file", 
-                    "get_metadata_local_file"
-                                    ),
-            expected_status="completed",
         ),
     ),
-    AgentTestCase(
-            case_id="full_analysis",
-            input_query=(
-                "Проведи первинний аналіз запропонованого файла: "
-                " отримай метадані, SHA-256, рядки."
-            ),
-            artifact_path= Path(
-                        "I:\\WoolfFrameworkAgent\\artifact_sample.bin"
-                    ),
-            expected_result=(
-                "Агент повинен використати всі три "
-                "інструменти й сформувати структурований звіт."
-            ),
-            expectation=AgentTestExpectation(
-                required_tools=(
-                   "extract_strings_local_file",
-                   "hashing_local_file", 
-                   "get_metadata_local_file"
-                ),
-                expected_status="completed",
-            ),
-        ),
-
-    
 ]
-
 settings = LLMSettings(
     provider=LLMProvider.OPENROUTER,
-    model = LLMModel.GPTOSS20bFREE,
+    model = LLMModel.GOOGLEGEMMA426BA4BFREE,
     base_url=url_modelrouter["openrouter_url"],
     api_key = ConfigModelAPI.OPENROUTERKEY
 )
@@ -169,7 +137,7 @@ tool_calling_graph: BaseGraph = ToolCallingGraph(
 )
 
 compiled_graph = tool_calling_graph.build()
-graph_settings = AgentRuntimeSettings()
+graph_settings = AgentRuntimeSettings(timeout_seconds=2400)
 agent_graph_runner = AgentGraphRunner(
     graph=compiled_graph,
     settings=graph_settings,

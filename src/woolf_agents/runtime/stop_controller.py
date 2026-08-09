@@ -42,10 +42,10 @@ class StopController:
     def __init__(
         self,
         *,
-        max_steps: int = 6,
+        max_steps: int = 10,
         max_tokens: int = 50_000,
-        timeout_seconds: float = 60.0,
-        max_consecutive_repeats: int = 3,
+        timeout_seconds: float = 2400.0,
+        max_consecutive_repeats: int = 6,
     ) -> None:
         if max_steps < 1:
             raise ValueError("max_steps must be at least 1.")

@@ -1,0 +1,24 @@
+{
+  "run_id": "fee24c46-a9fa-4344-a69d-16c2ee4367dc",
+  "started_at": "2026-08-09T17:17:59.569501+00:00",
+  "finished_at": "2026-08-09T17:18:11.797985+00:00",
+  "initial_state": {
+    "messages": [
+      {
+        "content": "Отримай лише метадані запропонованого файла.",
+        "additional_kwargs": {},
+        "response_metadata": {},
+        "type": "human",
+        "name": null,
+        "id": "0ac0e791-fa7a-4413-b690-483cd23e7de3"
+      }
+    ],
+    "artifact_path": "I:\\WoolfFrameworkAgent\\artifact_sample.bin",
+    "step_count": 0,
+    "used_tokens": 0,
+    "execution_status": "running"
+  },
+  "trajectory": [],
+  "final_state": {},
+  "error": "ValueError: {'message': 'Provider timed out after 11464ms', 'code': 504}"
+}

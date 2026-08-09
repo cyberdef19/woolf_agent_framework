@@ -23,7 +23,7 @@ class LLMProvider(StrEnum):
 class LLMModel(StrEnum):
     GEMINI25FLASH = "gemini-2.0-flash"
     GOOGLEGEMMA426BA4BFREE = "google/gemma-4-26b-a4b-it:free"
-    GOOGLEGEMMA431BFREE = "google/gemma-4-31B:free"
+    GOOGLEGEMMA431BFREE = "google/gemma-4-31b-it:free"
     LING30FLASHFREE = "inclusionai/ling-3.0-flash:free"
     GPTOSS20bFREE = "openai/gpt-oss-20b:free"
     LAGUNAS21FREE = "poolside/laguna-s-2.1:free"  #для завдань tool calling coding
@@ -77,7 +77,7 @@ class LLMSettings(BaseSettings):
     )
 
     llm_timeout_seconds: float = Field(
-        default=30.0,
+        default=240.0,
         gt=0,
         description="Maximum duration of an single model request.",
     )

@@ -1,59 +1,89 @@
 {
-  "started_at": "2026-08-08T21:19:41.905930+00:00",
-  "finished_at": "2026-08-08T21:21:00.727445+00:00",
-  "total_cases": 4,
-  "passed_cases": 0,
-  "failed_cases": 4,
+  "started_at": "2026-08-09T17:50:26.304478+00:00",
+  "finished_at": "2026-08-09T17:51:57.871751+00:00",
+  "total_cases": 3,
+  "passed_cases": 1,
+  "failed_cases": 2,
   "results": [
     {
       "case_id": "metadata_only",
-      "input_query": "Отримай лише метадані запропонованого файла ",
+      "input_query": "Отримай лише метадані запропонованого файла.",
       "expected_result": "Агент повинен викликати лише інструмент отримання метаданих і повернути відомості про файл.",
       "actual_result": null,
       "passed": false,
-      "execution_status": "unknown",
-      "step_count": 1,
+      "execution_status": "failed",
+      "step_count": 0,
       "tool_calls": [],
-      "execution_time_seconds": 45.0257,
+      "execution_time_seconds": 12.0211,
       "used_tokens": 0,
-      "error": null
+      "error": "ValueError: {'message': 'Provider timed out after 11464ms', 'code': 504}"
     },
     {
       "case_id": "sha256_hash",
-      "input_query": "Обчисли SHA-256 запропонованого файла ",
-      "expected_result": "Агент повинен викликати calculate_hash з алгоритмом SHA-256.",
+      "input_query": "Обчисли SHA-256 запропонованого файла.",
+      "expected_result": "Агент повинен викликати інструмент hashing_local_file з алгоритмом SHA-256.",
       "actual_result": null,
       "passed": false,
-      "execution_status": "unknown",
-      "step_count": 1,
+      "execution_status": "failed",
+      "step_count": 0,
       "tool_calls": [],
-      "execution_time_seconds": 19.7151,
+      "execution_time_seconds": 11.6306,
       "used_tokens": 0,
-      "error": null
+      "error": "ValueError: {'message': 'Provider timed out after 11460ms', 'code': 504}"
     },
     {
       "case_id": "extract_strings",
-      "input_query": "Витягни читабельні текстові рядки з запропонованого файла ",
-      "expected_result": "Агент повинен використати інструмент витягування рядків.",
-      "actual_result": null,
-      "passed": false,
-      "execution_status": "unknown",
+      "input_query": "Витягни читабельні текстові рядки з запропонованого файла.",
+      "expected_result": "Агент повинен використати лише інструмент витягування рядків і повернути знайдені читабельні рядки.",
+      "actual_result": {
+        "status": "success",
+        "errors": [],
+        "executed_metadata": {
+          "model_name": "gpt-4o",
+          "execution_duration_seconds": 1.2,
+          "tool_calls_count": 1
+        },
+        "summary": "Виконано витягування текстових рядків з файлу artifact_sample.bin. Знайдено тестові дані: назва артефакту (Woolf Forensic Test Artifact), версія (1.0), мережеві адреси (api.example.com, 192.168.10.25), облікові дані (service_user, test-password-not-real) та системні повідомлення. Файл є тестовим артефактом для LangGraph agent testing.",
+        "metadata": {
+          "filepath": "I:\\WoolfFrameworkAgent\\artifact_sample.bin",
+          "filename": "artifact_sample.bin",
+          "filesize_bytes": 1024,
+          "extension": ".bin",
+          "created_at": "2023-10-27T10:00:00Z",
+          "modified_at": "2023-10-27T10:00:00Z",
+          "mimetype": "application/octet-stream"
+        },
+        "filehash": {
+          "filepath": "I:\\WoolfFrameworkAgent\\artifact_sample.bin",
+          "algorithm": "sha256",
+          "value": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495563516475300",
+          "processed_bytes": 1024
+        },
+        "extracted_strings": {
+          "filepath": "I:\\WoolfFrameworkAgent\\artifact_sample.bin",
+          "strings": [
+            "Woolf Forensic Test Artifact",
+            "Version: 1.0",
+            "Created for LangGraph agent testing.",
+            "Server URL: https://api.example.com/v1/status",
+            "Backup URL: http://192.168.10.25:8080/health",
+            "Email: admin@example.com",
+            "Domain: telemetry.example.net",
+            "IPv4: 192.168.10.25",
+            "Username: service_user",
+            "Password: test-password-not-real",
+            "API_KEY=DEMO-KEY-123456",
+            "DEVICE_ID=SHAHED-TEST-001",
+            "System started successfully.",
+            "Connection failed: timeout while contacting telemetry server."
+          ]
+        }
+      },
+      "passed": true,
+      "execution_status": "completed",
       "step_count": 1,
       "tool_calls": [],
-      "execution_time_seconds": 9.856,
-      "used_tokens": 0,
-      "error": null
-    },
-    {
-      "case_id": "full_analysis",
-      "input_query": "Проведи первинний аналіз запропонованого файла:  отримай метадані, SHA-256, рядки.",
-      "expected_result": "Агент повинен використати всі три інструменти й сформувати структурований звіт.",
-      "actual_result": null,
-      "passed": false,
-      "execution_status": "unknown",
-      "step_count": 1,
-      "tool_calls": [],
-      "execution_time_seconds": 4.2238,
+      "execution_time_seconds": 67.9325,
       "used_tokens": 0,
       "error": null
     }

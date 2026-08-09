@@ -1,0 +1,330 @@
+{
+  "run_id": "3ce4a8f7-38b5-4ec1-838e-b42b92fd351b",
+  "started_at": "2026-08-09T17:27:28.276999+00:00",
+  "finished_at": "2026-08-09T17:28:37.448745+00:00",
+  "initial_state": {
+    "messages": [
+      {
+        "content": "Отримай лише метадані запропонованого файла.",
+        "additional_kwargs": {},
+        "response_metadata": {},
+        "type": "human",
+        "name": null,
+        "id": "e778ed2b-0364-46a9-b8c8-34d44404bb1b"
+      }
+    ],
+    "artifact_path": "I:\\WoolfFrameworkAgent\\artifact_sample.bin",
+    "step_count": 0,
+    "used_tokens": 0,
+    "execution_status": "running"
+  },
+  "trajectory": [
+    {
+      "timestamp": "2026-08-09T17:27:37.882488+00:00",
+      "update": {
+        "agent": {
+          "messages": [
+            {
+              "content": "",
+              "additional_kwargs": {
+                "refusal": null
+              },
+              "response_metadata": {
+                "token_usage": {
+                  "completion_tokens": 40,
+                  "prompt_tokens": 1120,
+                  "total_tokens": 1160,
+                  "completion_tokens_details": {
+                    "accepted_prediction_tokens": null,
+                    "audio_tokens": 0,
+                    "reasoning_tokens": 0,
+                    "rejected_prediction_tokens": null,
+                    "image_tokens": 0
+                  },
+                  "prompt_tokens_details": {
+                    "audio_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "cached_tokens": 0,
+                    "video_tokens": 0
+                  },
+                  "cost": 0,
+                  "is_byok": false,
+                  "cost_details": {
+                    "upstream_inference_cost": 4.02e-05,
+                    "upstream_inference_prompt_cost": 3.36e-05,
+                    "upstream_inference_completions_cost": 6.6e-06
+                  }
+                },
+                "model_provider": "openai",
+                "model_name": "google/gemma-4-26b-a4b-it:free",
+                "system_fingerprint": null,
+                "id": "gen-1786296448-iMWtYgLGFe6uT5EqVKMT",
+                "finish_reason": "tool_calls",
+                "logprobs": null
+              },
+              "type": "ai",
+              "name": null,
+              "id": "lc_run--019fe790-b519-7c40-8ae0-c71287182b5a-0",
+              "tool_calls": [
+                {
+                  "name": "get_metadata_local_file",
+                  "args": {
+                    "artifact_path": "I:\\WoolfFrameworkAgent\\artifact_sample.bin",
+                    "metadata_level": "basic"
+                  },
+                  "id": "call_3BD4E2E345E745AFB822711E",
+                  "type": "tool_call"
+                }
+              ],
+              "invalid_tool_calls": [],
+              "usage_metadata": {
+                "input_tokens": 1120,
+                "output_tokens": 40,
+                "total_tokens": 1160,
+                "input_token_details": {
+                  "audio": 0,
+                  "cache_read": 0,
+                  "cache_creation": 0
+                },
+                "output_token_details": {
+                  "audio": 0,
+                  "reasoning": 0
+                }
+              }
+            }
+          ],
+          "step_count": 1
+        }
+      }
+    },
+    {
+      "timestamp": "2026-08-09T17:27:37.882488+00:00",
+      "update": {
+        "stop_guard": null
+      }
+    },
+    {
+      "timestamp": "2026-08-09T17:27:37.934847+00:00",
+      "update": {
+        "tools": {
+          "messages": [
+            {
+              "content": "{\"filepath\": \"I:\\\\WoolfFrameworkAgent\\\\artifact_sample.bin\", \"filename\": \"artifact_sample.bin\", \"filesize_bytes\": 460, \"extension\": \".bin\", \"created_at\": \"2026-08-09T09:37:22.691197Z\", \"modified_at\": \"2026-08-09T09:37:22.691197Z\", \"mimetype\": \"application/octet-stream\"}",
+              "additional_kwargs": {},
+              "response_metadata": {},
+              "type": "tool",
+              "name": "get_metadata_local_file",
+              "id": "29faabde-ad0e-478b-9701-bd98bce721d3",
+              "tool_call_id": "call_3BD4E2E345E745AFB822711E",
+              "artifact": null,
+              "status": "success"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "timestamp": "2026-08-09T17:27:57.319817+00:00",
+      "update": {
+        "agent": {
+          "messages": [
+            {
+              "content": "Отримано базові метадані файлу:\n\n**Результати аналізу метаданих:**\n\n*   **Шлях до файлу:** `I:\\WoolfFrameworkAgent\\artifact_sample.bin`\n*   **Назва файлу:** `artifact_sample.bin`\n*   **Розмір:** 460 байт\n*   **Розширення:** `.bin`\n*   **Тип MIME:** `application/octet-stream` (бінарний файл)\n*   **Дата створення:** 09.08.2026, 09:37:22 UTC\n*   **Дата останньої модифікації:** 09.08.2026, 09:37:22 UTC\n\n**Висновки:**\nФайл є невеликим бінарним об'єктом (460 байт). Час створення та модифікації збігаються, що може вказувати на те, що файл був створений або скопірований у цей момент. Оскільки тип MIME визначено як `application/octet-stream`, файл не має чітко визначеного формату даних і потребує подальшого аналізу (наприклад, вилучення рядків або хешування) для визначення його природи.",
+              "additional_kwargs": {
+                "refusal": null
+              },
+              "response_metadata": {
+                "token_usage": {
+                  "completion_tokens": 289,
+                  "prompt_tokens": 1302,
+                  "total_tokens": 1591,
+                  "completion_tokens_details": {
+                    "accepted_prediction_tokens": null,
+                    "audio_tokens": 0,
+                    "reasoning_tokens": 0,
+                    "rejected_prediction_tokens": null,
+                    "image_tokens": 0
+                  },
+                  "prompt_tokens_details": {
+                    "audio_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "cached_tokens": 0,
+                    "video_tokens": 0
+                  },
+                  "cost": 0,
+                  "is_byok": false,
+                  "cost_details": {
+                    "upstream_inference_cost": 8.6745e-05,
+                    "upstream_inference_prompt_cost": 3.906e-05,
+                    "upstream_inference_completions_cost": 4.7685e-05
+                  }
+                },
+                "model_provider": "openai",
+                "model_name": "google/gemma-4-26b-a4b-it:free",
+                "system_fingerprint": null,
+                "id": "gen-1786296457-7YYRBYFnEsQXCNeSFHfE",
+                "finish_reason": "stop",
+                "logprobs": null
+              },
+              "type": "ai",
+              "name": null,
+              "id": "lc_run--019fe790-dad8-7850-b7c2-d699b29d8617-0",
+              "tool_calls": [],
+              "invalid_tool_calls": [],
+              "usage_metadata": {
+                "input_tokens": 1302,
+                "output_tokens": 289,
+                "total_tokens": 1591,
+                "input_token_details": {
+                  "audio": 0,
+                  "cache_read": 0,
+                  "cache_creation": 0
+                },
+                "output_token_details": {
+                  "audio": 0,
+                  "reasoning": 0
+                }
+              }
+            }
+          ],
+          "step_count": 1
+        }
+      }
+    },
+    {
+      "timestamp": "2026-08-09T17:27:57.320821+00:00",
+      "update": {
+        "stop_guard": null
+      }
+    },
+    {
+      "timestamp": "2026-08-09T17:28:37.448745+00:00",
+      "update": {
+        "structured_output": {
+          "structured_response": {
+            "status": "success",
+            "errors": [],
+            "executed_metadata": {
+              "model_name": "unknown",
+              "execution_duration": "unknown"
+            },
+            "summary": "Отримано метадані файлу artifact_sample.bin. Файл є бінарним (application/octet-stream) розміром 460 байт.",
+            "metadata": {
+              "filepath": "I:\\WoolfFrameworkAgent\\artifact_sample.bin",
+              "filename": "artifact_sample.bin",
+              "filesize_bytes": 460,
+              "extension": ".bin",
+              "created_at": "2026-08-09T09:37:22.691197Z",
+              "modified_at": "2026-08-09T09:37:22.691197Z",
+              "mimetype": "application/octet-stream"
+            },
+            "filehash": {
+              "filepath": "I:\\WoolfFrameworkAgent\\artifact_sample.bin",
+              "algorithm": "md5",
+              "value": "unknown",
+              "processed_bytes": 460
+            },
+            "extracted_strings": {
+              "filepath": "I:\\WoolfFrameworkAgent\\artifact_sample.bin",
+              "strings": []
+            }
+          },
+          "execution_status": "completed"
+        }
+      }
+    }
+  ],
+  "final_state": {
+    "messages": [
+      {
+        "content": "Отримано базові метадані файлу:\n\n**Результати аналізу метаданих:**\n\n*   **Шлях до файлу:** `I:\\WoolfFrameworkAgent\\artifact_sample.bin`\n*   **Назва файлу:** `artifact_sample.bin`\n*   **Розмір:** 460 байт\n*   **Розширення:** `.bin`\n*   **Тип MIME:** `application/octet-stream` (бінарний файл)\n*   **Дата створення:** 09.08.2026, 09:37:22 UTC\n*   **Дата останньої модифікації:** 09.08.2026, 09:37:22 UTC\n\n**Висновки:**\nФайл є невеликим бінарним об'єктом (460 байт). Час створення та модифікації збігаються, що може вказувати на те, що файл був створений або скопірований у цей момент. Оскільки тип MIME визначено як `application/octet-stream`, файл не має чітко визначеного формату даних і потребує подальшого аналізу (наприклад, вилучення рядків або хешування) для визначення його природи.",
+        "additional_kwargs": {
+          "refusal": null
+        },
+        "response_metadata": {
+          "token_usage": {
+            "completion_tokens": 289,
+            "prompt_tokens": 1302,
+            "total_tokens": 1591,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cache_write_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 8.6745e-05,
+              "upstream_inference_prompt_cost": 3.906e-05,
+              "upstream_inference_completions_cost": 4.7685e-05
+            }
+          },
+          "model_provider": "openai",
+          "model_name": "google/gemma-4-26b-a4b-it:free",
+          "system_fingerprint": null,
+          "id": "gen-1786296457-7YYRBYFnEsQXCNeSFHfE",
+          "finish_reason": "stop",
+          "logprobs": null
+        },
+        "type": "ai",
+        "name": null,
+        "id": "lc_run--019fe790-dad8-7850-b7c2-d699b29d8617-0",
+        "tool_calls": [],
+        "invalid_tool_calls": [],
+        "usage_metadata": {
+          "input_tokens": 1302,
+          "output_tokens": 289,
+          "total_tokens": 1591,
+          "input_token_details": {
+            "audio": 0,
+            "cache_read": 0,
+            "cache_creation": 0
+          },
+          "output_token_details": {
+            "audio": 0,
+            "reasoning": 0
+          }
+        }
+      }
+    ],
+    "step_count": 1,
+    "structured_response": {
+      "status": "success",
+      "errors": [],
+      "executed_metadata": {
+        "model_name": "unknown",
+        "execution_duration": "unknown"
+      },
+      "summary": "Отримано метадані файлу artifact_sample.bin. Файл є бінарним (application/octet-stream) розміром 460 байт.",
+      "metadata": {
+        "filepath": "I:\\WoolfFrameworkAgent\\artifact_sample.bin",
+        "filename": "artifact_sample.bin",
+        "filesize_bytes": 460,
+        "extension": ".bin",
+        "created_at": "2026-08-09T09:37:22.691197Z",
+        "modified_at": "2026-08-09T09:37:22.691197Z",
+        "mimetype": "application/octet-stream"
+      },
+      "filehash": {
+        "filepath": "I:\\WoolfFrameworkAgent\\artifact_sample.bin",
+        "algorithm": "md5",
+        "value": "unknown",
+        "processed_bytes": 460
+      },
+      "extracted_strings": {
+        "filepath": "I:\\WoolfFrameworkAgent\\artifact_sample.bin",
+        "strings": []
+      }
+    },
+    "execution_status": "completed"
+  },
+  "error": null
+}

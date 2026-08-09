@@ -7,7 +7,7 @@ from src.woolf_agents.domains.artifacts.schemas.contracts import (
     )
 
 class AssignmentResult01(BaseExecutionResult):
-    """Основний результат після виконання усіх завдань"""
+    "Основний результат після виконання усіх завдань"
     metadata: MetadataFileResult
     filehash: FileHashResult
     extracted_strings: ExtractedStringsResult

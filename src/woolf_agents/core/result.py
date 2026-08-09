@@ -22,8 +22,7 @@ class BaseExecutionResult(BaseModel):
     LangGraph state object.
     """
     model_config = ConfigDict(
-        extra="forbid",
-        validate_assignment=True
+        extra="ignore",
         )
     
     status: ExecutionStatus = Field(
@@ -34,7 +33,7 @@ class BaseExecutionResult(BaseModel):
             when no usable result could be produced.
             """
         )
-    errors: list[ErrorInfo] = Field(
+    errors: list[str] = Field(
         default_factory=list,
         description=""" 
         Human-readable error messages collected during execution. 
@@ -42,7 +41,7 @@ class BaseExecutionResult(BaseModel):
         may contain errors while still providing useful output.
         """
     )
-    metadata: dict[str, object] = Field(
+    executed_metadata: dict[str, object] = Field(
         default_factory=dict,
         description="""
             Optional technical and operational information about the execution, 

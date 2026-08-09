@@ -92,8 +92,6 @@ def extract_strings_local_file(artifact_path:Path, encoding:TextEncoding, max_le
                 )
             result:ExtractedStringsResult = service.extract_strings()
                 
-    except ValidationError as ex:
-            raise 
     except Exception as ex:
             raise
     return result.model_dump(mode="json")

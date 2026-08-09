@@ -6,13 +6,14 @@ from .edges import GraphEdge, ConditionalGraphEdge
 from typing import Generic, TypeVar, Any
 from collections.abc import Sequence
 from langchain_core.tools import BaseTool
-from langchain_core.messages import SystemMessage
+from langchain_core.messages import SystemMessage, HumanMessage
 from langgraph.prebuilt import ToolNode
 from langgraph.graph import StateGraph, START, END
 from langchain_core.language_models.chat_models import BaseChatModel
 from src.woolf_agents.runtime.stop_controller import StopController
 from src.woolf_agents.llm.executor import LLMExecutor
 import time
+from pydantic import ValidationError
 
 
 StateT = TypeVar("StateT")
@@ -90,20 +91,51 @@ class ToolCallingGraph(
         
         
     async def _structured_output_node(self, state: StateT)->dict[str, Any]:
-            """Формує структорвану відповідь"""
+            """Формує структоровану відповідь"""
+            
+            structured_output_system_message = SystemMessage(
+                                                    content="""
+                                                    Ти формуєш фінальний структурований результат виконання агента.
+
+                                                    Поверни відповідь ВИКЛЮЧНО як валідний JSON-об'єкт,
+                                                    що відповідає наданій JSON Schema.
+
+                                                    Правила:
+                                                    - не використовуй Markdown;
+                                                    - не використовуй ```json;
+                                                    - не додавай текст до або після JSON;
+                                                    - не додавай пояснення;
+                                                    - використовуй лише дані з результатів інструментів;
+                                                    - не вигадуй відсутні значення;
+                                                    - значення enum повинні точно відповідати схемі.
+
+                                                    Відповідь повинна починатися символом { і закінчуватися }.
+                                                    """
+                                                    )
             response = await self._executor.model_invoke(
-                    self._tool_model,
+                    self._llm_structured_output,
                     [
-                        self._system_message,
+                        structured_output_system_message,
                         *state["messages"],
+                        HumanMessage(
+                                content=(
+                                        "На основі наведених вище результатів сформуй "
+                                        "фінальний результат. Поверни виключно JSON, "
+                                        "що відповідає заданій схемі."
+                                    )
+                                ),
+                        
                     ] 
                     )
          
-        
+            print(type(response))
+           
             return {
              "structured_response": response,
              "execution_status": "completed"
             }
+        
+    
             
     async def _stop_guard_node(self, state: StateT) -> dict[str, Any]:
         last_message = state["messages"][-1]

@@ -1,0 +1,24 @@
+{
+  "run_id": "f4c2bcba-fcf0-4dfa-b209-c9a567bafc60",
+  "started_at": "2026-08-09T17:28:37.449743+00:00",
+  "finished_at": "2026-08-09T17:28:49.244684+00:00",
+  "initial_state": {
+    "messages": [
+      {
+        "content": "Обчисли SHA-256 запропонованого файла.",
+        "additional_kwargs": {},
+        "response_metadata": {},
+        "type": "human",
+        "name": null,
+        "id": "33dc6bd5-3b0a-4424-b127-707b5091cd7f"
+      }
+    ],
+    "artifact_path": "I:\\WoolfFrameworkAgent\\artifact_sample.bin",
+    "step_count": 0,
+    "used_tokens": 0,
+    "execution_status": "running"
+  },
+  "trajectory": [],
+  "final_state": {},
+  "error": "ValueError: {'message': 'Provider timed out after 11460ms', 'code': 504}"
+}
