@@ -1,5 +1,7 @@
 from .base_graph import BaseGraph
 from .nodes import GraphNode
+from typing import Literal
+from langgraph.graph import END, START
 from .edges import GraphEdge, ConditionalGraphEdge
 from typing import Generic, TypeVar, Any
 from collections.abc import Sequence
@@ -9,6 +11,8 @@ from langgraph.prebuilt import ToolNode
 from langgraph.graph import StateGraph, START, END
 from langchain_core.language_models.chat_models import BaseChatModel
 from src.woolf_agents.runtime.stop_controller import StopController
+from src.woolf_agents.llm.executor import LLMExecutor
+import time
 
 
 StateT = TypeVar("StateT")
@@ -32,6 +36,7 @@ class ToolCallingGraph(
                  tools: Sequence[BaseTool],
                  output_schema: type[OutputT],
                  system_prompt: str,
+                 executor: LLMExecutor,
                  stop_controller: StopController
                  ):
         super().__init__(state)
@@ -44,38 +49,62 @@ class ToolCallingGraph(
         self._tool_model = model.bind_tools(self._tools)
         self._tool_node = ToolNode(self._tools)
         self._stop_controller = stop_controller
+        self._executor = executor
     
     async def _agent_node(self, state: StateT)->dict[str, Any]:
-        """Вузол формує виклик інструментів"""
-        response = await self._tool_model.ainvoke(
-           [
-               self._system_message,
-               *state["messages"]
-           ]   
-        )
-        used_tokens = (
-                response.usage_metadata.get("total_tokens", 0)
-                if response.usage_metadata
-                else 0
-                     )
-        return {
-            "messages": [response],
-            "step_count": 1,
-            "used_tokens": used_tokens
-        }
+        #print("\nAGENT NODE MESSAGES:")
+
+        """for message in state["messages"]:
+            print(
+                type(message).__name__,
+                getattr(message, "content", None),
+            )"""
+        #started_at = time.perf_counter()
+
+        #print("LLM START") 
+        try:
+            """Вузол формує виклик інструментів"""
+            response = await self._executor.model_invoke(
+                                         self._tool_model,
+                                         [
+                                                self._system_message,
+                                                *state["messages"],
+                                                str(state["artifact_path"])
+                                         ] 
+                                         )
+            used_tokens = response.usage_metadata.get("total_tokens", 0) if response.usage_metadata else 0
+            return {
+                        "messages": [response],
+                        "step_count": 1,
+                        "used_tokens": used_tokens
+                    }
+        except Exception as exc:
+            print(
+                "LLM ERROR:",
+                type(exc).__name__,
+                str(exc),
+                )
+            raise
+                      
+            
+        
         
     async def _structured_output_node(self, state: StateT)->dict[str, Any]:
-         """Формує структорвану відповідь"""
-         response = await self._tool_model.ainvoke(
-             [
-                 self._system_message,
-                 *state["messages"]
-             ]   
-         )
-         return {
+            """Формує структорвану відповідь"""
+            response = await self._executor.model_invoke(
+                    self._tool_model,
+                    [
+                        self._system_message,
+                        *state["messages"],
+                    ] 
+                    )
+         
+        
+            return {
              "structured_response": response,
              "execution_status": "completed"
-         }
+            }
+            
     async def _stop_guard_node(self, state: StateT) -> dict[str, Any]:
         last_message = state["messages"][-1]
         
@@ -98,7 +127,6 @@ class ToolCallingGraph(
             "execution_status": "stopped",
         }    
     
-    from typing import Literal
 
 
     def _route_after_guard(self, state: StateT) -> Literal[
@@ -154,36 +182,34 @@ class ToolCallingGraph(
             )
         )
         
-    from langgraph.graph import END, START
-
 
     def _create_edges(self,) -> tuple[GraphEdge, ...]:
         return (
             GraphEdge(
-                source=START,
-                target=self.AGENT_NODE,
+                first_node=START,
+                second_node=self.AGENT_NODE,
             ),
             GraphEdge(
-                source=self.AGENT_NODE,
-                target=self.STOP_GUARD_NODE,
+                first_node=self.AGENT_NODE,
+                second_node=self.STOP_GUARD_NODE,
             ),
             GraphEdge(
-                source=self.TOOLS_NODE,
-                target=self.AGENT_NODE,
+                first_node=self.TOOLS_NODE,
+                second_node=self.AGENT_NODE,
             ),
             GraphEdge(
-                source=self.STRUCTURED_OUTPUT_NODE,
-                target=END,
+                first_node=self.STRUCTURED_OUTPUT_NODE,
+                second_node=END,
             ),
             GraphEdge(
-                source=self.STOPPED_NODE,
-                target=END,
+                first_node=self.STOPPED_NODE,
+                second_node=END,
             ),
         )
     def _create_conditional_edges(self) -> tuple[ConditionalGraphEdge[StateT], ...]:
         return (
             ConditionalGraphEdge(
-                source=self.STOP_GUARD_NODE,
+                first_node=self.STOP_GUARD_NODE,
                 router=self._route_after_guard,
                 routes={
                     self.TOOLS_NODE: self.TOOLS_NODE,

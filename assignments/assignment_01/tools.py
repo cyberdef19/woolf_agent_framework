@@ -1,4 +1,4 @@
-from langchain_core import tool
+from langchain_core.tools import tool
 from pathlib import Path
 from src.woolf_agents.domains.artifacts.schemas.contracts import (
     MetadataFileInput,
@@ -19,30 +19,32 @@ from src.woolf_agents.domains.artifacts.services.services import(
 from pydantic import ValidationError
 
 @tool(args_schema=MetadataFileInput)
-def get_metadata_local_file(path_file: Path, level:MetadataLevel = MetadataLevel.BASIC)->dict[str, object]:
+def get_metadata_local_file(artifact_path: Path, metadata_level:MetadataLevel = MetadataLevel.BASIC)->dict[str, object]:
     """_summary_
        Виконує екстракцію метаданих з локального файла
     Args:
         pathfile (Path): _description_ - шлях до локального файла в операційній системі
-        level (MetadataLevel, optional): _description_. Defaults to MetadataLevel.BASIC. - рівень отримання
+        metadata_level (MetadataLevel, optional): _description_. Defaults to MetadataLevel.BASIC. - рівень отримання
         метаданих, за замовчуванням MetadataLevel.Basic
     
     Returns:
         dict[str, object]: _description_ - повертає дамп моделі у режимі json
     """
+
     try:
-        service: MetadataService = MetadataService(filepath=path_file)
+        service: MetadataService = MetadataService(filepath=artifact_path)
         result:MetadataFileResult = service.extract_metadata()
-        
+       
     except ValidationError as ex:
         raise 
     except Exception as ex:
         raise
+    print("End Metadata")
     return result.model_dump(mode="json")
 
     
 @tool(args_schema=CalculateHashInput)
-def hashing_local_file(path_file:Path, algorithm: HashAlgorithm)->dict[str, object]:
+def hashing_local_file(artifact_path:Path, algorithm: HashAlgorithm)->dict[str, object]:
     """_summary_
         Виконує обчислення хеша локального файла
     Args:
@@ -52,19 +54,21 @@ def hashing_local_file(path_file:Path, algorithm: HashAlgorithm)->dict[str, obje
     Returns:
         dict[str, object]: _description_ - повертає дамп моделі в режимі json
     """
+    print("Start Hashing")
     try:
-            service: HashingService = HashingService(filepath=path_file, algo=algorithm.value)
+            service: HashingService = HashingService(filepath=artifact_path, algo=algorithm)
             result:FileHashResult = service.hash_calculating()
             
     except ValidationError as ex:
             raise 
     except Exception as ex:
             raise
+    print("End Hashing")
     return result.model_dump(mode="json")
 
 
 @tool(args_schema=ExtractStringsInput)
-def extract_strings_local_file(path_file:Path, encoding:TextEncoding, max_length:int, min_length:int, max_strings:int)->dict[str, object]:
+def extract_strings_local_file(artifact_path:Path, encoding:TextEncoding, max_length:int, min_length:int, max_strings:int)->dict[str, object]:
     """_summary_
         Отримує наявні рядки у файлі. Може використовувати різні алгоритми
     Args:
@@ -77,9 +81,10 @@ def extract_strings_local_file(path_file:Path, encoding:TextEncoding, max_length
     Returns:
         dict[str, object]: _description_ - повертає дамп моделі в режимі json
     """
+    print("Extract Data")
     try:
             service: ExtractStringsService = ExtractStringsService(
-                filepath=path_file,
+                filepath=artifact_path,
                 encoding=encoding,
                 max_length=max_length,
                 min_length=min_length,

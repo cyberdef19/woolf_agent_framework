@@ -21,7 +21,7 @@ class BaseExecutionResult(BaseModel):
     not be used as a replacement for an internal workflow state, such as a
     LangGraph state object.
     """
-    config = ConfigDict(
+    model_config = ConfigDict(
         extra="forbid",
         validate_assignment=True
         )

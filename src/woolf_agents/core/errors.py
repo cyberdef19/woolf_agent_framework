@@ -3,7 +3,7 @@ from enum import StrEnum
 from typing import Any
 from uuid import UUID, uuid4
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 
 
 class ErrorSeverity(StrEnum):
@@ -25,6 +25,10 @@ class ErrorInfo(BaseModel):
     It represents information about an error and does not replace the original
     Python exception used for runtime flow control.
     """
+    model_config = ConfigDict(
+        extra="forbid"
+    )
+    
     retrayable: bool = Field(
         default_factory=False,
         description="Indicates whether the failed operation may succeed if it is "

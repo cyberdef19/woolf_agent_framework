@@ -1,8 +1,9 @@
-# evaluation/contracts.py
+from pathlib import Path
 
 from pydantic import BaseModel, ConfigDict, Field
+from assignments.assignment_01.state import Assignment01AgentState
 
-class TestExpectation(BaseModel):
+class AgentTestExpectation(BaseModel):
     """Machine-checkable expectations for one evaluation case."""
 
     required_tools: tuple[str, ...] = ()
@@ -20,6 +21,10 @@ class AgentTestCase(BaseModel):
         description="Unique identifier of the test case.",
     )
 
+    artifact_path:Path = Field(
+        default_factory=None,
+        description="Шлях до досліджуваного файла у системі"
+    )
     input_query: str = Field(
         min_length=1,
         description="User query passed to the agent workflow.",
@@ -32,6 +37,6 @@ class AgentTestCase(BaseModel):
             "or expected output."
         ),
     )
-    expectation: TestExpectation = Field(
-        default_factory=TestExpectation,
+    expectation: AgentTestExpectation = Field(
+        default_factory=AgentTestExpectation,
     )

@@ -1,0 +1,24 @@
+{
+  "run_id": "a05575a8-c1a0-4052-80ca-0167b1cd8a6a",
+  "started_at": "2026-08-09T09:08:00.444117+00:00",
+  "finished_at": "2026-08-09T09:09:06.899863+00:00",
+  "initial_state": {
+    "messages": [
+      {
+        "content": "Проаналізуй файл I:\\WoolfFrameworkAgent\\artifact_sample.binотримай метадані, SHA-256, отримай рядки запропонованого файла",
+        "additional_kwargs": {},
+        "response_metadata": {},
+        "type": "human",
+        "name": null,
+        "id": "b5289b19-5207-492a-91da-aec6402bd0e4"
+      }
+    ],
+    "step_count": 0,
+    "used_tokens": 0,
+    "execution_status": "running",
+    "artifact_path": "I:\\WoolfFrameworkAgent\\artifact_sample.bin"
+  },
+  "trajectory": [],
+  "final_state": {},
+  "error": "UnboundLocalError: cannot access local variable 'response' where it is not associated with a value"
+}

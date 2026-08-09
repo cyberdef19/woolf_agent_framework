@@ -1,6 +1,8 @@
 from typing import Literal, Annotated
 from typing_extensions import NotRequired
 from src.woolf_agents.workflows.state import MessageAgentState
+from .result import AssignmentResult01
+from pathlib import Path
 
 
 AnalysisStatus = Literal[
@@ -8,6 +10,7 @@ AnalysisStatus = Literal[
     "in_progress",
     "completed",
     "failed",
+    "stopped"
 ]
 
 class Assignment01AgentState(MessageAgentState, total=False):
@@ -24,6 +27,6 @@ class Assignment01AgentState(MessageAgentState, total=False):
         final_report:
             Final human-readable artifact analysis report.
     """
-    artifact_path: str
-    analysis_status: NotRequired[AnalysisStatus]
-    final_report: NotRequired[str]
+    artifact_path: Path
+    execution_status: NotRequired[AnalysisStatus]
+    structured_response: NotRequired[AssignmentResult01]

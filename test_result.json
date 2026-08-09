@@ -1,0 +1,61 @@
+{
+  "started_at": "2026-08-08T21:19:41.905930+00:00",
+  "finished_at": "2026-08-08T21:21:00.727445+00:00",
+  "total_cases": 4,
+  "passed_cases": 0,
+  "failed_cases": 4,
+  "results": [
+    {
+      "case_id": "metadata_only",
+      "input_query": "Отримай лише метадані запропонованого файла ",
+      "expected_result": "Агент повинен викликати лише інструмент отримання метаданих і повернути відомості про файл.",
+      "actual_result": null,
+      "passed": false,
+      "execution_status": "unknown",
+      "step_count": 1,
+      "tool_calls": [],
+      "execution_time_seconds": 45.0257,
+      "used_tokens": 0,
+      "error": null
+    },
+    {
+      "case_id": "sha256_hash",
+      "input_query": "Обчисли SHA-256 запропонованого файла ",
+      "expected_result": "Агент повинен викликати calculate_hash з алгоритмом SHA-256.",
+      "actual_result": null,
+      "passed": false,
+      "execution_status": "unknown",
+      "step_count": 1,
+      "tool_calls": [],
+      "execution_time_seconds": 19.7151,
+      "used_tokens": 0,
+      "error": null
+    },
+    {
+      "case_id": "extract_strings",
+      "input_query": "Витягни читабельні текстові рядки з запропонованого файла ",
+      "expected_result": "Агент повинен використати інструмент витягування рядків.",
+      "actual_result": null,
+      "passed": false,
+      "execution_status": "unknown",
+      "step_count": 1,
+      "tool_calls": [],
+      "execution_time_seconds": 9.856,
+      "used_tokens": 0,
+      "error": null
+    },
+    {
+      "case_id": "full_analysis",
+      "input_query": "Проведи первинний аналіз запропонованого файла:  отримай метадані, SHA-256, рядки.",
+      "expected_result": "Агент повинен використати всі три інструменти й сформувати структурований звіт.",
+      "actual_result": null,
+      "passed": false,
+      "execution_status": "unknown",
+      "step_count": 1,
+      "tool_calls": [],
+      "execution_time_seconds": 4.2238,
+      "used_tokens": 0,
+      "error": null
+    }
+  ]
+}

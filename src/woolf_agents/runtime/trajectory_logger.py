@@ -29,45 +29,54 @@ class TrajectoryLogger:
         trajectory: list[dict[str, Any]] = []
 
         final_state: dict[str, Any] = {}
+        
+        path = self._log_directory / f"{run_id}.json"
+        error: str|None = None
+        try:
 
-        async for event in graph.astream(
-            initial_state,
-            config=config,
-            stream_mode="updates",
-        ):
-            serialized_event = self._serialize(event)
+            async for event in graph.astream(
+                initial_state,
+                config=config,
+                stream_mode="updates",
+            ):
+                serialized_event = self._serialize(event)
 
-            trajectory.append(
-                {
-                    "timestamp": self._now(),
-                    "update": serialized_event,
-                }
+                trajectory.append(
+                    {
+                        "timestamp": self._now(),
+                        "update": serialized_event,
+                    }
+                )
+
+                # stream_mode="updates" повертає оновлення за іменами вузлів.
+                if isinstance(serialized_event, dict):
+                    for node_update in serialized_event.values():
+                        if isinstance(node_update, dict):
+                            final_state.update(node_update)
+            return final_state
+        except BaseException as ex:
+            error = f"{type(ex).__name__}: {ex}"
+            raise
+        finally:
+            document = {
+                "run_id": run_id,
+                "started_at": started_at,
+                "finished_at": self._now(),
+                "initial_state": self._serialize(initial_state),
+                "trajectory": trajectory,
+                "final_state": self._serialize(final_state),
+                "error": error
+            }
+
+       
+
+            await asyncio.to_thread(
+                self._write_json,
+                path,
+                document,
             )
 
-            # stream_mode="updates" повертає оновлення за іменами вузлів.
-            if isinstance(serialized_event, dict):
-                for node_update in serialized_event.values():
-                    if isinstance(node_update, dict):
-                        final_state.update(node_update)
-
-        document = {
-            "run_id": run_id,
-            "started_at": started_at,
-            "finished_at": self._now(),
-            "initial_state": self._serialize(initial_state),
-            "trajectory": trajectory,
-            "final_state": self._serialize(final_state),
-        }
-
-        path = self._log_directory / f"{run_id}.json"
-
-        await asyncio.to_thread(
-            self._write_json,
-            path,
-            document,
-        )
-
-        return final_state
+       
 
     @staticmethod
     def _write_json(

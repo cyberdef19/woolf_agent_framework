@@ -42,6 +42,7 @@ class AgentTestRunner:
                     content=test_case.input_query,
                 )
             ],
+            "artifact_path": test_case.artifact_path,
             "step_count": 0,
             "used_tokens": 0,
             "execution_status": "running",

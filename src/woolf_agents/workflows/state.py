@@ -1,6 +1,7 @@
+import operator
 from typing_extensions import TypedDict
 from typing import Annotated
-from langchain_core.messages import BaseMessage
+from langchain_core.messages import BaseMessage, AnyMessage
 from langgraph.graph.message import add_messages
 
 class BaseExecutionSate(TypedDict, total=False):
@@ -11,7 +12,7 @@ class BaseExecutionSate(TypedDict, total=False):
     execution_id: str
     errors: list[str]
     metadata: dict[str, object]
-    step_count: int
+    step_count: Annotated[int, operator.add]
 
 class MessageAgentState(BaseExecutionSate, total=False):
     """

@@ -1,0 +1,351 @@
+{
+  "run_id": "bcfbfd5a-440f-4c1c-8cfa-af8674f21dd1",
+  "started_at": "2026-08-09T09:23:06.393014+00:00",
+  "finished_at": "2026-08-09T09:24:00.947193+00:00",
+  "initial_state": {
+    "messages": [
+      {
+        "content": "Проаналізуй файл I:\\WoolfFrameworkAgent\\artifact_sample.binотримай метадані, SHA-256, отримай рядки запропонованого файла",
+        "additional_kwargs": {},
+        "response_metadata": {},
+        "type": "human",
+        "name": null,
+        "id": "851df36d-0a8b-4cba-bb0f-d8ffa35abfcd"
+      }
+    ],
+    "step_count": 0,
+    "used_tokens": 0,
+    "execution_status": "running",
+    "artifact_path": "I:\\WoolfFrameworkAgent\\artifact_sample.bin"
+  },
+  "trajectory": [
+    {
+      "timestamp": "2026-08-09T09:23:19.374045+00:00",
+      "update": {
+        "agent": {
+          "messages": [
+            {
+              "content": "",
+              "additional_kwargs": {
+                "refusal": null
+              },
+              "response_metadata": {
+                "token_usage": {
+                  "completion_tokens": 84,
+                  "prompt_tokens": 1159,
+                  "total_tokens": 1243,
+                  "completion_tokens_details": {
+                    "accepted_prediction_tokens": null,
+                    "audio_tokens": 0,
+                    "reasoning_tokens": 42,
+                    "rejected_prediction_tokens": null,
+                    "image_tokens": 0
+                  },
+                  "prompt_tokens_details": {
+                    "audio_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "cached_tokens": 0,
+                    "video_tokens": 0
+                  },
+                  "cost": 0,
+                  "is_byok": false,
+                  "cost_details": {
+                    "upstream_inference_cost": 2.26855e-05,
+                    "upstream_inference_prompt_cost": 1.68055e-05,
+                    "upstream_inference_completions_cost": 5.88e-06
+                  }
+                },
+                "model_provider": "openai",
+                "model_name": "openai/gpt-oss-20b:free",
+                "system_fingerprint": null,
+                "id": "gen-1786267386-mNIkcSzRYplEsD2K7lwo",
+                "finish_reason": "tool_calls",
+                "logprobs": null
+              },
+              "type": "ai",
+              "name": null,
+              "id": "lc_run--019fe5d5-422c-76c0-b419-ec3ae6be4768-0",
+              "tool_calls": [
+                {
+                  "name": "get_metadata_local_file",
+                  "args": {
+                    "artifact_path": "I:\\WoolfFrameworkAgent\\artifact_sample.bin",
+                    "metadata_level": "basic"
+                  },
+                  "id": "call_EE714CE632A54157A18D1E3D",
+                  "type": "tool_call"
+                }
+              ],
+              "invalid_tool_calls": [],
+              "usage_metadata": {
+                "input_tokens": 1159,
+                "output_tokens": 84,
+                "total_tokens": 1243,
+                "input_token_details": {
+                  "audio": 0,
+                  "cache_read": 0,
+                  "cache_creation": 0
+                },
+                "output_token_details": {
+                  "audio": 0,
+                  "reasoning": 42
+                }
+              }
+            }
+          ],
+          "step_count": 1
+        }
+      }
+    },
+    {
+      "timestamp": "2026-08-09T09:23:19.375044+00:00",
+      "update": {
+        "stop_guard": null
+      }
+    },
+    {
+      "timestamp": "2026-08-09T09:23:19.436075+00:00",
+      "update": {
+        "tools": {
+          "messages": [
+            {
+              "content": "{\"filepath\": \"I:\\\\WoolfFrameworkAgent\\\\artifact_sample.bin\", \"filename\": \"artifact_sample.bin\", \"filesize_bytes\": 460, \"extension\": \".bin\", \"created_at\": \"2026-08-06T18:55:26.495352Z\", \"modified_at\": \"2026-08-04T20:54:37.154800Z\", \"mimetype\": \"application/octet-stream\"}",
+              "additional_kwargs": {},
+              "response_metadata": {},
+              "type": "tool",
+              "name": "get_metadata_local_file",
+              "id": "3702f1ac-7eab-48b8-86f9-448f8f582c5b",
+              "tool_call_id": "call_EE714CE632A54157A18D1E3D",
+              "artifact": null,
+              "status": "success"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "timestamp": "2026-08-09T09:23:26.595330+00:00",
+      "update": {
+        "agent": {
+          "messages": [
+            {
+              "content": "",
+              "additional_kwargs": {
+                "refusal": null
+              },
+              "response_metadata": {
+                "token_usage": {
+                  "completion_tokens": 74,
+                  "prompt_tokens": 1306,
+                  "total_tokens": 1380,
+                  "completion_tokens_details": {
+                    "accepted_prediction_tokens": null,
+                    "audio_tokens": 0,
+                    "reasoning_tokens": 32,
+                    "rejected_prediction_tokens": null,
+                    "image_tokens": 0
+                  },
+                  "prompt_tokens_details": {
+                    "audio_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "cached_tokens": 0,
+                    "video_tokens": 0
+                  },
+                  "cost": 0,
+                  "is_byok": false,
+                  "cost_details": {
+                    "upstream_inference_cost": 2.4117e-05,
+                    "upstream_inference_prompt_cost": 1.8937e-05,
+                    "upstream_inference_completions_cost": 5.18e-06
+                  }
+                },
+                "model_provider": "openai",
+                "model_name": "openai/gpt-oss-20b:free",
+                "system_fingerprint": null,
+                "id": "gen-1786267399-zTtL8RhrJi07WYilAEi3",
+                "finish_reason": "tool_calls",
+                "logprobs": null
+              },
+              "type": "ai",
+              "name": null,
+              "id": "lc_run--019fe5d5-750d-7da2-82a1-537850c2626e-0",
+              "tool_calls": [
+                {
+                  "name": "hashing_local_file",
+                  "args": {
+                    "algorithm": "sha256",
+                    "artifact_path": "I:\\WoolfFrameworkAgent\\artifact_sample.bin"
+                  },
+                  "id": "call_8DC1F620503A49E89272DCE9",
+                  "type": "tool_call"
+                }
+              ],
+              "invalid_tool_calls": [],
+              "usage_metadata": {
+                "input_tokens": 1306,
+                "output_tokens": 74,
+                "total_tokens": 1380,
+                "input_token_details": {
+                  "audio": 0,
+                  "cache_read": 0,
+                  "cache_creation": 0
+                },
+                "output_token_details": {
+                  "audio": 0,
+                  "reasoning": 32
+                }
+              }
+            }
+          ],
+          "step_count": 1
+        }
+      }
+    },
+    {
+      "timestamp": "2026-08-09T09:23:26.597315+00:00",
+      "update": {
+        "stop_guard": null
+      }
+    },
+    {
+      "timestamp": "2026-08-09T09:23:26.600219+00:00",
+      "update": {
+        "tools": {
+          "messages": [
+            {
+              "content": "{\"filepath\": \"I:\\\\WoolfFrameworkAgent\\\\artifact_sample.bin\", \"algorithm\": \"sha256\", \"value\": \"ca8b5cc3845b1c3ab96d4b23a6d01f15838052327b3644a52050a7e579a3c406\", \"processed_bytes\": 460}",
+              "additional_kwargs": {},
+              "response_metadata": {},
+              "type": "tool",
+              "name": "hashing_local_file",
+              "id": "c2ea46fe-fd63-4047-b320-048cdff0b54d",
+              "tool_call_id": "call_8DC1F620503A49E89272DCE9",
+              "artifact": null,
+              "status": "success"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "timestamp": "2026-08-09T09:23:30.928879+00:00",
+      "update": {
+        "agent": {
+          "messages": [
+            {
+              "content": "",
+              "additional_kwargs": {
+                "refusal": null
+              },
+              "response_metadata": {
+                "token_usage": {
+                  "completion_tokens": 107,
+                  "prompt_tokens": 1433,
+                  "total_tokens": 1540,
+                  "completion_tokens_details": {
+                    "accepted_prediction_tokens": null,
+                    "audio_tokens": 0,
+                    "reasoning_tokens": 70,
+                    "rejected_prediction_tokens": null,
+                    "image_tokens": 0
+                  },
+                  "prompt_tokens_details": {
+                    "audio_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "cached_tokens": 0,
+                    "video_tokens": 0
+                  },
+                  "cost": 0,
+                  "is_byok": false,
+                  "cost_details": {
+                    "upstream_inference_cost": 2.82685e-05,
+                    "upstream_inference_prompt_cost": 2.07785e-05,
+                    "upstream_inference_completions_cost": 7.49e-06
+                  }
+                },
+                "model_provider": "openai",
+                "model_name": "openai/gpt-oss-20b:free",
+                "system_fingerprint": null,
+                "id": "gen-1786267406-tYwTQbTgvK8kAn7iV80m",
+                "finish_reason": "tool_calls",
+                "logprobs": null
+              },
+              "type": "ai",
+              "name": null,
+              "id": "lc_run--019fe5d5-9109-7711-a215-3b21c3fd0032-0",
+              "tool_calls": [
+                {
+                  "name": "extract_strings_local_file",
+                  "args": {
+                    "artifact_path": "I:\\WoolfFrameworkAgent\\artifact_sample.bin"
+                  },
+                  "id": "call_642C8838499C49F9A8F0BA21",
+                  "type": "tool_call"
+                }
+              ],
+              "invalid_tool_calls": [],
+              "usage_metadata": {
+                "input_tokens": 1433,
+                "output_tokens": 107,
+                "total_tokens": 1540,
+                "input_token_details": {
+                  "audio": 0,
+                  "cache_read": 0,
+                  "cache_creation": 0
+                },
+                "output_token_details": {
+                  "audio": 0,
+                  "reasoning": 70
+                }
+              }
+            }
+          ],
+          "step_count": 1
+        }
+      }
+    },
+    {
+      "timestamp": "2026-08-09T09:23:30.929878+00:00",
+      "update": {
+        "stop_guard": null
+      }
+    },
+    {
+      "timestamp": "2026-08-09T09:23:30.932876+00:00",
+      "update": {
+        "tools": {
+          "messages": [
+            {
+              "content": "{\"filepath\": \"I:\\\\WoolfFrameworkAgent\\\\artifact_sample.bin\", \"strings\": [\"Woolf Forensic Test Artifact\", \"Version: 1.0\", \"Created for LangGraph agent testing.\", \"Server URL: https://api.example.com/v1/status\", \"Backup URL: http://192.168.10.25:8080/health\", \"Email: admin@example.com\", \"Domain: telemetry.example.net\", \"IPv4: 192.168.10.25\", \"Username: service_user\", \"Password: test-password-not-real\", \"API_KEY=DEMO-KEY-123456\", \"DEVICE_ID=SHAHED-TEST-001\", \"System started successfully.\", \"Connection failed: timeout while contacting telemetry server.\"]}",
+              "additional_kwargs": {},
+              "response_metadata": {},
+              "type": "tool",
+              "name": "extract_strings_local_file",
+              "id": "e3c462e4-2fc5-49f5-9e66-ae67d5d95502",
+              "tool_call_id": "call_642C8838499C49F9A8F0BA21",
+              "artifact": null,
+              "status": "success"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "final_state": {
+    "messages": [
+      {
+        "content": "{\"filepath\": \"I:\\\\WoolfFrameworkAgent\\\\artifact_sample.bin\", \"strings\": [\"Woolf Forensic Test Artifact\", \"Version: 1.0\", \"Created for LangGraph agent testing.\", \"Server URL: https://api.example.com/v1/status\", \"Backup URL: http://192.168.10.25:8080/health\", \"Email: admin@example.com\", \"Domain: telemetry.example.net\", \"IPv4: 192.168.10.25\", \"Username: service_user\", \"Password: test-password-not-real\", \"API_KEY=DEMO-KEY-123456\", \"DEVICE_ID=SHAHED-TEST-001\", \"System started successfully.\", \"Connection failed: timeout while contacting telemetry server.\"]}",
+        "additional_kwargs": {},
+        "response_metadata": {},
+        "type": "tool",
+        "name": "extract_strings_local_file",
+        "id": "e3c462e4-2fc5-49f5-9e66-ae67d5d95502",
+        "tool_call_id": "call_642C8838499C49F9A8F0BA21",
+        "artifact": null,
+        "status": "success"
+      }
+    ],
+    "step_count": 1
+  },
+  "error": "UnboundLocalError: cannot access local variable 'response' where it is not associated with a value"
+}

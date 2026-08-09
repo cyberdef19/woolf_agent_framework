@@ -4,6 +4,7 @@ from .base import SpecificInput, SpecificResult
 from src.woolf_agents.core.result import BaseExecutionResult
 from enum import Enum
 from datetime import datetime
+from pathlib import Path
 
 
 class HashAlgorithm(str, Enum):
@@ -15,23 +16,24 @@ class CalculateHashInput(SpecificInput):
     """Вхідні параметри для інструмента розрахунку хеша"""
    
     algorithm: HashAlgorithm = Field(
-        default_factory=HashAlgorithm.SHA256,
+        default=HashAlgorithm.SHA256,
         description="""
                      Алгоритм за яким відбувається хешування
                     """            
     ) 
     
     
-    @field_validator("algorithm", mode="before")
+    @field_validator("algorithm")
     @classmethod
-    def validate_algorithm(cls, value: str) -> str:
+    def validate_algorithm(cls, value: HashAlgorithm) -> str:
         """Валідує поле алгоритму algorithm"""
         if value is None:
             raise ValueError("Поле алгоритму не може бути пустим")
-        if not isinstance(value, str):
+        if not isinstance(value, HashAlgorithm):
             raise TypeError("В поле алгоритму має передатися рядок")
         if not value in list(HashAlgorithm):
             raise ValueError("В полі алгоритму має бути дозволене значення зі списку")
+        return value
 
 class MetadataLevel(str, Enum):
     """Визначає рівень метаданих який слід отримати"""
@@ -41,13 +43,13 @@ class MetadataLevel(str, Enum):
 class MetadataFileInput(SpecificInput):
     """Вхідні параметри для використання у інструменті отримання метаданних файлу"""
     metadata_level: MetadataLevel = Field(
-        default_factory=MetadataLevel.BASIC,
+        default=MetadataLevel.BASIC,
         description="""
                 Рівень метаданих, який маємо отримати
         """    
     )
     
-    @field_validator("metadata_level", mode="before")
+    @field_validator("metadata_level")
     @classmethod
     def validate_metadata_level(cls, value: MetadataLevel):
         """Валідує поле рівня метаданих metadata_level"""
@@ -56,10 +58,10 @@ class MetadataFileInput(SpecificInput):
         allow_levels = [item.value for item in MetadataLevel]
         if not value in allow_levels:
             raise ValueError("Недопустиме значення аргументу") 
+        return value
 
 class TextEncoding(str, Enum):
     """Перечислення для поля декодування encoding"""
-    AUTO = "auto"
     ASCII = "ascii"
     UTF8 = "utf-8"
     UTF16_LE = "utf-16-le"
@@ -74,15 +76,14 @@ class StringExtractMode(str, Enum):
 class ExtractStringsInput(SpecificInput):
     """Аргументи для екстракції рядків з файла"""
     encoding: TextEncoding = Field(
-        default_factory=TextEncoding.AUTO,
+        default=TextEncoding.UTF8,
         description="""
-                    Символи кодування, що маю використовуватися для кодування
-                    рядків з байтових масивів. Використовуйте "auto" для автоматичного
-                    вибору символів кодування.
+                    Символи кодування, що мають використовуватися для кодування
+                    рядків з байтових масивів. 
                     """
     )
     min_length: int = Field(
-        default_factory=4,
+        default=4,
         ge=1,
         le=256,
         description="""
@@ -90,7 +91,7 @@ class ExtractStringsInput(SpecificInput):
                     """
     )
     max_length: int = Field(
-        default_factory=1000,
+        default=1000,
         ge=1,
         le=10000,
         description="""
@@ -98,7 +99,7 @@ class ExtractStringsInput(SpecificInput):
                     """
     )
     max_strings: int = Field(
-        default_factory=1000,
+        default=1000,
         ge=1,
         le=100000,
         description="""
@@ -106,15 +107,8 @@ class ExtractStringsInput(SpecificInput):
                     """ 
     )
     
-    """mode:StringExtractMode = Field(
-        default_factory=StringExtractMode.BOTH,
-        description=
-                          
-                    
-        
-    )"""
     
-    @field_validator("encoding", mode="before")
+    @field_validator("encoding")
     @classmethod
     def validate_encoding(cls, value: TextEncoding):
         """ Валідація значення в encoding"""
@@ -123,17 +117,9 @@ class ExtractStringsInput(SpecificInput):
         allow_encoding = [item.value for item in TextEncoding]
         if not value in allow_encoding:
             raise ValueError("Недопустиме значення аргументу")
+        return value
     
-    """@field_validator("mode", mode="before")
-    @classmethod
-    def validate_mode(cls, value: StringExtractMode):
-        "Валідація значення в полі mode"
-        if not isinstance(value, StringExtractMode):
-            raise TypeError("Аргумент має бути типом StringExtractMode")
-        allow_modes = [item.value for item in StringExtractMode]
-        if not value in allow_modes:
-            raise ValueError("Недопустиме значення аргументу")
-    """
+
 
 class TypeIndicators(str, Enum):
     """Типи підозрілих індикаторів """
@@ -179,7 +165,7 @@ class SuspiciousIndicatorsInput(SpecificInput):
         
     )
     
-    @field_validator("indicators_type", mode="before")
+    @field_validator("indicators_type")
     @classmethod
     def validate_indicators(cls, value: list[TypeIndicators]):
         """Валідація типів індикаторів у полі indicators_type"""
@@ -189,8 +175,9 @@ class SuspiciousIndicatorsInput(SpecificInput):
         exist_values = [item.value for item in value]
         if not all(item in allow_values for item in exist_values):
             raise ValueError("Наявні елементи, що не дозволені у переліку типів індикаторів")
+        return value
     
-    @field_validator("suspicious_keywords", mode="before")
+    @field_validator("suspicious_keywords")
     @classmethod
     def validate_keywords_before(cls, value: TypeSuspiciousKeywords):
         """Валідація ключових слів перпеданих у поле suspicious_keywords"""
@@ -200,6 +187,7 @@ class SuspiciousIndicatorsInput(SpecificInput):
         exist_values = [item.value for item in value]
         if not all(item in allow_values for item in exist_values):
             raise ValueError("Наявні елементи, що не дозволені у переліку типів ключових слів")
+        return value
     
     @model_validator(mode="after")
     def validate_keyword_configuration(self) -> "SuspiciousIndicatorsInput": 
@@ -219,7 +207,7 @@ class SuspiciousIndicatorsInput(SpecificInput):
 class MetadataFileResult(SpecificResult):
     """Отримує метадані файлу"""
     filename: str
-    filepath: str
+    filepath: Path
     filesize_bytes: int
     extension: str| None = None
     created_at: datetime
@@ -229,7 +217,7 @@ class MetadataFileResult(SpecificResult):
 class FileHashResult(SpecificResult):
     """Отримує хеш файлу"""
    
-    algorithm: str
+    algorithm: HashAlgorithm
     value: str
     processed_bytes: int
 

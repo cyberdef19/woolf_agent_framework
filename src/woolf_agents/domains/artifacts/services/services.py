@@ -12,13 +12,14 @@ from pathlib import Path
 from datetime import datetime, timezone
 from collections.abc import Iterable
 from typing import Protocol
+from src.woolf_agents.domains.artifacts.schemas.contracts import HashAlgorithm
 
 
 
 #--------------------------------Сервіс хешування--------------------------------------------
 class HashingService:
     
-    def __init__(self, filepath: Path, algo: str):
+    def __init__(self, filepath: Path, algo: HashAlgorithm):
         self._filepath = filepath
         self._algo = algo
     
@@ -28,7 +29,7 @@ class HashingService:
         Returns:
             FileHashResult: _description_
         """
-        hasher = hashlib.new(self._algo)
+        hasher = hashlib.new(self._algo.value)
         processed_bytes = 0
         
         with open(self._filepath, "rb") as stream:
@@ -59,7 +60,7 @@ class MetadataService:
              extension=self._filepath.suffix.lower() or None,
              mimetype=mime_type,
              created_at=datetime.fromtimestamp(
-                 timestamp=stat.st_ctime_ns,
+                 timestamp=stat.st_ctime,
                  tz=timezone.utc
              ),
              modified_at=datetime.fromtimestamp(
@@ -98,7 +99,7 @@ class AsciiStringExtractionStrategy:
         for ibyte in data:
             if self._is_printable(ibyte):
                 result_bytes.append(ibyte)
-        return result_bytes.decode("ascii")
+        return result_bytes.decode("ascii").splitlines()
 
 class UnicodeStringExtractorStrategy:
     
@@ -115,20 +116,23 @@ class UnicodeStringExtractorStrategy:
         ).startswith("C")    
     
     def extract(self, data: bytearray)->str:
-        result: str = ""
+        results: list[str] = []
         decoder_type = codecs.getincrementaldecoder(
             self._encoding
         )
         decoder = decoder_type(errors="ignore")
-        text = decoder.decode(
+        texts = decoder.decode(
             data,
             final=False
-        )
-        for character in text:
-            if self._is_accepted_character(character=character):
-                result += character
+        ).splitlines()
+        for text in texts:
+            result: str = ""
+            for character in text:
+                if self._is_accepted_character(character=character):
+                    result += character
+            results.append(result)
                 
-        return result
+        return results
         
 class StringExtractionStrategyRegistry:
     
@@ -150,14 +154,14 @@ class ExtractStringsService:
                  min_length: int,
                  max_length: int,
                  max_strings: int,
-                 mode: str
+                
                  ):
         self._filepath = filepath
         self._encoding = encoding
         self._min_length = min_length
         self._max_length = max_length
         self._max_strings = max_strings
-        self._mode = mode
+        #self._mode = mode
         self._DEFAULT_BATCH_SIZE = 64 * 1024
         self._strategy_registry: StringExtractionStrategyRegistry = StringExtractionStrategyRegistry(
             {
@@ -182,8 +186,8 @@ class ExtractStringsService:
         for chunk in self._read_chunks():
             extracted_strings = strategy.extract(bytearray(chunk))
             normalized_extracted_string = self._normalize_extracted_strings(extracted_strings)
-            result.append(normalized_extracted_string)
-            
+            result.extend(normalized_extracted_string)
+        print(result)  
         return ExtractedStringsResult(
             filepath=self._filepath,
             strings=result
@@ -193,7 +197,7 @@ class ExtractStringsService:
         
     
     def _normalize_extracted_strings(self, values: list[str]) -> list[str]:
-        """Нормалізація, дедублікація та лімітація виятгнутого рядка"""
+        """Нормалізація, дедублікація та лімітація витягнутого рядка"""
 
         unique_values: dict[str, None] = {}
 
@@ -203,7 +207,7 @@ class ExtractStringsService:
             if len(value) < self._min_length:
                 continue
 
-            if self.max_length is not None:
+            if self._max_length is not None:
                 value = value[:self._max_length]
 
             if not value:
