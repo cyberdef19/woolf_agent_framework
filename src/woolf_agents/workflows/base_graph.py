@@ -4,16 +4,46 @@ from langgraph.graph import StateGraph
 from langgraph.graph.state import CompiledStateGraph
 from .nodes import GraphNode
 from .edges import GraphEdge, ConditionalGraphEdge
-
+from src.woolf_agents.runtime.stop_controller import StopController
+from src.woolf_agents.llm.executor import LLMExecutor
+from collections.abc import Sequence
+from langchain_core.tools import BaseTool
+from langchain_core.language_models.chat_models import BaseChatModel
+from langchain_core.messages import SystemMessage, HumanMessage
+from langgraph.prebuilt import ToolNode
 
 StateT = TypeVar("StateT")
-TargetT = TypeVar("TargetT")
+OutputT = TypeVar("OutputT")
+#TargetT = TypeVar("TargetT")
 
 
 class BaseGraph(ABC, Generic[StateT]):
     
-    def __init__(self, state_schema: type[StateT]):
+    STOP_GUARD_NODE = "guard"
+    TOOLS_NODE = "tools"
+    STRUCTURED_OUTPUT_NODE = "structured_output"
+    STOPPED_NODE = "stopped"
+    
+    def __init__(self, 
+                state_schema: type[StateT],
+                model: BaseChatModel,
+                tools: Sequence[BaseTool],
+                output_schema: type[OutputT],
+                system_prompt: str,
+                executor: LLMExecutor,
+                stop_controller: StopController
+                 ):
         self._state_schema = state_schema
+        self._model = model
+        if not tools:
+            raise ValueError("У граф має бути передано бодай один інструмент")
+        self._tools = list(tools)
+        self._system_message = SystemMessage(content=system_prompt)
+        self._llm_structured_output = model.with_structured_output(output_schema)
+        self._tool_model = model.bind_tools(self._tools)
+        self._stop_controller = stop_controller
+        self._executor = executor
+        self._tool_node = ToolNode(self._tools)
     
     @property
     def state_schema(self) ->type[StateT]:

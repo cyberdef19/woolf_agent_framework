@@ -1,10 +1,9 @@
 from pydantic import Field, field_validator, model_validator
-from typing import Literal
-from .base import SpecificInput, SpecificResult
-from src.woolf_agents.core.result import BaseExecutionResult
+from .base import SpecificInput, SpecificResult, BaseTaskPlan, BasePlanStep, BaseStepResult
 from enum import Enum
 from datetime import datetime
 from pathlib import Path
+
 
 
 class HashAlgorithm(str, Enum):
@@ -230,8 +229,31 @@ class SuspiciousIndicatorsResult(SpecificResult):
     """Отримує список підозрілих індикаторів з файла"""
     indicators: list[str]
     total_count: int
+
+#!---------------------------------------Контракти для агента планувальника--------------------------------
+class HistoricalResearchStepResult(BaseStepResult):
+    """Конкретизуючий результат кроку виконання плану"""
+
+class HistoricalResearchStepPlan(BasePlanStep):
+    """Крок для дослідницького плану історичний домен"""
+    research_query: str = Field(
+        default=None,
+        description="Запит конкретного кроку зі сформованого плану історичного домену знань"
+    )
+    research_sources:bool = Field(
+        default=False,
+        description="Зазначає чи потрібні історичні джерела для виконання кроку"
+    )
     
 
+class HistoricalResearchPlan(BaseTaskPlan):
+    """Історичний дослідницький план під конкретний домен знань"""
+    research_question: str = Field(
+        description="Дослідницьке історичне питання, яке має бути вибудувано у план "
+    )
+    steps:list[HistoricalResearchStepPlan] = Field(
+        default_factory=lambda: list(HistoricalResearchStepPlan),
+        description="Список кроків історичного дослідницького плану "
+    )
 
-    
-       
+

@@ -5,8 +5,10 @@ from .errors import ErrorInfo
 class ExecutionStatus(StrEnum):
     """Final status of an agent or workflow execution."""
     SUCCESS = "success"
+    STOP="stopped"
     PARTIAL = "partial"
     FAILED = "failed"
+    INTERRUPT = "interrupted"
     
 
 class BaseExecutionResult(BaseModel):

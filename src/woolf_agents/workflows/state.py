@@ -1,10 +1,15 @@
 import operator
 from typing_extensions import TypedDict
 from typing import Annotated
-from langchain_core.messages import BaseMessage, AnyMessage
+from langchain_core.messages import BaseMessage, AIMessage
 from langgraph.graph.message import add_messages
+from src.woolf_agents.domains.artifacts.schemas.base import BaseTaskPlan, BaseStepResult, StepEvaluation, PlanEvaluation
+from src.woolf_agents.core.result import BaseExecutionResult
+from src.woolf_agents.core.result import ExecutionStatus
+from src.woolf_agents.domains.artifacts.schemas.contracts import HistoricalResearchStepResult
+from enum import StrEnum
 
-class BaseExecutionSate(TypedDict, total=False):
+class BaseExecutionState(TypedDict, total=False):
     """
     Common execution data shared by all platform workflows and agents.
     """
@@ -14,9 +19,28 @@ class BaseExecutionSate(TypedDict, total=False):
     metadata: dict[str, object]
     step_count: Annotated[int, operator.add]
 
-class MessageAgentState(BaseExecutionSate, total=False):
+class MessageAgentState(BaseExecutionState, total=False):
     """
     Base state for conversational and tool-calling agents.
     """
-
     messages: Annotated[list[BaseMessage], add_messages]
+
+ 
+class PlanExecuteState(MessageAgentState, total=False):
+    """Спільний Стан виконання плану агентом-планувальником"""
+    plan:BaseTaskPlan
+    user_task: str
+    len_steps: int
+    current_step_idx: Annotated[int, operator.add]
+    current_step_result: HistoricalResearchStepResult
+    evaluated_current_step: StepEvaluation  
+    revised_plans: Annotated[list[BaseTaskPlan], operator.add]
+    evaluated_steps: Annotated[list[StepEvaluation], operator.add]
+    results: Annotated[list[BaseStepResult], operator.add]
+    structured_response: BaseExecutionResult
+    execution_status: ExecutionStatus
+    executor_response: AIMessage
+    plan_execution_evaluated: PlanEvaluation
+   
+    
+    

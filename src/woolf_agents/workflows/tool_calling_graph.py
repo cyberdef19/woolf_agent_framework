@@ -7,7 +7,6 @@ from typing import Generic, TypeVar, Any
 from collections.abc import Sequence
 from langchain_core.tools import BaseTool
 from langchain_core.messages import SystemMessage, HumanMessage
-from langgraph.prebuilt import ToolNode
 from langgraph.graph import StateGraph, START, END
 from langchain_core.language_models.chat_models import BaseChatModel
 from src.woolf_agents.runtime.stop_controller import StopController
@@ -26,10 +25,10 @@ class ToolCallingGraph(
     Generic[StateT, OutputT]
 ):
     AGENT_NODE = "agent"
-    STOP_GUARD_NODE = "stop_guard"
-    TOOLS_NODE = "tools"
-    STRUCTURED_OUTPUT_NODE = "structured_output"
-    STOPPED_NODE = "stopped"
+    #STOP_GUARD_NODE = "stop_guard"
+    #TOOLS_NODE = "tools"
+    #STRUCTURED_OUTPUT_NODE = "structured_output"
+    #STOPPED_NODE = "stopped"
     
     def __init__(self, 
                  state: type[StateT], 
@@ -40,17 +39,16 @@ class ToolCallingGraph(
                  executor: LLMExecutor,
                  stop_controller: StopController
                  ):
-        super().__init__(state)
-        self._model = model
-        if not tools:
-            raise ValueError("У граф має бути передано бодай один інструмент")
-        self._tools = list(tools)
-        self._system_message = SystemMessage(content=system_prompt)
-        self._llm_structured_output = model.with_structured_output(output_schema)
-        self._tool_model = model.bind_tools(self._tools)
-        self._tool_node = ToolNode(self._tools)
-        self._stop_controller = stop_controller
-        self._executor = executor
+        super().__init__(
+            state_schema=state,
+            model=model,
+            tools=tools,
+            output_schema=output_schema,
+            system_prompt=system_prompt,
+            executor=executor,
+            stop_controller=stop_controller
+            )
+       
     
     async def _agent_node(self, state: StateT)->dict[str, Any]:
         #print("\nAGENT NODE MESSAGES:")
@@ -70,7 +68,6 @@ class ToolCallingGraph(
                                          [
                                                 self._system_message,
                                                 *state["messages"],
-                                                str(state["artifact_path"])
                                          ] 
                                          )
             used_tokens = response.usage_metadata.get("total_tokens", 0) if response.usage_metadata else 0
