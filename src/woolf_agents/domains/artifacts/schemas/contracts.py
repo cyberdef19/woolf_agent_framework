@@ -1,4 +1,6 @@
-from pydantic import Field, field_validator, model_validator
+from typing import Self
+
+from pydantic import Field, field_validator, model_validator, BaseModel
 from .base import SpecificInput, SpecificResult, BaseTaskPlan, BasePlanStep, BaseStepResult
 from enum import Enum
 from datetime import datetime
@@ -231,19 +233,43 @@ class SuspiciousIndicatorsResult(SpecificResult):
     total_count: int
 
 #!---------------------------------------Контракти для агента планувальника--------------------------------
+
+
 class HistoricalResearchStepResult(BaseStepResult):
     """Конкретизуючий результат кроку виконання плану"""
+    
+
 
 class HistoricalResearchStepPlan(BasePlanStep):
     """Крок для дослідницького плану історичний домен"""
-    research_query: str = Field(
+    research_query: str| None = Field(
         default=None,
-        description="Запит конкретного кроку зі сформованого плану історичного домену знань"
+        description=(
+            "Пошуковий запит до векторної бази. "
+            "Заповнюй лише для operation='retrieve_sources'. "
+            "Для інших operations залишай null."
+        )
     )
-    research_sources:bool = Field(
-        default=False,
-        description="Зазначає чи потрібні історичні джерела для виконання кроку"
+    requires_evidence:bool = Field(
+        description="Необхідність опиратися на історичні джерела"
     )
+    @model_validator(mode="after")
+    def validate_research_query(self) -> Self:
+
+        if self.operation == "retrieve_sources":
+            if not self.research_query:
+                raise ValueError(
+                    "research_query вимагаэться лише "
+                    "для operation='retrieve_sources'"
+                )
+
+        elif self.research_query is not None:
+            raise ValueError(
+                "research_query повинно бути null "
+                "коли operation не 'retrieve_sources'"
+            )
+
+        return self
     
 
 class HistoricalResearchPlan(BaseTaskPlan):
@@ -252,8 +278,12 @@ class HistoricalResearchPlan(BaseTaskPlan):
         description="Дослідницьке історичне питання, яке має бути вибудувано у план "
     )
     steps:list[HistoricalResearchStepPlan] = Field(
-        default_factory=lambda: list(HistoricalResearchStepPlan),
         description="Список кроків історичного дослідницького плану "
     )
+    
+class StepExecutionContext(BaseModel):
+    user_task: str
+    current_step: BasePlanStep
+    previous_results: list[BaseStepResult]
 
 

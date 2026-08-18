@@ -1,0 +1,271 @@
+{
+  "run_id": "16ea43d0-af56-41bb-9b79-0a1fb5b46de8",
+  "started_at": "2026-08-17T12:52:53.760478+00:00",
+  "finished_at": "2026-08-17T12:54:15.920598+00:00",
+  "initial_state": {
+    "messages": [
+      {
+        "content": "Яке походження назви Хаджибей? Визнач представлені в доступних джерелах гіпотези та оціни, яка з них має найкращу доказову підтримку.",
+        "additional_kwargs": {},
+        "response_metadata": {},
+        "type": "human",
+        "name": null,
+        "id": "cdeebc2f-18fc-4568-957a-6dd135f63fa1"
+      }
+    ],
+    "step_count": 0,
+    "used_tokens": 0,
+    "execution_status": "partial",
+    "current_step_idx": 0,
+    "current_step_result": null,
+    "errors": [],
+    "evaluated_current_step": null,
+    "evaluated_steps": [],
+    "executor_response": null,
+    "len_steps": 0,
+    "metadata": {},
+    "plan": null,
+    "plan_execution_evaluated": null,
+    "results": [],
+    "revised_plans": [],
+    "structured_response": null,
+    "user_task": "Яке походження назви Хаджибей? Визнач представлені в доступних джерелах гіпотези та оціни, яка з них має найкращу доказову підтримку.",
+    "execution_id": "97006dcc-fc5e-420f-a79d-96a13267394e"
+  },
+  "trajectory": [
+    {
+      "timestamp": "2026-08-17T12:53:51.232694+00:00",
+      "update": {
+        "planner_node": {
+          "plan": {
+            "goal": "Визначити походження назви населеного пункту Хаджибей шляхом аналізу доступних історичних гіпотез та оцінки їхньої доказової бази.",
+            "steps": [
+              {
+                "id": "1",
+                "objective": "Пошук історичних джерел, що містять згадки про назву Хаджибей та теорії її походження.",
+                "expected_result": "Перелік релевантних історичних джерел, документів та наукових праць, що стосуються етимології назви.",
+                "research_query": "походження назви Хаджибей етимологія гіпотези історичні джерела",
+                "requires_evidence": true,
+                "operation": "retrieve_sources"
+              },
+              {
+                "id": "2",
+                "objective": "Виділення конкретних тверджень та гіпотез про походження назви з отриманих джерел.",
+                "expected_result": "Перелік чітко сформульованих гіпотез (наприклад, пов'язаних з титулом чи особистістю) та супутніх доказів.",
+                "research_query": null,
+                "requires_evidence": true,
+                "operation": "extract_claims"
+              },
+              {
+                "id": "3",
+                "objective": "Порівняння виділених гіпотез на основі їхньої відповідності історичним фактам та наявності підтверджуючих/суперечливих свідчень.",
+                "expected_result": "Аналітичне порівняння гіпотез за критеріями достовірності та обґрунтованості.",
+                "research_query": null,
+                "requires_evidence": true,
+                "operation": "evaluate_hypotheses"
+              },
+              {
+                "id": "4",
+                "objective": "Формулювання фінального висновку з урахуванням ступеня достовірності кожної гіпотези та зазначенням невизначеностей.",
+                "expected_result": "Обґрунтована відповідь на питання про походження назви з визначенням найбільш імовірної версії.",
+                "research_query": null,
+                "requires_evidence": true,
+                "operation": "synthesize_conclusion"
+              }
+            ],
+            "research_question": "Яке походження назви Хаджибей та яка з існуючих гіпотез має найбільш вагоме історичне обґрунтування?"
+          },
+          "step_count": 1,
+          "len_steps": 4,
+          "execution_status": "partial"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-08-17T12:54:15.838142+00:00",
+      "update": {
+        "executor_node": {
+          "executor_response": {
+            "content": "",
+            "additional_kwargs": {
+              "refusal": null
+            },
+            "response_metadata": {
+              "token_usage": {
+                "completion_tokens": 35,
+                "prompt_tokens": 855,
+                "total_tokens": 890,
+                "completion_tokens_details": {
+                  "accepted_prediction_tokens": null,
+                  "audio_tokens": 0,
+                  "reasoning_tokens": 0,
+                  "rejected_prediction_tokens": null,
+                  "image_tokens": 0
+                },
+                "prompt_tokens_details": {
+                  "audio_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0,
+                  "video_tokens": 0
+                },
+                "cost": 0,
+                "is_byok": false,
+                "cost_details": {
+                  "upstream_inference_cost": 3.1425e-05,
+                  "upstream_inference_prompt_cost": 2.565e-05,
+                  "upstream_inference_completions_cost": 5.775e-06
+                }
+              },
+              "model_provider": "openai",
+              "model_name": "google/gemma-4-26b-a4b-it:free",
+              "system_fingerprint": null,
+              "id": "gen-1786971236-SU3vwQRUrlSc9EeYJ53Y",
+              "finish_reason": "tool_calls",
+              "logprobs": null
+            },
+            "type": "ai",
+            "name": null,
+            "id": "lc_run--01a00fc9-2840-7e33-a48e-a5f411dac946-0",
+            "tool_calls": [
+              {
+                "name": "retrieve_historical_sources",
+                "args": {
+                  "query": "походження назви Хаджибей етимологія гіпотези історичні джерела"
+                },
+                "id": "call_5DA7CBAA38834A1399AA2328",
+                "type": "tool_call"
+              }
+            ],
+            "invalid_tool_calls": [],
+            "usage_metadata": {
+              "input_tokens": 855,
+              "output_tokens": 35,
+              "total_tokens": 890,
+              "input_token_details": {
+                "audio": 0,
+                "cache_read": 0,
+                "cache_creation": 0
+              },
+              "output_token_details": {
+                "audio": 0,
+                "reasoning": 0
+              }
+            }
+          },
+          "step_count": 1
+        }
+      }
+    }
+  ],
+  "final_state": {
+    "plan": {
+      "goal": "Визначити походження назви населеного пункту Хаджибей шляхом аналізу доступних історичних гіпотез та оцінки їхньої доказової бази.",
+      "steps": [
+        {
+          "id": "1",
+          "objective": "Пошук історичних джерел, що містять згадки про назву Хаджибей та теорії її походження.",
+          "expected_result": "Перелік релевантних історичних джерел, документів та наукових праць, що стосуються етимології назви.",
+          "research_query": "походження назви Хаджибей етимологія гіпотези історичні джерела",
+          "requires_evidence": true,
+          "operation": "retrieve_sources"
+        },
+        {
+          "id": "2",
+          "objective": "Виділення конкретних тверджень та гіпотез про походження назви з отриманих джерел.",
+          "expected_result": "Перелік чітко сформульованих гіпотез (наприклад, пов'язаних з титулом чи особистістю) та супутніх доказів.",
+          "research_query": null,
+          "requires_evidence": true,
+          "operation": "extract_claims"
+        },
+        {
+          "id": "3",
+          "objective": "Порівняння виділених гіпотез на основі їхньої відповідності історичним фактам та наявності підтверджуючих/суперечливих свідчень.",
+          "expected_result": "Аналітичне порівняння гіпотез за критеріями достовірності та обґрунтованості.",
+          "research_query": null,
+          "requires_evidence": true,
+          "operation": "evaluate_hypotheses"
+        },
+        {
+          "id": "4",
+          "objective": "Формулювання фінального висновку з урахуванням ступеня достовірності кожної гіпотези та зазначенням невизначеностей.",
+          "expected_result": "Обґрунтована відповідь на питання про походження назви з визначенням найбільш імовірної версії.",
+          "research_query": null,
+          "requires_evidence": true,
+          "operation": "synthesize_conclusion"
+        }
+      ],
+      "research_question": "Яке походження назви Хаджибей та яка з існуючих гіпотез має найбільш вагоме історичне обґрунтування?"
+    },
+    "step_count": 1,
+    "len_steps": 4,
+    "execution_status": "partial",
+    "executor_response": {
+      "content": "",
+      "additional_kwargs": {
+        "refusal": null
+      },
+      "response_metadata": {
+        "token_usage": {
+          "completion_tokens": 35,
+          "prompt_tokens": 855,
+          "total_tokens": 890,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": null,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": null,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 3.1425e-05,
+            "upstream_inference_prompt_cost": 2.565e-05,
+            "upstream_inference_completions_cost": 5.775e-06
+          }
+        },
+        "model_provider": "openai",
+        "model_name": "google/gemma-4-26b-a4b-it:free",
+        "system_fingerprint": null,
+        "id": "gen-1786971236-SU3vwQRUrlSc9EeYJ53Y",
+        "finish_reason": "tool_calls",
+        "logprobs": null
+      },
+      "type": "ai",
+      "name": null,
+      "id": "lc_run--01a00fc9-2840-7e33-a48e-a5f411dac946-0",
+      "tool_calls": [
+        {
+          "name": "retrieve_historical_sources",
+          "args": {
+            "query": "походження назви Хаджибей етимологія гіпотези історичні джерела"
+          },
+          "id": "call_5DA7CBAA38834A1399AA2328",
+          "type": "tool_call"
+        }
+      ],
+      "invalid_tool_calls": [],
+      "usage_metadata": {
+        "input_tokens": 855,
+        "output_tokens": 35,
+        "total_tokens": 890,
+        "input_token_details": {
+          "audio": 0,
+          "cache_read": 0,
+          "cache_creation": 0
+        },
+        "output_token_details": {
+          "audio": 0,
+          "reasoning": 0
+        }
+      }
+    }
+  },
+  "error": "ValueError: No AIMessage found in input"
+}

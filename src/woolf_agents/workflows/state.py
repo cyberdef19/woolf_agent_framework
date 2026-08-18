@@ -6,7 +6,8 @@ from langgraph.graph.message import add_messages
 from src.woolf_agents.domains.artifacts.schemas.base import BaseTaskPlan, BaseStepResult, StepEvaluation, PlanEvaluation
 from src.woolf_agents.core.result import BaseExecutionResult
 from src.woolf_agents.core.result import ExecutionStatus
-from src.woolf_agents.domains.artifacts.schemas.contracts import HistoricalResearchStepResult
+from typing import Literal
+from src.woolf_agents.domains.artifacts.schemas.contracts import HistoricalResearchStepResult, StepExecutionContext
 from enum import StrEnum
 
 class BaseExecutionState(TypedDict, total=False):
@@ -26,6 +27,8 @@ class MessageAgentState(BaseExecutionState, total=False):
     messages: Annotated[list[BaseMessage], add_messages]
 
  
+
+ 
 class PlanExecuteState(MessageAgentState, total=False):
     """Спільний Стан виконання плану агентом-планувальником"""
     plan:BaseTaskPlan
@@ -41,6 +44,12 @@ class PlanExecuteState(MessageAgentState, total=False):
     execution_status: ExecutionStatus
     executor_response: AIMessage
     plan_execution_evaluated: PlanEvaluation
+    human_deсision: Literal["continue","approve", "cancel"]
+    interrupt_reason: str
+    execution_id: str
+    step_started: bool = False
+    step_messages_start_idx: int
+    context_step: StepExecutionContext
    
     
     

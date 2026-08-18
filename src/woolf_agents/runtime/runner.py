@@ -10,7 +10,7 @@ from langgraph.graph.state import CompiledStateGraph
 from .stop_controller import StopController
 from .settings import AgentRuntimeSettings
 from .trajectory_logger import TrajectoryLogger
-
+from langgraph.types import Command
 
 StateT = TypeVar("StateT", bound=Mapping[str, Any])
 
@@ -52,10 +52,14 @@ class AgentGraphRunner(Generic[StateT]):
     async def run(
         self,
         initial_state: StateT,
+        thread_id:str
     ) -> dict[str, Any]:
         """Run the graph asynchronously and return its final state."""
 
         self._stop_controller.reset()
+        config=self._build_run_config(
+                                thread_id=thread_id
+                                )
 
         try:
             async with asyncio.timeout(
@@ -66,12 +70,13 @@ class AgentGraphRunner(Generic[StateT]):
                     and self._trajectory_logger is not None
                 ):
                     return await self._run_with_trajectory(
-                        initial_state
+                        initial_state,
+                        config=config
                     )
 
                 return await self._graph.ainvoke(
                     initial_state,
-                    config=self._build_run_config(),
+                    config=config
                 )
 
         except TimeoutError as exc:
@@ -89,6 +94,7 @@ class AgentGraphRunner(Generic[StateT]):
     async def _run_with_trajectory(
         self,
         initial_state: StateT,
+        config:dict[str, Any]
     ) -> dict[str, Any]:
         """Run the graph while recording node updates."""
 
@@ -97,12 +103,28 @@ class AgentGraphRunner(Generic[StateT]):
         return await self._trajectory_logger.run_and_log(
             graph=self._graph,
             initial_state=dict(initial_state),
-            config=self._build_run_config(),
+            config=config,
         )
 
-    def _build_run_config(self) -> dict[str, Any]:
+    def _build_run_config(self, thread_id: str) -> dict[str, Any]:
         """Build LangGraph runtime configuration."""
 
         return {
             "recursion_limit": self._settings.recursion_limit,
+            "run_name": "HistoricalHypothesisAgent",
+            "configurable":{
+                "thread_id":thread_id
+            }
         }
+    async def resume(self, thread_id: str, decision: str) -> dict[str, Any]:
+
+        config = self._build_run_config(
+            thread_id=thread_id
+        )
+
+        return await self._graph.ainvoke(
+            Command(
+                resume=decision
+            ),
+            config=config,
+        )

@@ -59,11 +59,6 @@ class BasePlanStep(BaseModel):
     expected_result: str = Field(
         description="Очікуваний результат від виконання кроку завдання"
     )
-    status: PlanStepStatus = Field(
-        default=PlanStepStatus.PENDING,
-        description="Статус кроку виконання завдання"
-    )
-
     
 class BaseTaskPlan(BaseModel):
     """Спільний загальний клас для планування"""
@@ -75,7 +70,6 @@ class BaseTaskPlan(BaseModel):
         description="Мета планування"
     )  
     steps: list[BasePlanStep] = Field(
-        default_factory=lambda: list(BasePlanStep),
         description="Список кроків плану"
     )      
  
@@ -96,7 +90,7 @@ class BaseStepResult(BaseModel, Generic[OutputT]):
     #    description="Абстрактний вихід для одного кроку"
     #)
     errors: list[ErrorInfo] = Field(
-        default_factory=lambda: list(ErrorInfo),
+        default_factory=list,
         description="Помилки, що виникли за час виконання кроку планування"
     )
     
@@ -143,14 +137,12 @@ class StepEvaluation(BaseModel):
     )
 
     contradictions_detected: bool = Field(
-        default=False,
         description=(
             "True якщо в отриманому результаті містяться суттєві суперечності"
         )
     )
 
     new_information_changes_plan: bool = Field(
-        default=False,
         description=(
             "True якщо отримана нова інформація під час виконання кроку плану"
             "робе необхідним перепланувати план, бо наступні кроки виявляються"
@@ -234,7 +226,6 @@ class PlanEvaluation(BaseModel):
     )
 
     unresolved_contradictions: bool = Field(
-        default=False,
         description=(
             "True якщо суттєві суперечності залишаються невирішеними"
             "та істотно впливають на виконання завдання."
@@ -242,7 +233,6 @@ class PlanEvaluation(BaseModel):
     )
 
     missing_information: bool = Field(
-        default=False,
         description=(
             "True якщо після виконання плану відсутня важлива інформація, яка"
             "яка є необхідною для створення загального висновку і досягнення мети."
@@ -277,3 +267,4 @@ class PlanEvaluation(BaseModel):
             
         )
     )
+    

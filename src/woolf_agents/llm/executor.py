@@ -3,6 +3,7 @@ from src.woolf_agents.core.retry import RetryPolicyAgent
 from langchain_core.messages import BaseMessage, AIMessage
 import asyncio
 from pydantic import ValidationError
+from typing import Any
 
 class LLMExecutor:
     
@@ -10,7 +11,7 @@ class LLMExecutor:
         self._retry_agent: RetryPolicyAgent = retry_agent
         self._llm_timeout_seconds: float = llm_timeout_seconds
     
-    async def model_invoke(self, model: BaseChatModel, messages:list[BaseMessage])->AIMessage:
+    async def model_invoke(self, model: BaseChatModel, messages:list[BaseMessage])->Any:
         
             async for attempt in self._retry_agent.create_retrying():
                 with attempt:
@@ -18,6 +19,7 @@ class LLMExecutor:
                         response = await model.ainvoke(
                             messages
                         ) 
+
                         return response
             raise RuntimeError("LLM виконано без результату")
         

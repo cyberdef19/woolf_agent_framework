@@ -44,7 +44,7 @@ class StopController:
         *,
         max_steps: int = 10,
         max_tokens: int = 50_000,
-        timeout_seconds: float = 2400.0,
+        timeout_seconds: float = 360.0,
         max_consecutive_repeats: int = 6,
     ) -> None:
         if max_steps < 1:

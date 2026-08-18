@@ -13,6 +13,7 @@ from src.woolf_agents.runtime.stop_controller import StopController
 from src.woolf_agents.llm.executor import LLMExecutor
 import time
 from pydantic import ValidationError
+from langgraph.checkpoint.base import BaseCheckpointSaver
 
 
 StateT = TypeVar("StateT")
@@ -37,7 +38,8 @@ class ToolCallingGraph(
                  output_schema: type[OutputT],
                  system_prompt: str,
                  executor: LLMExecutor,
-                 stop_controller: StopController
+                 stop_controller: StopController,
+                 checkpointer: BaseCheckpointSaver
                  ):
         super().__init__(
             state_schema=state,
@@ -46,7 +48,8 @@ class ToolCallingGraph(
             output_schema=output_schema,
             system_prompt=system_prompt,
             executor=executor,
-            stop_controller=stop_controller
+            stop_controller=stop_controller,
+            checkpointer=checkpointer
             )
        
     

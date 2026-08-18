@@ -1,6 +1,6 @@
 from enum import StrEnum
 
-from pydantic import Field
+from pydantic import Field, BaseModel
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from .apikey import config
 from .settings import url_modelrouter
@@ -13,6 +13,9 @@ class ConfigModelAPI(StrEnum):
     URLOPENROUTER = url_modelrouter.get("openrouter_url", None)
     GOOGLEGEMINI = config.get("GEMINIAPYKEY", None)
 
+class ConfigLangsmithAPI(StrEnum):
+    LANGSMITHKEY = config.get("LANGSMITH", None)
+
 class LLMProvider(StrEnum):
     OPENROUTER = "openrouter"
     OPENAI = "openai"
@@ -23,6 +26,7 @@ class LLMProvider(StrEnum):
 class LLMModel(StrEnum):
     GEMINI25FLASH = "gemini-2.0-flash"
     GOOGLEGEMMA426BA4BFREE = "google/gemma-4-26b-a4b-it:free"
+    GOOGLEGEMMA426BA4B="google/gemma-4-26b-a4b-it"
     GOOGLEGEMMA431BFREE = "google/gemma-4-31b-it:free"
     LING30FLASHFREE = "inclusionai/ling-3.0-flash:free"
     GPTOSS20bFREE = "openai/gpt-oss-20b:free"
@@ -77,7 +81,7 @@ class LLMSettings(BaseSettings):
     )
 
     llm_timeout_seconds: float = Field(
-        default=240.0,
+        default=360.0,
         gt=0,
         description="Maximum duration of an single model request.",
     )
@@ -88,3 +92,12 @@ class LLMSettings(BaseSettings):
         le=10,
         description="Maximum number of retries performed by the model client.",
     )
+    
+class LangSmithSettings(BaseModel):
+    enabled: bool = False
+    api_key: str
+    project: str
+    endpoint: str = "https://api.smith.langchain.com"
+
+class AppSettings(BaseModel):
+    langsmith: LangSmithSettings

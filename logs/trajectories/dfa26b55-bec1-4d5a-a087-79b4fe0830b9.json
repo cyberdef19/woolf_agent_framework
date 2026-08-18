@@ -1,0 +1,38 @@
+{
+  "run_id": "dfa26b55-bec1-4d5a-a087-79b4fe0830b9",
+  "started_at": "2026-08-16T22:38:20.088752+00:00",
+  "finished_at": "2026-08-16T22:39:45.719500+00:00",
+  "initial_state": {
+    "messages": [
+      {
+        "content": "Яке походження назви Хаджибей? Визнач представлені в доступних джерелах гіпотези та оціни, яка з них має найкращу доказову підтримку.",
+        "additional_kwargs": {},
+        "response_metadata": {},
+        "type": "human",
+        "name": null,
+        "id": "4a87f401-352f-4e53-8d69-12878ce1fc86"
+      }
+    ],
+    "step_count": 0,
+    "used_tokens": 0,
+    "execution_status": "partial",
+    "current_step_idx": 0,
+    "current_step_result": null,
+    "errors": [],
+    "evaluated_current_step": null,
+    "evaluated_steps": [],
+    "executor_response": null,
+    "len_steps": 0,
+    "metadata": {},
+    "plan": null,
+    "plan_execution_evaluated": null,
+    "results": [],
+    "revised_plans": [],
+    "structured_response": null,
+    "user_task": "Яке походження назви Хаджибей? Визнач представлені в доступних джерелах гіпотези та оціни, яка з них має найкращу доказову підтримку.",
+    "execution_id": "d07cbae6-9f20-41d5-83ba-e33261fbd673"
+  },
+  "trajectory": [],
+  "final_state": {},
+  "error": "ValidationError: 4 validation errors for HistoricalHypothesisEvaluationPlan\nsteps.1.research_query\n  Input should be a valid string [type=string_type, input_value=None, input_type=NoneType]\n    For further information visit https://errors.pydantic.dev/2.13/v/string_type\nsteps.2.research_query\n  Input should be a valid string [type=string_type, input_value=None, input_type=NoneType]\n    For further information visit https://errors.pydantic.dev/2.13/v/string_type\nsteps.3.research_query\n  Input should be a valid string [type=string_type, input_value=None, input_type=NoneType]\n    For further information visit https://errors.pydantic.dev/2.13/v/string_type\nsteps.4.research_query\n  Input should be a valid string [type=string_type, input_value=None, input_type=NoneType]\n    For further information visit https://errors.pydantic.dev/2.13/v/string_type"
+}

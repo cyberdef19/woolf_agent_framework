@@ -1,0 +1,129 @@
+{
+  "run_id": "5a2e7b23-1cd8-4e62-a983-a69089b2bb01",
+  "started_at": "2026-08-17T20:26:02.932749+00:00",
+  "finished_at": "2026-08-17T20:26:34.941388+00:00",
+  "initial_state": {
+    "messages": [
+      {
+        "content": "Яке походження назви Хаджибей? Визнач представлені в доступних джерелах гіпотези та оціни, яка з них має найкращу доказову підтримку.",
+        "additional_kwargs": {},
+        "response_metadata": {},
+        "type": "human",
+        "name": null,
+        "id": "bc20aa11-b6f7-48ed-b048-5af3364b9ee2"
+      }
+    ],
+    "step_count": 0,
+    "used_tokens": 0,
+    "execution_status": "partial",
+    "current_step_idx": 0,
+    "current_step_result": null,
+    "errors": [],
+    "evaluated_current_step": null,
+    "evaluated_steps": [],
+    "executor_response": null,
+    "len_steps": 0,
+    "metadata": {},
+    "plan": null,
+    "plan_execution_evaluated": null,
+    "results": [],
+    "revised_plans": [],
+    "structured_response": null,
+    "user_task": "Яке походження назви Хаджибей? Визнач представлені в доступних джерелах гіпотези та оціни, яка з них має найкращу доказову підтримку.",
+    "execution_id": "abcae3e0-2f3e-44a8-83fc-57c73dbe386e"
+  },
+  "trajectory": [
+    {
+      "timestamp": "2026-08-17T20:26:33.985517+00:00",
+      "update": {
+        "planner_node": {
+          "plan": {
+            "goal": "Визначити походження назви населеного пункту Хаджибей шляхом аналізу доступних історичних гіпотез та оцінки їхньої доказової бази.",
+            "steps": [
+              {
+                "id": "1",
+                "objective": "Пошук історичних джерел, що містять згадки про назву Хаджибей та теорії її походження.",
+                "expected_result": "Перелік релевантних історичних джерел, документів та наукових праць, що стосуються етимології назви.",
+                "research_query": "походження назви Хаджибей етимологія історичні джерела",
+                "requires_evidence": true,
+                "operation": "retrieve_sources"
+              },
+              {
+                "id": "2",
+                "objective": "Виділення конкретних тверджень та гіпотез про походження назви з отриманих джерел.",
+                "expected_result": "Перелік чітко сформульованих гіпотез (наприклад, пов'язаних з титулом чи особистістю) та супутніх доказів.",
+                "research_query": null,
+                "requires_evidence": true,
+                "operation": "extract_claims"
+              },
+              {
+                "id": "3",
+                "objective": "Порівняння виділених гіпотез на основі їхньої відповідності історичним фактам та наявності підтверджуючих/суперечливих свідчень.",
+                "expected_result": "Аналітичне порівняння гіпотез за критеріями достовірності та обґрунтованості.",
+                "research_query": null,
+                "requires_evidence": true,
+                "operation": "evaluate_hypotheses"
+              },
+              {
+                "id": "4",
+                "objective": "Формування підсумкового висновку з визначенням найбільш імовірної версії та зазначенням ступеня невизначеності.",
+                "expected_result": "Обґрунтована відповідь на дослідницьке питання з урахуванням суперечливості даних.",
+                "research_query": null,
+                "requires_evidence": true,
+                "operation": "synthesize_conclusion"
+              }
+            ],
+            "research_question": "Яке походження назви Хаджибей та яка з існуючих гіпотез має найбільш вагоме історичне обґрунтування?"
+          },
+          "step_count": 1,
+          "len_steps": 4,
+          "execution_status": "partial"
+        }
+      }
+    }
+  ],
+  "final_state": {
+    "plan": {
+      "goal": "Визначити походження назви населеного пункту Хаджибей шляхом аналізу доступних історичних гіпотез та оцінки їхньої доказової бази.",
+      "steps": [
+        {
+          "id": "1",
+          "objective": "Пошук історичних джерел, що містять згадки про назву Хаджибей та теорії її походження.",
+          "expected_result": "Перелік релевантних історичних джерел, документів та наукових праць, що стосуються етимології назви.",
+          "research_query": "походження назви Хаджибей етимологія історичні джерела",
+          "requires_evidence": true,
+          "operation": "retrieve_sources"
+        },
+        {
+          "id": "2",
+          "objective": "Виділення конкретних тверджень та гіпотез про походження назви з отриманих джерел.",
+          "expected_result": "Перелік чітко сформульованих гіпотез (наприклад, пов'язаних з титулом чи особистістю) та супутніх доказів.",
+          "research_query": null,
+          "requires_evidence": true,
+          "operation": "extract_claims"
+        },
+        {
+          "id": "3",
+          "objective": "Порівняння виділених гіпотез на основі їхньої відповідності історичним фактам та наявності підтверджуючих/суперечливих свідчень.",
+          "expected_result": "Аналітичне порівняння гіпотез за критеріями достовірності та обґрунтованості.",
+          "research_query": null,
+          "requires_evidence": true,
+          "operation": "evaluate_hypotheses"
+        },
+        {
+          "id": "4",
+          "objective": "Формування підсумкового висновку з визначенням найбільш імовірної версії та зазначенням ступеня невизначеності.",
+          "expected_result": "Обґрунтована відповідь на дослідницьке питання з урахуванням суперечливості даних.",
+          "research_query": null,
+          "requires_evidence": true,
+          "operation": "synthesize_conclusion"
+        }
+      ],
+      "research_question": "Яке походження назви Хаджибей та яка з існуючих гіпотез має найбільш вагоме історичне обґрунтування?"
+    },
+    "step_count": 1,
+    "len_steps": 4,
+    "execution_status": "partial"
+  },
+  "error": "TypeError: unhashable type: 'HumanMessage'"
+}

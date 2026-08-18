@@ -11,6 +11,7 @@ from langchain_core.tools import BaseTool
 from langchain_core.language_models.chat_models import BaseChatModel
 from langchain_core.messages import SystemMessage, HumanMessage
 from langgraph.prebuilt import ToolNode
+from langgraph.checkpoint.base import BaseCheckpointSaver
 
 StateT = TypeVar("StateT")
 OutputT = TypeVar("OutputT")
@@ -31,7 +32,8 @@ class BaseGraph(ABC, Generic[StateT]):
                 output_schema: type[OutputT],
                 system_prompt: str,
                 executor: LLMExecutor,
-                stop_controller: StopController
+                stop_controller: StopController,
+                checkpointer: BaseCheckpointSaver
                  ):
         self._state_schema = state_schema
         self._model = model
@@ -44,6 +46,7 @@ class BaseGraph(ABC, Generic[StateT]):
         self._stop_controller = stop_controller
         self._executor = executor
         self._tool_node = ToolNode(self._tools)
+        self._checkpointer = checkpointer
     
     @property
     def state_schema(self) ->type[StateT]:
@@ -60,7 +63,8 @@ class BaseGraph(ABC, Generic[StateT]):
         self._register_edges(builder=builder, edges=edges)
         self._register_conditional_edges(builder=builder, conditional_edges=conditional_edges)
         
-        return builder.compile()
+        
+        return builder.compile(checkpointer=self._checkpointer)
     
     @abstractmethod
     def _create_nodes(self) -> tuple[GraphNode[StateT],...]:

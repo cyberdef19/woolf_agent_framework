@@ -13,6 +13,18 @@ from datetime import datetime, timezone
 from collections.abc import Iterable
 from typing import Protocol
 from src.woolf_agents.domains.artifacts.schemas.contracts import HashAlgorithm
+from langchain_core.documents import Document
+from src.woolf_agents.infrastructure.vectorstore.contracts import VectorStoreProvider
+from langchain_text_splitters import (
+    RecursiveCharacterTextSplitter,
+)
+from langchain_community.document_loaders import (
+    PyPDFLoader,
+    TextLoader,
+)
+from tqdm import tqdm
+
+
 
 
 
@@ -222,7 +234,97 @@ class ExtractStringsService:
 
 #------------------------------------Сервіс отримання підозрілих індикторів---------------------------------------
         
+class HistoricalRetrieverService:
+    
+    def __init__(self, vector_store: VectorStoreProvider):
+        self._vector_store = vector_store
+    
+    async def search(self, query: str, top_k: int) -> list[Document]:
+        return await self._vector_store.similarity_search(query=query, top_k=top_k)
+    
+    async def add_documents(self, documents: list[Document], ids:list)->list[str]:
+        return await self._vector_store.add_documents(documents=documents, ids=ids)
+    
 
+
+class HistoricalIngestionService:
+    def __init__(self, vector_store, chunk_size: int = 1000, chunk_overlap: int = 150) -> None:
+        self._vector_store = vector_store
+
+        self._splitter = RecursiveCharacterTextSplitter(
+            chunk_size=chunk_size,
+            chunk_overlap=chunk_overlap,
+        )
+
+    def _load_file( self, file_path: Path) -> list[Document]:
+
+        suffix = file_path.suffix.lower()
+
+        if suffix == ".pdf":
+            loader = PyPDFLoader(str(file_path))
+
+        elif suffix in {".txt", ".md"}:
+            loader = TextLoader(
+                str(file_path),
+                encoding="utf-8",
+            )
+
+        else:
+            raise ValueError(
+                f"Unsupported file type: {suffix}"
+            )
+
+        return loader.load()
+
+    async def ingest_source(self, file_path: Path, source_metadata: dict) -> list[str]:
+
+        documents = self._load_file(file_path)
+
+        chunks = self._splitter.split_documents(
+            documents
+        )
+
+        source_id = source_metadata["source_id"]
+
+        for index, chunk in enumerate(chunks):
+            chunk.metadata.update(
+                source_metadata
+            )
+
+            chunk.metadata["chunk_index"] = index
+
+        ids = [
+            f"{source_id}_chunk_{index:04d}"
+            for index in range(len(chunks))
+        ]
+
+        return await self._vector_store.add_documents(
+            documents=chunks,
+            ids=ids,
+        )
+
+
+async def ingest_all_sources(
+    service: HistoricalIngestionService,
+    sources: dict,
+    base_dir: Path,
+) -> None:
+
+    for source_id, metadata in tqdm(sources.items()):
+
+        file_path = (
+            base_dir
+            / metadata["file_name"]
+        )
+
+        await service.ingest_source(
+            file_path=file_path,
+            source_metadata={
+                "source_id": source_id,
+                **metadata,
+            },
+        )
+        
     
 
 
