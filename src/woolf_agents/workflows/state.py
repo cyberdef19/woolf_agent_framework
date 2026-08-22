@@ -3,7 +3,7 @@ from typing_extensions import TypedDict
 from typing import Annotated
 from langchain_core.messages import BaseMessage, AIMessage
 from langgraph.graph.message import add_messages
-from src.woolf_agents.domains.artifacts.schemas.base import BaseTaskPlan, BaseStepResult, StepEvaluation, PlanEvaluation
+from src.woolf_agents.domains.artifacts.schemas.base import PlanStepStatus, BaseTaskPlan, BaseStepResult, StepEvaluation, PlanEvaluation
 from src.woolf_agents.core.result import BaseExecutionResult
 from src.woolf_agents.core.result import ExecutionStatus
 from typing import Literal
@@ -35,13 +35,13 @@ class PlanExecuteState(MessageAgentState, total=False):
     user_task: str
     len_steps: int
     current_step_idx: Annotated[int, operator.add]
-    current_step_result: HistoricalResearchStepResult
+    current_step_result: BaseStepResult
     evaluated_current_step: StepEvaluation  
     revised_plans: Annotated[list[BaseTaskPlan], operator.add]
     evaluated_steps: Annotated[list[StepEvaluation], operator.add]
     results: Annotated[list[BaseStepResult], operator.add]
     structured_response: BaseExecutionResult
-    execution_status: ExecutionStatus
+    execution_status: PlanStepStatus
     executor_response: AIMessage
     plan_execution_evaluated: PlanEvaluation
     human_deсision: Literal["continue","approve", "cancel"]

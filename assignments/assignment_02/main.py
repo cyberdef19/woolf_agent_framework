@@ -10,9 +10,9 @@ from src.woolf_agents.llm.settings import url_modelrouter
 from src.woolf_agents.llm.config import ConfigModelAPI, ConfigLangsmithAPI
 from src.woolf_agents.llm.factory import LLMFactory
 from src.woolf_agents.workflows.execute_planner_agent import ExecutePlannerAgent
-from src.woolf_agents.core.result import BaseExecutionResult 
+from src.woolf_agents.core.result import BaseExecutionResult
 from assignments.assignment_02.contracts import HistoricalHypothesisEvaluationPlan
-from src.woolf_agents.domains.artifacts.schemas.base import StepEvaluation, PlanEvaluation
+from src.woolf_agents.domains.artifacts.schemas.base import StepEvaluation, PlanEvaluation, PlanStepStatus
 from src.woolf_agents.domains.artifacts.schemas.contracts import StepExecutionContext
 from src.woolf_agents.runtime.stop_controller import StopController
 from src.woolf_agents.llm.executor import LLMExecutor
@@ -60,7 +60,7 @@ async def retrieve_historical_sources(
 
 settings = LLMSettings(
     provider=LLMProvider.OPENROUTER,
-    model = LLMModel.GOOGLEGEMMA426BA4BFREE,
+    model = LLMModel.GOOGLEGEMMA426BA4B,
     base_url=url_modelrouter["openrouter_url"],
     api_key = ConfigModelAPI.OPENROUTERKEY
 )
@@ -157,7 +157,7 @@ initial_state: PlanExecuteState = {
     ],
     "step_count": 0,
     "used_tokens": 0,
-    "execution_status": "partial",
+    "execution_status": PlanStepStatus.PENDING,
     "current_step_idx": 0,
     "current_step_result": None,
     "errors": [],

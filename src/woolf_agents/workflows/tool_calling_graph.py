@@ -26,10 +26,7 @@ class ToolCallingGraph(
     Generic[StateT, OutputT]
 ):
     AGENT_NODE = "agent"
-    #STOP_GUARD_NODE = "stop_guard"
-    #TOOLS_NODE = "tools"
-    #STRUCTURED_OUTPUT_NODE = "structured_output"
-    #STOPPED_NODE = "stopped"
+
     
     def __init__(self, 
                  state: type[StateT], 

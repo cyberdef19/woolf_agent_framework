@@ -9,7 +9,7 @@ class ExecutionStatus(StrEnum):
     PARTIAL = "partial"
     FAILED = "failed"
     INTERRUPT = "interrupted"
-    
+
 
 class BaseExecutionResult(BaseModel):
     """

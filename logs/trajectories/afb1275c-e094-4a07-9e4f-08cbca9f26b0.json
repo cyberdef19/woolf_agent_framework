@@ -1,0 +1,39 @@
+{
+  "run_id": "afb1275c-e094-4a07-9e4f-08cbca9f26b0",
+  "started_at": "2026-08-18T21:20:45.297652+00:00",
+  "finished_at": "2026-08-18T21:23:37.909237+00:00",
+  "initial_state": {
+    "messages": [
+      {
+        "content": "Яке походження назви Хаджибей? Визнач представлені в доступних джерелах гіпотези та оціни, яка з них має найкращу доказову підтримку.",
+        "additional_kwargs": {},
+        "response_metadata": {},
+        "type": "human",
+        "name": null,
+        "id": "5302b20f-715b-4d93-bb8d-692a285cfa0b"
+      }
+    ],
+    "step_count": 0,
+    "used_tokens": 0,
+    "execution_status": "partial",
+    "current_step_idx": 0,
+    "current_step_result": null,
+    "errors": [],
+    "evaluated_current_step": null,
+    "evaluated_steps": [],
+    "executor_response": null,
+    "len_steps": 0,
+    "metadata": {},
+    "plan": null,
+    "plan_execution_evaluated": null,
+    "results": [],
+    "revised_plans": [],
+    "structured_response": null,
+    "user_task": "Яке походження назви Хаджибей? Визнач представлені в доступних джерелах гіпотези та оціни, яка з них має найкращу доказову підтримку.",
+    "execution_id": "f588e38b-bcee-4216-aa71-72f15c078a95",
+    "step_messages_start_idx": 0
+  },
+  "trajectory": [],
+  "final_state": {},
+  "error": "ValidationError: 3 validation errors for HistoricalHypothesisEvaluationPlan\nsteps.1\n  Value error, research_query повинно бути null коли operation не 'retrieve_sources' [type=value_error, input_value={'expected_result': \"Кл...e, 'research_query': ''}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/value_error\nsteps.2\n  Value error, research_query повинно бути null коли operation не 'retrieve_sources' [type=value_error, input_value={'expected_result': 'По...e, 'research_query': ''}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/value_error\nsteps.3\n  Value error, research_query повинно бути null коли operation не 'retrieve_sources' [type=value_error, input_value={'expected_result': 'Об...e, 'research_query': ''}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/value_error"
+}

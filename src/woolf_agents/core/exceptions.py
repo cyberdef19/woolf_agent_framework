@@ -44,3 +44,16 @@ class ConfigurationError(BaseFrameworkException):
     """Raised when platform configuration is missing or invalid."""
 
     default_code = "CONFIGURATION_ERROR"
+
+class TransientError(BaseFrameworkException):
+    """Raised у тому випадку. якщо виникає тимчасова помилка, яка обходиться повтором виконання retry"""
+    default_retry=True 
+    default_code="Transient_ERROR"
+
+class PermanentError(BaseFrameworkException):
+    """Raised якщо виникає помилка запиту, яка не відшкодовується повтором виконання"""
+    default_code="Permanent_ERROR"
+
+class ValidationError(BaseFrameworkException):
+    """Некоректні дані в схемі schemas, state"""
+    default_code="Validation_ERROR"

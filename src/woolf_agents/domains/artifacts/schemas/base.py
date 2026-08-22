@@ -59,6 +59,19 @@ class BasePlanStep(BaseModel):
     expected_result: str = Field(
         description="Очікуваний результат від виконання кроку завдання"
     )
+    require_tools: bool = Field(
+        default=False,
+        description="Визначає чи треба викликати інструменти для реалізації кроку плану"
+    )
+    require_reasoning: bool = Field(
+        default=False,
+        description="Визначає чи потрібно reasoning (міркування) для виконання кроку"
+    )
+    require_evaluation: bool = Field(
+        default=False,
+        description="Визначає чи потрібна оцінка кроку плану для визначення якості виконання кроку"
+    )
+    
     
 class BaseTaskPlan(BaseModel):
     """Спільний загальний клас для планування"""
@@ -86,9 +99,6 @@ class BaseStepResult(BaseModel, Generic[OutputT]):
     summary: str = Field(
         description="Підсумок для окремого крока"
     )
-    #output: OutputT = Field(
-    #    description="Абстрактний вихід для одного кроку"
-    #)
     errors: list[ErrorInfo] = Field(
         default_factory=list,
         description="Помилки, що виникли за час виконання кроку планування"
