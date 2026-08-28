@@ -15,6 +15,7 @@ from typing import Protocol
 from src.woolf_agents.domains.artifacts.schemas.contracts import HashAlgorithm
 from langchain_core.documents import Document
 from src.woolf_agents.infrastructure.vectorstore.contracts import VectorStoreProvider
+from tavily import AsyncTavilyClient
 from langchain_text_splitters import (
     RecursiveCharacterTextSplitter,
 )
@@ -233,7 +234,7 @@ class ExtractStringsService:
         return list(unique_values)
 
 #------------------------------------Сервіс отримання підозрілих індикторів---------------------------------------
-        
+#------------------------------------Сервіси пошуку в історичних джерелах------------------------------------    
 class HistoricalRetrieverService:
     
     def __init__(self, vector_store: VectorStoreProvider):
@@ -244,6 +245,100 @@ class HistoricalRetrieverService:
     
     async def add_documents(self, documents: list[Document], ids:list)->list[str]:
         return await self._vector_store.add_documents(documents=documents, ids=ids)
+    
+    async def get_by_ids(self, ids: list[str]) -> list[Document]:
+
+        return await self._vector_store.aget_by_ids(
+            ids=ids,
+        )
+    
+    async def search_related_sources(
+        self,
+        source_id: str,
+        chunk_index: int,
+        top_k: int = 5,
+    ) -> list[Document]:
+
+        chunk_id = (
+            f"{source_id}_chunk_{chunk_index:04d}"
+        )
+
+        documents = await self._vector_store.get_by_ids(
+            ids=[chunk_id],
+        )
+
+        if not documents:
+            return []
+
+        reference_chunk = documents[0]
+
+        # Беремо більше результатів, оскільки частина з них
+        # може належати тому самому джерелу.
+        candidates = await self._vector_store.similarity_search(
+            query=reference_chunk.page_content,
+            top_k=top_k * 3,
+        )
+
+        related = [
+            document
+            for document in candidates
+            if document.metadata.get("source_id") != source_id
+        ]
+
+        return related[:top_k]
+
+        
+    async def get_adjacent_chunks(
+            self,
+            document_id: str,
+            chunk_index: int,
+            before: int = 1,
+            after: int = 1,
+        ) -> list[Document]:
+    
+            result = self._vector_store.get(
+                where={
+                    "$and": [
+                        {
+                            "document_id": {
+                                "$eq": document_id
+                            }
+                        },
+                        {
+                            "chunk_index": {
+                                "$gte": max(0, chunk_index - before)
+                            }
+                        },
+                        {
+                            "chunk_index": {
+                                "$lte": chunk_index + after
+                            }
+                        },
+                    ]
+                },
+                include=[
+                    "documents",
+                    "metadatas",
+                ],
+            )
+    
+            documents = [
+                Document(
+                    page_content=text,
+                    metadata=metadata,
+                )
+                for text, metadata in zip(
+                    result["documents"],
+                    result["metadatas"],
+                )
+            ]
+    
+            return sorted(
+                documents,
+                key=lambda document: document.metadata["chunk_index"],
+            )
+    
+    
     
 
 
@@ -324,8 +419,35 @@ async def ingest_all_sources(
                 **metadata,
             },
         )
-        
     
 
+class HistoricalWebSearchService:
+    def __init__(self, api_key: str):
+        self._client = AsyncTavilyClient(
+            api_key=api_key
+        )
 
+    async def search(
+        self,
+        query: str,
+        max_results: int = 5,
+    ) -> list[dict]:
+
+        response = await self._client.search(
+            query=query,
+            max_results=max_results,
+            search_depth="advanced",
+        )
+
+        return [
+            {
+                "title": item.get("title"),
+                "url": item.get("url"),
+                "content": item.get("content"),
+                "score": item.get("score"),
+            }
+            for item in response.get("results", [])
+        ]
+
+   
         

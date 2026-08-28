@@ -1,10 +1,13 @@
 from typing import Self, Literal
 
 from pydantic import Field, field_validator, model_validator, BaseModel
-from .base import SpecificInput, SpecificResult, BaseTaskPlan, BasePlanStep, BaseStepResult
+
+from src.woolf_agents.core.result import BaseExecutionResult
+from .base import SpecificInput, SpecificResult, BaseTaskPlan, BasePlanStep, BaseStepResult, StepEvaluation
 from enum import Enum
 from datetime import datetime
 from pathlib import Path
+from src.woolf_agents.domains.artifacts.schemas.base import PlanStepStatus, PlanEvaluation
 
 
 
@@ -205,6 +208,129 @@ class SuspiciousIndicatorsInput(SpecificInput):
             )
         return self
 
+from pydantic import BaseModel, Field, model_validator
+
+
+from pydantic import BaseModel, Field, field_validator, model_validator
+
+
+class RetrieveHistoricalSourcesInput(BaseModel):
+    query: str = Field(
+        ...,
+        min_length=3,
+        description="Запит для семантичного пошуку в корпусі історичних джерел.",
+    )
+
+    top_k: int = Field(
+        default=5,
+        ge=1,
+        le=10,
+        description="Максимальна кількість релевантних фрагментів.",
+    )
+
+    @field_validator("query")
+    @classmethod
+    def validate_query(cls, value: str) -> str:
+        value = value.strip()
+
+        if not value:
+            raise ValueError("Query cannot be empty.")
+
+        return value
+
+
+class GetAdjacentChunksInput(BaseModel):
+    source_id: str = Field(
+        ...,
+        min_length=1,
+        description="ID джерела, отриманий попереднім інструментом.",
+    )
+
+    chunk_index: int = Field(
+        ...,
+        ge=0,
+        description="Індекс фрагмента всередині джерела.",
+    )
+
+    before: int = Field(
+        default=1,
+        ge=0,
+        le=3,
+        description="Кількість фрагментів перед цільовим.",
+    )
+
+    after: int = Field(
+        default=1,
+        ge=0,
+        le=3,
+        description="Кількість фрагментів після цільового.",
+    )
+
+    @model_validator(mode="after")
+    def validate_context_window(self):
+        if self.before == 0 and self.after == 0:
+            raise ValueError(
+                "At least one adjacent chunk must be requested."
+            )
+
+        return self
+
+
+class SearchRelatedSourcesInput(BaseModel):
+    source_id: str = Field(
+        ...,
+        min_length=1,
+        description="ID вже знайденого історичного джерела.",
+    )
+
+    chunk_index: int = Field(
+        ...,
+        ge=0,
+        description="Індекс фрагмента, для якого потрібно знайти пов'язані джерела.",
+    )
+
+    top_k: int = Field(
+        default=5,
+        ge=1,
+        le=10,
+        description="Максимальна кількість пов'язаних фрагментів.",
+    )
+
+    @field_validator("source_id")
+    @classmethod
+    def validate_source_id(cls, value: str) -> str:
+        value = value.strip()
+
+        if not value:
+            raise ValueError("Source ID cannot be empty.")
+
+        return value
+
+
+class SearchWebHistoricalSourcesInput(BaseModel):
+    query: str = Field(
+        ...,
+        min_length=3,
+        description="Пошуковий запит для пошуку історичної інформації у веб.",
+    )
+
+    max_results: int = Field(
+        default=5,
+        ge=1,
+        le=10,
+        description="Максимальна кількість результатів веб-пошуку.",
+    )
+
+    @field_validator("query")
+    @classmethod
+    def validate_query(cls, value: str) -> str:
+        value = value.strip()
+
+        if not value:
+            raise ValueError("Query cannot be empty.")
+
+        return value
+
 class MetadataFileResult(SpecificResult):
     """Отримує метадані файлу"""
     filename: str
@@ -238,7 +364,25 @@ class SuspiciousIndicatorsResult(SpecificResult):
 class HistoricalResearchStepResult(BaseStepResult):
     """Конкретизуючий результат кроку виконання плану"""
     
+class HistoricalResearchExecutionResult(BaseExecutionResult):
+    answer: str = Field(
+        description="Підсумкова відповідь на дослідницьке питання."
+    )
 
+    key_findings: list[str] = Field(
+        default_factory=list,
+        description="Ключові встановлені результати дослідження."
+    )
+
+    uncertainties: list[str] = Field(
+        default_factory=list,
+        description="Невизначеності та питання, які залишилися відкритими."
+    )
+
+    sources: list[str] = Field(
+        default_factory=list,
+        description="Джерела, на яких ґрунтується висновок."
+    )
 
 class HistoricalResearchStepPlan(BasePlanStep):
     """Крок для дослідницького плану історичний домен"""
@@ -281,11 +425,6 @@ class HistoricalResearchPlan(BaseTaskPlan):
         description="Список кроків історичного дослідницького плану "
     )
     
-class StepExecutionContext(BaseModel):
-    user_task: str
-    current_step: BasePlanStep
-    previous_results: list[BaseStepResult]
-
 
 class HypothesisEvaluationStep(HistoricalResearchStepPlan):
     """Конкретний крок плану для оцінки гіпотези"""
@@ -311,3 +450,31 @@ class HistoricalHypothesisEvaluationPlan(HistoricalResearchPlan):
     steps:list[HypothesisEvaluationStep]
 
 
+
+class EvaluationPlanContext(BaseModel):
+    execution_id: int
+    user_task: str
+    evaluated_steps: list[StepEvaluation]
+    resultsaechstep: list[HistoricalResearchStepResult]
+    plan: HistoricalHypothesisEvaluationPlan
+
+class StepEvaluationContext(BaseModel):
+    execution_id:int
+    current_step:HypothesisEvaluationStep
+    current_step_result:HistoricalResearchStepResult
+
+class StepExecutionContext(BaseModel):
+    user_task: str
+    current_step: HypothesisEvaluationStep
+    previous_results: list[HistoricalResearchStepResult]
+    execution_id: int
+    step_id: int
+    step_status: PlanStepStatus
+
+class FinalResponseContext(BaseModel):
+    user_task: str
+    plan_evaluation: PlanEvaluation
+    final_plan: HistoricalHypothesisEvaluationPlan
+    step_results: list[HistoricalResearchStepResult]
+    execution_id: int
+    

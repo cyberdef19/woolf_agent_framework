@@ -14,6 +14,7 @@ from src.woolf_agents.llm.executor import LLMExecutor
 import time
 from pydantic import ValidationError
 from langgraph.checkpoint.base import BaseCheckpointSaver
+from .state import AnalysisStatus
 
 
 StateT = TypeVar("StateT")
@@ -129,7 +130,7 @@ class ToolCallingGraph(
            
             return {
              "structured_response": response,
-             "execution_status": "completed"
+             "execution_status": AnalysisStatus.COMPLETED
             }
         
     
@@ -153,7 +154,7 @@ class ToolCallingGraph(
     
     async def _stopped_node(self, state: StateT) -> dict[str, Any]:
         return {
-            "execution_status": "stopped",
+            "execution_status": AnalysisStatus.STOPPED,
         }    
     
 

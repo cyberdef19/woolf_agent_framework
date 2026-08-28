@@ -41,6 +41,7 @@ class BaseGraph(ABC, Generic[StateT]):
             raise ValueError("У граф має бути передано бодай один інструмент")
         self._tools = list(tools)
         self._system_message = SystemMessage(content=system_prompt)
+        self._output_schema = output_schema
         self._llm_structured_output = model.with_structured_output(output_schema)
         self._tool_model = model.bind_tools(self._tools)
         self._stop_controller = stop_controller

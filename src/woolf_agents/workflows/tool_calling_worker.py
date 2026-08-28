@@ -1,4 +1,7 @@
 from collections.abc import Sequence
+
+from src.woolf_agents.runtime.settings import AgentRuntimeSettings
+from src.woolf_agents.runtime.trajectory_logger import TrajectoryLogger
 from .tool_calling_graph import ToolCallingGraph
 from src.woolf_agents.runtime.runner import AgentGraphRunner
 from typing import TypeVar, Generic
@@ -8,7 +11,11 @@ from src.woolf_agents.domains.artifacts.schemas.base import BaseStepResult
 from src.woolf_agents.runtime.stop_controller import StopController
 from langchain_core.language_models.chat_models import BaseChatModel
 from langchain_core.tools import BaseTool
+from langchain.messages import HumanMessage
 from langgraph.checkpoint.base import BaseCheckpointSaver
+from .state import ToolGraphState ,AnalysisStatus
+
+from uuid import uuid4 
 
 StateT = TypeVar("StateT")
 OutputT = TypeVar("OutputT")
@@ -24,7 +31,6 @@ class ToolCallingWorker(Generic[StateT, OutputT]):
                  executor: LLMExecutor,
                  stop_controller: StopController,
                  checkpointer: BaseCheckpointSaver,
-                 runner: AgentGraphRunner
                  ):
         super().__init__()
         self._compiled_tool_calling: ToolCallingGraph = ToolCallingGraph(
@@ -36,8 +42,34 @@ class ToolCallingWorker(Generic[StateT, OutputT]):
             executor=executor,
             stop_controller=stop_controller,
             checkpointer=checkpointer
-        ).build()
-        self._runner = runner
+        ).build(
+            checkpointer=checkpointer
+        )
+        graph_settings = AgentRuntimeSettings(timeout_seconds=420)
+        self._runner = AgentGraphRunner(
+            graph=self._compiled_tool_calling,
+            settings= graph_settings,
+            stop_controller=StopController(),
+            trajectory_logger=TrajectoryLogger(graph_settings.trajectory_log_directory)
+        )
     
     async def execute(self, context: StepExecutionContext)->BaseStepResult:
         """Виконує контракт AgentWorker - запукає агента для виклику інструментів tool calling"""
+        initial_state: StateT = {
+            "messages": [HumanMessage(
+                content=
+                  f"""Виконай поточний крок плану {context.current_step.model_dump_json(indent=2)}"""
+                 )
+                         ],
+             "execution_id": context.execution_id,
+             "step_count": 0,
+             "used_tokens": 0,
+             "execution_status": AnalysisStatus.PENDING
+        }
+        thread_id = str(uuid4())
+        response = await self._runner.run(
+            initial_state=initial_state,
+            thread_id=thread_id
+        )
+        return response
+        

@@ -16,6 +16,9 @@ class ConfigModelAPI(StrEnum):
 class ConfigLangsmithAPI(StrEnum):
     LANGSMITHKEY = config.get("LANGSMITH", None)
 
+class ConfigTavilyAPI(StrEnum):
+    TAVILYKEY = config.get("TAVILY", None)
+
 class LLMProvider(StrEnum):
     OPENROUTER = "openrouter"
     OPENAI = "openai"

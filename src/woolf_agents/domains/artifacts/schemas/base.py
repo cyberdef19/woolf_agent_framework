@@ -53,6 +53,9 @@ class BasePlanStep(BaseModel):
     id: str = Field(
         description="ID ідентифікатор кроку плана"
     )
+    step_status: PlanStepStatus = Field(
+        description="Статус виконання кроку плану"
+    )
     objective: str = Field(
         description="Об'єктивне конкретне завдання кроку"
     )
@@ -86,9 +89,9 @@ class BaseTaskPlan(BaseModel):
         description="Список кроків плану"
     )      
  
-OutputT = TypeVar("OutputT")
+
     
-class BaseStepResult(BaseModel, Generic[OutputT]):
+class BaseStepResult(BaseModel):
     """Результат окремого крока планувальника"""
     model_config=ConfigDict(
         extra="forbid"
@@ -216,7 +219,7 @@ class PlanEvaluation(BaseModel):
     task_answerable: bool = Field(
         description=(
             "True якщо доступні результати надають можливість" 
-            "отримати завершену повну повну відповідь. "
+            "отримати завершену повну відповідь. "
         )
     )
 
