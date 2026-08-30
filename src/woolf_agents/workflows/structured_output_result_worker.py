@@ -29,14 +29,14 @@ class StructuredOutputResultWorker(
     def _get_message(self, context: FinalResponseContext)->str:
         """Формує фінальну структуровану відповідь для користувача"""
         
-        execution_id = FinalResponseContext(context).execution_id
-        final_plan = FinalResponseContext(context).final_plan
-        plan_evaluation = FinalResponseContext(context).plan_evaluation
-        user_task = FinalResponseContext(context).user_task
-        step_results = FinalResponseContext(context).step_results
+        execution_id = context.execution_id
+        final_plan = context.final_plan
+        plan_evaluation = context.plan_evaluation
+        user_task = context.user_task
+        step_results = context.step_results
         
         step_results_json = [
-            step_result 
+            step_result.model_dump_json() 
             for step_result in step_results 
         ]
         
@@ -44,7 +44,7 @@ class StructuredOutputResultWorker(
                 Виконуємо завдання {execution_id}. Сформуй фінальну відповідь для користувача 
                 після виконання завдання: {user_task}. Фінальну відповідь формуй на основі завершенного
                 плану {final_plan.model_dump_json()}, на основі оцінки виконання плану: {plan_evaluation.model_dump_json()}.
-                Також, візьмі до уваги результати кроків: {json.dump(step_results_json)} 
+                Також, візьмі до уваги результати кроків: {json.dumps(step_results_json)} 
                 """
     
         

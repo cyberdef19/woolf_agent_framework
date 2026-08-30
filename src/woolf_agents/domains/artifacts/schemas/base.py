@@ -1,4 +1,4 @@
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 from pathlib import Path
 from enum import StrEnum
 from typing import TypeVar, Generic
@@ -64,16 +64,23 @@ class BasePlanStep(BaseModel):
     )
     require_tools: bool = Field(
         default=False,
-        description="Визначає чи треба викликати інструменти для реалізації кроку плану"
+        description="Визначає чи треба викликати інструменти для реалізації кроку плану."
     )
     require_reasoning: bool = Field(
         default=False,
-        description="Визначає чи потрібно reasoning (міркування) для виконання кроку"
+        description="Визначає чи потрібно reasoning (міркування) для виконання кроку."
+                   
     )
-    require_evaluation: bool = Field(
-        default=False,
-        description="Визначає чи потрібна оцінка кроку плану для визначення якості виконання кроку"
-    )
+   
+    @model_validator(mode="after")
+    def validate_execution_requirements(self):
+        if self.require_tools and self.require_reasoning:
+            raise ValueError(
+            "require_tools і require_reasoning "
+            "не можуть одночасно бути True."
+            )
+
+        return self
     
     
 class BaseTaskPlan(BaseModel):
@@ -102,10 +109,7 @@ class BaseStepResult(BaseModel):
     summary: str = Field(
         description="Підсумок для окремого крока"
     )
-    errors: list[ErrorInfo] = Field(
-        default_factory=list,
-        description="Помилки, що виникли за час виконання кроку планування"
-    )
+    
     
 class StepDecision(StrEnum):
     """Можливе рішення після виконання оцінки кроку плана"""

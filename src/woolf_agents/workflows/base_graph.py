@@ -12,6 +12,7 @@ from langchain_core.language_models.chat_models import BaseChatModel
 from langchain_core.messages import SystemMessage, HumanMessage
 from langgraph.prebuilt import ToolNode
 from langgraph.checkpoint.base import BaseCheckpointSaver
+import json
 
 StateT = TypeVar("StateT")
 OutputT = TypeVar("OutputT")
@@ -24,6 +25,7 @@ class BaseGraph(ABC, Generic[StateT]):
     TOOLS_NODE = "tools"
     STRUCTURED_OUTPUT_NODE = "structured_output"
     STOPPED_NODE = "stopped"
+    INTERRUPT_NODE = "interrupt"
     
     def __init__(self, 
                 state_schema: type[StateT],
@@ -41,6 +43,7 @@ class BaseGraph(ABC, Generic[StateT]):
             raise ValueError("У граф має бути передано бодай один інструмент")
         self._tools = list(tools)
         self._system_message = SystemMessage(content=system_prompt)
+       
         self._output_schema = output_schema
         self._llm_structured_output = model.with_structured_output(output_schema)
         self._tool_model = model.bind_tools(self._tools)

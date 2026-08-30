@@ -27,12 +27,12 @@ class ReasoningWorker(
     
     def _get_message(self, context: StepExecutionContext)-> str:
         """Повертає повідомлення до мовленевої моделі для міркування"""
-        user_task = StepExecutionContext(context).user_task
-        step_status = StepExecutionContext(context).step_status
-        step_id = StepExecutionContext(context).step_id
-        previous_results = StepExecutionContext(context).previous_results
-        execution_id = StepExecutionContext(context).execution_id
-        current_step = StepExecutionContext(context).current_step
+        user_task = context.user_task
+        step_status = context.step_status
+        step_id = context.step_id
+        previous_results = context.previous_results
+        execution_id = context.execution_id
+        current_step = context.current_step
         
         previuos_results_json = [
             result.model_dump_json() 
@@ -46,7 +46,7 @@ class ReasoningWorker(
                 Поточний крок плану у рамках загального завдання користувача. 
                 Ось завдання користувача: {user_task}.
                 Ось поточний крок плану: {current_step.model_dump_json()}
-                Ось результати виконання попередніх кроків: {json.dump(previuos_results_json)}
+                Ось результати виконання попередніх кроків: {json.dumps(previuos_results_json)}
         """
         
         

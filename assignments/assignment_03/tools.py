@@ -72,7 +72,7 @@ async def get_adjacent_chunks(
     )
     
 
-@tool(args_schema=SearchRelatedSourcesInput)
+@tool(args_schema=SearchWebHistoricalSourcesInput)
 async def search_web_historical_sources(
     query: str,
     max_results: int = 5,
@@ -97,22 +97,22 @@ async def search_web_historical_sources(
         max_results=max_results,
     )
 
-@tool(args_schema=SearchWebHistoricalSourcesInput)
+@tool(args_schema=SearchRelatedSourcesInput)
 async def search_related_sources(
     source_id: str,
     chunk_index: int,
     top_k: int = 5,
 ) -> list:
     """
-    Пошук пов'язаних історичних джерел у локальній
-    векторній базі.
+    Знаходить семантично пов'язані фрагменти
+    в ІНШИХ локальних історичних джерелах.
 
-    Використовуй інструмент, коли після аналізу
-    знайденого фрагмента потрібно знайти семантично
-    пов'язані фрагменти з інших історичних джерел.
+    Використовуй ТІЛЬКИ після того, як вже отримано
+    source_id та chunk_index з попереднього retrieval.
 
-    source_id та chunk_index бери з результатів
-    попереднього пошуку історичних джерел.
+    Цей tool НЕ приймає query.
+    Для пошуку за текстовим запитом використовуй
+    retrieve_historical_sources.
     """
 
     embeddings = MultiligualE5Embedding()

@@ -43,16 +43,7 @@ class BaseExecutionResult(BaseModel):
         may contain errors while still providing useful output.
         """
     )
-    executed_metadata: dict[str, object] = Field(
-        default_factory=dict,
-        description="""
-            Optional technical and operational information about the execution, 
-            such as the model name, execution duration, token usage, number of 
-            tool calls, workflow identifier, or tracing identifiers. 
-            Do not place domain-specific result data in this field.
-         """
-        
-    )
+   
     summary: str = Field(
         description="""Узагальнюючий фінальний підсумок результата"""
     )

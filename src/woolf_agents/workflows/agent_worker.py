@@ -23,6 +23,7 @@ class AbstractAgentWorker(
                  output_schema: type[ResultT],
                  system_message: SystemMessage
                  ):
+        self._output_schema = output_schema
         self._model_with_structured_output = model.with_structured_output(output_schema)
         self._executor = executor
         self._system_message = system_message
@@ -43,6 +44,6 @@ class AbstractAgentWorker(
                         )
                     ]
                 )   
-        return response 
+        return self._output_schema.model_validate(response) 
         
         

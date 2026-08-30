@@ -69,6 +69,7 @@ class ToolCallingGraph(
                                          [
                                                 self._system_message,
                                                 *state["messages"],
+                                                
                                          ] 
                                          )
             used_tokens = response.usage_metadata.get("total_tokens", 0) if response.usage_metadata else 0
@@ -125,12 +126,10 @@ class ToolCallingGraph(
                         
                     ] 
                     )
-         
-            print(type(response))
            
             return {
-             "structured_response": response,
-             "execution_status": AnalysisStatus.COMPLETED
+                "structured_output": response,
+                "execution_status": AnalysisStatus.COMPLETED
             }
         
     

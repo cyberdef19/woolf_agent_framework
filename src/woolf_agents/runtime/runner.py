@@ -78,7 +78,8 @@ class AgentGraphRunner(Generic[StateT]):
                     initial_state,
                     config=config
                 )
-
+               
+                
         except TimeoutError as exc:
             raise AgentExecutionTimeoutError(
                 "Виконання агента перевищило загальний тайм-аут "
@@ -90,6 +91,7 @@ class AgentGraphRunner(Generic[StateT]):
                 "LangGraph перевищив аварійний ліміт кроків "
                 f"({self._settings.recursion_limit})."
             ) from exc
+        
 
     async def _run_with_trajectory(
         self,

@@ -50,8 +50,7 @@ class ToolGraphState(MessageAgentState, total=False):
     summary: str
     used_tokens: int 
     step_count: Annotated[int, operator.add]
-    tool_call_history: Annotated[list[str], operator.add]
-    structured_reponse: BaseStepResult
+    structured_output: HistoricalResearchStepResult
     stop_decision: StopDecision
 
 class PlanExecuteStatus(StrEnum):
@@ -61,12 +60,18 @@ class PlanExecuteStatus(StrEnum):
     READY_FOR_PLAN_EVALUATION = "ready_for_plan_evaluation"
     REPLANNING = "replanning"
     WAITTING_FOR_HUMAN = "waitting_for_human"
- 
+    
+class SourceInterrupt(StrEnum):
+    EVALUATION_STEP = "step_evaluation"
+    EVALUATION_PLAN = "plan_evaluation"
+    NO_SOURCE = "no_source"
+
 class PlanExecuteState(MessageAgentState, total=False):
     """Стан виконання плану агентом-планувальником"""
     plan:HistoricalHypothesisEvaluationPlan
     user_task: str
     len_steps: int
+    step_count: Annotated[int, operator.add]
     current_step_idx: Annotated[int, operator.add]
     current_step_result: HistoricalResearchStepResult|None
     evaluated_current_step: StepEvaluation  
@@ -77,13 +82,15 @@ class PlanExecuteState(MessageAgentState, total=False):
     execution_status: PlanExecuteStatus
     executor_response: AIMessage
     plan_execution_evaluated: PlanEvaluation| None
-    human_deсision: Literal["continue","approve", "cancel"]
+    human_decision: Literal["continue","approve", "cancel"]
+    source_interrupt: SourceInterrupt = SourceInterrupt.NO_SOURCE
     interrupt_reason: str
     execution_id: str
     step_started: bool = False
     step_messages_start_idx: int
     context_step: StepExecutionContext
     step_status: PlanStepStatus
+    allow_replan: False
    
     
     

@@ -1,0 +1,354 @@
+{
+  "run_id": "e32c665a-4c73-4b67-8e58-ceeefac43806",
+  "started_at": "2026-08-30T12:42:16.231363+00:00",
+  "finished_at": "2026-08-30T12:42:59.376654+00:00",
+  "initial_state": {
+    "messages": [
+      {
+        "content": "Яке походження назви Хаджибей? Визнач представлені в доступних джерелах гіпотези та оціни, яка з них має найкращу доказову підтримку.",
+        "additional_kwargs": {},
+        "response_metadata": {},
+        "type": "human",
+        "name": null,
+        "id": "9af06a1c-b7c9-4cc2-a28f-6efd9118eafc"
+      }
+    ],
+    "step_count": 0,
+    "used_tokens": 0,
+    "execution_status": "pending",
+    "current_step_idx": 0,
+    "current_step_result": null,
+    "errors": [],
+    "evaluated_current_step": null,
+    "evaluated_steps": [],
+    "executor_response": null,
+    "len_steps": 0,
+    "metadata": {},
+    "plan": null,
+    "plan_execution_evaluated": null,
+    "results": [],
+    "revised_plans": [],
+    "structured_response": null,
+    "user_task": "Яке походження назви Хаджибей? Визнач представлені в доступних джерелах гіпотези та оціни, яка з них має найкращу доказову підтримку.",
+    "execution_id": "3e979a5f-c5fa-4d06-b4ae-3f6faba59a70",
+    "step_messages_start_idx": 0
+  },
+  "trajectory": [
+    {
+      "timestamp": "2026-08-30T12:42:23.206902+00:00",
+      "update": {
+        "plan_node": {
+          "plan": {
+            "goal": "Визначити походження назви Хаджибей та оцінити гіпотези.",
+            "steps": [
+              {
+                "id": "step1",
+                "step_status": "pending",
+                "objective": "Знайти історичні джерела, що містять інформацію про походження назви Хаджибей.",
+                "expected_result": "Отримати список релевантних історичних джерел.",
+                "require_tools": true,
+                "require_reasoning": false,
+                "research_query": "походження назви Хаджибей.",
+                "requires_evidence": true,
+                "operation": "retrieve_sources"
+              },
+              {
+                "id": "step2",
+                "step_status": "pending",
+                "objective": "Виділити твердження про походження назви Хаджибей з отриманих джерел.",
+                "expected_result": "Отримати список тверджень, що стосуються походження назви.",
+                "require_tools": false,
+                "require_reasoning": true,
+                "research_query": null,
+                "requires_evidence": false,
+                "operation": "extract_claims"
+              },
+              {
+                "id": "step3",
+                "step_status": "pending",
+                "objective": "Сформувати альтернативні гіпотези на основі виділених тверджень.",
+                "expected_result": "Отримати список альтернативних гіпотез щодо походження назви Хаджибей.",
+                "require_tools": false,
+                "require_reasoning": true,
+                "research_query": null,
+                "requires_evidence": false,
+                "operation": "generate_hypotheses"
+              },
+              {
+                "id": "step4",
+                "step_status": "pending",
+                "objective": "Оцінити альтернативні гіпотези на основі наявних підтверджуючих та суперечливих свідчень.",
+                "expected_result": "Визначити, яка з гіпотез має найкращу доказову підтримку.",
+                "require_tools": false,
+                "require_reasoning": true,
+                "research_query": null,
+                "requires_evidence": false,
+                "operation": "evaluate_hypotheses"
+              },
+              {
+                "id": "step5",
+                "step_status": "pending",
+                "objective": "Сформувати висновок про походження назви Хаджибей на основі оцінки гіпотез.",
+                "expected_result": "Отримати обґрунтований висновок про походження назви Хаджибей.",
+                "require_tools": false,
+                "require_reasoning": true,
+                "research_query": null,
+                "requires_evidence": false,
+                "operation": "synthesize_conclusion"
+              }
+            ],
+            "research_question": "Яке походження назви Хаджибей?"
+          },
+          "step_count": 1,
+          "len_steps": 5,
+          "execution_status": "running",
+          "step_status": "pending"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-08-30T12:42:46.339904+00:00",
+      "update": {
+        "executer_node": {
+          "current_step_result": {
+            "step_id": "step1",
+            "summary": "Знайдено релевантні історичні джерела, що містять інформацію про походження назви Хаджибей.",
+            "evidence": [
+              {
+                "content": "Гончарук Тарас. \"Коцюбіїв. Качибей чи Кочубієв. Яку назву доцільніше вживати щодо Одеси у XV-XVI ст.\" (2022). URL: https://chm.onu.edu.ua/article/view/268837/266518",
+                "source_id": "source_02",
+                "chunk_index": 1,
+                "source_url": "https://chm.onu.edu.ua/article/view/268837/266518"
+              },
+              {
+                "content": "Красножон А.В. \"Замок Хаджибей: історія досліджень, датування, локалізація.\" (2019). URL: https://www.academia.edu/40442103/%D0%97%D0%B0%D0%BC%D0%BE%D0%BA_%D0%A5%D0%B0%D0%B4%D0%B6%D0%B8%D0%B1%D0%B5%D0%B9_%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F_%D0%B8%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B9_%D0%B4%D0%B0%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B8_%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F",
+                "source_id": "source_04",
+                "chunk_index": 90,
+                "source_url": "https://www.academia.edu/40442103/%D0%97%D0%B0%D0%BC%D0%BE%D0%BA_%D0%A5%D0%B0%D0%B4%D0%B6%D0%B8%D0%B1%D0%B5%D0%B9_%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F_%D0%B8%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B9_%D0%B4%D0%B0%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B8_%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F"
+              },
+              {
+                "content": "Маркевич А.І. \"Город Качибей або Гаджибей – предшественник города Одессы.\" Записки Одесського товариства історії та старожитностей (1894).",
+                "source_id": "source_02",
+                "chunk_index": 2,
+                "source_url": null
+              }
+            ]
+          },
+          "results": [
+            {
+              "step_id": "step1",
+              "summary": "Знайдено релевантні історичні джерела, що містять інформацію про походження назви Хаджибей.",
+              "evidence": [
+                {
+                  "content": "Гончарук Тарас. \"Коцюбіїв. Качибей чи Кочубієв. Яку назву доцільніше вживати щодо Одеси у XV-XVI ст.\" (2022). URL: https://chm.onu.edu.ua/article/view/268837/266518",
+                  "source_id": "source_02",
+                  "chunk_index": 1,
+                  "source_url": "https://chm.onu.edu.ua/article/view/268837/266518"
+                },
+                {
+                  "content": "Красножон А.В. \"Замок Хаджибей: історія досліджень, датування, локалізація.\" (2019). URL: https://www.academia.edu/40442103/%D0%97%D0%B0%D0%BC%D0%BE%D0%BA_%D0%A5%D0%B0%D0%B4%D0%B6%D0%B8%D0%B1%D0%B5%D0%B9_%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F_%D0%B8%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B9_%D0%B4%D0%B0%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B8_%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F",
+                  "source_id": "source_04",
+                  "chunk_index": 90,
+                  "source_url": "https://www.academia.edu/40442103/%D0%97%D0%B0%D0%BC%D0%BE%D0%BA_%D0%A5%D0%B0%D0%B4%D0%B6%D0%B8%D0%B1%D0%B5%D0%B9_%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F_%D0%B8%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B9_%D0%B4%D0%B0%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B8_%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F"
+                },
+                {
+                  "content": "Маркевич А.І. \"Город Качибей або Гаджибей – предшественник города Одессы.\" Записки Одесського товариства історії та старожитностей (1894).",
+                  "source_id": "source_02",
+                  "chunk_index": 2,
+                  "source_url": null
+                }
+              ]
+            }
+          ],
+          "step_count": 1,
+          "evaluated_current_step": {
+            "step_id": "3e979a5f-c5fa-4d06-b4ae-3f6faba59a70",
+            "objective_satisfied": false,
+            "sufficient_for_next_step": false,
+            "contradictions_detected": false,
+            "new_information_changes_plan": false,
+            "confidence": 0.7,
+            "decision": "interrupt",
+            "reason": "Для продовження виконання потрібне підтвердження користувача."
+          },
+          "plan_execution_evaluated": null,
+          "execution_status": "waitting_for_human",
+          "evaluated_steps": [
+            {
+              "step_id": "3e979a5f-c5fa-4d06-b4ae-3f6faba59a70",
+              "objective_satisfied": false,
+              "sufficient_for_next_step": false,
+              "contradictions_detected": false,
+              "new_information_changes_plan": false,
+              "confidence": 0.7,
+              "decision": "interrupt",
+              "reason": "Для продовження виконання потрібне підтвердження користувача."
+            }
+          ],
+          "interrupt_reason": "Для продовження виконання потрібне підтвердження користувача."
+        }
+      }
+    },
+    {
+      "timestamp": "2026-08-30T12:42:46.343903+00:00",
+      "update": {
+        "counter_node": {
+          "execution_status": "waitting_for_human",
+          "step_count": 1,
+          "current_step_idx": 0
+        }
+      }
+    },
+    {
+      "timestamp": "2026-08-30T12:42:59.376654+00:00",
+      "update": {
+        "__interrupt__": [
+          "Interrupt(value={'execution_id': '3e979a5f-c5fa-4d06-b4ae-3f6faba59a70', 'interrupt_reason': 'Для продовження виконання потрібне підтвердження користувача.', 'allowed_actions': ['continue', 'approve', 'cancel']}, id='e422252444a7d40c09b5f88cc9dbbb08')"
+        ]
+      }
+    }
+  ],
+  "final_state": {
+    "plan": {
+      "goal": "Визначити походження назви Хаджибей та оцінити гіпотези.",
+      "steps": [
+        {
+          "id": "step1",
+          "step_status": "pending",
+          "objective": "Знайти історичні джерела, що містять інформацію про походження назви Хаджибей.",
+          "expected_result": "Отримати список релевантних історичних джерел.",
+          "require_tools": true,
+          "require_reasoning": false,
+          "research_query": "походження назви Хаджибей.",
+          "requires_evidence": true,
+          "operation": "retrieve_sources"
+        },
+        {
+          "id": "step2",
+          "step_status": "pending",
+          "objective": "Виділити твердження про походження назви Хаджибей з отриманих джерел.",
+          "expected_result": "Отримати список тверджень, що стосуються походження назви.",
+          "require_tools": false,
+          "require_reasoning": true,
+          "research_query": null,
+          "requires_evidence": false,
+          "operation": "extract_claims"
+        },
+        {
+          "id": "step3",
+          "step_status": "pending",
+          "objective": "Сформувати альтернативні гіпотези на основі виділених тверджень.",
+          "expected_result": "Отримати список альтернативних гіпотез щодо походження назви Хаджибей.",
+          "require_tools": false,
+          "require_reasoning": true,
+          "research_query": null,
+          "requires_evidence": false,
+          "operation": "generate_hypotheses"
+        },
+        {
+          "id": "step4",
+          "step_status": "pending",
+          "objective": "Оцінити альтернативні гіпотези на основі наявних підтверджуючих та суперечливих свідчень.",
+          "expected_result": "Визначити, яка з гіпотез має найкращу доказову підтримку.",
+          "require_tools": false,
+          "require_reasoning": true,
+          "research_query": null,
+          "requires_evidence": false,
+          "operation": "evaluate_hypotheses"
+        },
+        {
+          "id": "step5",
+          "step_status": "pending",
+          "objective": "Сформувати висновок про походження назви Хаджибей на основі оцінки гіпотез.",
+          "expected_result": "Отримати обґрунтований висновок про походження назви Хаджибей.",
+          "require_tools": false,
+          "require_reasoning": true,
+          "research_query": null,
+          "requires_evidence": false,
+          "operation": "synthesize_conclusion"
+        }
+      ],
+      "research_question": "Яке походження назви Хаджибей?"
+    },
+    "step_count": 1,
+    "len_steps": 5,
+    "execution_status": "waitting_for_human",
+    "step_status": "pending",
+    "current_step_result": {
+      "step_id": "step1",
+      "summary": "Знайдено релевантні історичні джерела, що містять інформацію про походження назви Хаджибей.",
+      "evidence": [
+        {
+          "content": "Гончарук Тарас. \"Коцюбіїв. Качибей чи Кочубієв. Яку назву доцільніше вживати щодо Одеси у XV-XVI ст.\" (2022). URL: https://chm.onu.edu.ua/article/view/268837/266518",
+          "source_id": "source_02",
+          "chunk_index": 1,
+          "source_url": "https://chm.onu.edu.ua/article/view/268837/266518"
+        },
+        {
+          "content": "Красножон А.В. \"Замок Хаджибей: історія досліджень, датування, локалізація.\" (2019). URL: https://www.academia.edu/40442103/%D0%97%D0%B0%D0%BC%D0%BE%D0%BA_%D0%A5%D0%B0%D0%B4%D0%B6%D0%B8%D0%B1%D0%B5%D0%B9_%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F_%D0%B8%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B9_%D0%B4%D0%B0%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B8_%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F",
+          "source_id": "source_04",
+          "chunk_index": 90,
+          "source_url": "https://www.academia.edu/40442103/%D0%97%D0%B0%D0%BC%D0%BE%D0%BA_%D0%A5%D0%B0%D0%B4%D0%B6%D0%B8%D0%B1%D0%B5%D0%B9_%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F_%D0%B8%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B9_%D0%B4%D0%B0%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B8_%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F"
+        },
+        {
+          "content": "Маркевич А.І. \"Город Качибей або Гаджибей – предшественник города Одессы.\" Записки Одесського товариства історії та старожитностей (1894).",
+          "source_id": "source_02",
+          "chunk_index": 2,
+          "source_url": null
+        }
+      ]
+    },
+    "results": [
+      {
+        "step_id": "step1",
+        "summary": "Знайдено релевантні історичні джерела, що містять інформацію про походження назви Хаджибей.",
+        "evidence": [
+          {
+            "content": "Гончарук Тарас. \"Коцюбіїв. Качибей чи Кочубієв. Яку назву доцільніше вживати щодо Одеси у XV-XVI ст.\" (2022). URL: https://chm.onu.edu.ua/article/view/268837/266518",
+            "source_id": "source_02",
+            "chunk_index": 1,
+            "source_url": "https://chm.onu.edu.ua/article/view/268837/266518"
+          },
+          {
+            "content": "Красножон А.В. \"Замок Хаджибей: історія досліджень, датування, локалізація.\" (2019). URL: https://www.academia.edu/40442103/%D0%97%D0%B0%D0%BC%D0%BE%D0%BA_%D0%A5%D0%B0%D0%B4%D0%B6%D0%B8%D0%B1%D0%B5%D0%B9_%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F_%D0%B8%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B9_%D0%B4%D0%B0%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B8_%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F",
+            "source_id": "source_04",
+            "chunk_index": 90,
+            "source_url": "https://www.academia.edu/40442103/%D0%97%D0%B0%D0%BC%D0%BE%D0%BA_%D0%A5%D0%B0%D0%B4%D0%B6%D0%B8%D0%B1%D0%B5%D0%B9_%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F_%D0%B8%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B9_%D0%B4%D0%B0%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B8_%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F"
+          },
+          {
+            "content": "Маркевич А.І. \"Город Качибей або Гаджибей – предшественник города Одессы.\" Записки Одесського товариства історії та старожитностей (1894).",
+            "source_id": "source_02",
+            "chunk_index": 2,
+            "source_url": null
+          }
+        ]
+      }
+    ],
+    "evaluated_current_step": {
+      "step_id": "3e979a5f-c5fa-4d06-b4ae-3f6faba59a70",
+      "objective_satisfied": false,
+      "sufficient_for_next_step": false,
+      "contradictions_detected": false,
+      "new_information_changes_plan": false,
+      "confidence": 0.7,
+      "decision": "interrupt",
+      "reason": "Для продовження виконання потрібне підтвердження користувача."
+    },
+    "plan_execution_evaluated": null,
+    "evaluated_steps": [
+      {
+        "step_id": "3e979a5f-c5fa-4d06-b4ae-3f6faba59a70",
+        "objective_satisfied": false,
+        "sufficient_for_next_step": false,
+        "contradictions_detected": false,
+        "new_information_changes_plan": false,
+        "confidence": 0.7,
+        "decision": "interrupt",
+        "reason": "Для продовження виконання потрібне підтвердження користувача."
+      }
+    ],
+    "interrupt_reason": "Для продовження виконання потрібне підтвердження користувача.",
+    "current_step_idx": 0
+  },
+  "error": null
+}

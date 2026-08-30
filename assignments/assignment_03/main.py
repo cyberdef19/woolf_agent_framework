@@ -5,7 +5,7 @@ from uuid import uuid4
 
 import aiosqlite
 
-from assignments.assignment_02.contracts import HistoricalHypothesisEvaluationPlan
+
 from assignments.assignment_03.tools import (
                 retrieve_historical_sources, 
                 get_adjacent_chunks, 
@@ -15,7 +15,7 @@ from assignments.assignment_03.tools import (
 from src.woolf_agents.core.agent_spec import AgentSpec
 from src.woolf_agents.core.retry import RetryPolicyAgent, RetrySettings
 from src.woolf_agents.domains.artifacts.schemas.base import PlanEvaluation, PlanStepStatus, StepEvaluation
-from src.woolf_agents.domains.artifacts.schemas.contracts import HistoricalResearchExecutionResult, HistoricalResearchStepResult
+from src.woolf_agents.domains.artifacts.schemas.contracts import HistoricalHypothesisEvaluationPlan, HistoricalResearchExecutionResult, HistoricalResearchStepResult, StepExecutionContext
 from src.woolf_agents.llm.config import ConfigLangsmithAPI, LangSmithSettings, url_modelrouter, ConfigModelAPI, LLMModel, LLMProvider, LLMSettings
 from src.woolf_agents.llm.executor import LLMExecutor
 from src.woolf_agents.llm.factory import LLMFactory
@@ -26,7 +26,7 @@ from src.woolf_agents.runtime.trajectory_logger import TrajectoryLogger
 from src.woolf_agents.workflows.multiagent_planner_execute_graph import MultiAgentPlannerExecuteGraph
 from src.woolf_agents.workflows.plan_evaluator_worker import PlanEvaluatorWorker
 from src.woolf_agents.workflows.reasoning_worker import ReasoningWorker
-from src.woolf_agents.workflows.state import PlanExecuteState, ToolGraphState
+from src.woolf_agents.workflows.state import PlanExecuteState, PlanExecuteStatus, SourceInterrupt, ToolGraphState
 from langchain_core.messages import HumanMessage
 from langgraph.checkpoint.sqlite.aio import AsyncSqliteSaver
 
@@ -37,7 +37,7 @@ from src.woolf_agents.workflows.tool_calling_worker import ToolCallingWorker
 
 settings = LLMSettings(
     provider=LLMProvider.OPENROUTER,
-    model = LLMModel.GOOGLEGEMMA426BA4B,
+    model = LLMModel.GPTOMINI4O,
     base_url=url_modelrouter["openrouter_url"],
     api_key = ConfigModelAPI.OPENROUTERKEY
 )
@@ -131,7 +131,7 @@ spec = AgentSpec(
 
     response_language="Українська",
 )
-
+user_task = "Яке походження назви Хаджибей? Визнач представлені в доступних джерелах гіпотези та оціни, яка з них має найкращу доказову підтримку."
 initial_state: PlanExecuteState = {
     "messages": [
         HumanMessage(
@@ -159,12 +159,50 @@ initial_state: PlanExecuteState = {
     "results": [],
     "revised_plans":[],
     "structured_response": None,
-    "user_task": "Яке походження назви Хаджибей? Визнач представлені в доступних джерелах гіпотези та оціни, яка з них має найкращу доказову підтримку.",
+    "user_task": user_task,
     "execution_id":str(uuid4()),
     "step_messages_start_idx": 0,
+    "human_deсision": None,
+    "interrupt_reason": None,
+    "source_interrupt": SourceInterrupt.NO_SOURCE,
     
     
 }
+
+EVALUATION_SYSTEM_PROMPT = """
+ПРАВИЛА ПРИЙНЯТТЯ РІШЕННЯ
+
+Твоя задача — визначити, чи достатній результат поточного кроку
+для продовження виконання плану.
+
+CONTINUE є основним рішенням.
+
+Поверни CONTINUE, якщо:
+- основна мета поточного кроку досягнута;
+- отримано інформацію, достатню для виконання наступного кроку;
+- результат може бути неповним, але його неповнота не блокує подальше дослідження;
+- існує невизначеність або суперечності, але вони можуть бути збережені
+  як частина дослідницького результату;
+- додатковий пошук міг би покращити результат, але не є необхідним
+  для продовження плану.
+
+Не вимагай повної, вичерпної або беззаперечної відповіді.
+Історичне дослідження може містити неповні, суперечливі
+або неоднозначні свідчення.
+
+REPLAN дозволений ТІЛЬКИ якщо результат кроку показує,
+що поточний план більше не може привести до мети дослідження.
+
+INTERRUPT дозволений ТІЛЬКИ якщо для продовження необхідне рішення
+користувача, яке система принципово не може прийняти самостійно.
+
+Не використовуй INTERRUPT лише через недостатню кількість джерел,
+низьку впевненість, суперечливі джерела або можливість покращити результат.
+
+Якщо поточний результат дозволяє перейти до наступного кроку,
+ОБОВ'ЯЗКОВО поверни CONTINUE.
+"""
+
 
 def configure_langsmith(
     settings: LangSmithSettings,
@@ -200,13 +238,13 @@ async def main()->None:
     
     tool_settings = LLMSettings(
         provider=LLMProvider.OPENROUTER,
-        model = LLMModel.LAGUNAXS21FREE,
+        model = LLMModel.GPTOMINI4O,
         base_url=url_modelrouter["openrouter_url"],
         api_key = ConfigModelAPI.OPENROUTERKEY
         )
     eval_settings = LLMSettings(
             provider=LLMProvider.OPENROUTER,
-            model = LLMModel.GPTOSS20bFREE,
+            model = LLMModel.GPTOMINI4O,
             base_url=url_modelrouter["openrouter_url"],
             api_key = ConfigModelAPI.OPENROUTERKEY
             )
@@ -218,7 +256,8 @@ async def main()->None:
             system_prompt=spec.system_prompt,
             executor=executor,
             stop_controller=StopController(),
-            checkpointer=checkpointer
+            checkpointer=checkpointer,
+            tools=tools
         ),
         "reasoning_worker":ReasoningWorker(
             model=llm,
@@ -229,13 +268,13 @@ async def main()->None:
         "step_evaluating_worker": StepEvaluatorWorker(
             model=LLMFactory.create(settings=eval_settings),
             executor=executor,
-            system_message=spec.system_prompt,
+            system_message=EVALUATION_SYSTEM_PROMPT,
             output_schema=StepEvaluation
             ),
         "evaluating_worker": PlanEvaluatorWorker(
             model=LLMFactory.create(settings=eval_settings),
             executor=executor,
-            system_message=spec.system_prompt,
+            system_message=EVALUATION_SYSTEM_PROMPT,
             output_schema=PlanEvaluation
         ),
         "structured_output_worker": StructuredOutputResultWorker(
@@ -254,7 +293,8 @@ async def main()->None:
          stop_controller=StopController(),
          checkpointer=checkpointer,
          workers=workers,
-         plan_schema=HistoricalHypothesisEvaluationPlan   
+         plan_schema=HistoricalHypothesisEvaluationPlan,
+         tools=tools   
     )
     plan_executor_compiled = plan_executor.build()
     agent_settings = AgentRuntimeSettings(timeout_seconds=420)
@@ -272,12 +312,11 @@ async def main()->None:
             thread_id=thread_id
             )
         
-    interrupts = result.get("__interrupt__", [])
-    if interrupts:
-        interrupt_data = interrupts[0].value
+
+    if result.get("execution_status") == PlanExecuteStatus.WAITTING_FOR_HUMAN:
     
         print("\n=== HUMAN IN THE LOOP ===")
-        print(interrupt_data["reason"])
+        print(result.get("interrupt_reason"))
         print("1 - Продовжити")
         print("2 - Скасувати")
     
@@ -297,6 +336,15 @@ async def main()->None:
     structured_response = result.get(
             "structured_response"
             )
+    
+    
+    print("Завдання користувача")
+    print(user_task)
+    print(f"Статус: {structured_response["status"]}")
+    print(f"Загальний висновок: {structured_response["summary"]}")
+    print(f"Ключові знахідки: {structured_response["key_findings"]}")
+    print(f"Обмеження: {structured_response["uncertainties"]}")
+    
     
         
     

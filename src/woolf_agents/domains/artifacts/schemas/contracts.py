@@ -1,6 +1,7 @@
 from typing import Self, Literal
+from uuid import UUID
 
-from pydantic import Field, field_validator, model_validator, BaseModel
+from pydantic import ConfigDict, Field, field_validator, model_validator, BaseModel
 
 from src.woolf_agents.core.result import BaseExecutionResult
 from .base import SpecificInput, SpecificResult, BaseTaskPlan, BasePlanStep, BaseStepResult, StepEvaluation
@@ -361,8 +362,37 @@ class SuspiciousIndicatorsResult(SpecificResult):
 #!---------------------------------------Контракти для агента планувальника--------------------------------
 
 
+class HistoricalEvidence(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    content: str = Field(
+        description="Фактичний фрагмент або твердження, отримане з джерела"
+    )
+
+    source_id: str | None = Field(
+        default=None,
+        description="Ідентифікатор локального джерела"
+    )
+
+    chunk_index: int | None = Field(
+        default=None,
+        ge=0,
+        description="Індекс фрагмента локального джерела"
+    )
+
+    source_url: str | None = Field(
+        default=None,
+        description="URL зовнішнього джерела"
+    )
+
 class HistoricalResearchStepResult(BaseStepResult):
     """Конкретизуючий результат кроку виконання плану"""
+    evidence: list[HistoricalEvidence] = Field(
+            default_factory=list,
+            description="Фактичні дані, отримані під час виконання кроку"
+        )
+    
+    
     
 class HistoricalResearchExecutionResult(BaseExecutionResult):
     answer: str = Field(
@@ -389,9 +419,11 @@ class HistoricalResearchStepPlan(BasePlanStep):
     research_query: str| None = Field(
         default=None,
         description=(
-            "Пошуковий запит до векторної бази. "
-            "Заповнюй лише для operation='retrieve_sources'. "
-            "Для інших operations залишай null."
+            "Пошуковий запит для retrieval. "
+            "Заповнюй ТІЛЬКИ якщо operation='retrieve_sources'. "
+            "Для extract_claims, generate_hypotheses, "
+            "evaluate_hypotheses та synthesize_conclusion "
+            "значення ОБОВ'ЯЗКОВО повинно бути null."
         )
     )
     requires_evidence:bool = Field(
@@ -452,23 +484,28 @@ class HistoricalHypothesisEvaluationPlan(HistoricalResearchPlan):
 
 
 class EvaluationPlanContext(BaseModel):
-    execution_id: int
+    execution_id: UUID
     user_task: str
     evaluated_steps: list[StepEvaluation]
     resultsaechstep: list[HistoricalResearchStepResult]
     plan: HistoricalHypothesisEvaluationPlan
+    human_decision: str | None = None
+    interrupt_reason: str | None = None
 
 class StepEvaluationContext(BaseModel):
-    execution_id:int
+    execution_id:UUID
+    user_task: str
     current_step:HypothesisEvaluationStep
     current_step_result:HistoricalResearchStepResult
+    human_decision: str | None = None
+    interrupt_reason: str | None = None
 
 class StepExecutionContext(BaseModel):
     user_task: str
     current_step: HypothesisEvaluationStep
     previous_results: list[HistoricalResearchStepResult]
-    execution_id: int
-    step_id: int
+    execution_id: UUID
+    step_id: str
     step_status: PlanStepStatus
 
 class FinalResponseContext(BaseModel):
@@ -476,5 +513,5 @@ class FinalResponseContext(BaseModel):
     plan_evaluation: PlanEvaluation
     final_plan: HistoricalHypothesisEvaluationPlan
     step_results: list[HistoricalResearchStepResult]
-    execution_id: int
+    execution_id: UUID
     

@@ -1,0 +1,331 @@
+{
+  "run_id": "71715e97-41ae-42a7-be26-b210152a07d6",
+  "started_at": "2026-08-30T11:01:05.464152+00:00",
+  "finished_at": "2026-08-30T11:01:26.105308+00:00",
+  "initial_state": {
+    "messages": [
+      {
+        "content": "Виконай поточний крок плану {\n  \"id\": \"step1\",\n  \"step_status\": \"pending\",\n  \"objective\": \"Зібрати історичні джерела, що стосуються походження назви Хаджибей.\",\n  \"expected_result\": \"Отримані релевантні історичні джерела.\",\n  \"require_tools\": true,\n  \"require_reasoning\": false,\n  \"research_query\": \"походження назви Хаджибей.\",\n  \"requires_evidence\": true,\n  \"operation\": \"retrieve_sources\"\n}",
+        "additional_kwargs": {},
+        "response_metadata": {},
+        "type": "human",
+        "name": null,
+        "id": "04301d89-2f5c-41e0-a96d-8fd6071a68f1"
+      }
+    ],
+    "execution_id": "faeca8e3-11b3-4ec6-9166-541ea4ccd8f5",
+    "step_count": 0,
+    "used_tokens": 0,
+    "execution_status": "pending",
+    "structured_output": null
+  },
+  "trajectory": [
+    {
+      "timestamp": "2026-08-30T11:01:06.426489+00:00",
+      "update": {
+        "agent": {
+          "messages": [
+            {
+              "content": "",
+              "additional_kwargs": {
+                "refusal": null
+              },
+              "response_metadata": {
+                "token_usage": {
+                  "completion_tokens": 30,
+                  "prompt_tokens": 1429,
+                  "total_tokens": 1459,
+                  "completion_tokens_details": {
+                    "accepted_prediction_tokens": null,
+                    "audio_tokens": 0,
+                    "reasoning_tokens": 0,
+                    "rejected_prediction_tokens": null,
+                    "image_tokens": 0
+                  },
+                  "prompt_tokens_details": {
+                    "audio_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "cached_tokens": 0,
+                    "video_tokens": 0
+                  },
+                  "cost": 0.00023235,
+                  "is_byok": false,
+                  "cost_details": {
+                    "upstream_inference_cost": 0.00023235,
+                    "upstream_inference_prompt_cost": 0.00021435,
+                    "upstream_inference_completions_cost": 1.8e-05
+                  }
+                },
+                "model_provider": "openai",
+                "model_name": "openai/gpt-4o-mini",
+                "system_fingerprint": "fp_14f4ce979a",
+                "id": "gen-1788087665-ujn4pE189TsI3v1oGN7f",
+                "finish_reason": "tool_calls",
+                "logprobs": null
+              },
+              "type": "ai",
+              "name": null,
+              "id": "lc_run--01a05254-837c-7a21-9055-57413bc395ce-0",
+              "tool_calls": [
+                {
+                  "name": "retrieve_historical_sources",
+                  "args": {
+                    "query": "походження назви Хаджибей.",
+                    "top_k": 5
+                  },
+                  "id": "call_wDcwofskgO648rqTkxAk5oqC",
+                  "type": "tool_call"
+                }
+              ],
+              "invalid_tool_calls": [],
+              "usage_metadata": {
+                "input_tokens": 1429,
+                "output_tokens": 30,
+                "total_tokens": 1459,
+                "input_token_details": {
+                  "audio": 0,
+                  "cache_read": 0,
+                  "cache_creation": 0
+                },
+                "output_token_details": {
+                  "audio": 0,
+                  "reasoning": 0
+                }
+              }
+            }
+          ],
+          "step_count": 1,
+          "used_tokens": 1459
+        }
+      }
+    },
+    {
+      "timestamp": "2026-08-30T11:01:06.431487+00:00",
+      "update": {
+        "guard": {
+          "stop_decision": {
+            "should_stop": false,
+            "reason": null,
+            "message": null
+          }
+        }
+      }
+    },
+    {
+      "timestamp": "2026-08-30T11:01:14.615731+00:00",
+      "update": {
+        "tools": {
+          "messages": [
+            {
+              "content": "[Document(id='source_02_chunk_0011', metadata={'url': 'https://chm.onu.edu.ua/article/view/268837/266518', 'creator': 'PyPDF', 'total_pages': 3, 'author': ['Гончарук Тарас'], 'source': 'I:\\\\WoolfFrameworkAgent\\\\src\\\\woolf_agents\\\\data\\\\historical_sources\\\\source02.pdf', 'file_name': 'source02.pdf', 'producer': 'iLovePDF', 'chunk_index': 11, 'language': 'uk', 'page': 2, 'page_label': '3', 'title': 'Коцюбіїв.Качибей чи Кочубієв.Яку назву доцільніше вживати щодо Одеси у XV-XVI ст.', 'publication': 'Чорноморська минувшина', 'year': 2022, 'source_id': 'source_02', 'creationdate': '', 'moddate': '2022-12-30T15:14:33+00:00', 'source_type': 'academic_article'}, page_content='обґрунтованої назви, або назв, для Одеси XV – XVIІІ ст. потребує подальшого вивчення та \\nобговорення.  \\n \\nДжерела та література: \\n1. Болдирєв О.В. До питання про час заснування Одеси. Тезисы Второй областной \\nисторико-краеведческой научно-практической конференции, посвященной 200- летию \\nоснования Одессы и 25-летию создания Украинского общества охраны памятников истории и \\nкультуры.  Одесса, 1991. С. 20 - 22. \\n2. Болдирєв О. В. Одесі – 600. Одеса, 1994. 52 c. \\n3. Маркевич А.И. Город Качибей или Гаджибей – предшественник города Одессы. \\nЗаписки Одесского общества истории  та старожитностей (далі – ЗООИД). 1894. Т. 17. \\nОтд. ІІ.  С. 1-72. \\n4. Маркевич А.И. Город Качибей или Гаджибей – предшественник города Одессы. \\nДополнительные заметки к статье того же названия, напечатанной в записках Императорского \\nОдесского Общества Истории и Древностей. ЗООИД. 1895.  Т. 18. Отд. 2. С. 81 – 86. \\n5. Яковлев В.А. К истории заселения Хаджибея (1789–1795 гг.). Одесса, 1889. 56 с. \\n \\nReferences:'), Document(id='source_02_chunk_0003', metadata={'title': 'Коцюбіїв.Качибей чи Кочубієв.Яку назву доцільніше вживати щодо Одеси у XV-XVI ст.', 'file_name': 'source02.pdf', 'source': 'I:\\\\WoolfFrameworkAgent\\\\src\\\\woolf_agents\\\\data\\\\historical_sources\\\\source02.pdf', 'producer': 'iLovePDF', 'source_id': 'source_02', 'url': 'https://chm.onu.edu.ua/article/view/268837/266518', 'author': ['Гончарук Тарас'], 'creator': 'PyPDF', 'page_label': '1', 'publication': 'Чорноморська минувшина', 'language': 'uk', 'year': 2022, 'chunk_index': 3, 'source_type': 'academic_article', 'page': 0, 'total_pages': 3, 'moddate': '2022-12-30T15:14:33+00:00', 'creationdate': ''}, page_content='про ймовірну хибність вказаної версії \\nпоходження\\n міста та недоречність \\nвживання назви «Коцюбіїв».   \\nКлючові слова: історія Одеси, \\nісторіографія історії Одеси, Коцюбієв, \\nКачибей, Кочубієв, Хаджибей.'), Document(id='source_02_chunk_0002', metadata={'source': 'I:\\\\WoolfFrameworkAgent\\\\src\\\\woolf_agents\\\\data\\\\historical_sources\\\\source02.pdf', 'publication': 'Чорноморська минувшина', 'producer': 'iLovePDF', 'page': 0, 'language': 'uk', 'source_type': 'academic_article', 'creator': 'PyPDF', 'moddate': '2022-12-30T15:14:33+00:00', 'source_id': 'source_02', 'url': 'https://chm.onu.edu.ua/article/view/268837/266518', 'author': ['Гончарук Тарас'], 'year': 2022, 'title': 'Коцюбіїв.Качибей чи Кочубієв.Яку назву доцільніше вживати щодо Одеси у XV-XVI ст.', 'chunk_index': 2, 'creationdate': '', 'total_pages': 3, 'file_name': 'source02.pdf', 'page_label': '1'}, page_content='founding of the city of Kochubiiv (Odesa) by the \\nnobleman Bohdan Kotsiuba-Yakushynskyi and \\nthe origin of the name «Kotsiubiiv», which is \\nsometimes used about Odesa of the XVth-XVIth \\ncenturies in the literature and on the Internet. \\nThe researcher makes a conclusion about the \\nprobable mistake of mentioned version of the \\norigin of the city and about the\\n \\ninappropriateness of the use of the name \\n«Kotsiubiiv».  \\nKey words: history of Odesa, \\nhistoriography of history of Odesa, Kotsiubiiv, \\nKachibei, Kochubitv, Khadzhybey.\\t\\n  \\nАнотація \\nВ повідомленні розглянуто історію \\nпоширення в історичній літературі ХІХ – \\nХХ ст. версії про заснування міста \\nКочубіїва (Одеси) шляхтичом Б.Коцюбою-\\nЯкушинським й походження назви \\n«Коцюбіїв», яку подекуди вживають \\nстосовно Одеси XV – XVI ст. в літературі \\nй в мережі інтернет. Робиться висновок \\nпро ймовірну хибність вказаної версії \\nпоходження\\n міста та недоречність \\nвживання назви «Коцюбіїв».   \\nКлючові слова: історія Одеси,'), Document(id='source_04_chunk_0090', metadata={'keywords': '', 'url': 'https://www.academia.edu/40442103/%D0%97%D0%B0%D0%BC%D0%BE%D0%BA_%D0%A5%D0%B0%D0%B4%D0%B6%D0%B8%D0%B1%D0%B5%D0%B9_%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F_%D0%B8%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B9_%D0%B4%D0%B0%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B8_%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F', 'year': 2019, 'title': 'Замок Хаджибей:история исследований, датировки, локализация', 'language': 'ru', 'file_name': 'source04.pdf', 'subject': '', 'publication': 'В поисках сущности.Сборник статей в честь 60-летия Н.Д.Русеева', 'source_type': 'academic_article', 'page_label': '417', 'total_pages': 29, 'moddate': '2019-09-25T11:20:27-07:00', 'creator': '', 'chunk_index': 90, 'producer': 'GPL Ghostscript 9.26', 'creationdate': '2019-09-25T11:20:27-07:00', 'source_id': 'source_04', 'source': 'I:\\\\WoolfFrameworkAgent\\\\src\\\\woolf_agents\\\\data\\\\historical_sources\\\\source04.pdf', 'author': ['А.В.Красножон'], 'page': 22}, page_content='(ред.). Кочубіїв-Хаджибей-Одеса. Матеріали \\nI всеукраїнської наукової конференції, присвя-\\nченої 600-рiччю мiста. Одеса: Політехперіодика, \\n73—76.\\nКрасножон А. В. 2016. К проблеме локализации Хаджи-\\nбейского замка. Вісник ОІКМ 15, 132—141.\\nКрасножон А. В. 2018 а. Два документа 1593 г. о ре-\\nмонтных работах в Хаджибее. Стародавнє \\nПричорномор’я (XII), 298—303.\\nКрасножон А. В. 2018b. Фортеці та міста Північно-\\nЗахідного Причорномор’я (XV—XVIII ст.). Оде-\\nса: Чорномор’я.\\nКрасножон А. В., Федорук А. В. 2012. Огнестрельная \\nартиллерия как датирующий признак цитадели \\nкрепости Белгород. Stratum plus (6), 239—259.\\nЛеп’явко С. А. 1996. Козацькі війни кінця XVI ст. в Укра-\\nїні. Чернігів: Сiверянська думка.\\nМаркевич А. И. 1894. Город Качибей или Гаджибей — \\nпредшественник города Одессы. ЗООИД 17, \\n1—72.\\nМорозов П. 1831. Исторический взгляд на Одессу. Одес-\\nский альманах на 1831-й год. Одесса, 1—43.'), Document(id='source_02_chunk_0001', metadata={'page': 0, 'language': 'uk', 'chunk_index': 1, 'author': ['Гончарук Тарас'], 'page_label': '1', 'year': 2022, 'publication': 'Чорноморська минувшина', 'source_type': 'academic_article', 'file_name': 'source02.pdf', 'source_id': 'source_02', 'creator': 'PyPDF', 'source': 'I:\\\\WoolfFrameworkAgent\\\\src\\\\woolf_agents\\\\data\\\\historical_sources\\\\source02.pdf', 'creationdate': '', 'moddate': '2022-12-30T15:14:33+00:00', 'total_pages': 3, 'producer': 'iLovePDF', 'title': 'Коцюбіїв.Качибей чи Кочубієв.Яку назву доцільніше вживати щодо Одеси у XV-XVI ст.', 'url': 'https://chm.onu.edu.ua/article/view/268837/266518'}, page_content='154-156.  \\n \\nSubmitted: 22.11. 2022  \\n КОЦЮБІЄВ, КАЧИБЕЙ ЧИ КОЧУБІЄВ?  \\nЯКУ НАЗВУ ДОЦІЛЬНІШЕ ВЖИВАТИ ЩОДО ОДЕСИ У XV – XVI СТ. \\n \\nТарас Гончарук \\n \\nДоктор історичних наук, професор  \\nОдеський національний університет  \\nімені І. І. Мечникова \\nВул. Дворянська, 2, м. Одеса,  \\n65082, Україна \\nORCID: https://orcid.org/0000- 0002-0119-\\n0227  \\nE-mail: tarasiy2004@ukr.net  \\n \\nЦитування: Гончарук Т. Хаджибей (Одеса) у \\nподіях військово-морської історії за часів \\nросійсько-турецької війни 1787 – 1792 рр. \\nЧорноморська минувшина: записки Відділу \\nісторії козацтва на півдні України: зб. наук. \\nпраць/ за ред. В. А. Смолія. Одеса: ФОП \\nБондаренко М., 2022. Вип. 17. С. 154-156.  \\nОтримано: 22.11.2022 \\nAnnotation \\nIn the note the author examines the history \\nof the spread in the historical literature of the \\nXIXth-XXth centuries of the version about the \\nfounding of the city of Kochubiiv (Odesa) by the \\nnobleman Bohdan Kotsiuba-Yakushynskyi and \\nthe origin of the name «Kotsiubiiv», which is')]",
+              "additional_kwargs": {},
+              "response_metadata": {},
+              "type": "tool",
+              "name": "retrieve_historical_sources",
+              "id": "53044a95-6323-4269-82cb-c0be6eb7c3ec",
+              "tool_call_id": "call_wDcwofskgO648rqTkxAk5oqC",
+              "artifact": null,
+              "status": "success"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "timestamp": "2026-08-30T11:01:20.370317+00:00",
+      "update": {
+        "agent": {
+          "messages": [
+            {
+              "content": "Ось кілька релевантних історичних джерел, що стосуються походження назви Хаджибей:\n\n1. **Гончарук Тарас. \"Коцюбіїв. Качибей чи Кочубієв. Яку назву доцільніше вживати щодо Одеси у XV-XVI ст.\"** (2022)\n   - У статті розглядається історія назви Хаджибей та її зв'язок з іншими назвами, такими як Коцюбіїв і Качибей. Автор робить висновок про ймовірну хибність версії про заснування міста Коцюбіїв шляхтичем Б. Коцюбою-Якушинським.\n   - [Читати статтю](https://chm.onu.edu.ua/article/view/268837/266518)\n\n2. **Красножон А.В. \"Замок Хаджибей: історія досліджень, датування, локалізація.\"** (2019)\n   - У цій статті обговорюється історія замку Хаджибей, його дослідження та локалізація, що може дати додаткові відомості про походження назви.\n   - [Читати статтю](https://www.academia.edu/40442103/%D0%97%D0%B0%D0%BC%D0%BE%D0%BA_%D0%A5%D0%B0%D0%B4%D0%B6%D0%B8%D0%B1%D0%B5%D0%B9_%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F_%D0%B8%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B9_%D0%B4%D0%B0%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B8_%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F)\n\nЦі джерела можуть слугувати основою для подальшого дослідження походження назви Хаджибей, а також для аналізу різних версій та інтерпретацій, пов'язаних з цим питанням.",
+              "additional_kwargs": {
+                "refusal": null
+              },
+              "response_metadata": {
+                "token_usage": {
+                  "completion_tokens": 579,
+                  "prompt_tokens": 4627,
+                  "total_tokens": 5206,
+                  "completion_tokens_details": {
+                    "accepted_prediction_tokens": null,
+                    "audio_tokens": 0,
+                    "reasoning_tokens": 0,
+                    "rejected_prediction_tokens": null,
+                    "image_tokens": 0
+                  },
+                  "prompt_tokens_details": {
+                    "audio_tokens": 0,
+                    "cache_write_tokens": 0,
+                    "cached_tokens": 1408,
+                    "video_tokens": 0
+                  },
+                  "cost": 0.00093585,
+                  "is_byok": false,
+                  "cost_details": {
+                    "upstream_inference_cost": 0.00093585,
+                    "upstream_inference_prompt_cost": 0.00058845,
+                    "upstream_inference_completions_cost": 0.0003474
+                  }
+                },
+                "model_provider": "openai",
+                "model_name": "openai/gpt-4o-mini",
+                "system_fingerprint": "fp_14f4ce979a",
+                "id": "gen-1788087674-sfHVIew0jsy2FgV4naSg",
+                "finish_reason": "stop",
+                "logprobs": null
+              },
+              "type": "ai",
+              "name": null,
+              "id": "lc_run--01a05254-a6f9-70c1-b1c9-8327496ebcf4-0",
+              "tool_calls": [],
+              "invalid_tool_calls": [],
+              "usage_metadata": {
+                "input_tokens": 4627,
+                "output_tokens": 579,
+                "total_tokens": 5206,
+                "input_token_details": {
+                  "audio": 0,
+                  "cache_read": 1408,
+                  "cache_creation": 0
+                },
+                "output_token_details": {
+                  "audio": 0,
+                  "reasoning": 0
+                }
+              }
+            }
+          ],
+          "step_count": 1,
+          "used_tokens": 5206
+        }
+      }
+    },
+    {
+      "timestamp": "2026-08-30T11:01:20.373875+00:00",
+      "update": {
+        "guard": {
+          "stop_decision": {
+            "should_stop": false,
+            "reason": null,
+            "message": null
+          }
+        }
+      }
+    },
+    {
+      "timestamp": "2026-08-30T11:01:26.104307+00:00",
+      "update": {
+        "structured_output": {
+          "structured_output": {
+            "step_id": "step1",
+            "summary": "Зібрані релевантні історичні джерела, що стосуються походження назви Хаджибей.",
+            "evidence": [
+              {
+                "content": "У статті розглядається історія назви Хаджибей та її зв'язок з іншими назвами, такими як Коцюбіїв і Качибей. Автор робить висновок про ймовірну хибність версії про заснування міста Коцюбіїв шляхтичем Б. Коцюбою-Якушинським.",
+                "source_id": "source_02",
+                "chunk_index": 1,
+                "source_url": "https://chm.onu.edu.ua/article/view/268837/266518"
+              },
+              {
+                "content": "У цій статті обговорюється історія замку Хаджибей, його дослідження та локалізація, що може дати додаткові відомості про походження назви.",
+                "source_id": "source_04",
+                "chunk_index": 90,
+                "source_url": "https://www.academia.edu/40442103/%D0%97%D0%B0%D0%BC%D0%BE%D0%BA_%D0%A5%D0%B0%D0%B4%D0%B6%D0%B8%D0%B1%D0%B5%D0%B9_%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F_%D0%B8%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B9_%D0%B4%D0%B0%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B8_%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F"
+              }
+            ]
+          },
+          "execution_status": "completed"
+        }
+      }
+    }
+  ],
+  "final_state": {
+    "messages": [
+      {
+        "content": "Ось кілька релевантних історичних джерел, що стосуються походження назви Хаджибей:\n\n1. **Гончарук Тарас. \"Коцюбіїв. Качибей чи Кочубієв. Яку назву доцільніше вживати щодо Одеси у XV-XVI ст.\"** (2022)\n   - У статті розглядається історія назви Хаджибей та її зв'язок з іншими назвами, такими як Коцюбіїв і Качибей. Автор робить висновок про ймовірну хибність версії про заснування міста Коцюбіїв шляхтичем Б. Коцюбою-Якушинським.\n   - [Читати статтю](https://chm.onu.edu.ua/article/view/268837/266518)\n\n2. **Красножон А.В. \"Замок Хаджибей: історія досліджень, датування, локалізація.\"** (2019)\n   - У цій статті обговорюється історія замку Хаджибей, його дослідження та локалізація, що може дати додаткові відомості про походження назви.\n   - [Читати статтю](https://www.academia.edu/40442103/%D0%97%D0%B0%D0%BC%D0%BE%D0%BA_%D0%A5%D0%B0%D0%B4%D0%B6%D0%B8%D0%B1%D0%B5%D0%B9_%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F_%D0%B8%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B9_%D0%B4%D0%B0%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B8_%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F)\n\nЦі джерела можуть слугувати основою для подальшого дослідження походження назви Хаджибей, а також для аналізу різних версій та інтерпретацій, пов'язаних з цим питанням.",
+        "additional_kwargs": {
+          "refusal": null
+        },
+        "response_metadata": {
+          "token_usage": {
+            "completion_tokens": 579,
+            "prompt_tokens": 4627,
+            "total_tokens": 5206,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cache_write_tokens": 0,
+              "cached_tokens": 1408,
+              "video_tokens": 0
+            },
+            "cost": 0.00093585,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0.00093585,
+              "upstream_inference_prompt_cost": 0.00058845,
+              "upstream_inference_completions_cost": 0.0003474
+            }
+          },
+          "model_provider": "openai",
+          "model_name": "openai/gpt-4o-mini",
+          "system_fingerprint": "fp_14f4ce979a",
+          "id": "gen-1788087674-sfHVIew0jsy2FgV4naSg",
+          "finish_reason": "stop",
+          "logprobs": null
+        },
+        "type": "ai",
+        "name": null,
+        "id": "lc_run--01a05254-a6f9-70c1-b1c9-8327496ebcf4-0",
+        "tool_calls": [],
+        "invalid_tool_calls": [],
+        "usage_metadata": {
+          "input_tokens": 4627,
+          "output_tokens": 579,
+          "total_tokens": 5206,
+          "input_token_details": {
+            "audio": 0,
+            "cache_read": 1408,
+            "cache_creation": 0
+          },
+          "output_token_details": {
+            "audio": 0,
+            "reasoning": 0
+          }
+        }
+      }
+    ],
+    "step_count": 1,
+    "used_tokens": 5206,
+    "stop_decision": {
+      "should_stop": false,
+      "reason": null,
+      "message": null
+    },
+    "structured_output": {
+      "step_id": "step1",
+      "summary": "Зібрані релевантні історичні джерела, що стосуються походження назви Хаджибей.",
+      "evidence": [
+        {
+          "content": "У статті розглядається історія назви Хаджибей та її зв'язок з іншими назвами, такими як Коцюбіїв і Качибей. Автор робить висновок про ймовірну хибність версії про заснування міста Коцюбіїв шляхтичем Б. Коцюбою-Якушинським.",
+          "source_id": "source_02",
+          "chunk_index": 1,
+          "source_url": "https://chm.onu.edu.ua/article/view/268837/266518"
+        },
+        {
+          "content": "У цій статті обговорюється історія замку Хаджибей, його дослідження та локалізація, що може дати додаткові відомості про походження назви.",
+          "source_id": "source_04",
+          "chunk_index": 90,
+          "source_url": "https://www.academia.edu/40442103/%D0%97%D0%B0%D0%BC%D0%BE%D0%BA_%D0%A5%D0%B0%D0%B4%D0%B6%D0%B8%D0%B1%D0%B5%D0%B9_%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F_%D0%B8%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B9_%D0%B4%D0%B0%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B8_%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F"
+        }
+      ]
+    },
+    "execution_status": "completed"
+  },
+  "error": null
+}

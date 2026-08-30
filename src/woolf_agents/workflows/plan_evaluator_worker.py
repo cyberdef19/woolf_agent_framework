@@ -26,11 +26,11 @@ class PlanEvaluatorWorker(
           )
       
     def _get_message(self, context: EvaluationPlanContext)->str:
-        execution_id = EvaluationPlanContext(context).execution_id
-        user_task = EvaluationPlanContext(context).user_task
-        evaluated_steps = EvaluationPlanContext(context).evaluated_steps
-        results_steps = EvaluationPlanContext(context).resultsaechstep
-        plan = EvaluationPlanContext(context).plan
+        execution_id = context.execution_id
+        user_task = context.user_task
+        evaluated_steps = context.evaluated_steps
+        results_steps = context.resultsaechstep
+        plan = context.plan
         
         evaluated_steps_json = [
             evaluated_step.model_dump_json()
@@ -42,11 +42,31 @@ class PlanEvaluatorWorker(
         ]
         
         return f"""
+                
                 Виконання завдання {execution_id}. Оціни завершений план та надай оцінку його виконання.
                 Ось оцінюваний план: {plan.model_dump_json()}. Чи він повністю відповідає поставленій цілі завдання.
                 Завдання користувача, для якого розроблений був даний план: {user_task}.
                 Виконання плану відбувалося покроково. На кожному кроці отримувався результат.
-                Результати виконання по крокам: {json.dump(results_steps_json)}.
-                Кожен результат кроку оцінювався. Оцінки кожного кроку плану: {json.dump(evaluated_steps_json)}.
+                Результати виконання по крокам: {json.dumps(results_steps_json)}.
+                Кожен результат кроку оцінювався. Оцінки кожного кроку плану: {json.dumps(evaluated_steps_json)}.
+                
+                Сформуй коректний структурований результат відповідно до заданої схеми.
+                Якщо відповідь містить суттєві недоліки або суттєві суперечності, тоді в тебе
+                є можливість переробити план для отримання кращого результату.  
+                Якщо у відповідь не може бути отримана шляхом перепланування плану, то можеш заповнити
+                поле для переривання для підключення користувача.
+                
+                Не повертай REPLAN лише тому, що:
+                - доступно мало джерел;
+                - джерела неповні;
+                - можна потенційно знайти додаткові джерела;
+                - confidence не є високим.
+
+                Якщо отриманих даних достатньо для формування обережного висновку
+                з позначенням невизначеності, план вважається придатним до завершення.
+
+                REPLAN дозволений лише якщо поточна структура плану принципово
+                не дозволяє відповісти на дослідницьке питання.
+               
                 """
     

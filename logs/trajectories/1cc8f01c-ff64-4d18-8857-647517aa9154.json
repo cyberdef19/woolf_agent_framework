@@ -1,0 +1,328 @@
+{
+  "run_id": "1cc8f01c-ff64-4d18-8857-647517aa9154",
+  "started_at": "2026-08-29T22:39:46.753790+00:00",
+  "finished_at": "2026-08-29T22:40:48.217725+00:00",
+  "initial_state": {
+    "messages": [
+      {
+        "content": "Яке походження назви Хаджибей? Визнач представлені в доступних джерелах гіпотези та оціни, яка з них має найкращу доказову підтримку.",
+        "additional_kwargs": {},
+        "response_metadata": {},
+        "type": "human",
+        "name": null,
+        "id": "0f0641e8-10a8-43c8-ba85-c49f143d6019"
+      }
+    ],
+    "step_count": 0,
+    "used_tokens": 0,
+    "execution_status": "pending",
+    "current_step_idx": 0,
+    "current_step_result": null,
+    "errors": [],
+    "evaluated_current_step": null,
+    "evaluated_steps": [],
+    "executor_response": null,
+    "len_steps": 0,
+    "metadata": {},
+    "plan": null,
+    "plan_execution_evaluated": null,
+    "results": [],
+    "revised_plans": [],
+    "structured_response": null,
+    "user_task": "Яке походження назви Хаджибей? Визнач представлені в доступних джерелах гіпотези та оціни, яка з них має найкращу доказову підтримку.",
+    "execution_id": "d053a8d7-d7d6-4b7f-b35c-1b92213b0c61",
+    "step_messages_start_idx": 0
+  },
+  "trajectory": [
+    {
+      "timestamp": "2026-08-29T22:40:09.494627+00:00",
+      "update": {
+        "plan_node": {
+          "plan": {
+            "goal": "Визначити походження назви Хаджибей та оцінити представлені гіпотези.",
+            "steps": [
+              {
+                "id": "step1",
+                "step_status": "pending",
+                "objective": "Зібрати історичні джерела про походження назви Хаджибей.",
+                "expected_result": "Отримати релевантні історичні джерела.",
+                "require_tools": true,
+                "require_reasoning": false,
+                "require_evaluation": false,
+                "research_query": "походження назви Хаджибей",
+                "requires_evidence": true,
+                "operation": "retrieve_sources"
+              },
+              {
+                "id": "step2",
+                "step_status": "pending",
+                "objective": "Виділити твердження з отриманих джерел про походження назви Хаджибей.",
+                "expected_result": "Отримати список тверджень про походження назви.",
+                "require_tools": false,
+                "require_reasoning": false,
+                "require_evaluation": false,
+                "research_query": null,
+                "requires_evidence": true,
+                "operation": "extract_claims"
+              },
+              {
+                "id": "step3",
+                "step_status": "pending",
+                "objective": "Сформувати альтернативні гіпотези на основі виділених тверджень.",
+                "expected_result": "Отримати список альтернативних гіпотез про походження назви.",
+                "require_tools": false,
+                "require_reasoning": true,
+                "require_evaluation": false,
+                "research_query": null,
+                "requires_evidence": false,
+                "operation": "generate_hypotheses"
+              },
+              {
+                "id": "step4",
+                "step_status": "pending",
+                "objective": "Оцінити альтернативні гіпотези за наявними підтверджуючими та суперечливими свідченнями.",
+                "expected_result": "Визначити, яка з гіпотез має найкращу доказову підтримку.",
+                "require_tools": false,
+                "require_reasoning": true,
+                "require_evaluation": true,
+                "research_query": null,
+                "requires_evidence": false,
+                "operation": "evaluate_hypotheses"
+              },
+              {
+                "id": "step5",
+                "step_status": "pending",
+                "objective": "Сформувати висновок про походження назви Хаджибей на основі оцінки гіпотез.",
+                "expected_result": "Отримати обґрунтований висновок про походження назви.",
+                "require_tools": false,
+                "require_reasoning": true,
+                "require_evaluation": false,
+                "research_query": null,
+                "requires_evidence": false,
+                "operation": "synthesize_conclusion"
+              }
+            ],
+            "research_question": "Походження назви Хаджибей"
+          },
+          "step_count": 1,
+          "len_steps": 5,
+          "execution_status": "running",
+          "step_status": "pending"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-08-29T22:40:44.487503+00:00",
+      "update": {
+        "executer_node": {
+          "current_step_result": {
+            "step_id": "step1",
+            "summary": "Зібрані історичні джерела про походження назви Хаджибей.",
+            "evidence": [
+              {
+                "content": "У статті обговорюється, що в багатьох джерелах XV – XVIII ст. не згадується назва Хаджибей. Вказується, що варіант назви Коцюбіїв пов'язують з шляхтичем Борисом Коцюби-Якушинським. Першим про зв'язок цього шляхтича з історією Одеси висловив думку польський історик Мар’ян Дубецький. Також зазначається, що назва Хаджибей могла виникнути внаслідок отуречування первісної назви Коцюбіїв.",
+                "source_id": "source_02",
+                "chunk_index": 5,
+                "source_url": "https://chm.onu.edu.ua/article/view/268837/266518"
+              },
+              {
+                "content": "У статті зазначається, що Качибеєвський лиман був названий на честь татарського воєначальника, і припускається, що наприкінці XIV ст. на березі Одеської затоки існувало поселення з назвою Качибей або Хаджибей.",
+                "source_id": "source_03",
+                "chunk_index": 5,
+                "source_url": "https://uk.wikisource.org/wiki/%D0%9A%D1%80%D0%B0%D1%94%D0%B7%D0%BD%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D0%BE/2015/1-2/%D0%9F%D0%B5%D1%80%D1%88%D0%B0_%D0%BB%D1%96%D1%82%D0%BE%D0%BF%D0%B8%D1%81%D0%BD%D0%B0_%D0%B7%D0%B3%D0%B0%D0%B4%D0%BA%D0%B0_%D0%BF%D1%80%D0%BE_%D0%9E%D0%B4%D0%B5%D1%81%D1%83_%28%D0%9A%D0%B0%D1%87%D1%96%D0%B1%D0%B5%D0%B9%29_%D1%82%D0%B0_%D1%86%D0%B5%D1%80%D0%BA%D0%BE%D0%B2%D0%BD%D0%B0_%D1%83%D0%BD%D1%96%D1%8F_XV_%D1%81%D1%82."
+              },
+              {
+                "content": "Автор зазначає, що перша звістка про Качибей належить до 1415 р., коли він вже був значним торговим портом. Виникає питання про те, коли саме було засновано це поселення.",
+                "source_id": "source_06",
+                "chunk_index": 8,
+                "source_url": "https://uk.wikisource.org/wiki/%D0%97%D0%B0%D0%BF%D0%B8%D1%81%D0%BA%D0%B8_%D0%9D%D0%A2%D0%A8/4/%D0%AE%D0%B2%D1%96%D0%BB%D0%B5%D0%B9%D0%BD%D1%96_%D0%B2%D0%B8%D0%B4%D0%B0%D0%BD%D1%8F_%D0%B4%D0%BE_%D1%96%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%97_%D0%BC._%D0%9E%D0%B4%D0%B5%D1%81%D0%B8"
+              }
+            ]
+          },
+          "results": [
+            {
+              "step_id": "step1",
+              "summary": "Зібрані історичні джерела про походження назви Хаджибей.",
+              "evidence": [
+                {
+                  "content": "У статті обговорюється, що в багатьох джерелах XV – XVIII ст. не згадується назва Хаджибей. Вказується, що варіант назви Коцюбіїв пов'язують з шляхтичем Борисом Коцюби-Якушинським. Першим про зв'язок цього шляхтича з історією Одеси висловив думку польський історик Мар’ян Дубецький. Також зазначається, що назва Хаджибей могла виникнути внаслідок отуречування первісної назви Коцюбіїв.",
+                  "source_id": "source_02",
+                  "chunk_index": 5,
+                  "source_url": "https://chm.onu.edu.ua/article/view/268837/266518"
+                },
+                {
+                  "content": "У статті зазначається, що Качибеєвський лиман був названий на честь татарського воєначальника, і припускається, що наприкінці XIV ст. на березі Одеської затоки існувало поселення з назвою Качибей або Хаджибей.",
+                  "source_id": "source_03",
+                  "chunk_index": 5,
+                  "source_url": "https://uk.wikisource.org/wiki/%D0%9A%D1%80%D0%B0%D1%94%D0%B7%D0%BD%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D0%BE/2015/1-2/%D0%9F%D0%B5%D1%80%D1%88%D0%B0_%D0%BB%D1%96%D1%82%D0%BE%D0%BF%D0%B8%D1%81%D0%BD%D0%B0_%D0%B7%D0%B3%D0%B0%D0%B4%D0%BA%D0%B0_%D0%BF%D1%80%D0%BE_%D0%9E%D0%B4%D0%B5%D1%81%D1%83_%28%D0%9A%D0%B0%D1%87%D1%96%D0%B1%D0%B5%D0%B9%29_%D1%82%D0%B0_%D1%86%D0%B5%D1%80%D0%BA%D0%BE%D0%B2%D0%BD%D0%B0_%D1%83%D0%BD%D1%96%D1%8F_XV_%D1%81%D1%82."
+                },
+                {
+                  "content": "Автор зазначає, що перша звістка про Качибей належить до 1415 р., коли він вже був значним торговим портом. Виникає питання про те, коли саме було засновано це поселення.",
+                  "source_id": "source_06",
+                  "chunk_index": 8,
+                  "source_url": "https://uk.wikisource.org/wiki/%D0%97%D0%B0%D0%BF%D0%B8%D1%81%D0%BA%D0%B8_%D0%9D%D0%A2%D0%A8/4/%D0%AE%D0%B2%D1%96%D0%BB%D0%B5%D0%B9%D0%BD%D1%96_%D0%B2%D0%B8%D0%B4%D0%B0%D0%BD%D1%8F_%D0%B4%D0%BE_%D1%96%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%97_%D0%BC._%D0%9E%D0%B4%D0%B5%D1%81%D0%B8"
+                }
+              ]
+            }
+          ],
+          "step_count": 1,
+          "evaluated_current_step": {
+            "step_id": "d053a8d7-d7d6-4b7f-b35c-1b92213b0c61",
+            "objective_satisfied": true,
+            "sufficient_for_next_step": true,
+            "contradictions_detected": false,
+            "new_information_changes_plan": false,
+            "confidence": 0.8,
+            "decision": "continue",
+            "reason": "Зібрані історичні джерела про походження назви Хаджибей підтверджують наявність релевантної інформації, що дозволяє продовжити дослідження. Однак, для більш детального аналізу необхідно перевірити якість та походження зібраних джерел."
+          },
+          "execution_status": "running"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-08-29T22:40:44.494710+00:00",
+      "update": {
+        "counter_node": {
+          "execution_status": "running",
+          "step_count": 1,
+          "current_step_idx": 1
+        }
+      }
+    }
+  ],
+  "final_state": {
+    "plan": {
+      "goal": "Визначити походження назви Хаджибей та оцінити представлені гіпотези.",
+      "steps": [
+        {
+          "id": "step1",
+          "step_status": "pending",
+          "objective": "Зібрати історичні джерела про походження назви Хаджибей.",
+          "expected_result": "Отримати релевантні історичні джерела.",
+          "require_tools": true,
+          "require_reasoning": false,
+          "require_evaluation": false,
+          "research_query": "походження назви Хаджибей",
+          "requires_evidence": true,
+          "operation": "retrieve_sources"
+        },
+        {
+          "id": "step2",
+          "step_status": "pending",
+          "objective": "Виділити твердження з отриманих джерел про походження назви Хаджибей.",
+          "expected_result": "Отримати список тверджень про походження назви.",
+          "require_tools": false,
+          "require_reasoning": false,
+          "require_evaluation": false,
+          "research_query": null,
+          "requires_evidence": true,
+          "operation": "extract_claims"
+        },
+        {
+          "id": "step3",
+          "step_status": "pending",
+          "objective": "Сформувати альтернативні гіпотези на основі виділених тверджень.",
+          "expected_result": "Отримати список альтернативних гіпотез про походження назви.",
+          "require_tools": false,
+          "require_reasoning": true,
+          "require_evaluation": false,
+          "research_query": null,
+          "requires_evidence": false,
+          "operation": "generate_hypotheses"
+        },
+        {
+          "id": "step4",
+          "step_status": "pending",
+          "objective": "Оцінити альтернативні гіпотези за наявними підтверджуючими та суперечливими свідченнями.",
+          "expected_result": "Визначити, яка з гіпотез має найкращу доказову підтримку.",
+          "require_tools": false,
+          "require_reasoning": true,
+          "require_evaluation": true,
+          "research_query": null,
+          "requires_evidence": false,
+          "operation": "evaluate_hypotheses"
+        },
+        {
+          "id": "step5",
+          "step_status": "pending",
+          "objective": "Сформувати висновок про походження назви Хаджибей на основі оцінки гіпотез.",
+          "expected_result": "Отримати обґрунтований висновок про походження назви.",
+          "require_tools": false,
+          "require_reasoning": true,
+          "require_evaluation": false,
+          "research_query": null,
+          "requires_evidence": false,
+          "operation": "synthesize_conclusion"
+        }
+      ],
+      "research_question": "Походження назви Хаджибей"
+    },
+    "step_count": 1,
+    "len_steps": 5,
+    "execution_status": "running",
+    "step_status": "pending",
+    "current_step_result": {
+      "step_id": "step1",
+      "summary": "Зібрані історичні джерела про походження назви Хаджибей.",
+      "evidence": [
+        {
+          "content": "У статті обговорюється, що в багатьох джерелах XV – XVIII ст. не згадується назва Хаджибей. Вказується, що варіант назви Коцюбіїв пов'язують з шляхтичем Борисом Коцюби-Якушинським. Першим про зв'язок цього шляхтича з історією Одеси висловив думку польський історик Мар’ян Дубецький. Також зазначається, що назва Хаджибей могла виникнути внаслідок отуречування первісної назви Коцюбіїв.",
+          "source_id": "source_02",
+          "chunk_index": 5,
+          "source_url": "https://chm.onu.edu.ua/article/view/268837/266518"
+        },
+        {
+          "content": "У статті зазначається, що Качибеєвський лиман був названий на честь татарського воєначальника, і припускається, що наприкінці XIV ст. на березі Одеської затоки існувало поселення з назвою Качибей або Хаджибей.",
+          "source_id": "source_03",
+          "chunk_index": 5,
+          "source_url": "https://uk.wikisource.org/wiki/%D0%9A%D1%80%D0%B0%D1%94%D0%B7%D0%BD%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D0%BE/2015/1-2/%D0%9F%D0%B5%D1%80%D1%88%D0%B0_%D0%BB%D1%96%D1%82%D0%BE%D0%BF%D0%B8%D1%81%D0%BD%D0%B0_%D0%B7%D0%B3%D0%B0%D0%B4%D0%BA%D0%B0_%D0%BF%D1%80%D0%BE_%D0%9E%D0%B4%D0%B5%D1%81%D1%83_%28%D0%9A%D0%B0%D1%87%D1%96%D0%B1%D0%B5%D0%B9%29_%D1%82%D0%B0_%D1%86%D0%B5%D1%80%D0%BA%D0%BE%D0%B2%D0%BD%D0%B0_%D1%83%D0%BD%D1%96%D1%8F_XV_%D1%81%D1%82."
+        },
+        {
+          "content": "Автор зазначає, що перша звістка про Качибей належить до 1415 р., коли він вже був значним торговим портом. Виникає питання про те, коли саме було засновано це поселення.",
+          "source_id": "source_06",
+          "chunk_index": 8,
+          "source_url": "https://uk.wikisource.org/wiki/%D0%97%D0%B0%D0%BF%D0%B8%D1%81%D0%BA%D0%B8_%D0%9D%D0%A2%D0%A8/4/%D0%AE%D0%B2%D1%96%D0%BB%D0%B5%D0%B9%D0%BD%D1%96_%D0%B2%D0%B8%D0%B4%D0%B0%D0%BD%D1%8F_%D0%B4%D0%BE_%D1%96%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%97_%D0%BC._%D0%9E%D0%B4%D0%B5%D1%81%D0%B8"
+        }
+      ]
+    },
+    "results": [
+      {
+        "step_id": "step1",
+        "summary": "Зібрані історичні джерела про походження назви Хаджибей.",
+        "evidence": [
+          {
+            "content": "У статті обговорюється, що в багатьох джерелах XV – XVIII ст. не згадується назва Хаджибей. Вказується, що варіант назви Коцюбіїв пов'язують з шляхтичем Борисом Коцюби-Якушинським. Першим про зв'язок цього шляхтича з історією Одеси висловив думку польський історик Мар’ян Дубецький. Також зазначається, що назва Хаджибей могла виникнути внаслідок отуречування первісної назви Коцюбіїв.",
+            "source_id": "source_02",
+            "chunk_index": 5,
+            "source_url": "https://chm.onu.edu.ua/article/view/268837/266518"
+          },
+          {
+            "content": "У статті зазначається, що Качибеєвський лиман був названий на честь татарського воєначальника, і припускається, що наприкінці XIV ст. на березі Одеської затоки існувало поселення з назвою Качибей або Хаджибей.",
+            "source_id": "source_03",
+            "chunk_index": 5,
+            "source_url": "https://uk.wikisource.org/wiki/%D0%9A%D1%80%D0%B0%D1%94%D0%B7%D0%BD%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D0%BE/2015/1-2/%D0%9F%D0%B5%D1%80%D1%88%D0%B0_%D0%BB%D1%96%D1%82%D0%BE%D0%BF%D0%B8%D1%81%D0%BD%D0%B0_%D0%B7%D0%B3%D0%B0%D0%B4%D0%BA%D0%B0_%D0%BF%D1%80%D0%BE_%D0%9E%D0%B4%D0%B5%D1%81%D1%83_%28%D0%9A%D0%B0%D1%87%D1%96%D0%B1%D0%B5%D0%B9%29_%D1%82%D0%B0_%D1%86%D0%B5%D1%80%D0%BA%D0%BE%D0%B2%D0%BD%D0%B0_%D1%83%D0%BD%D1%96%D1%8F_XV_%D1%81%D1%82."
+          },
+          {
+            "content": "Автор зазначає, що перша звістка про Качибей належить до 1415 р., коли він вже був значним торговим портом. Виникає питання про те, коли саме було засновано це поселення.",
+            "source_id": "source_06",
+            "chunk_index": 8,
+            "source_url": "https://uk.wikisource.org/wiki/%D0%97%D0%B0%D0%BF%D0%B8%D1%81%D0%BA%D0%B8_%D0%9D%D0%A2%D0%A8/4/%D0%AE%D0%B2%D1%96%D0%BB%D0%B5%D0%B9%D0%BD%D1%96_%D0%B2%D0%B8%D0%B4%D0%B0%D0%BD%D1%8F_%D0%B4%D0%BE_%D1%96%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%97_%D0%BC._%D0%9E%D0%B4%D0%B5%D1%81%D0%B8"
+          }
+        ]
+      }
+    ],
+    "evaluated_current_step": {
+      "step_id": "d053a8d7-d7d6-4b7f-b35c-1b92213b0c61",
+      "objective_satisfied": true,
+      "sufficient_for_next_step": true,
+      "contradictions_detected": false,
+      "new_information_changes_plan": false,
+      "confidence": 0.8,
+      "decision": "continue",
+      "reason": "Зібрані історичні джерела про походження назви Хаджибей підтверджують наявність релевантної інформації, що дозволяє продовжити дослідження. Однак, для більш детального аналізу необхідно перевірити якість та походження зібраних джерел."
+    },
+    "current_step_idx": 1
+  },
+  "error": "ValidationError: 1 validation error for StepEvaluationContext\ncurrent_step_result\n  Input should be a valid dictionary or instance of HistoricalResearchStepResult [type=model_type, input_value=None, input_type=NoneType]\n    For further information visit https://errors.pydantic.dev/2.13/v/model_type"
+}

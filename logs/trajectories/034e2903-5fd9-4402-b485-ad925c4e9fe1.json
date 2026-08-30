@@ -1,0 +1,188 @@
+{
+  "run_id": "034e2903-5fd9-4402-b485-ad925c4e9fe1",
+  "started_at": "2026-08-29T20:11:09.372404+00:00",
+  "finished_at": "2026-08-29T20:11:47.297828+00:00",
+  "initial_state": {
+    "messages": [
+      {
+        "content": "Яке походження назви Хаджибей? Визнач представлені в доступних джерелах гіпотези та оціни, яка з них має найкращу доказову підтримку.",
+        "additional_kwargs": {},
+        "response_metadata": {},
+        "type": "human",
+        "name": null,
+        "id": "6476fb38-6037-4aeb-b03a-a90c48d8690d"
+      }
+    ],
+    "step_count": 0,
+    "used_tokens": 0,
+    "execution_status": "pending",
+    "current_step_idx": 0,
+    "current_step_result": null,
+    "errors": [],
+    "evaluated_current_step": null,
+    "evaluated_steps": [],
+    "executor_response": null,
+    "len_steps": 0,
+    "metadata": {},
+    "plan": null,
+    "plan_execution_evaluated": null,
+    "results": [],
+    "revised_plans": [],
+    "structured_response": null,
+    "user_task": "Яке походження назви Хаджибей? Визнач представлені в доступних джерелах гіпотези та оціни, яка з них має найкращу доказову підтримку.",
+    "execution_id": "1e417aa9-40f6-4b43-bd10-aeaf49c3d1cc",
+    "step_messages_start_idx": 0
+  },
+  "trajectory": [
+    {
+      "timestamp": "2026-08-29T20:11:14.569660+00:00",
+      "update": {
+        "plan_node": {
+          "plan": {
+            "goal": "Визначити походження назви Хаджибей та оцінити представлені гіпотези.",
+            "steps": [
+              {
+                "id": "step1",
+                "step_status": "pending",
+                "objective": "Зібрати історичні джерела про походження назви Хаджибей.",
+                "expected_result": "Отримати релевантні історичні джерела.",
+                "require_tools": true,
+                "require_reasoning": false,
+                "require_evaluation": false,
+                "research_query": "походження назви Хаджибей",
+                "requires_evidence": true,
+                "operation": "retrieve_sources"
+              },
+              {
+                "id": "step2",
+                "step_status": "pending",
+                "objective": "Виділити твердження про походження назви Хаджибей з отриманих джерел.",
+                "expected_result": "Отримати список тверджень про походження назви.",
+                "require_tools": false,
+                "require_reasoning": true,
+                "require_evaluation": false,
+                "research_query": null,
+                "requires_evidence": true,
+                "operation": "extract_claims"
+              },
+              {
+                "id": "step3",
+                "step_status": "pending",
+                "objective": "Сформувати альтернативні гіпотези на основі виділених тверджень.",
+                "expected_result": "Отримати список альтернативних гіпотез про походження назви.",
+                "require_tools": false,
+                "require_reasoning": true,
+                "require_evaluation": false,
+                "research_query": null,
+                "requires_evidence": true,
+                "operation": "generate_hypotheses"
+              },
+              {
+                "id": "step4",
+                "step_status": "pending",
+                "objective": "Оцінити альтернативні гіпотези за наявними підтверджуючими та суперечливими свідченнями.",
+                "expected_result": "Визначити, яка з гіпотез має найкращу доказову підтримку.",
+                "require_tools": false,
+                "require_reasoning": true,
+                "require_evaluation": false,
+                "research_query": null,
+                "requires_evidence": true,
+                "operation": "evaluate_hypotheses"
+              },
+              {
+                "id": "step5",
+                "step_status": "pending",
+                "objective": "Сформувати висновок про походження назви Хаджибей на основі оцінки гіпотез.",
+                "expected_result": "Отримати обґрунтований висновок про походження назви.",
+                "require_tools": false,
+                "require_reasoning": true,
+                "require_evaluation": false,
+                "research_query": null,
+                "requires_evidence": true,
+                "operation": "synthesize_conclusion"
+              }
+            ],
+            "research_question": "Яке походження назви Хаджибей?"
+          },
+          "step_count": 1,
+          "len_steps": 5,
+          "execution_status": "running",
+          "step_status": "pending"
+        }
+      }
+    }
+  ],
+  "final_state": {
+    "plan": {
+      "goal": "Визначити походження назви Хаджибей та оцінити представлені гіпотези.",
+      "steps": [
+        {
+          "id": "step1",
+          "step_status": "pending",
+          "objective": "Зібрати історичні джерела про походження назви Хаджибей.",
+          "expected_result": "Отримати релевантні історичні джерела.",
+          "require_tools": true,
+          "require_reasoning": false,
+          "require_evaluation": false,
+          "research_query": "походження назви Хаджибей",
+          "requires_evidence": true,
+          "operation": "retrieve_sources"
+        },
+        {
+          "id": "step2",
+          "step_status": "pending",
+          "objective": "Виділити твердження про походження назви Хаджибей з отриманих джерел.",
+          "expected_result": "Отримати список тверджень про походження назви.",
+          "require_tools": false,
+          "require_reasoning": true,
+          "require_evaluation": false,
+          "research_query": null,
+          "requires_evidence": true,
+          "operation": "extract_claims"
+        },
+        {
+          "id": "step3",
+          "step_status": "pending",
+          "objective": "Сформувати альтернативні гіпотези на основі виділених тверджень.",
+          "expected_result": "Отримати список альтернативних гіпотез про походження назви.",
+          "require_tools": false,
+          "require_reasoning": true,
+          "require_evaluation": false,
+          "research_query": null,
+          "requires_evidence": true,
+          "operation": "generate_hypotheses"
+        },
+        {
+          "id": "step4",
+          "step_status": "pending",
+          "objective": "Оцінити альтернативні гіпотези за наявними підтверджуючими та суперечливими свідченнями.",
+          "expected_result": "Визначити, яка з гіпотез має найкращу доказову підтримку.",
+          "require_tools": false,
+          "require_reasoning": true,
+          "require_evaluation": false,
+          "research_query": null,
+          "requires_evidence": true,
+          "operation": "evaluate_hypotheses"
+        },
+        {
+          "id": "step5",
+          "step_status": "pending",
+          "objective": "Сформувати висновок про походження назви Хаджибей на основі оцінки гіпотез.",
+          "expected_result": "Отримати обґрунтований висновок про походження назви.",
+          "require_tools": false,
+          "require_reasoning": true,
+          "require_evaluation": false,
+          "research_query": null,
+          "requires_evidence": true,
+          "operation": "synthesize_conclusion"
+        }
+      ],
+      "research_question": "Яке походження назви Хаджибей?"
+    },
+    "step_count": 1,
+    "len_steps": 5,
+    "execution_status": "running",
+    "step_status": "pending"
+  },
+  "error": "ValidationError: 7 validation errors for StepEvaluationContext\ncurrent_step_result.step_id\n  Field required [type=missing, input_value={'messages': [{'content':...COMPLETED: 'completed'>}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\ncurrent_step_result.summary\n  Field required [type=missing, input_value={'messages': [{'content':...COMPLETED: 'completed'>}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\ncurrent_step_result.messages\n  Extra inputs are not permitted [type=extra_forbidden, input_value=[{'content': 'Ось кі...': 0, 'reasoning': 0}}}], input_type=list]\n    For further information visit https://errors.pydantic.dev/2.13/v/extra_forbidden\ncurrent_step_result.step_count\n  Extra inputs are not permitted [type=extra_forbidden, input_value=1, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.13/v/extra_forbidden\ncurrent_step_result.used_tokens\n  Extra inputs are not permitted [type=extra_forbidden, input_value=5752, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.13/v/extra_forbidden\ncurrent_step_result.stop_decision\n  Extra inputs are not permitted [type=extra_forbidden, input_value={'should_stop': False, 'r...: None, 'message': None}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/extra_forbidden\ncurrent_step_result.execution_status\n  Extra inputs are not permitted [type=extra_forbidden, input_value=<AnalysisStatus.COMPLETED: 'completed'>, input_type=AnalysisStatus]\n    For further information visit https://errors.pydantic.dev/2.13/v/extra_forbidden"
+}

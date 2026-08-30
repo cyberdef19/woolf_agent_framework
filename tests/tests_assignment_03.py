@@ -97,57 +97,96 @@ def test_web_search_invalid_max_results():
         )
 
 
+from unittest.mock import MagicMock
+
+import pytest
+from langchain_core.documents import Document
+
+
 @pytest.mark.asyncio
 async def test_get_adjacent_chunks():
 
-    vector_store = AsyncMock()
+    # Arrange
+    vector_store = MagicMock()
 
-    vector_store.get_by_ids.return_value = [
-        Document(
-            page_content="Chunk 4",
-            metadata={
-                "source_id": "source_1",
-                "chunk_index": 4,
-            },
-        ),
-        Document(
-            page_content="Chunk 5",
-            metadata={
-                "source_id": "source_1",
-                "chunk_index": 5,
-            },
-        ),
-        Document(
-            page_content="Chunk 6",
-            metadata={
-                "source_id": "source_1",
+    vector_store.get.return_value = {
+        "documents": [
+            "Chunk 6",
+            "Chunk 4",
+            "Chunk 5",
+        ],
+        "metadatas": [
+            {
+                "document_id": "source_1",
                 "chunk_index": 6,
             },
-        ),
-    ]
+            {
+                "document_id": "source_1",
+                "chunk_index": 4,
+            },
+            {
+                "document_id": "source_1",
+                "chunk_index": 5,
+            },
+        ],
+    }
 
     service = HistoricalRetrieverService(
         vector_store=vector_store
     )
 
+    # Act
     result = await service.get_adjacent_chunks(
-        source_id="source_1",
+        document_id="source_1",
         chunk_index=5,
         before=1,
         after=1,
     )
 
+    # Assert
     assert len(result) == 3
+
+    assert all(
+        isinstance(document, Document)
+        for document in result
+    )
 
     assert [
         document.metadata["chunk_index"]
         for document in result
     ] == [4, 5, 6]
 
-    vector_store.get_by_ids.assert_awaited_once_with(
-        ids=[
-            "source_1_chunk_0004",
-            "source_1_chunk_0005",
-            "source_1_chunk_0006",
-        ]
+    assert [
+        document.page_content
+        for document in result
+    ] == [
+        "Chunk 4",
+        "Chunk 5",
+        "Chunk 6",
+    ]
+
+    vector_store.get.assert_called_once_with(
+        where={
+            "$and": [
+                {
+                    "document_id": {
+                        "$eq": "source_1"
+                    }
+                },
+                {
+                    "chunk_index": {
+                        "$gte": 4
+                    }
+                },
+                {
+                    "chunk_index": {
+                        "$lte": 6
+                    }
+                },
+            ]
+        },
+        include=[
+            "documents",
+            "metadatas",
+        ],
     )

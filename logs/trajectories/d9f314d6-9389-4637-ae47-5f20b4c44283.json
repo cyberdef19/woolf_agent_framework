@@ -1,0 +1,188 @@
+{
+  "run_id": "d9f314d6-9389-4637-ae47-5f20b4c44283",
+  "started_at": "2026-08-29T21:14:52.805768+00:00",
+  "finished_at": "2026-08-29T21:15:39.246464+00:00",
+  "initial_state": {
+    "messages": [
+      {
+        "content": "Яке походження назви Хаджибей? Визнач представлені в доступних джерелах гіпотези та оціни, яка з них має найкращу доказову підтримку.",
+        "additional_kwargs": {},
+        "response_metadata": {},
+        "type": "human",
+        "name": null,
+        "id": "8780418c-f3e9-4fc9-a54f-ad4147e1cea0"
+      }
+    ],
+    "step_count": 0,
+    "used_tokens": 0,
+    "execution_status": "pending",
+    "current_step_idx": 0,
+    "current_step_result": null,
+    "errors": [],
+    "evaluated_current_step": null,
+    "evaluated_steps": [],
+    "executor_response": null,
+    "len_steps": 0,
+    "metadata": {},
+    "plan": null,
+    "plan_execution_evaluated": null,
+    "results": [],
+    "revised_plans": [],
+    "structured_response": null,
+    "user_task": "Яке походження назви Хаджибей? Визнач представлені в доступних джерелах гіпотези та оціни, яка з них має найкращу доказову підтримку.",
+    "execution_id": "eeecab82-ada1-488b-978e-94188c77420a",
+    "step_messages_start_idx": 0
+  },
+  "trajectory": [
+    {
+      "timestamp": "2026-08-29T21:14:57.854368+00:00",
+      "update": {
+        "plan_node": {
+          "plan": {
+            "goal": "Визначити походження назви Хаджибей та оцінити представлені гіпотези.",
+            "steps": [
+              {
+                "id": "step1",
+                "step_status": "pending",
+                "objective": "Зібрати історичні джерела про походження назви Хаджибей.",
+                "expected_result": "Отримати релевантні історичні джерела.",
+                "require_tools": true,
+                "require_reasoning": false,
+                "require_evaluation": false,
+                "research_query": "походження назви Хаджибей",
+                "requires_evidence": true,
+                "operation": "retrieve_sources"
+              },
+              {
+                "id": "step2",
+                "step_status": "pending",
+                "objective": "Виділити твердження про походження назви Хаджибей з отриманих джерел.",
+                "expected_result": "Отримати список тверджень про походження назви.",
+                "require_tools": false,
+                "require_reasoning": false,
+                "require_evaluation": false,
+                "research_query": null,
+                "requires_evidence": false,
+                "operation": "extract_claims"
+              },
+              {
+                "id": "step3",
+                "step_status": "pending",
+                "objective": "Сформувати альтернативні гіпотези на основі виділених тверджень.",
+                "expected_result": "Отримати список альтернативних гіпотез про походження назви.",
+                "require_tools": false,
+                "require_reasoning": true,
+                "require_evaluation": false,
+                "research_query": null,
+                "requires_evidence": false,
+                "operation": "generate_hypotheses"
+              },
+              {
+                "id": "step4",
+                "step_status": "pending",
+                "objective": "Оцінити альтернативні гіпотези за наявними підтверджуючими та суперечливими свідченнями.",
+                "expected_result": "Визначити, яка з гіпотез має найкращу доказову підтримку.",
+                "require_tools": false,
+                "require_reasoning": true,
+                "require_evaluation": true,
+                "research_query": null,
+                "requires_evidence": false,
+                "operation": "evaluate_hypotheses"
+              },
+              {
+                "id": "step5",
+                "step_status": "pending",
+                "objective": "Сформувати обґрунтований висновок про походження назви Хаджибей.",
+                "expected_result": "Отримати обґрунтований висновок на основі оцінки гіпотез.",
+                "require_tools": false,
+                "require_reasoning": true,
+                "require_evaluation": false,
+                "research_query": null,
+                "requires_evidence": false,
+                "operation": "synthesize_conclusion"
+              }
+            ],
+            "research_question": "Походження назви Хаджибей"
+          },
+          "step_count": 1,
+          "len_steps": 5,
+          "execution_status": "running",
+          "step_status": "pending"
+        }
+      }
+    }
+  ],
+  "final_state": {
+    "plan": {
+      "goal": "Визначити походження назви Хаджибей та оцінити представлені гіпотези.",
+      "steps": [
+        {
+          "id": "step1",
+          "step_status": "pending",
+          "objective": "Зібрати історичні джерела про походження назви Хаджибей.",
+          "expected_result": "Отримати релевантні історичні джерела.",
+          "require_tools": true,
+          "require_reasoning": false,
+          "require_evaluation": false,
+          "research_query": "походження назви Хаджибей",
+          "requires_evidence": true,
+          "operation": "retrieve_sources"
+        },
+        {
+          "id": "step2",
+          "step_status": "pending",
+          "objective": "Виділити твердження про походження назви Хаджибей з отриманих джерел.",
+          "expected_result": "Отримати список тверджень про походження назви.",
+          "require_tools": false,
+          "require_reasoning": false,
+          "require_evaluation": false,
+          "research_query": null,
+          "requires_evidence": false,
+          "operation": "extract_claims"
+        },
+        {
+          "id": "step3",
+          "step_status": "pending",
+          "objective": "Сформувати альтернативні гіпотези на основі виділених тверджень.",
+          "expected_result": "Отримати список альтернативних гіпотез про походження назви.",
+          "require_tools": false,
+          "require_reasoning": true,
+          "require_evaluation": false,
+          "research_query": null,
+          "requires_evidence": false,
+          "operation": "generate_hypotheses"
+        },
+        {
+          "id": "step4",
+          "step_status": "pending",
+          "objective": "Оцінити альтернативні гіпотези за наявними підтверджуючими та суперечливими свідченнями.",
+          "expected_result": "Визначити, яка з гіпотез має найкращу доказову підтримку.",
+          "require_tools": false,
+          "require_reasoning": true,
+          "require_evaluation": true,
+          "research_query": null,
+          "requires_evidence": false,
+          "operation": "evaluate_hypotheses"
+        },
+        {
+          "id": "step5",
+          "step_status": "pending",
+          "objective": "Сформувати обґрунтований висновок про походження назви Хаджибей.",
+          "expected_result": "Отримати обґрунтований висновок на основі оцінки гіпотез.",
+          "require_tools": false,
+          "require_reasoning": true,
+          "require_evaluation": false,
+          "research_query": null,
+          "requires_evidence": false,
+          "operation": "synthesize_conclusion"
+        }
+      ],
+      "research_question": "Походження назви Хаджибей"
+    },
+    "step_count": 1,
+    "len_steps": 5,
+    "execution_status": "running",
+    "step_status": "pending"
+  },
+  "error": "UnboundLocalError: cannot access local variable 'plan_evaluation' where it is not associated with a value"
+}

@@ -36,7 +36,7 @@ class AgentRuntimeSettings(BaseModel):
     )
 
     recursion_limit: int = Field(
-        default=30,
+        default=45,
         ge=1,
         description=(
             "Emergency LangGraph super-step limit for one execution."

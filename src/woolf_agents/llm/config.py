@@ -27,12 +27,15 @@ class LLMProvider(StrEnum):
     OLLAMA = "ollama"
 
 class LLMModel(StrEnum):
+    GPTOMINI4O="openai/gpt-4o-mini"
     GEMINI25FLASH = "gemini-2.0-flash"
     GOOGLEGEMMA426BA4BFREE = "google/gemma-4-26b-a4b-it:free"
     GOOGLEGEMMA426BA4B="google/gemma-4-26b-a4b-it"
     GOOGLEGEMMA431BFREE = "google/gemma-4-31b-it:free"
     LING30FLASHFREE = "inclusionai/ling-3.0-flash:free"
     GPTOSS20bFREE = "openai/gpt-oss-20b:free"
+    GPTOSS20b = "openai/gpt-oss-20b"
+    GPTOSS120b="openai/gpt-oss-120b"
     LAGUNAS21FREE = "poolside/laguna-s-2.1:free"  #для завдань tool calling coding
     LAGUNAXS21FREE = "poolside/laguna-xs-2.1:free"  #для завдань tool calling coding
     S21PROFREE = "poolside/s2.1-pro:free"

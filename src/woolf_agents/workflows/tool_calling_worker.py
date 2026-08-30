@@ -6,7 +6,7 @@ from .tool_calling_graph import ToolCallingGraph
 from src.woolf_agents.runtime.runner import AgentGraphRunner
 from typing import TypeVar, Generic
 from src.woolf_agents.llm.executor import LLMExecutor
-from src.woolf_agents.domains.artifacts.schemas.contracts import StepExecutionContext
+from src.woolf_agents.domains.artifacts.schemas.contracts import HistoricalResearchStepResult, StepExecutionContext
 from src.woolf_agents.domains.artifacts.schemas.base import BaseStepResult
 from src.woolf_agents.runtime.stop_controller import StopController
 from langchain_core.language_models.chat_models import BaseChatModel
@@ -37,14 +37,12 @@ class ToolCallingWorker(Generic[StateT, OutputT]):
             state=state,
             model=llm,
             tools=tools,
-            output_schema=output_schema,
+            output_schema=HistoricalResearchStepResult,
             system_prompt=system_prompt,
             executor=executor,
             stop_controller=stop_controller,
             checkpointer=checkpointer
-        ).build(
-            checkpointer=checkpointer
-        )
+        ).build()
         graph_settings = AgentRuntimeSettings(timeout_seconds=420)
         self._runner = AgentGraphRunner(
             graph=self._compiled_tool_calling,
@@ -64,12 +62,14 @@ class ToolCallingWorker(Generic[StateT, OutputT]):
              "execution_id": context.execution_id,
              "step_count": 0,
              "used_tokens": 0,
-             "execution_status": AnalysisStatus.PENDING
+             "execution_status": AnalysisStatus.PENDING,
+             "structured_output": None
         }
         thread_id = str(uuid4())
-        response = await self._runner.run(
+        final_state = await self._runner.run(
             initial_state=initial_state,
             thread_id=thread_id
         )
-        return response
+        response = final_state["structured_output"]
+        return HistoricalResearchStepResult.model_validate(response)
         
