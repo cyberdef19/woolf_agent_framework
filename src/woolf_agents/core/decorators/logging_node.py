@@ -81,4 +81,4 @@ def logging_node(name:str):
         return wrapper
 
     return decorator
-            
+
