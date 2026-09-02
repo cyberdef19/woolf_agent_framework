@@ -514,4 +514,17 @@ class FinalResponseContext(BaseModel):
     final_plan: HistoricalHypothesisEvaluationPlan
     step_results: list[HistoricalResearchStepResult]
     execution_id: UUID
-    
+
+class CriticDecision(BaseModel):
+    model_config=ConfigDict(extra="forbid")
+    decision: Literal["approve", "human_decision"]
+    issue: str
+    recomandations: list[str] = Field(default_factory=list)
+    reason: str
+
+class HumanReviewDecision(BaseModel):
+    decision: Literal[
+        "approve",
+        "reject",
+    ]
+    comment: str | None = None

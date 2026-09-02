@@ -5,13 +5,6 @@ from uuid import uuid4
 
 import aiosqlite
 
-
-from assignments.assignment_03.tools import (
-                retrieve_historical_sources, 
-                get_adjacent_chunks, 
-                search_web_historical_sources,
-                search_related_sources
-                ) 
 from src.woolf_agents.core.agent_spec import AgentSpec
 from src.woolf_agents.core.retry import RetryPolicyAgent, RetrySettings
 from src.woolf_agents.domains.artifacts.schemas.base import PlanEvaluation, PlanStepStatus, StepEvaluation
@@ -23,6 +16,8 @@ from src.woolf_agents.runtime.runner import AgentGraphRunner
 from src.woolf_agents.runtime.settings import AgentRuntimeSettings
 from src.woolf_agents.runtime.stop_controller import StopController
 from src.woolf_agents.runtime.trajectory_logger import TrajectoryLogger
+from src.woolf_agents.tools.retriever_tools import get_adjacent_chunks, retrieve_historical_sources, search_related_sources
+from src.woolf_agents.tools.web_retriever_tools import search_web_historical_sources
 from src.woolf_agents.workflows.multiagent_planner_execute_graph import MultiAgentPlannerExecuteGraph
 from src.woolf_agents.workflows.plan_evaluator_worker import PlanEvaluatorWorker
 from src.woolf_agents.workflows.reasoning_worker import ReasoningWorker
