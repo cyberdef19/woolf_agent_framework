@@ -1,0 +1,25 @@
+{
+  "run_id": "7f57ed94-b8ba-4e5c-8f94-ae3b0981b120",
+  "started_at": "2026-09-04T09:16:59.083220+00:00",
+  "finished_at": "2026-09-04T09:17:00.064853+00:00",
+  "initial_state": {
+    "messages": [
+      {
+        "content": "Виконай поточний крок плану {\n  \"id\": \"step1\",\n  \"step_status\": \"pending\",\n  \"objective\": \"Знайти історичні джерела, що містять інформацію про походження назви Хаджибей.\",\n  \"expected_result\": \"Отримати список історичних джерел, що стосуються походження назви Хаджибей.\",\n  \"require_tools\": true,\n  \"require_reasoning\": false,\n  \"research_query\": \"походження назви Хаджибей.\",\n  \"requires_evidence\": true,\n  \"operation\": \"retrieve_sources\"\n}",
+        "additional_kwargs": {},
+        "response_metadata": {},
+        "type": "human",
+        "name": null,
+        "id": "c57aa39e-8dac-4d41-8f6a-5593318548d2"
+      }
+    ],
+    "execution_id": "3e38e71c-ca5a-4eb4-90fd-86f9f7dbbaab",
+    "step_count": 0,
+    "used_tokens": 0,
+    "execution_status": "pending",
+    "structured_output": null
+  },
+  "trajectory": [],
+  "final_state": {},
+  "error": "ToolGuardViolation: Tool 'retrieve_sources' is not allowed."
+}

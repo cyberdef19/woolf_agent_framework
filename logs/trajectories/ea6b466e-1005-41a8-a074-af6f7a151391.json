@@ -1,0 +1,21 @@
+{
+  "run_id": "ea6b466e-1005-41a8-a074-af6f7a151391",
+  "started_at": "2026-09-03T22:19:10.616998+00:00",
+  "finished_at": "2026-09-03T22:19:48.996626+00:00",
+  "initial_state": {
+    "query": "Яке походження назви Хаджибей? Визнач представлені в доступних джерелах гіпотези та оціни, яка з них має найкращу доказову підтримку.",
+    "research_result": null,
+    "critic_decision": null,
+    "human_decision": null
+  },
+  "trajectory": [
+    {
+      "timestamp": "2026-09-03T22:19:10.731996+00:00",
+      "update": {
+        "superviser": null
+      }
+    }
+  ],
+  "final_state": {},
+  "error": "ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)"
+}

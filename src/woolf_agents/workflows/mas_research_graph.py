@@ -3,12 +3,15 @@ from uuid import uuid4
 from langchain_core.messages import HumanMessage
 from langgraph.graph import StateGraph
 from langgraph.types import Command, interrupt
-from src.woolf_agents.core.agent_spec import AgentSpec
-from src.woolf_agents.core.mcp.server import BaseFastMCP
-from src.woolf_agents.core.retry import RetryPolicyAgent, RetrySettings
+from src.woolf_agents.core.guardrails.exceptions import InputGuardViolation
+from src.woolf_agents.core.guardrails.input_guards import InputGuard
+from src.woolf_agents.core.guardrails.output_guards import OutputGuard
+from src.woolf_agents.core.guardrails.tools_allow import ToolGuard
+from src.woolf_agents.core.mcp.servers.base_server import BaseFastMCP 
+from src.woolf_agents.core.result import ExecutionStatus
+from src.woolf_agents.core.retry import RetryPolicyAgent
 from src.woolf_agents.domains.artifacts.schemas.base import PlanEvaluation, PlanStepStatus, StepEvaluation
 from src.woolf_agents.domains.artifacts.schemas.contracts import CriticDecision, HistoricalHypothesisEvaluationPlan, HistoricalResearchExecutionResult, HistoricalResearchStepResult, HumanReviewDecision
-from src.woolf_agents.llm.config import ConfigModelAPI, LLMModel, LLMProvider, LLMSettings
 from src.woolf_agents.llm.executor import LLMExecutor
 from src.woolf_agents.llm.factory import LLMFactory
 from src.woolf_agents.runtime.runner import AgentGraphRunner
@@ -23,8 +26,9 @@ from langgraph.checkpoint.base import BaseCheckpointSaver
 from src.woolf_agents.llm.config import url_modelrouter
 
 from src.woolf_agents.workflows.plan_evaluator_worker import PlanEvaluatorWorker
-from src.woolf_agents.workflows.prompts import system_prompts
+from src.woolf_agents.workflows.prompts.system_prompts import system_prompts
 from src.woolf_agents.workflows.reasoning_worker import ReasoningWorker
+from src.woolf_agents.workflows.source_verification_agent import SourceVerificationAgent
 from src.woolf_agents.workflows.state import PlanExecuteState, SourceInterrupt, ToolGraphState
 from src.woolf_agents.workflows.step_evaluator_worker import StepEvaluatorWorker
 from src.woolf_agents.workflows.structured_output_result_worker import StructuredOutputResultWorker
@@ -33,7 +37,7 @@ from langchain_mcp_adapters.client import MultiServerMCPClient
 from langchain_core.language_models.chat_models import BaseChatModel
 from langgraph.graph import START
 
-"Яке походження назви Хаджибей? Визнач представлені в доступних джерелах гіпотези та оціни, яка з них має найкращу доказову підтримку."
+
 
 StateT = TypeVar("StateT")
 
@@ -55,14 +59,18 @@ class MASResearchGraph(Generic[StateT]):
         self._workers = {}        
         self._mcp_client = mcp_client
         self._tools = []
-        self._user_task = user_task
-        self._llm_settings = self._get_llm_settings()
+        self._user_task: str| None = None
+        
         self._llm = llm
         self._retry_policy = retry_policy
         self._plan_executor_runner: AgentGraphRunner| None = None
+        self._input_guard = InputGuard()
+        self._output_guard = OutputGuard()
+        self._tool_guard: ToolGuard| None = None 
 
         self._critical_agent: CriticalAgent = self._create_critical_agent()
         self._superviser: HistoricalSuperviser = self._create_historical_superviser()
+        self._verification_sources: SourceVerificationAgent|None = None
         self._graph = self._build()
         self._runner = self._create_agent_runner(self._graph)
        
@@ -71,8 +79,17 @@ class MASResearchGraph(Generic[StateT]):
         return CriticalAgent(
             model=self._llm,
             executor=self._executor,
-            output_schema=CriticDecision,
-            system_prompt=system_prompts["critical_system_prompt"].system_prompt
+            system_prompt=system_prompts["critical_system_prompt"].system_prompt,
+            mcp_client=self._mcp_client
+        )
+    
+    def _create_verification_sources(self):
+        verificator_tools = [tool for tool in self._tools if tool.name in system_prompts["verification_sources_spec"].tool_names]
+        return SourceVerificationAgent(
+            model=self._llm,
+            system_prompt=system_prompts["verification_sources_spec"].system_prompt,
+            mcp_client=self._mcp_client,
+            tools= verificator_tools
         )
     
     def _create_historical_superviser(self):
@@ -80,6 +97,11 @@ class MASResearchGraph(Generic[StateT]):
     
     async def _get_tools(self) ->list:
         self._tools = await self._mcp_client.get_tools()
+        self._tool_guard = ToolGuard(
+                         tools=self._tools,
+                        allowed_tools=system_prompts["historical_tool_calling_spec"].tool_names,
+        )
+
     
     def _get_workers(self) -> dict:
 
@@ -92,7 +114,8 @@ class MASResearchGraph(Generic[StateT]):
                     executor=self._executor,
                     stop_controller=StopController(),
                     checkpointer=self._checkpointer,
-                    tools=self._tools
+                    tools=self._tools,
+                    tool_guard=self._tool_guard
                 ),
                 "reasoning_worker":ReasoningWorker(
                     model=self._llm,
@@ -124,6 +147,7 @@ class MASResearchGraph(Generic[StateT]):
             self._get_workers()
             plan_executor_compiled_graph: MultiAgentPlannerExecuteGraph = self._create_plan_executor_graph() 
             self._plan_executor_runner = self._create_agent_runner(plan_executor_compiled_graph)
+            self._verification_sources = self._create_verification_sources()
     
     async def _run_plan_executor(self, state: StateT) -> Command[Literal["superviser"]]:
             """Виконує планувальника задля отримання відповіді на завдання користувача """
@@ -137,7 +161,7 @@ class MASResearchGraph(Generic[StateT]):
                         )
             return Command(
                 update={
-                    "research_result": result
+                    "research_result": HistoricalResearchExecutionResult.model_validate(result["structured_response"])
                     },
                 goto="superviser"
             )
@@ -163,7 +187,7 @@ class MASResearchGraph(Generic[StateT]):
                  model=self._llm,
                  output_schema=HistoricalResearchExecutionResult,
                  system_prompt=system_prompts["spec_multiagent_planner"].system_prompt,
-                 executor=LLMExecutor(retry_agent=self._retry_policy, llm_timeout_seconds=self._llm_settings.llm_timeout_seconds),
+                 executor=self._executor,
                  stop_controller=StopController(),
                  checkpointer=self._checkpointer,
                  workers=self._workers,
@@ -248,19 +272,44 @@ class MASResearchGraph(Generic[StateT]):
             goto="superviser",
         )
     
+    def _apply_output_guard(self, result: HistoricalResearchExecutionResult) -> HistoricalResearchExecutionResult:
+
+        if result.status != ExecutionStatus.SUCCESS:
+            return result
+
+        return result.model_copy(
+            update={
+                "final_response": self._output_guard.redact(
+                    result.answer
+                )
+            }
+        )
+    
     async def run(self, thread_id: str, user_task: str):
+        guard_result = self._input_guard.validate(user_task)
+        
+        if not guard_result.allowed:
+            raise InputGuardViolation(
+            guard_result.reason or "Небезпечвний ввод."
+        )
+        
         self._user_task = user_task
-        return await self._runner.run(
+        result =  await self._runner.run(
             initial_state=self._create_mas_initial_state(self._user_task),
             thread_id=thread_id
         )
+        research_result = HistoricalResearchExecutionResult.model_validate(result["research_result"])
+        return  self._apply_output_guard(research_result)
+        
     
     async def resume(self, thread_id: str, decision: HumanReviewDecision):
         """Відновлює потік виконання після HITL"""
-        return await self._runner.resume(
+        result = await self._runner.resume(
             thread_id=thread_id,
             decision=decision
         )
+        research_result = HistoricalResearchExecutionResult.model_validate(result["research_result"])
+        return self._apply_output_guard(research_result)
     
     def _build(self):
         
@@ -277,6 +326,10 @@ class MASResearchGraph(Generic[StateT]):
         graph.add_node(
             "superviser",
             self._superviser.execute
+        )
+        graph.add_node(
+            "verification_agent",
+            self._verification_sources.execute
         )
         graph.add_node(
             "human_review",

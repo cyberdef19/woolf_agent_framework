@@ -1,0 +1,21 @@
+{
+  "run_id": "5a655b29-1486-4c8b-894a-154545218cb0",
+  "started_at": "2026-09-04T19:53:04.905257+00:00",
+  "finished_at": "2026-09-04T19:55:54.677169+00:00",
+  "initial_state": {
+    "query": "Яке походження назви Хаджибей? Визнач представлені в доступних джерелах гіпотези та оціни, яка з них має найкращу доказову підтримку.",
+    "research_result": null,
+    "critic_decision": null,
+    "human_decision": null
+  },
+  "trajectory": [
+    {
+      "timestamp": "2026-09-04T19:53:05.054255+00:00",
+      "update": {
+        "superviser": null
+      }
+    }
+  ],
+  "final_state": {},
+  "error": "AttributeError: reason"
+}

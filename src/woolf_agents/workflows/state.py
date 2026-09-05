@@ -8,12 +8,15 @@ from src.woolf_agents.core.result import BaseExecutionResult
 from src.woolf_agents.core.result import ExecutionStatus
 from typing import Literal
 from src.woolf_agents.domains.artifacts.schemas.contracts import (
+                                               CriticDecision,
+                                               HistoricalResearchExecutionResult,
                                                PlanStepStatus, 
                                                HistoricalResearchStepResult,
                                                HistoricalHypothesisEvaluationPlan, 
                                                HistoricalResearchStepPlan,
                                                HypothesisEvaluationStep,
                                                HistoricalResearchPlan,
+                                               SourceVerificationResult,
                                                StepExecutionContext)
 from src.woolf_agents.runtime.stop_controller import StopDecision
 from enum import StrEnum
@@ -66,6 +69,13 @@ class SourceInterrupt(StrEnum):
     EVALUATION_PLAN = "plan_evaluation"
     NO_SOURCE = "no_source"
 
+class MASAgentState(MessageAgentState, total=False):
+    """Стан агента супервайзера"""
+    task_user: str
+    research_result: HistoricalResearchExecutionResult
+    critic_decision: CriticDecision
+    verification_sources: SourceVerificationResult
+        
 class PlanExecuteState(MessageAgentState, total=False):
     """Стан виконання плану агентом-планувальником"""
     plan:HistoricalHypothesisEvaluationPlan
@@ -78,7 +88,7 @@ class PlanExecuteState(MessageAgentState, total=False):
     revised_plans: Annotated[list[HistoricalHypothesisEvaluationPlan], operator.add]
     evaluated_steps: Annotated[list[StepEvaluation], operator.add]
     results: Annotated[list[HistoricalResearchStepResult], operator.add]
-    structured_response: BaseExecutionResult
+    structured_response: BaseExecutionResult 
     execution_status: PlanExecuteStatus
     executor_response: AIMessage
     plan_execution_evaluated: PlanEvaluation| None

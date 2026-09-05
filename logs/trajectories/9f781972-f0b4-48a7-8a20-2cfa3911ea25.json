@@ -1,0 +1,25 @@
+{
+  "run_id": "9f781972-f0b4-48a7-8a20-2cfa3911ea25",
+  "started_at": "2026-09-04T10:08:08.211679+00:00",
+  "finished_at": "2026-09-04T10:08:09.223791+00:00",
+  "initial_state": {
+    "messages": [
+      {
+        "content": "Виконай поточний крок плану {\n  \"id\": \"step1\",\n  \"step_status\": \"pending\",\n  \"objective\": \"Зібрати історичні джерела, що стосуються походження назви Хаджибей.\",\n  \"expected_result\": \"Отримати релевантні історичні джерела.\",\n  \"require_tools\": true,\n  \"require_reasoning\": false,\n  \"research_query\": \"походження назви Хаджибей.\",\n  \"requires_evidence\": true,\n  \"operation\": \"retrieve_sources\"\n}",
+        "additional_kwargs": {},
+        "response_metadata": {},
+        "type": "human",
+        "name": null,
+        "id": "20675de0-0f38-49a3-81ce-b4e5d79bff70"
+      }
+    ],
+    "execution_id": "57cfe749-307f-49e6-9bf5-41c7867f9c4c",
+    "step_count": 0,
+    "used_tokens": 0,
+    "execution_status": "pending",
+    "structured_output": null
+  },
+  "trajectory": [],
+  "final_state": {},
+  "error": "AttributeError: 'dict' object has no attribute 'model_validate'"
+}

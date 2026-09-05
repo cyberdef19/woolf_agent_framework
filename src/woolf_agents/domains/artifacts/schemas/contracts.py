@@ -392,7 +392,12 @@ class HistoricalResearchStepResult(BaseStepResult):
             description="Фактичні дані, отримані під час виконання кроку"
         )
     
-    
+class SourceVerificationResult(BaseExecutionResult):
+    verified: bool = Field(description="Веріфікує чи достатньо підтверджена доказова база")
+    issues: list[str] = Field(default_factory=list, description="Конкретні наявні проблеми")
+    supporting_sources: list[str] = Field(default_factory=list, description="Які джерела можуть підтвердити висновки")
+    conflicting_sources: list[str] = Field(default_factory=list, description="Які джерела суперечать один одному")
+    reason: str = Field(description="Коротке пояснення чому прийняте таке рішення")    
     
 class HistoricalResearchExecutionResult(BaseExecutionResult):
     answer: str = Field(
@@ -521,6 +526,7 @@ class CriticDecision(BaseModel):
     issue: str
     recomandations: list[str] = Field(default_factory=list)
     reason: str
+
 
 class HumanReviewDecision(BaseModel):
     decision: Literal[

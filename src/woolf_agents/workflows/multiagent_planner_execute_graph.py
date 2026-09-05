@@ -245,7 +245,7 @@ class MultiAgentPlannerExecuteGraph(
                                 execution_status = PlanExecuteStatus.WAITTING_FOR_HUMAN
                 if execution_status == PlanExecuteStatus.WAITTING_FOR_HUMAN:
                      source_interrupt = SourceInterrupt.EVALUATION_PLAN 
-                     interrupt_reason = PlanEvaluation.reason
+                     interrupt_reason = plan_evaluation.reason
                 else:
                      source_interrupt = SourceInterrupt.NO_SOURCE
                      interrupt_reason = None

@@ -1,0 +1,21 @@
+{
+  "run_id": "b4c79fb5-a3b7-4531-807a-af39eacaba72",
+  "started_at": "2026-09-04T20:07:33.348561+00:00",
+  "finished_at": "2026-09-04T20:09:52.447008+00:00",
+  "initial_state": {
+    "query": "Яке походження назви Хаджибей? Визнач представлені в доступних джерелах гіпотези та оціни, яка з них має найкращу доказову підтримку.",
+    "research_result": null,
+    "critic_decision": null,
+    "human_decision": null
+  },
+  "trajectory": [
+    {
+      "timestamp": "2026-09-04T20:07:33.488560+00:00",
+      "update": {
+        "superviser": null
+      }
+    }
+  ],
+  "final_state": {},
+  "error": "TypeError: BaseModel.__init__() takes 1 positional argument but 2 were given"
+}

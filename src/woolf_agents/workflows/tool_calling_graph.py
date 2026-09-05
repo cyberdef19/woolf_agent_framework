@@ -1,3 +1,5 @@
+from src.woolf_agents.core.guardrails.tools_allow import ToolGuard
+
 from .base_graph import BaseGraph
 from .nodes import GraphNode
 from typing import Literal
@@ -30,6 +32,7 @@ class ToolCallingGraph(
 
     
     def __init__(self, 
+                 tool_guard: ToolGuard,
                  state: type[StateT], 
                  model: BaseChatModel,
                  tools: Sequence[BaseTool],
@@ -49,7 +52,7 @@ class ToolCallingGraph(
             stop_controller=stop_controller,
             checkpointer=checkpointer
             )
-       
+        self._tool_guard = tool_guard
     
     async def _agent_node(self, state: StateT)->dict[str, Any]:
         #print("\nAGENT NODE MESSAGES:")
@@ -72,6 +75,12 @@ class ToolCallingGraph(
                                                 
                                          ] 
                                          )
+            # Guard перевіряє сформовані LLM tool calls
+            for tool_call in response.tool_calls:
+                self._tool_guard.validate(
+                    tool_name=tool_call["name"],
+                    arguments=tool_call["args"],
+                )
             used_tokens = response.usage_metadata.get("total_tokens", 0) if response.usage_metadata else 0
             return {
                         "messages": [response],

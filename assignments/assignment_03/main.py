@@ -252,7 +252,8 @@ async def main()->None:
             executor=executor,
             stop_controller=StopController(),
             checkpointer=checkpointer,
-            tools=tools
+            tools=tools,
+            tool_guard=
         ),
         "reasoning_worker":ReasoningWorker(
             model=llm,

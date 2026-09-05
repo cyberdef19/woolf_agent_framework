@@ -1,0 +1,21 @@
+{
+  "run_id": "f23bee8b-cc65-410b-ba31-ee131b4039cd",
+  "started_at": "2026-09-04T19:39:11.919111+00:00",
+  "finished_at": "2026-09-04T19:42:07.419414+00:00",
+  "initial_state": {
+    "query": "Яке походження назви Хаджибей? Визнач представлені в доступних джерелах гіпотези та оціни, яка з них має найкращу доказову підтримку.",
+    "research_result": null,
+    "critic_decision": null,
+    "human_decision": null
+  },
+  "trajectory": [
+    {
+      "timestamp": "2026-09-04T19:39:12.051894+00:00",
+      "update": {
+        "superviser": null
+      }
+    }
+  ],
+  "final_state": {},
+  "error": "ValidationError: 3 validation errors for HistoricalResearchExecutionResult\nstatus\n  Field required [type=missing, input_value={'plan': {'goal': 'Виз...B0%D1%86%D0%B8%D1%8F']}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\nsummary\n  Field required [type=missing, input_value={'plan': {'goal': 'Виз...B0%D1%86%D0%B8%D1%8F']}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\nanswer\n  Field required [type=missing, input_value={'plan': {'goal': 'Виз...B0%D1%86%D0%B8%D1%8F']}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing"
+}

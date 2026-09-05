@@ -1,5 +1,6 @@
 from collections.abc import Sequence
 
+from src.woolf_agents.core.guardrails.tools_allow import ToolGuard
 from src.woolf_agents.runtime.settings import AgentRuntimeSettings
 from src.woolf_agents.runtime.trajectory_logger import TrajectoryLogger
 from .tool_calling_graph import ToolCallingGraph
@@ -23,6 +24,7 @@ OutputT = TypeVar("OutputT")
 class ToolCallingWorker(Generic[StateT, OutputT]):
     
     def __init__(self,
+                 tool_guard:ToolGuard,
                  state: StateT,
                  llm: BaseChatModel,
                  tools: Sequence[BaseTool],
@@ -34,6 +36,7 @@ class ToolCallingWorker(Generic[StateT, OutputT]):
                  ):
         super().__init__()
         self._compiled_tool_calling: ToolCallingGraph = ToolCallingGraph(
+            tool_guard=tool_guard,
             state=state,
             model=llm,
             tools=tools,

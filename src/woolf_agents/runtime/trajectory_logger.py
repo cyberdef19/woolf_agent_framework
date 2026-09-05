@@ -12,7 +12,7 @@ from pydantic import BaseModel
 
 
 class TrajectoryLogger:
-    """Persist LangGraph node updates as a JSON trajectory."""
+    """Зберігає LangGraph вузол як JSON trajectory."""
 
     def __init__(self, log_directory: Path) -> None:
         self._log_directory = log_directory
@@ -40,25 +40,30 @@ class TrajectoryLogger:
                 stream_mode="updates",
             ):
                 serialized_event = self._serialize(event)
+                if isinstance(serialized_event, event):
+                    for agent_name, node_update in serialized_event.items():  
 
-                trajectory.append(
-                    {
-                        "timestamp": self._now(),
-                        "update": serialized_event,
-                    }
-                )
+                        trajectory.append(
+                            {
+                                "timestamp": self._now(),
+                                "update": node_update,
+                                "agent_name": agent_name
+                            }
+                        )
 
-                # stream_mode="updates" повертає оновлення за іменами вузлів.
-                if isinstance(serialized_event, dict):
-                    for node_update in serialized_event.values():
-                        if isinstance(node_update, dict):
+                        # stream_mode="updates" повертає оновлення за іменами вузлів.
+                        if isinstance(serialized_event, dict):
                             final_state.update(node_update)
+                            #for node_update in serialized_event.values():
+                            #    if isinstance(node_update, dict):
+                                    
             return final_state
         except BaseException as ex:
             error = f"{type(ex).__name__}: {ex}"
             raise
         finally:
             document = {
+                "agent_name": agent_name,
                 "run_id": run_id,
                 "started_at": started_at,
                 "finished_at": self._now(),

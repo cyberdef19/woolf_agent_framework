@@ -1,0 +1,21 @@
+{
+  "run_id": "73a3c8dc-e0d5-47f2-af71-085ea9134642",
+  "started_at": "2026-09-04T08:46:50.969531+00:00",
+  "finished_at": "2026-09-04T08:51:15.947204+00:00",
+  "initial_state": {
+    "query": "Яке походження назви Хаджибей? Визнач представлені в доступних джерелах гіпотези та оціни, яка з них має найкращу доказову підтримку.",
+    "research_result": null,
+    "critic_decision": null,
+    "human_decision": null
+  },
+  "trajectory": [
+    {
+      "timestamp": "2026-09-04T08:46:51.167009+00:00",
+      "update": {
+        "superviser": null
+      }
+    }
+  ],
+  "final_state": {},
+  "error": "AttributeError: 'MASResearchGraph' object has no attribute '_llm_settings'"
+}
