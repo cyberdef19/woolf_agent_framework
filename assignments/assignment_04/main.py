@@ -12,11 +12,19 @@ from src.woolf_agents.llm.config import ConfigLangsmithAPI, ConfigModelAPI, LLMM
 from src.woolf_agents.llm.executor import LLMExecutor
 from src.woolf_agents.llm.factory import LLMFactory
 from src.woolf_agents.workflows.mas_research_graph import MASResearchGraph
-from src.woolf_agents.workflows.state import MASAgentState
+from src.woolf_agents.workflows.state import MASAgentState, MASAgentStatus
 from src.woolf_agents.llm.settings import url_modelrouter
 from langgraph.checkpoint.sqlite.aio import AsyncSqliteSaver
 from langchain_mcp_adapters.client import MultiServerMCPClient
+from src.woolf_agents.infrastructure.configdb import PERSIST_DIRECTORY_CHROMA
 from pathlib import Path
+
+demo_queries = [
+    "Яке походження назви Хаджибей? Визнач представлені в доступних джерелах гіпотези та оціни, яка з них має найкращу доказову підтримку.",
+    "Які назви Хаджибея зустрічаються в доступних історичних джерелах?",
+    "Склади коротку хронологію згадок про Хаджибей на основі доступних джерел."
+    #"Перевір твердження: «Одеса була заснована у 1794 році на місці раніше незаселеної території». Чи підтверджується воно доступними історичними джерелами?"
+]
 
 settings = LLMSettings(
     provider=LLMProvider.OPENROUTER,
@@ -42,7 +50,7 @@ def configure_langsmith(
     os.environ["LANGSMITH_PROJECT"] = settings.project
     os.environ["LANGSMITH_ENDPOINT"] = settings.endpoint
 
-async def main():
+async def main(user_task: str, id_query: int):
     
     configure_langsmith(
             settings=LangSmithSettings(
@@ -65,7 +73,7 @@ async def main():
         }
     )
     
-    PROJECT_ROOT = Path(__file__).resolve().parent[2]
+    PROJECT_ROOT = Path(__file__).resolve().parents[2]
     checkpoint_path=(
             PROJECT_ROOT/"src"/"woolf_agents"/"data"/"checkpoints"/"checkpoints.sqlite"
         )
@@ -79,7 +87,8 @@ async def main():
     checkpointer = AsyncSqliteSaver(
             connection
         )
-    
+    print("Chroma path:", PERSIST_DIRECTORY_CHROMA)
+    print("Exists:", PERSIST_DIRECTORY_CHROMA.exists())
     mas: MASResearchGraph = MASResearchGraph(
         state_schema=MASAgentState,
         llm=llm,
@@ -89,15 +98,20 @@ async def main():
         retry_policy=retry_policy
     )
     
-    user_task="Яке походження назви Хаджибей? Визнач представлені в доступних джерелах гіпотези та оціни, яка з них має найкращу доказову підтримку."
-    thread_id = str(uuid4())
+    #user_task="Яке походження назви Хаджибей? Визнач представлені в доступних джерелах гіпотези та оціни, яка з них має найкращу доказову підтримку."
+    thread_id =str(uuid4())
+    
+    print("===============Демонстрація запиту користувача================")
+    print(f"Запит: {id_query}")
+    print(user_task) 
+    print("========================START=================================")
     result = await mas.run(
         thread_id=thread_id,
         user_task=user_task
     )
 
     
-    if result.status == ExecutionStatus.INTERRUPT:
+    if result["status"] == MASAgentStatus.INTERRUPT:
         print("\nCritical Agent requests human review.")
 
         if result.critic_decision:
@@ -124,12 +138,13 @@ async def main():
             decision=decision,
         )
     print("\nFINAL RESULT:")
-    print(result)
-    
+    print(result["final_answer"])
+    print("====================================END=============================")
     #risk_assessment = await run_red_team(mas, llm)
 
     #print(risk_assessment)
 
 
 if __name__=="__main__":
-    asyncio.run(main())
+    for ind, user_query in enumerate(demo_queries):
+        asyncio.run(main(user_query, ind))

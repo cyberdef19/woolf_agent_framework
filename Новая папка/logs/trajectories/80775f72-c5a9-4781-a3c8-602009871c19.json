@@ -1,0 +1,27 @@
+{
+  "run_id": "80775f72-c5a9-4781-a3c8-602009871c19",
+  "started_at": "2026-09-06T18:22:53.057369+00:00",
+  "finished_at": "2026-09-06T18:24:50.061739+00:00",
+  "initial_state": {
+    "status": "pending",
+    "task_user": "Перевір твердження: «Одеса була заснована у 1794 році на місці раніше незаселеної території». Чи підтверджується воно доступними історичними джерелами?",
+    "research_result": null,
+    "critic_decision": null,
+    "human_decision": null
+  },
+  "trajectory": [
+    {
+      "timestamp": "2026-09-06T18:22:53.064370+00:00",
+      "update": null,
+      "agent_name": "superviser"
+    }
+  ],
+  "final_state": {
+    "status": "pending",
+    "task_user": "Перевір твердження: «Одеса була заснована у 1794 році на місці раніше незаселеної території». Чи підтверджується воно доступними історичними джерелами?",
+    "research_result": null,
+    "critic_decision": null,
+    "human_decision": null
+  },
+  "error": "ValidationError: 1 validation error for StepEvaluationContext\ncurrent_step_result\n  Input should be a valid dictionary or instance of HistoricalResearchStepResult [type=model_type, input_value=None, input_type=NoneType]\n    For further information visit https://errors.pydantic.dev/2.13/v/model_type"
+}

@@ -1,0 +1,658 @@
+{
+  "run_id": "a37c1f97-bc97-4e3b-bf7a-caf1579040c8",
+  "started_at": "2026-09-06T18:17:52.903249+00:00",
+  "finished_at": "2026-09-06T18:19:41.566672+00:00",
+  "initial_state": {
+    "messages": [
+      {
+        "content": "Які назви Хаджибея зустрічаються в доступних історичних джерелах?",
+        "additional_kwargs": {},
+        "response_metadata": {},
+        "type": "human",
+        "name": null,
+        "id": "a4cb1487-c0e5-4025-abc0-949ab3b3c246"
+      }
+    ],
+    "step_count": 0,
+    "used_tokens": 0,
+    "execution_status": "pending",
+    "current_step_idx": 0,
+    "current_step_result": null,
+    "errors": [],
+    "evaluated_current_step": null,
+    "evaluated_steps": [],
+    "executor_response": null,
+    "len_steps": 0,
+    "metadata": {},
+    "plan": null,
+    "plan_execution_evaluated": null,
+    "results": [],
+    "revised_plans": [],
+    "structured_response": null,
+    "user_task": "Які назви Хаджибея зустрічаються в доступних історичних джерелах?",
+    "execution_id": "c747e538-65fe-4f58-ac1f-cec3bfcfff59",
+    "step_messages_start_idx": 0,
+    "human_deсision": null,
+    "interrupt_reason": null,
+    "source_interrupt": "no_source"
+  },
+  "trajectory": [
+    {
+      "timestamp": "2026-09-06T18:17:57.538933+00:00",
+      "update": {
+        "plan": {
+          "goal": "Визначити назви Хаджибея в історичних джерелах",
+          "steps": [
+            {
+              "id": "step1",
+              "step_status": "pending",
+              "objective": "Знайти історичні джерела, що містять інформацію про Хаджибей",
+              "expected_result": "Отримати список історичних джерел",
+              "require_tools": true,
+              "require_reasoning": false,
+              "research_query": "Хаджибей історичні джерела",
+              "requires_evidence": true,
+              "operation": "retrieve_sources"
+            },
+            {
+              "id": "step2",
+              "step_status": "pending",
+              "objective": "Виділити назви Хаджибея з отриманих джерел",
+              "expected_result": "Отримати список назв Хаджибея",
+              "require_tools": false,
+              "require_reasoning": true,
+              "research_query": null,
+              "requires_evidence": false,
+              "operation": "extract_claims"
+            },
+            {
+              "id": "step3",
+              "step_status": "pending",
+              "objective": "Проаналізувати отримані назви Хаджибея на предмет їхньої достовірності",
+              "expected_result": "Визначити достовірність назв",
+              "require_tools": false,
+              "require_reasoning": true,
+              "research_query": null,
+              "requires_evidence": false,
+              "operation": "evaluate_hypotheses"
+            },
+            {
+              "id": "step4",
+              "step_status": "pending",
+              "objective": "Сформувати висновок про назви Хаджибея на основі аналізу",
+              "expected_result": "Отримати обґрунтований висновок",
+              "require_tools": false,
+              "require_reasoning": true,
+              "research_query": null,
+              "requires_evidence": false,
+              "operation": "synthesize_conclusion"
+            }
+          ],
+          "research_question": "Які назви Хаджибея зустрічаються в доступних історичних джерелах?"
+        },
+        "step_count": 1,
+        "len_steps": 4,
+        "execution_status": "running",
+        "step_status": "pending"
+      },
+      "agent_name": "plan_node"
+    },
+    {
+      "timestamp": "2026-09-06T18:19:01.458278+00:00",
+      "update": {
+        "human_decision": null,
+        "source_interrupt": "no_source",
+        "current_step_result": {
+          "step_id": "step1",
+          "summary": "Знайдено кілька історичних джерел про Хаджибей.",
+          "evidence": [
+            {
+              "content": "Описує історію Хаджибея до 1791 року, згадуючи про його торгове значення.",
+              "source_id": "source_06",
+              "chunk_index": 8,
+              "source_url": "https://uk.wikisource.org/wiki/%D0%97%D0%B0%D0%BF%D0%B8%D1%81%D0%BA%D0%B8_%D0%9D%D0%A2%D0%A8/4/%D0%AE%D0%B2%D1%96%D0%BB%D0%B5%D0%B9%D0%BD%D1%96_%D0%B2%D0%B8%D0%B4%D0%B0%D0%BD%D1%8F_%D0%B4%D0%BE_%D1%96%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%97_%D0%BC._%D0%9E%D0%B4%D0%B5%D1%81%D0%B8"
+            },
+            {
+              "content": "Описує Хаджибей як населений пункт, його історію та значення в контексті Причорномор'я.",
+              "source_id": "source_01",
+              "chunk_index": 0,
+              "source_url": "https://resource.history.org.ua/cgi-bin/eiu/history.exe?&I21DBN=EIU&P21DBN=EIU&S21STN=1&S21REF=10&S21FMT=eiu_all&C21COM=S&S21CNR=20&S21P01=0&S21P02=0&S21P03=TRN=&S21COLORTERMS=0&S21STR=khadzhybej"
+            },
+            {
+              "content": "Обговорює назви, що використовувалися для Хаджибея, та його історичне значення.",
+              "source_id": "source_02",
+              "chunk_index": 11,
+              "source_url": "https://chm.onu.edu.ua/article/view/268837/266518"
+            }
+          ]
+        },
+        "results": [
+          {
+            "step_id": "step1",
+            "summary": "Знайдено кілька історичних джерел про Хаджибей.",
+            "evidence": [
+              {
+                "content": "Описує історію Хаджибея до 1791 року, згадуючи про його торгове значення.",
+                "source_id": "source_06",
+                "chunk_index": 8,
+                "source_url": "https://uk.wikisource.org/wiki/%D0%97%D0%B0%D0%BF%D0%B8%D1%81%D0%BA%D0%B8_%D0%9D%D0%A2%D0%A8/4/%D0%AE%D0%B2%D1%96%D0%BB%D0%B5%D0%B9%D0%BD%D1%96_%D0%B2%D0%B8%D0%B4%D0%B0%D0%BD%D1%8F_%D0%B4%D0%BE_%D1%96%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%97_%D0%BC._%D0%9E%D0%B4%D0%B5%D1%81%D0%B8"
+              },
+              {
+                "content": "Описує Хаджибей як населений пункт, його історію та значення в контексті Причорномор'я.",
+                "source_id": "source_01",
+                "chunk_index": 0,
+                "source_url": "https://resource.history.org.ua/cgi-bin/eiu/history.exe?&I21DBN=EIU&P21DBN=EIU&S21STN=1&S21REF=10&S21FMT=eiu_all&C21COM=S&S21CNR=20&S21P01=0&S21P02=0&S21P03=TRN=&S21COLORTERMS=0&S21STR=khadzhybej"
+              },
+              {
+                "content": "Обговорює назви, що використовувалися для Хаджибея, та його історичне значення.",
+                "source_id": "source_02",
+                "chunk_index": 11,
+                "source_url": "https://chm.onu.edu.ua/article/view/268837/266518"
+              }
+            ]
+          }
+        ],
+        "step_count": 1,
+        "evaluated_current_step": {
+          "step_id": "c747e538-65fe-4f58-ac1f-cec3bfcfff59",
+          "objective_satisfied": false,
+          "sufficient_for_next_step": true,
+          "contradictions_detected": false,
+          "new_information_changes_plan": false,
+          "confidence": 0.7,
+          "decision": "continue",
+          "reason": "Знайдено кілька історичних джерел про Хаджибей, що дозволяє продовжити дослідження, хоча список джерел не є вичерпним."
+        },
+        "plan_execution_evaluated": null,
+        "execution_status": "running",
+        "evaluated_steps": [
+          {
+            "step_id": "c747e538-65fe-4f58-ac1f-cec3bfcfff59",
+            "objective_satisfied": false,
+            "sufficient_for_next_step": true,
+            "contradictions_detected": false,
+            "new_information_changes_plan": false,
+            "confidence": 0.7,
+            "decision": "continue",
+            "reason": "Знайдено кілька історичних джерел про Хаджибей, що дозволяє продовжити дослідження, хоча список джерел не є вичерпним."
+          }
+        ],
+        "interrupt_reason": null
+      },
+      "agent_name": "executer_node"
+    },
+    {
+      "timestamp": "2026-09-06T18:19:01.463308+00:00",
+      "update": {
+        "execution_status": "running",
+        "step_count": 1,
+        "current_step_idx": 1
+      },
+      "agent_name": "counter_node"
+    },
+    {
+      "timestamp": "2026-09-06T18:19:09.461783+00:00",
+      "update": {
+        "human_decision": null,
+        "source_interrupt": "no_source",
+        "current_step_result": {
+          "step_id": "step2",
+          "summary": "Виділено кілька назв Хаджибея з історичних джерел.",
+          "evidence": [
+            {
+              "content": "Описує історію Хаджибея до 1791 року, згадуючи про його торгове значення.",
+              "source_id": "source_06",
+              "chunk_index": 8,
+              "source_url": "https://uk.wikisource.org/wiki/%D0%97%D0%B0%D0%BF%D0%B8%D1%81%D0%BA%D0%B8_%D0%9D%D0%A2%D0%A8/4/%D0%AE%D0%B2%D1%96%D0%BB%D0%B5%D0%B9%D0%BD%D1%96_%D0%B2%D0%B8%D0%B4%D0%B0%D0%BD%D1%8F_%D0%B4%D0%BE_%D1%96%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%97_%D0%BC._%D0%9E%D0%B4%D0%B5%D1%81%D0%B8"
+            },
+            {
+              "content": "Описує Хаджибей як населений пункт, його історію та значення в контексті Причорномор'я.",
+              "source_id": "source_01",
+              "chunk_index": 0,
+              "source_url": "https://resource.history.org.ua/cgi-bin/eiu/history.exe?&I21DBN=EIU&P21DBN=EIU&S21STN=1&S21REF=10&S21FMT=eiu_all&C21COM=S&S21CNR=20&S21P01=0&S21P02=0&S21P03=TRN=&S21COLORTERMS=0&S21STR=khadzhybej"
+            },
+            {
+              "content": "Обговорює назви, що використовувалися для Хаджибея, та його історичне значення.",
+              "source_id": "source_02",
+              "chunk_index": 11,
+              "source_url": "https://chm.onu.edu.ua/article/view/268837/266518"
+            }
+          ]
+        },
+        "results": [
+          {
+            "step_id": "step2",
+            "summary": "Виділено кілька назв Хаджибея з історичних джерел.",
+            "evidence": [
+              {
+                "content": "Описує історію Хаджибея до 1791 року, згадуючи про його торгове значення.",
+                "source_id": "source_06",
+                "chunk_index": 8,
+                "source_url": "https://uk.wikisource.org/wiki/%D0%97%D0%B0%D0%BF%D0%B8%D1%81%D0%BA%D0%B8_%D0%9D%D0%A2%D0%A8/4/%D0%AE%D0%B2%D1%96%D0%BB%D0%B5%D0%B9%D0%BD%D1%96_%D0%B2%D0%B8%D0%B4%D0%B0%D0%BD%D1%8F_%D0%B4%D0%BE_%D1%96%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%97_%D0%BC._%D0%9E%D0%B4%D0%B5%D1%81%D0%B8"
+              },
+              {
+                "content": "Описує Хаджибей як населений пункт, його історію та значення в контексті Причорномор'я.",
+                "source_id": "source_01",
+                "chunk_index": 0,
+                "source_url": "https://resource.history.org.ua/cgi-bin/eiu/history.exe?&I21DBN=EIU&P21DBN=EIU&S21STN=1&S21REF=10&S21FMT=eiu_all&C21COM=S&S21CNR=20&S21P01=0&S21P02=0&S21P03=TRN=&S21COLORTERMS=0&S21STR=khadzhybej"
+              },
+              {
+                "content": "Обговорює назви, що використовувалися для Хаджибея, та його історичне значення.",
+                "source_id": "source_02",
+                "chunk_index": 11,
+                "source_url": "https://chm.onu.edu.ua/article/view/268837/266518"
+              }
+            ]
+          }
+        ],
+        "step_count": 1,
+        "evaluated_current_step": {
+          "step_id": "c747e538-65fe-4f58-ac1f-cec3bfcfff59",
+          "objective_satisfied": false,
+          "sufficient_for_next_step": true,
+          "contradictions_detected": false,
+          "new_information_changes_plan": false,
+          "confidence": 0.7,
+          "decision": "continue",
+          "reason": "Отримано кілька назв Хаджибея з історичних джерел, що дозволяє продовжити дослідження, хоча список не є вичерпним."
+        },
+        "plan_execution_evaluated": null,
+        "execution_status": "running",
+        "evaluated_steps": [
+          {
+            "step_id": "c747e538-65fe-4f58-ac1f-cec3bfcfff59",
+            "objective_satisfied": false,
+            "sufficient_for_next_step": true,
+            "contradictions_detected": false,
+            "new_information_changes_plan": false,
+            "confidence": 0.7,
+            "decision": "continue",
+            "reason": "Отримано кілька назв Хаджибея з історичних джерел, що дозволяє продовжити дослідження, хоча список не є вичерпним."
+          }
+        ],
+        "interrupt_reason": null
+      },
+      "agent_name": "executer_node"
+    },
+    {
+      "timestamp": "2026-09-06T18:19:09.465754+00:00",
+      "update": {
+        "execution_status": "running",
+        "step_count": 1,
+        "current_step_idx": 1
+      },
+      "agent_name": "counter_node"
+    },
+    {
+      "timestamp": "2026-09-06T18:19:18.005577+00:00",
+      "update": {
+        "human_decision": null,
+        "source_interrupt": "no_source",
+        "current_step_result": {
+          "step_id": "step3",
+          "summary": "Аналіз назв Хаджибея в історичних джерелах вказує на їхню достовірність, оскільки всі назви підтверджуються різними джерелами, які описують історію та значення Хаджибея.",
+          "evidence": [
+            {
+              "content": "Описує історію Хаджибея до 1791 року, згадуючи про його торгове значення.",
+              "source_id": "source_06",
+              "chunk_index": 8,
+              "source_url": "https://uk.wikisource.org/wiki/%D0%97%D0%B0%D0%BF%D0%B8%D1%81%D0%BA%D0%B8_%D0%9D%D0%A2%D0%A8/4/%D0%AE%D0%B2%D1%96%D0%BB%D0%B5%D0%B9%D0%BD%D1%96_%D0%B2%D0%B8%D0%B4%D0%B0%D0%BD%D1%8F_%D0%B4%D0%BE_%D1%96%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%97_%D0%BC._%D0%9E%D0%B4%D0%B5%D1%81%D0%B8"
+            },
+            {
+              "content": "Описує Хаджибей як населений пункт, його історію та значення в контексті Причорномор'я.",
+              "source_id": "source_01",
+              "chunk_index": 0,
+              "source_url": "https://resource.history.org.ua/cgi-bin/eiu/history.exe?&I21DBN=EIU&P21DBN=EIU&S21STN=1&S21REF=10&S21FMT=eiu_all&C21COM=S&S21CNR=20&S21P01=0&S21P02=0&S21P03=TRN=&S21COLORTERMS=0&S21STR=khadzhybej"
+            },
+            {
+              "content": "Обговорює назви, що використовувалися для Хаджибея, та його історичне значення.",
+              "source_id": "source_02",
+              "chunk_index": 11,
+              "source_url": "https://chm.onu.edu.ua/article/view/268837/266518"
+            }
+          ]
+        },
+        "results": [
+          {
+            "step_id": "step3",
+            "summary": "Аналіз назв Хаджибея в історичних джерелах вказує на їхню достовірність, оскільки всі назви підтверджуються різними джерелами, які описують історію та значення Хаджибея.",
+            "evidence": [
+              {
+                "content": "Описує історію Хаджибея до 1791 року, згадуючи про його торгове значення.",
+                "source_id": "source_06",
+                "chunk_index": 8,
+                "source_url": "https://uk.wikisource.org/wiki/%D0%97%D0%B0%D0%BF%D0%B8%D1%81%D0%BA%D0%B8_%D0%9D%D0%A2%D0%A8/4/%D0%AE%D0%B2%D1%96%D0%BB%D0%B5%D0%B9%D0%BD%D1%96_%D0%B2%D0%B8%D0%B4%D0%B0%D0%BD%D1%8F_%D0%B4%D0%BE_%D1%96%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%97_%D0%BC._%D0%9E%D0%B4%D0%B5%D1%81%D0%B8"
+              },
+              {
+                "content": "Описує Хаджибей як населений пункт, його історію та значення в контексті Причорномор'я.",
+                "source_id": "source_01",
+                "chunk_index": 0,
+                "source_url": "https://resource.history.org.ua/cgi-bin/eiu/history.exe?&I21DBN=EIU&P21DBN=EIU&S21STN=1&S21REF=10&S21FMT=eiu_all&C21COM=S&S21CNR=20&S21P01=0&S21P02=0&S21P03=TRN=&S21COLORTERMS=0&S21STR=khadzhybej"
+              },
+              {
+                "content": "Обговорює назви, що використовувалися для Хаджибея, та його історичне значення.",
+                "source_id": "source_02",
+                "chunk_index": 11,
+                "source_url": "https://chm.onu.edu.ua/article/view/268837/266518"
+              }
+            ]
+          }
+        ],
+        "step_count": 1,
+        "evaluated_current_step": {
+          "step_id": "c747e538-65fe-4f58-ac1f-cec3bfcfff59",
+          "objective_satisfied": true,
+          "sufficient_for_next_step": true,
+          "contradictions_detected": false,
+          "new_information_changes_plan": false,
+          "confidence": 0.8,
+          "decision": "continue",
+          "reason": "Аналіз назв Хаджибея в історичних джерелах підтверджує їхню достовірність, що дозволяє перейти до наступного кроку дослідження без необхідності перепланування."
+        },
+        "plan_execution_evaluated": null,
+        "execution_status": "running",
+        "evaluated_steps": [
+          {
+            "step_id": "c747e538-65fe-4f58-ac1f-cec3bfcfff59",
+            "objective_satisfied": true,
+            "sufficient_for_next_step": true,
+            "contradictions_detected": false,
+            "new_information_changes_plan": false,
+            "confidence": 0.8,
+            "decision": "continue",
+            "reason": "Аналіз назв Хаджибея в історичних джерелах підтверджує їхню достовірність, що дозволяє перейти до наступного кроку дослідження без необхідності перепланування."
+          }
+        ],
+        "interrupt_reason": null
+      },
+      "agent_name": "executer_node"
+    },
+    {
+      "timestamp": "2026-09-06T18:19:18.008577+00:00",
+      "update": {
+        "execution_status": "running",
+        "step_count": 1,
+        "current_step_idx": 1
+      },
+      "agent_name": "counter_node"
+    },
+    {
+      "timestamp": "2026-09-06T18:19:27.357190+00:00",
+      "update": {
+        "human_decision": null,
+        "source_interrupt": "no_source",
+        "current_step_result": {
+          "step_id": "step4",
+          "summary": "На основі аналізу історичних джерел, Хаджибей згадується під кількома назвами, зокрема: \"Хаджибей\", \"Каджибей\" та \"Каджибейський\". Ці назви використовуються в різних контекстах, що свідчить про його історичне значення як торгового пункту та населеного місця.",
+          "evidence": [
+            {
+              "content": "Описує Хаджибей як населений пункт, його історію та значення в контексті Причорномор'я.",
+              "source_id": "source_01",
+              "chunk_index": 0,
+              "source_url": "https://resource.history.org.ua/cgi-bin/eiu/history.exe?&I21DBN=EIU&P21DBN=EIU&S21STN=1&S21REF=10&S21FMT=eiu_all&C21COM=S&S21CNR=20&S21P01=0&S21P02=0&S21P03=TRN=&S21COLORTERMS=0&S21STR=khadzhybej"
+            },
+            {
+              "content": "Обговорює назви, що використовувалися для Хаджибея, та його історичне значення.",
+              "source_id": "source_02",
+              "chunk_index": 11,
+              "source_url": "https://chm.onu.edu.ua/article/view/268837/266518"
+            },
+            {
+              "content": "Описує історію Хаджибея до 1791 року, згадуючи про його торгове значення.",
+              "source_id": "source_06",
+              "chunk_index": 8,
+              "source_url": "https://uk.wikisource.org/wiki/%D0%97%D0%B0%D0%BF%D0%B8%D1%81%D0%BA%D0%B8_%D0%9D%D0%A2%D0%A8/4/%D0%AE%D0%B2%D1%96%D0%BB%D0%B5%D0%B9%D0%BD%D1%96_%D0%B2%D0%B8%D0%B4%D0%B0%D0%BD%D1%8F_%D0%B4%D0%BE_%D1%96%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%97_%D0%BC._%D0%9E%D0%B4%D0%B5%D1%81%D0%B8"
+            }
+          ]
+        },
+        "results": [
+          {
+            "step_id": "step4",
+            "summary": "На основі аналізу історичних джерел, Хаджибей згадується під кількома назвами, зокрема: \"Хаджибей\", \"Каджибей\" та \"Каджибейський\". Ці назви використовуються в різних контекстах, що свідчить про його історичне значення як торгового пункту та населеного місця.",
+            "evidence": [
+              {
+                "content": "Описує Хаджибей як населений пункт, його історію та значення в контексті Причорномор'я.",
+                "source_id": "source_01",
+                "chunk_index": 0,
+                "source_url": "https://resource.history.org.ua/cgi-bin/eiu/history.exe?&I21DBN=EIU&P21DBN=EIU&S21STN=1&S21REF=10&S21FMT=eiu_all&C21COM=S&S21CNR=20&S21P01=0&S21P02=0&S21P03=TRN=&S21COLORTERMS=0&S21STR=khadzhybej"
+              },
+              {
+                "content": "Обговорює назви, що використовувалися для Хаджибея, та його історичне значення.",
+                "source_id": "source_02",
+                "chunk_index": 11,
+                "source_url": "https://chm.onu.edu.ua/article/view/268837/266518"
+              },
+              {
+                "content": "Описує історію Хаджибея до 1791 року, згадуючи про його торгове значення.",
+                "source_id": "source_06",
+                "chunk_index": 8,
+                "source_url": "https://uk.wikisource.org/wiki/%D0%97%D0%B0%D0%BF%D0%B8%D1%81%D0%BA%D0%B8_%D0%9D%D0%A2%D0%A8/4/%D0%AE%D0%B2%D1%96%D0%BB%D0%B5%D0%B9%D0%BD%D1%96_%D0%B2%D0%B8%D0%B4%D0%B0%D0%BD%D1%8F_%D0%B4%D0%BE_%D1%96%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%97_%D0%BC._%D0%9E%D0%B4%D0%B5%D1%81%D0%B8"
+              }
+            ]
+          }
+        ],
+        "step_count": 1,
+        "evaluated_current_step": {
+          "step_id": "c747e538-65fe-4f58-ac1f-cec3bfcfff59",
+          "objective_satisfied": true,
+          "sufficient_for_next_step": true,
+          "contradictions_detected": false,
+          "new_information_changes_plan": false,
+          "confidence": 0.8,
+          "decision": "continue",
+          "reason": "Отримані дані про назви Хаджибея є достатніми для формування обґрунтованого висновку, незважаючи на можливу невизначеність у контекстах використання назв."
+        },
+        "plan_execution_evaluated": null,
+        "execution_status": "running",
+        "evaluated_steps": [
+          {
+            "step_id": "c747e538-65fe-4f58-ac1f-cec3bfcfff59",
+            "objective_satisfied": true,
+            "sufficient_for_next_step": true,
+            "contradictions_detected": false,
+            "new_information_changes_plan": false,
+            "confidence": 0.8,
+            "decision": "continue",
+            "reason": "Отримані дані про назви Хаджибея є достатніми для формування обґрунтованого висновку, незважаючи на можливу невизначеність у контекстах використання назв."
+          }
+        ],
+        "interrupt_reason": null
+      },
+      "agent_name": "executer_node"
+    },
+    {
+      "timestamp": "2026-09-06T18:19:27.360191+00:00",
+      "update": {
+        "execution_status": "ready_for_plan_evaluation",
+        "step_count": 1,
+        "current_step_idx": 0
+      },
+      "agent_name": "counter_node"
+    },
+    {
+      "timestamp": "2026-09-06T18:19:29.321964+00:00",
+      "update": {
+        "human_decision": null,
+        "source_interrupt": "no_source",
+        "current_step_result": null,
+        "results": [],
+        "step_count": 1,
+        "evaluated_current_step": null,
+        "plan_execution_evaluated": {
+          "goal_satisfied": true,
+          "task_answerable": true,
+          "evidence_sufficient": true,
+          "internal_consistency": true,
+          "unresolved_contradictions": false,
+          "missing_information": false,
+          "confidence": 0.8,
+          "decision": "complete",
+          "reason": "На основі аналізу історичних джерел, отримано достатню кількість назв Хаджибея, що дозволяє сформувати обґрунтований висновок. Хоча є певна невизначеність у контекстах використання назв, це не заважає завершити дослідження."
+        },
+        "execution_status": "completed",
+        "evaluated_steps": [],
+        "interrupt_reason": null
+      },
+      "agent_name": "executer_node"
+    },
+    {
+      "timestamp": "2026-09-06T18:19:29.330962+00:00",
+      "update": {
+        "execution_status": "completed",
+        "step_count": 1,
+        "current_step_idx": 0
+      },
+      "agent_name": "counter_node"
+    },
+    {
+      "timestamp": "2026-09-06T18:19:41.566672+00:00",
+      "update": {
+        "structured_response": {
+          "status": "success",
+          "errors": [],
+          "summary": "На основі аналізу історичних джерел, Хаджибей згадується під кількома назвами, зокрема: \"Хаджибей\", \"Каджибей\" та \"Каджибейський\". Ці назви використовуються в різних контекстах, що свідчить про його історичне значення як торгового пункту та населеного місця.",
+          "answer": "Дослідження показало, що Хаджибей згадується в історичних джерелах під кількома назвами, зокрема: \"Хаджибей\", \"Каджибей\" та \"Каджибейський\". Ці назви використовуються в різних контекстах, що свідчить про його історичне значення як торгового пункту та населеного місця. Наприклад, одне з джерел описує Хаджибей як населений пункт, його історію та значення в контексті Причорномор'я. Інше джерело надає інформацію про історію Хаджибея до 1791 року, зокрема, згадуючи про його торгове значення. Ці дані підтверджують, що назви Хаджибея мають різні варіації, але всі вони вказують на одне й те ж місце, що підкреслює його важливість в історії регіону.",
+          "key_findings": [
+            "Хаджибей згадується під назвами: \"Хаджибей\", \"Каджибей\", \"Каджибейський\".",
+            "Ці назви використовуються в різних контекстах, що свідчить про історичне значення Хаджибея.",
+            "Джерела підтверджують, що Хаджибей був важливим торговим пунктом."
+          ],
+          "uncertainties": [
+            "Існує певна невизначеність у контекстах використання назв, але це не заважає завершити дослідження."
+          ],
+          "source_id": [
+            "source_01",
+            "source_02",
+            "source_06"
+          ],
+          "source_url": [
+            "https://resource.history.org.ua/cgi-bin/eiu/history.exe?&I21DBN=EIU&P21DBN=EIU&S21STN=1&S21REF=10&S21FMT=eiu_all&C21COM=S&S21CNR=20&S21P01=0&S21P02=0&S21P03=TRN=&S21COLORTERMS=0&S21STR=khadzhybej",
+            "https://chm.onu.edu.ua/article/view/268837/266518",
+            "https://uk.wikisource.org/wiki/%D0%97%D0%B0%D0%BF%D0%B8%D1%81%D0%BA%D0%B8_%D0%9D%D0%A2%D0%A8/4/%D0%AE%D0%B2%D1%96%D0%BB%D0%B5%D0%B9%D0%BD%D1%96_%D0%B2%D0%B8%D0%B4%D0%B0%D0%BD%D1%8F_%D0%B4%D0%BE_%D1%96%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%97_%D0%BC._%D0%9E%D0%B4%D0%B5%D1%81%D0%B8"
+          ]
+        },
+        "step_count": 1
+      },
+      "agent_name": "structured_output"
+    }
+  ],
+  "final_state": {
+    "messages": [
+      {
+        "content": "Які назви Хаджибея зустрічаються в доступних історичних джерелах?",
+        "additional_kwargs": {},
+        "response_metadata": {},
+        "type": "human",
+        "name": null,
+        "id": "a4cb1487-c0e5-4025-abc0-949ab3b3c246"
+      }
+    ],
+    "step_count": 1,
+    "used_tokens": 0,
+    "execution_status": "completed",
+    "current_step_idx": 0,
+    "current_step_result": null,
+    "errors": [],
+    "evaluated_current_step": null,
+    "evaluated_steps": [],
+    "executor_response": null,
+    "len_steps": 4,
+    "metadata": {},
+    "plan": {
+      "goal": "Визначити назви Хаджибея в історичних джерелах",
+      "steps": [
+        {
+          "id": "step1",
+          "step_status": "pending",
+          "objective": "Знайти історичні джерела, що містять інформацію про Хаджибей",
+          "expected_result": "Отримати список історичних джерел",
+          "require_tools": true,
+          "require_reasoning": false,
+          "research_query": "Хаджибей історичні джерела",
+          "requires_evidence": true,
+          "operation": "retrieve_sources"
+        },
+        {
+          "id": "step2",
+          "step_status": "pending",
+          "objective": "Виділити назви Хаджибея з отриманих джерел",
+          "expected_result": "Отримати список назв Хаджибея",
+          "require_tools": false,
+          "require_reasoning": true,
+          "research_query": null,
+          "requires_evidence": false,
+          "operation": "extract_claims"
+        },
+        {
+          "id": "step3",
+          "step_status": "pending",
+          "objective": "Проаналізувати отримані назви Хаджибея на предмет їхньої достовірності",
+          "expected_result": "Визначити достовірність назв",
+          "require_tools": false,
+          "require_reasoning": true,
+          "research_query": null,
+          "requires_evidence": false,
+          "operation": "evaluate_hypotheses"
+        },
+        {
+          "id": "step4",
+          "step_status": "pending",
+          "objective": "Сформувати висновок про назви Хаджибея на основі аналізу",
+          "expected_result": "Отримати обґрунтований висновок",
+          "require_tools": false,
+          "require_reasoning": true,
+          "research_query": null,
+          "requires_evidence": false,
+          "operation": "synthesize_conclusion"
+        }
+      ],
+      "research_question": "Які назви Хаджибея зустрічаються в доступних історичних джерелах?"
+    },
+    "plan_execution_evaluated": {
+      "goal_satisfied": true,
+      "task_answerable": true,
+      "evidence_sufficient": true,
+      "internal_consistency": true,
+      "unresolved_contradictions": false,
+      "missing_information": false,
+      "confidence": 0.8,
+      "decision": "complete",
+      "reason": "На основі аналізу історичних джерел, отримано достатню кількість назв Хаджибея, що дозволяє сформувати обґрунтований висновок. Хоча є певна невизначеність у контекстах використання назв, це не заважає завершити дослідження."
+    },
+    "results": [],
+    "revised_plans": [],
+    "structured_response": {
+      "status": "success",
+      "errors": [],
+      "summary": "На основі аналізу історичних джерел, Хаджибей згадується під кількома назвами, зокрема: \"Хаджибей\", \"Каджибей\" та \"Каджибейський\". Ці назви використовуються в різних контекстах, що свідчить про його історичне значення як торгового пункту та населеного місця.",
+      "answer": "Дослідження показало, що Хаджибей згадується в історичних джерелах під кількома назвами, зокрема: \"Хаджибей\", \"Каджибей\" та \"Каджибейський\". Ці назви використовуються в різних контекстах, що свідчить про його історичне значення як торгового пункту та населеного місця. Наприклад, одне з джерел описує Хаджибей як населений пункт, його історію та значення в контексті Причорномор'я. Інше джерело надає інформацію про історію Хаджибея до 1791 року, зокрема, згадуючи про його торгове значення. Ці дані підтверджують, що назви Хаджибея мають різні варіації, але всі вони вказують на одне й те ж місце, що підкреслює його важливість в історії регіону.",
+      "key_findings": [
+        "Хаджибей згадується під назвами: \"Хаджибей\", \"Каджибей\", \"Каджибейський\".",
+        "Ці назви використовуються в різних контекстах, що свідчить про історичне значення Хаджибея.",
+        "Джерела підтверджують, що Хаджибей був важливим торговим пунктом."
+      ],
+      "uncertainties": [
+        "Існує певна невизначеність у контекстах використання назв, але це не заважає завершити дослідження."
+      ],
+      "source_id": [
+        "source_01",
+        "source_02",
+        "source_06"
+      ],
+      "source_url": [
+        "https://resource.history.org.ua/cgi-bin/eiu/history.exe?&I21DBN=EIU&P21DBN=EIU&S21STN=1&S21REF=10&S21FMT=eiu_all&C21COM=S&S21CNR=20&S21P01=0&S21P02=0&S21P03=TRN=&S21COLORTERMS=0&S21STR=khadzhybej",
+        "https://chm.onu.edu.ua/article/view/268837/266518",
+        "https://uk.wikisource.org/wiki/%D0%97%D0%B0%D0%BF%D0%B8%D1%81%D0%BA%D0%B8_%D0%9D%D0%A2%D0%A8/4/%D0%AE%D0%B2%D1%96%D0%BB%D0%B5%D0%B9%D0%BD%D1%96_%D0%B2%D0%B8%D0%B4%D0%B0%D0%BD%D1%8F_%D0%B4%D0%BE_%D1%96%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%97_%D0%BC._%D0%9E%D0%B4%D0%B5%D1%81%D0%B8"
+      ]
+    },
+    "user_task": "Які назви Хаджибея зустрічаються в доступних історичних джерелах?",
+    "execution_id": "c747e538-65fe-4f58-ac1f-cec3bfcfff59",
+    "step_messages_start_idx": 0,
+    "human_deсision": null,
+    "interrupt_reason": null,
+    "source_interrupt": "no_source",
+    "step_status": "pending",
+    "human_decision": null
+  },
+  "error": null
+}

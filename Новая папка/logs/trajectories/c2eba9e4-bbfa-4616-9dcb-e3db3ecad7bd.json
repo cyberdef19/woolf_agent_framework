@@ -1,0 +1,343 @@
+{
+  "run_id": "c2eba9e4-bbfa-4616-9dcb-e3db3ecad7bd",
+  "started_at": "2026-09-06T19:29:11.020620+00:00",
+  "finished_at": "2026-09-06T19:30:08.155079+00:00",
+  "initial_state": {
+    "messages": [
+      {
+        "content": "Виконай поточний крок плану {\n  \"id\": \"step1\",\n  \"step_status\": \"pending\",\n  \"objective\": \"Пошук історичних джерел, що містять згадки про Хаджибей.\",\n  \"expected_result\": \"Отримання списку релевантних історичних джерел.\",\n  \"require_tools\": true,\n  \"require_reasoning\": false,\n  \"research_query\": \"Історичні джерела про Хаджибей.\",\n  \"requires_evidence\": true,\n  \"operation\": \"retrieve_sources\"\n}",
+        "additional_kwargs": {},
+        "response_metadata": {},
+        "type": "human",
+        "name": null,
+        "id": "dce72232-da29-42d5-8f7f-73b185a7e5af"
+      }
+    ],
+    "execution_id": "f567e501-8d75-4cc3-bc0b-13e40b2580cd",
+    "step_count": 0,
+    "used_tokens": 0,
+    "execution_status": "pending",
+    "structured_output": null
+  },
+  "trajectory": [
+    {
+      "timestamp": "2026-09-06T19:29:12.007771+00:00",
+      "update": {
+        "messages": [
+          {
+            "content": "",
+            "additional_kwargs": {
+              "refusal": null
+            },
+            "response_metadata": {
+              "token_usage": {
+                "completion_tokens": 28,
+                "prompt_tokens": 1232,
+                "total_tokens": 1260,
+                "completion_tokens_details": {
+                  "accepted_prediction_tokens": null,
+                  "audio_tokens": 0,
+                  "reasoning_tokens": 0,
+                  "rejected_prediction_tokens": null,
+                  "image_tokens": 0
+                },
+                "prompt_tokens_details": {
+                  "audio_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0,
+                  "video_tokens": 0
+                },
+                "cost": 0.0002016,
+                "is_byok": false,
+                "cost_details": {
+                  "upstream_inference_cost": 0.0002016,
+                  "upstream_inference_prompt_cost": 0.0001848,
+                  "upstream_inference_completions_cost": 1.68e-05
+                }
+              },
+              "model_provider": "openai",
+              "model_name": "openai/gpt-4o-mini",
+              "system_fingerprint": "fp_f5dd3ac0b7",
+              "id": "gen-1788722950-ooSVmBQbGYkmRBCtLf4R",
+              "finish_reason": "tool_calls",
+              "logprobs": null
+            },
+            "type": "ai",
+            "name": null,
+            "id": "lc_run--01a07832-339c-7360-bf4a-48cb021ef9f9-0",
+            "tool_calls": [
+              {
+                "name": "retrieve_sources",
+                "args": {
+                  "query": "Історичні джерела про Хаджибей."
+                },
+                "id": "call_z4pGRf62JhPIX4Mbz8Ym9LVY",
+                "type": "tool_call"
+              }
+            ],
+            "invalid_tool_calls": [],
+            "usage_metadata": {
+              "input_tokens": 1232,
+              "output_tokens": 28,
+              "total_tokens": 1260,
+              "input_token_details": {
+                "audio": 0,
+                "cache_read": 0,
+                "cache_creation": 0
+              },
+              "output_token_details": {
+                "audio": 0,
+                "reasoning": 0
+              }
+            }
+          }
+        ],
+        "step_count": 1,
+        "used_tokens": 1260
+      },
+      "agent_name": "agent"
+    },
+    {
+      "timestamp": "2026-09-06T19:29:12.011769+00:00",
+      "update": {
+        "stop_decision": {
+          "should_stop": false,
+          "reason": null,
+          "message": null
+        }
+      },
+      "agent_name": "guard"
+    },
+    {
+      "timestamp": "2026-09-06T19:29:57.961513+00:00",
+      "update": {
+        "messages": [
+          {
+            "content": [
+              {
+                "type": "text",
+                "text": "[{\"id\":\"source_04_chunk_0090\",\"metadata\":{\"moddate\":\"2019-09-25T11:20:27-07:00\",\"chunk_index\":90,\"keywords\":\"\",\"producer\":\"GPL Ghostscript 9.26\",\"language\":\"ru\",\"author\":[\"А.В.Красножон\"],\"file_name\":\"source04.pdf\",\"total_pages\":29,\"year\":2019,\"source\":\"I:\\\\WoolfFrameworkAgent\\\\src\\\\woolf_agents\\\\data\\\\historical_sources\\\\source04.pdf\",\"page_label\":\"417\",\"url\":\"https://www.academia.edu/40442103/%D0%97%D0%B0%D0%BC%D0%BE%D0%BA_%D0%A5%D0%B0%D0%B4%D0%B6%D0%B8%D0%B1%D0%B5%D0%B9_%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F_%D0%B8%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B9_%D0%B4%D0%B0%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B8_%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F\",\"source_type\":\"academic_article\",\"creationdate\":\"2019-09-25T11:20:27-07:00\",\"title\":\"Замок Хаджибей:история исследований, датировки, локализация\",\"subject\":\"\",\"publication\":\"В поисках сущности.Сборник статей в честь 60-летия Н.Д.Русеева\",\"creator\":\"\",\"source_id\":\"source_04\",\"page\":22},\"page_content\":\"(ред.). Кочубіїв-Хаджибей-Одеса. Матеріали \\nI всеукраїнської наукової конференції, присвя-\\nченої 600-рiччю мiста. Одеса: Політехперіодика, \\n73—76.\\nКрасножон А. В. 2016. К проблеме локализации Хаджи-\\nбейского замка. Вісник ОІКМ 15, 132—141.\\nКрасножон А. В. 2018 а. Два документа 1593 г. о ре-\\nмонтных работах в Хаджибее. Стародавнє \\nПричорномор’я (XII), 298—303.\\nКрасножон А. В. 2018b. Фортеці та міста Північно-\\nЗахідного Причорномор’я (XV—XVIII ст.). Оде-\\nса: Чорномор’я.\\nКрасножон А. В., Федорук А. В. 2012. Огнестрельная \\nартиллерия как датирующий признак цитадели \\nкрепости Белгород. Stratum plus (6), 239—259.\\nЛеп’явко С. А. 1996. Козацькі війни кінця XVI ст. в Укра-\\nїні. Чернігів: Сiверянська думка.\\nМаркевич А. И. 1894. Город Качибей или Гаджибей — \\nпредшественник города Одессы. ЗООИД 17, \\n1—72.\\nМорозов П. 1831. Исторический взгляд на Одессу. Одес-\\nский альманах на 1831-й год. Одесса, 1—43.\",\"type\":\"Document\"},{\"id\":\"source_04_chunk_0092\",\"metadata\":{\"moddate\":\"2019-09-25T11:20:27-07:00\",\"producer\":\"GPL Ghostscript 9.26\",\"creationdate\":\"2019-09-25T11:20:27-07:00\",\"source_type\":\"academic_article\",\"url\":\"https://www.academia.edu/40442103/%D0%97%D0%B0%D0%BC%D0%BE%D0%BA_%D0%A5%D0%B0%D0%B4%D0%B6%D0%B8%D0%B1%D0%B5%D0%B9_%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F_%D0%B8%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B9_%D0%B4%D0%B0%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B8_%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F\",\"total_pages\":29,\"language\":\"ru\",\"keywords\":\"\",\"publication\":\"В поисках сущности.Сборник статей в честь 60-летия Н.Д.Русеева\",\"title\":\"Замок Хаджибей:история исследований, датировки, локализация\",\"source_id\":\"source_04\",\"author\":[\"А.В.Красножон\"],\"chunk_index\":92,\"source\":\"I:\\\\WoolfFrameworkAgent\\\\src\\\\woolf_agents\\\\data\\\\historical_sources\\\\source04.pdf\",\"page\":23,\"subject\":\"\",\"page_label\":\"418\",\"year\":2019,\"file_name\":\"source04.pdf\",\"creator\":\"\"},\"page_content\":\"альманаха «Российский Архив».\\nСапожников И. В. 1999. Описание Одессы и Север-\\nного Причерноморья 1780- х гг. Ильичевск: \\n«Элтон-2».\\nСапожников І. В. 2005. Край під владою Золотої Орди, \\nЛитви, Кримського ханства та Туреччини (друга \\nполовина XIII — 1789 р.). Край Овідія: археоло-\\nгія та історія Овідіопольського району. Одеса: \\nАстропринт, 51—79.\\nСапожников І. В. 2015. Андре-Жозеф де Лафітт-Клаве \\nу Хаджибеї у 1784 році. Кочубіїв-Хаджибей-\\nОдеса. Матеріали I всеукраїнської наукової кон-\\nференції, присвяченої 600- рiччю мiста. Одеса, \\n123—128.\\nСапожников И. В. 2016. Османский замок Хаджибей \\n(Hocabey Hisar — ﺣﺼﺍﺭﻯ ﺣﻮﺍﺟﻬﺑﻙ  )в 1766—1789 го-\\nдах. Архів. Історія. Сучасність (2). Одеса, \\n267—277.\\nСапожников И. В. 2017. А.-Ж. де Лафитт-Клаве и история \\nКоджа-бея — Одессы. Scriptorium nostrum (елек-\\nтронний історичний журнал) 9 (3), 139—159.\\nСереда А. Г. 2009. Силистренско-очаковският еялет \\nпрез ХVIII — началото на ХIХ в. Администра-\\nтивно-териториално устройство, селища\",\"type\":\"Document\"},{\"id\":\"source_02_chunk_0011\",\"metadata\":{\"publication\":\"Чорноморська минувшина\",\"title\":\"Коцюбіїв.Качибей чи Кочубієв.Яку назву доцільніше вживати щодо Одеси у XV-XVI ст.\",\"moddate\":\"2022-12-30T15:14:33+00:00\",\"source\":\"I:\\\\WoolfFrameworkAgent\\\\src\\\\woolf_agents\\\\data\\\\historical_sources\\\\source02.pdf\",\"creationdate\":\"\",\"total_pages\":3,\"source_type\":\"academic_article\",\"file_name\":\"source02.pdf\",\"url\":\"https://chm.onu.edu.ua/article/view/268837/266518\",\"chunk_index\":11,\"source_id\":\"source_02\",\"author\":[\"Гончарук Тарас\"],\"language\":\"uk\",\"page\":2,\"page_label\":\"3\",\"year\":2022,\"producer\":\"iLovePDF\",\"creator\":\"PyPDF\"},\"page_content\":\"обґрунтованої назви, або назв, для Одеси XV – XVIІІ ст. потребує подальшого вивчення та \\nобговорення.  \\n \\nДжерела та література: \\n1. Болдирєв О.В. До питання про час заснування Одеси. Тезисы Второй областной \\nисторико-краеведческой научно-практической конференции, посвященной 200- летию \\nоснования Одессы и 25-летию создания Украинского общества охраны памятников истории и \\nкультуры.  Одесса, 1991. С. 20 - 22. \\n2. Болдирєв О. В. Одесі – 600. Одеса, 1994. 52 c. \\n3. Маркевич А.И. Город Качибей или Гаджибей – предшественник города Одессы. \\nЗаписки Одесского общества истории  та старожитностей (далі – ЗООИД). 1894. Т. 17. \\nОтд. ІІ.  С. 1-72. \\n4. Маркевич А.И. Город Качибей или Гаджибей – предшественник города Одессы. \\nДополнительные заметки к статье того же названия, напечатанной в записках Императорского \\nОдесского Общества Истории и Древностей. ЗООИД. 1895.  Т. 18. Отд. 2. С. 81 – 86. \\n5. Яковлев В.А. К истории заселения Хаджибея (1789–1795 гг.). Одесса, 1889. 56 с. \\n \\nReferences:\",\"type\":\"Document\"},{\"id\":\"source_04_chunk_0094\",\"metadata\":{\"page_label\":\"418\",\"creationdate\":\"2019-09-25T11:20:27-07:00\",\"language\":\"ru\",\"source_id\":\"source_04\",\"creator\":\"\",\"keywords\":\"\",\"url\":\"https://www.academia.edu/40442103/%D0%97%D0%B0%D0%BC%D0%BE%D0%BA_%D0%A5%D0%B0%D0%B4%D0%B6%D0%B8%D0%B1%D0%B5%D0%B9_%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F_%D0%B8%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B9_%D0%B4%D0%B0%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B8_%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F\",\"page\":23,\"subject\":\"\",\"chunk_index\":94,\"total_pages\":29,\"producer\":\"GPL Ghostscript 9.26\",\"title\":\"Замок Хаджибей:история исследований, датировки, локализация\",\"file_name\":\"source04.pdf\",\"year\":2019,\"publication\":\"В поисках сущности.Сборник статей в честь 60-летия Н.Д.Русеева\",\"source_type\":\"academic_article\",\"source\":\"I:\\\\WoolfFrameworkAgent\\\\src\\\\woolf_agents\\\\data\\\\historical_sources\\\\source04.pdf\",\"moddate\":\"2019-09-25T11:20:27-07:00\",\"author\":[\"А.В.Красножон\"]},\"page_content\":\"Черемисинов В. М. 1904. История Одессы. Одесса: Ти-\\nпография Штаба Одесского военного округа.\\nШабульдо Ф. М. 2005. Синьоводська битва 1362 p. у су-\\nчасній науковій інтерпретації. В: Шабульдо Ф. М. \\n(наук. ред.). Синьоводська проблема у новітніх \\nдослідженнях. Київ: Інститут історії України \\nНАНУ, 9—27.\\nЯковлев В. К. 1889. История заселения Хаджибея \\n(1789—1795). Одесса.\\nCastelnau M. 1827. Essai sur l’historie ancienne et moderne \\nde la nouvelle Russie. V ol. 3. Edit. II. Paris.\\nDługosz J. 1711. Historiae Polonicae libri XII. Lipsiae.\\nDIR 1900: Documente privînd istoria României . 1900. \\nV ol. XI. Bucureşti. \\n Iorga N. 1899. Studii istorice asupra Chiliei şi Cetatea Albă. \\nBucureşti.\\nLafitte-Clavé A. J. 1998. Journal d’un voyage sur les côtes \\nde la Mer Noire du 28 Avril au 18 Septembre 1784. \\nIstanbul.\\nJabłonowski A. 1902. Polska XVI wieku (pod wzgl ędem \\ngeograficzno-statystycznym). T. 7. Cz. 1. Ziemie \\nPodolskiej. Warszawa: Warszawska drukarnia es-\\ntetyczna.\",\"type\":\"Document\"},{\"id\":\"source_04_chunk_0042\",\"metadata\":{\"year\":2019,\"source_type\":\"academic_article\",\"url\":\"https://www.academia.edu/40442103/%D0%97%D0%B0%D0%BC%D0%BE%D0%BA_%D0%A5%D0%B0%D0%B4%D0%B6%D0%B8%D0%B1%D0%B5%D0%B9_%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F_%D0%B8%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B9_%D0%B4%D0%B0%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B8_%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F\",\"publication\":\"В поисках сущности.Сборник статей в честь 60-летия Н.Д.Русеева\",\"creationdate\":\"2019-09-25T11:20:27-07:00\",\"chunk_index\":42,\"page\":13,\"creator\":\"\",\"author\":[\"А.В.Красножон\"],\"page_label\":\"408\",\"file_name\":\"source04.pdf\",\"keywords\":\"\",\"source\":\"I:\\\\WoolfFrameworkAgent\\\\src\\\\woolf_agents\\\\data\\\\historical_sources\\\\source04.pdf\",\"moddate\":\"2019-09-25T11:20:27-07:00\",\"producer\":\"GPL Ghostscript 9.26\",\"total_pages\":29,\"subject\":\"\",\"source_id\":\"source_04\",\"language\":\"ru\",\"title\":\"Замок Хаджибей:история исследований, датировки, локализация\"},\"page_content\":\"сти бульвара в районе двух полуциркульных \\nзданий. Литовский Качубейов топографиче-\\nски не связан с османским Хаджибеем.\\nНачало новому этапу в истории исследова-\\nния Хаджибея положил Ф. Е. Петрунь в кон-\\nце 1920-х гг. Он критикует А. И. Маркевича \\nза априорность выводов о хронологической \\nпреемственности литовского Качубейова и ту-\\nрецкого Хаджибея, но не касается темы лока-\\nлизации и датировки объектов фортифика-\\nции (Петрунь 1928). До середины XX в. тема \\nХаджибея практически не поднималась ис-\\nследователями. Стандартный взгляд на лока-\\nлизацию замка между Воронцовским пере-\\nулком и Военным спуском повторяет проф. \\nА. Г. Готалов-Готлиб в юбилейном универ-\\nситетском издании « Одесса: очерк истории \\nгорода-героя к 150-летию со дня основания» \\n(Готалов-Готлиб 1947: 15).\\nНовый этап в исследованиях начался \\nв 1965 г. в связи с публикацией С. Я. Боровым \\nфрагмента нового картографического доку-\\nмента: « План II специальной новостроемаго \\nна берегу Черного моря турецкого города Гад-\",\"type\":\"Document\"}]",
+                "id": "lc_7c890b27-d811-46fd-bb10-ea12e2b034da"
+              }
+            ],
+            "additional_kwargs": {},
+            "response_metadata": {},
+            "type": "tool",
+            "name": "retrieve_sources",
+            "id": "c726f1a9-1822-4e0f-bad2-97569dcd5fa2",
+            "tool_call_id": "call_z4pGRf62JhPIX4Mbz8Ym9LVY",
+            "artifact": null,
+            "status": "success"
+          }
+        ]
+      },
+      "agent_name": "tools"
+    },
+    {
+      "timestamp": "2026-09-06T19:30:02.193928+00:00",
+      "update": {
+        "messages": [
+          {
+            "content": "Отримано список релевантних історичних джерел, що містять згадки про Хаджибей:\n\n1. **Замок Хаджибей: історія досліджень, датировки, локализация**  \n   Автор: А.В. Красножон  \n   Рік: 2019  \n   URL: [Читати статтю](https://www.academia.edu/40442103/%D0%97%D0%B0%D0%BC%D0%BE%D0%BA_%D0%A5%D0%B0%D0%B4%D0%B6%D0%B8%D0%B1%D0%B5%D0%B9_%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F_%D0%B8%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B9_%D0%B4%D0%B0%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B8_%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F)  \n   Тип: Академічна стаття  \n   Сторінка: 22-23\n\n2. **Коцюбіїв. Качибей чи Кочубієв. Яку назву доцільніше вживати щодо Одеси у XV-XVI ст.**  \n   Автор: Гончарук Тарас  \n   Рік: 2022  \n   URL: [Читати статтю](https://chm.onu.edu.ua/article/view/268837/266518)  \n   Тип: Академічна стаття  \n   Сторінка: 2\n\n3. **Історія заселення Хаджибея (1789–1795)**  \n   Автор: Яковлев В. К.  \n   Рік: 1889  \n   Тип: Документ\n\nЦі джерела містять важливу інформацію про історію Хаджибея та його дослідження.",
+            "additional_kwargs": {
+              "refusal": null
+            },
+            "response_metadata": {
+              "token_usage": {
+                "completion_tokens": 515,
+                "prompt_tokens": 5307,
+                "total_tokens": 5822,
+                "completion_tokens_details": {
+                  "accepted_prediction_tokens": null,
+                  "audio_tokens": 0,
+                  "reasoning_tokens": 0,
+                  "rejected_prediction_tokens": null,
+                  "image_tokens": 0
+                },
+                "prompt_tokens_details": {
+                  "audio_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0,
+                  "video_tokens": 0
+                },
+                "cost": 0.00110505,
+                "is_byok": false,
+                "cost_details": {
+                  "upstream_inference_cost": 0.00110505,
+                  "upstream_inference_prompt_cost": 0.00079605,
+                  "upstream_inference_completions_cost": 0.000309
+                }
+              },
+              "model_provider": "openai",
+              "model_name": "openai/gpt-4o-mini",
+              "system_fingerprint": "fp_f5dd3ac0b7",
+              "id": "gen-1788722997-ahk5zAnViA98c8XmbnJA",
+              "finish_reason": "stop",
+              "logprobs": null
+            },
+            "type": "ai",
+            "name": null,
+            "id": "lc_run--01a07832-eacb-7ef2-aff7-7131ac5ae80b-0",
+            "tool_calls": [],
+            "invalid_tool_calls": [],
+            "usage_metadata": {
+              "input_tokens": 5307,
+              "output_tokens": 515,
+              "total_tokens": 5822,
+              "input_token_details": {
+                "audio": 0,
+                "cache_read": 0,
+                "cache_creation": 0
+              },
+              "output_token_details": {
+                "audio": 0,
+                "reasoning": 0
+              }
+            }
+          }
+        ],
+        "step_count": 1,
+        "used_tokens": 5822
+      },
+      "agent_name": "agent"
+    },
+    {
+      "timestamp": "2026-09-06T19:30:02.199928+00:00",
+      "update": {
+        "stop_decision": {
+          "should_stop": false,
+          "reason": null,
+          "message": null
+        }
+      },
+      "agent_name": "guard"
+    },
+    {
+      "timestamp": "2026-09-06T19:30:08.154085+00:00",
+      "update": {
+        "structured_output": {
+          "step_id": "step1",
+          "summary": "Отримано список релевантних історичних джерел про Хаджибей.",
+          "evidence": [
+            {
+              "content": "Замок Хаджибей: история исследований, датировки, локализация",
+              "source_id": "source_04",
+              "chunk_index": 90,
+              "source_url": "https://www.academia.edu/40442103/%D0%97%D0%B0%D0%BC%D0%BE%D0%BA_%D0%A5%D0%B0%D0%B4%D0%B6%D0%B8%D0%B1%D0%B5%D0%B9_%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F_%D0%B8%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B9_%D0%B4%D0%B0%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B8_%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F"
+            },
+            {
+              "content": "Коцюбіїв. Качибей чи Кочубієв. Яку назву доцільніше вживати щодо Одеси у XV-XVI ст.",
+              "source_id": "source_02",
+              "chunk_index": 11,
+              "source_url": "https://chm.onu.edu.ua/article/view/268837/266518"
+            },
+            {
+              "content": "Історія заселення Хаджибея (1789–1795)",
+              "source_id": "source_02",
+              "chunk_index": 11,
+              "source_url": null
+            }
+          ]
+        },
+        "execution_status": "completed"
+      },
+      "agent_name": "structured_output"
+    }
+  ],
+  "final_state": {
+    "messages": [
+      {
+        "content": "Отримано список релевантних історичних джерел, що містять згадки про Хаджибей:\n\n1. **Замок Хаджибей: історія досліджень, датировки, локализация**  \n   Автор: А.В. Красножон  \n   Рік: 2019  \n   URL: [Читати статтю](https://www.academia.edu/40442103/%D0%97%D0%B0%D0%BC%D0%BE%D0%BA_%D0%A5%D0%B0%D0%B4%D0%B6%D0%B8%D0%B1%D0%B5%D0%B9_%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F_%D0%B8%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B9_%D0%B4%D0%B0%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B8_%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F)  \n   Тип: Академічна стаття  \n   Сторінка: 22-23\n\n2. **Коцюбіїв. Качибей чи Кочубієв. Яку назву доцільніше вживати щодо Одеси у XV-XVI ст.**  \n   Автор: Гончарук Тарас  \n   Рік: 2022  \n   URL: [Читати статтю](https://chm.onu.edu.ua/article/view/268837/266518)  \n   Тип: Академічна стаття  \n   Сторінка: 2\n\n3. **Історія заселення Хаджибея (1789–1795)**  \n   Автор: Яковлев В. К.  \n   Рік: 1889  \n   Тип: Документ\n\nЦі джерела містять важливу інформацію про історію Хаджибея та його дослідження.",
+        "additional_kwargs": {
+          "refusal": null
+        },
+        "response_metadata": {
+          "token_usage": {
+            "completion_tokens": 515,
+            "prompt_tokens": 5307,
+            "total_tokens": 5822,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cache_write_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost": 0.00110505,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0.00110505,
+              "upstream_inference_prompt_cost": 0.00079605,
+              "upstream_inference_completions_cost": 0.000309
+            }
+          },
+          "model_provider": "openai",
+          "model_name": "openai/gpt-4o-mini",
+          "system_fingerprint": "fp_f5dd3ac0b7",
+          "id": "gen-1788722997-ahk5zAnViA98c8XmbnJA",
+          "finish_reason": "stop",
+          "logprobs": null
+        },
+        "type": "ai",
+        "name": null,
+        "id": "lc_run--01a07832-eacb-7ef2-aff7-7131ac5ae80b-0",
+        "tool_calls": [],
+        "invalid_tool_calls": [],
+        "usage_metadata": {
+          "input_tokens": 5307,
+          "output_tokens": 515,
+          "total_tokens": 5822,
+          "input_token_details": {
+            "audio": 0,
+            "cache_read": 0,
+            "cache_creation": 0
+          },
+          "output_token_details": {
+            "audio": 0,
+            "reasoning": 0
+          }
+        }
+      }
+    ],
+    "execution_id": "f567e501-8d75-4cc3-bc0b-13e40b2580cd",
+    "step_count": 1,
+    "used_tokens": 5822,
+    "execution_status": "completed",
+    "structured_output": {
+      "step_id": "step1",
+      "summary": "Отримано список релевантних історичних джерел про Хаджибей.",
+      "evidence": [
+        {
+          "content": "Замок Хаджибей: история исследований, датировки, локализация",
+          "source_id": "source_04",
+          "chunk_index": 90,
+          "source_url": "https://www.academia.edu/40442103/%D0%97%D0%B0%D0%BC%D0%BE%D0%BA_%D0%A5%D0%B0%D0%B4%D0%B6%D0%B8%D0%B1%D0%B5%D0%B9_%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F_%D0%B8%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B9_%D0%B4%D0%B0%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B8_%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F"
+        },
+        {
+          "content": "Коцюбіїв. Качибей чи Кочубієв. Яку назву доцільніше вживати щодо Одеси у XV-XVI ст.",
+          "source_id": "source_02",
+          "chunk_index": 11,
+          "source_url": "https://chm.onu.edu.ua/article/view/268837/266518"
+        },
+        {
+          "content": "Історія заселення Хаджибея (1789–1795)",
+          "source_id": "source_02",
+          "chunk_index": 11,
+          "source_url": null
+        }
+      ]
+    },
+    "stop_decision": {
+      "should_stop": false,
+      "reason": null,
+      "message": null
+    }
+  },
+  "error": null
+}
