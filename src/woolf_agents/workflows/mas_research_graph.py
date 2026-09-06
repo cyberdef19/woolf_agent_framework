@@ -11,7 +11,7 @@ from src.woolf_agents.core.mcp.servers.base_server import BaseFastMCP
 from src.woolf_agents.core.result import ExecutionStatus
 from src.woolf_agents.core.retry import RetryPolicyAgent
 from src.woolf_agents.domains.artifacts.schemas.base import PlanEvaluation, PlanStepStatus, StepEvaluation
-from src.woolf_agents.domains.artifacts.schemas.contracts import CriticDecision, HistoricalHypothesisEvaluationPlan, HistoricalResearchExecutionResult, HistoricalResearchStepResult, HumanReviewDecision
+from src.woolf_agents.domains.artifacts.schemas.contracts import CriticDecision, HistoricalHypothesisEvaluationPlan, HistoricalResearchExecutionResult, HistoricalResearchStepResult, HumanReviewDecision, SourceVerificationResult
 from src.woolf_agents.llm.executor import LLMExecutor
 from src.woolf_agents.llm.factory import LLMFactory
 from src.woolf_agents.runtime.runner import AgentGraphRunner
@@ -29,7 +29,7 @@ from src.woolf_agents.workflows.plan_evaluator_worker import PlanEvaluatorWorker
 from src.woolf_agents.workflows.prompts.system_prompts import system_prompts
 from src.woolf_agents.workflows.reasoning_worker import ReasoningWorker
 from src.woolf_agents.workflows.source_verification_agent import SourceVerificationAgent
-from src.woolf_agents.workflows.state import PlanExecuteState, SourceInterrupt, ToolGraphState
+from src.woolf_agents.workflows.state import MASAgentState, MASAgentStatus, PlanExecuteState, SourceInterrupt, ToolGraphState
 from src.woolf_agents.workflows.step_evaluator_worker import StepEvaluatorWorker
 from src.woolf_agents.workflows.structured_output_result_worker import StructuredOutputResultWorker
 from src.woolf_agents.workflows.tool_calling_worker import ToolCallingWorker
@@ -83,13 +83,11 @@ class MASResearchGraph(Generic[StateT]):
             mcp_client=self._mcp_client
         )
     
-    def _create_verification_sources(self):
-        verificator_tools = [tool for tool in self._tools if tool.name in system_prompts["verification_sources_spec"].tool_names]
+    async def _create_verification_sources(self):
         return SourceVerificationAgent(
             model=self._llm,
             system_prompt=system_prompts["verification_sources_spec"].system_prompt,
             mcp_client=self._mcp_client,
-            tools= verificator_tools
         )
     
     def _create_historical_superviser(self):
@@ -143,12 +141,27 @@ class MASResearchGraph(Generic[StateT]):
                 )
             }
     async def _initialize(self) -> None:
-            await self._get_tools()
+            if len(self._tools) == 0:
+                await self._get_tools()
             self._get_workers()
             plan_executor_compiled_graph: MultiAgentPlannerExecuteGraph = self._create_plan_executor_graph() 
             self._plan_executor_runner = self._create_agent_runner(plan_executor_compiled_graph)
-            self._verification_sources = self._create_verification_sources()
-    
+        
+    async def _verification_node(self, state: StateT) -> Command[Literal["superviser"]]:
+        """Виконує верифікатора задля верифікування джерельної бази використаної для дослідження"""
+        if self._verification_sources is None:
+            self._verification_sources: SourceVerificationAgent = await self._create_verification_sources()
+            verificator_tools = [tool for tool in self._tools if tool.name in system_prompts["verification_sources_spec"].tool_names]
+            self._verification_sources.tools = verificator_tools
+            self._verification_sources.create_verification_agent()
+        
+        result = await self._verification_sources.execute(state=state)
+        return Command(
+            update={
+                 "verification_sources": result
+            },
+            goto="superviser"
+        )
     async def _run_plan_executor(self, state: StateT) -> Command[Literal["superviser"]]:
             """Виконує планувальника задля отримання відповіді на завдання користувача """
             if self._plan_executor_runner is None:
@@ -159,8 +172,10 @@ class MASResearchGraph(Generic[StateT]):
                         initial_state=self._get_initial_planer_state(self._user_task),
                         thread_id=thread_id
                         )
+           
             return Command(
                 update={
+                    "status": MASAgentStatus.RUNNING,
                     "research_result": HistoricalResearchExecutionResult.model_validate(result["structured_response"])
                     },
                 goto="superviser"
@@ -197,7 +212,7 @@ class MASResearchGraph(Generic[StateT]):
       
     
     def _create_agent_runner(self, compiled_graph) -> AgentGraphRunner:
-        agent_settings = AgentRuntimeSettings(timeout_seconds=420)
+        agent_settings = AgentRuntimeSettings(timeout_seconds=540)
         return AgentGraphRunner(
             graph=compiled_graph,
             settings = agent_settings,
@@ -207,7 +222,8 @@ class MASResearchGraph(Generic[StateT]):
     
     def _create_mas_initial_state(self, query: str):
             return {
-                "query": query,
+                "status": MASAgentStatus.PENDING,
+                "task_user": query,
                 "research_result": None,
                 "critic_decision": None,
                 "human_decision": None,
@@ -250,6 +266,7 @@ class MASResearchGraph(Generic[StateT]):
     def _run_human_node(self, state: StateT) -> Command[Literal["superviser"]]:
         """Виконує HITL для демонстрації людині результату"""
         critic_decision = state["critic_decision"]
+        
 
         human_response = interrupt(
         {
@@ -272,18 +289,8 @@ class MASResearchGraph(Generic[StateT]):
             goto="superviser",
         )
     
-    def _apply_output_guard(self, result: HistoricalResearchExecutionResult) -> HistoricalResearchExecutionResult:
-
-        if result.status != ExecutionStatus.SUCCESS:
-            return result
-
-        return result.model_copy(
-            update={
-                "final_response": self._output_guard.redact(
-                    result.answer
-                )
-            }
-        )
+    def _apply_output_guard(self, result):
+        return self._output_guard.redact(result)
     
     async def run(self, thread_id: str, user_task: str):
         guard_result = self._input_guard.validate(user_task)
@@ -295,13 +302,38 @@ class MASResearchGraph(Generic[StateT]):
         
         self._user_task = user_task
         result =  await self._runner.run(
-            initial_state=self._create_mas_initial_state(self._user_task),
+            initial_state= self._create_mas_initial_state(self._user_task),
             thread_id=thread_id
         )
-        research_result = HistoricalResearchExecutionResult.model_validate(result["research_result"])
-        return  self._apply_output_guard(research_result)
+        final_answer = self._create_final_answer(result)
+        final_answer_redacted = self._apply_output_guard(final_answer)
+        result["final_answer"] = final_answer_redacted
+        return  result
         
+    def _create_final_answer(self, state: StateT):
+        
+        """Формує фінальну відповідь для користувача перед подання у output_quard"""
+        user_task = MASAgentState(state).get("task_user")
+        research_result = MASAgentState(state).get("research_result")
+        critic_desicion = MASAgentState(state).get("critic_decision")
+        verification_result = MASAgentState(state).get("verification_sources")
     
+        final_answer: str = f"""
+        Фінальна відповідь: \n
+        -Завдання: {user_task}.\n
+        -Відповідь агента: {research_result["answer"]}.\n
+        -Підсумок агента: {research_result["summary"]}.\n
+        -Видимі обмеження: {" ".join(research_result["uncertainties"])}.\n
+        -Ключові гіпотези: {" ".join(research_result["key_findings"])}.\n
+        
+        -Критика результату: {critic_desicion["issue"]}; {critic_desicion["reason"]}.\n
+        -Верифікація джерел: {verification_result["summary"]}.\n
+        -Причини отриманої верифікації: {verification_result["reason"]}.\n
+        
+        """
+        return final_answer
+        
+        
     async def resume(self, thread_id: str, decision: HumanReviewDecision):
         """Відновлює потік виконання після HITL"""
         result = await self._runner.resume(
@@ -310,6 +342,15 @@ class MASResearchGraph(Generic[StateT]):
         )
         research_result = HistoricalResearchExecutionResult.model_validate(result["research_result"])
         return self._apply_output_guard(research_result)
+    
+    async def get_state(self, thread_id: str,):
+        config = {
+            "configurable": {
+                "thread_id": thread_id,
+            }
+        }
+
+        return await self._graph.aget_state(config)
     
     def _build(self):
         
@@ -329,7 +370,7 @@ class MASResearchGraph(Generic[StateT]):
         )
         graph.add_node(
             "verification_agent",
-            self._verification_sources.execute
+            self._verification_node
         )
         graph.add_node(
             "human_review",

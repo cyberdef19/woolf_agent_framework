@@ -16,6 +16,7 @@ from src.woolf_agents.workflows.state import MASAgentState
 from src.woolf_agents.llm.settings import url_modelrouter
 from langgraph.checkpoint.sqlite.aio import AsyncSqliteSaver
 from langchain_mcp_adapters.client import MultiServerMCPClient
+from pathlib import Path
 
 settings = LLMSettings(
     provider=LLMProvider.OPENROUTER,
@@ -50,12 +51,7 @@ async def main():
                 project="HistoricalHypothesisAgent"
             )
     )
-    connection = await aiosqlite.connect(
-        "src\\woolf_agents\\data\checkpoints\\checkpoints.sqlite"
-    )
-    checkpointer = AsyncSqliteSaver(
-        connection
-    )
+    
 
     mcp_client = MultiServerMCPClient({
     "historical": {
@@ -68,6 +64,21 @@ async def main():
         }
         }
     )
+    
+    PROJECT_ROOT = Path(__file__).resolve().parent[2]
+    checkpoint_path=(
+            PROJECT_ROOT/"src"/"woolf_agents"/"data"/"checkpoints"/"checkpoints.sqlite"
+        )
+    checkpoint_path.parent.mkdir(
+            parents=True,
+            exist_ok=True
+        )
+    connection = await aiosqlite.connect(
+            checkpoint_path
+        )
+    checkpointer = AsyncSqliteSaver(
+            connection
+        )
     
     mas: MASResearchGraph = MASResearchGraph(
         state_schema=MASAgentState,

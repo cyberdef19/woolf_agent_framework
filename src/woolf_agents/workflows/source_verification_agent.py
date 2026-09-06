@@ -8,7 +8,7 @@ from src.woolf_agents.workflows.state import MASAgentState
 from collections.abc import Sequence
 from langchain.tools import BaseTool
 from langchain.agents import create_agent
-from langchain_core.messages import HumanMessage
+from langchain.agents.middleware import ModelCallLimitMiddleware, ToolCallLimitMiddleware
 
 
 class SourceVerificationAgent:
@@ -18,19 +18,34 @@ class SourceVerificationAgent:
         model: BaseChatModel,
         system_prompt: str,
         mcp_client: MultiServerMCPClient,
-        tools: Sequence[BaseTool]
         ):
-        
+   
         self._model = model
         self._system_prompt = system_prompt
         self._mcp_client = mcp_client
+        self._tools: Sequence[BaseTool]| None = None 
+        self._agent = None
+    
+    @property
+    def tools(self) -> Sequence[BaseTool]:
+        return self._tools
+    
+    @tools.setter
+    def tools(self, tools: Sequence[BaseTool]):
         self._tools = tools
         
+    def create_verification_agent(self):
         self._agent = create_agent(
             model=self._model,
             tools=self._tools,
             system_prompt=self._system_prompt,
-            response_format=SourceVerificationResult
+            response_format=SourceVerificationResult,
+            middleware=[
+                ToolCallLimitMiddleware(
+                    run_limit=3,
+                    exit_behavior="continue"
+                )
+            ]
         )
     
     
@@ -38,11 +53,18 @@ class SourceVerificationAgent:
         """Верифікує джерела за доказовою базою дослідження"""
         research_result:HistoricalResearchExecutionResult = MASAgentState(state).get("research_result")
         user_task: str = MASAgentState(state).get("task_user")
-        methodology = self._mcp_client.get_resources(
-            "historical",
-            "heritage://research/methodology"
-        )
-        messages = self._mcp_client.get_prompt(
+        resources = await self._mcp_client.get_resources(
+                   "historical",
+                   uris="heritage://research/methodology",
+                   )
+
+        if not resources:
+            raise RuntimeError(
+                "Verification methodology resource not found"
+            )
+
+        methodology = resources[0].as_string()
+        messages = await self._mcp_client.get_prompt(
             "historical",
             "verification_sources",
             arguments={
@@ -57,7 +79,7 @@ class SourceVerificationAgent:
                 "messages":messages
             }
         )
-        return result["structured_otput"]
+        return result["structured_response"]
         
 
         

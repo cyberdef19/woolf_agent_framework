@@ -1,10 +1,13 @@
 
+from typing import Literal
+
 from src.woolf_agents.domains.artifacts.schemas.contracts import CriticDecision, HistoricalResearchExecutionResult
 from src.woolf_agents.llm.executor import LLMExecutor
 from src.woolf_agents.workflows.state import MASAgentState
 from langchain_core.language_models.chat_models import BaseChatModel
 from langchain_core.messages import HumanMessage
 from langchain_mcp_adapters.client import MultiServerMCPClient
+from langgraph.types import Command
 
 
 
@@ -23,21 +26,21 @@ class CriticalAgent:
         self._mcp_client = mcp_client
     
     
-    async def execute(self, state: MASAgentState)->CriticDecision:
+    async def execute(self, state: MASAgentState)->Command[Literal["superviser"]]:
         """Виконує критику отриманого результата після виконання плану"""
         result = MASAgentState(state).get("research_result")
         user_task: str = MASAgentState(state).get("task_user")
         
-        human_messages = self._mcp_client.get_prompt(
+        human_messages = await self._mcp_client.get_prompt(
             server_name="historical",
             prompt_name="critical_review",
             arguments={
                 "user_task": user_task,
-                "research_result": result.model_dump_json
+                "research_result": result.model_dump_json()
             }
         )
         
-        response: HistoricalResearchExecutionResult = await self._executor.model_invoke(
+        response: CriticDecision = await self._executor.model_invoke(
             self._llm_with_structured_output,
             [
                 self._system_prompt,
@@ -54,7 +57,12 @@ class CriticalAgent:
             ]
         )
         
-        return response
+        return Command(
+            update={
+                "critic_decision": response,
+            },
+            goto="superviser",
+        )
         
         
         

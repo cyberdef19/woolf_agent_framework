@@ -28,7 +28,8 @@ class TrajectoryLogger:
         started_at = self._now()
         trajectory: list[dict[str, Any]] = []
 
-        final_state: dict[str, Any] = {}
+        #final_state: dict[str, Any] = {}
+        final_state: dict[str, Any] = dict(initial_state)
         
         path = self._log_directory / f"{run_id}.json"
         error: str|None = None
@@ -40,7 +41,7 @@ class TrajectoryLogger:
                 stream_mode="updates",
             ):
                 serialized_event = self._serialize(event)
-                if isinstance(serialized_event, event):
+                if isinstance(serialized_event, dict):
                     for agent_name, node_update in serialized_event.items():  
 
                         trajectory.append(
@@ -52,7 +53,7 @@ class TrajectoryLogger:
                         )
 
                         # stream_mode="updates" повертає оновлення за іменами вузлів.
-                        if isinstance(serialized_event, dict):
+                        if isinstance(node_update, dict):
                             final_state.update(node_update)
                             #for node_update in serialized_event.values():
                             #    if isinstance(node_update, dict):
@@ -63,7 +64,6 @@ class TrajectoryLogger:
             raise
         finally:
             document = {
-                "agent_name": agent_name,
                 "run_id": run_id,
                 "started_at": started_at,
                 "finished_at": self._now(),

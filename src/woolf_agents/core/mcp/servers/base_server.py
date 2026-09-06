@@ -17,6 +17,8 @@ class BaseFastMCP(ABC):
         
         self._register_core_middlewares()
         self._register_providers()
+        self._register_prompts()
+        self._register_resources()
     
     @property
     def mcp(self)->FastMCP:

@@ -1,0 +1,20 @@
+{
+  "run_id": "f85e36a8-2656-4b58-871e-35430ca6f2bf",
+  "started_at": "2026-09-05T19:03:25.567507+00:00",
+  "finished_at": "2026-09-05T19:03:25.681494+00:00",
+  "initial_state": {
+    "query": "Яке походження назви Хаджибей? Визнач представлені в доступних джерелах гіпотези та оціни, яка з них має найкращу доказову підтримку.",
+    "research_result": null,
+    "critic_decision": null,
+    "human_decision": null
+  },
+  "trajectory": [
+    {
+      "timestamp": "2026-09-05T19:03:25.681494+00:00",
+      "update": null,
+      "agent_name": "superviser"
+    }
+  ],
+  "final_state": {},
+  "error": "TypeError: 'NoneType' object is not iterable"
+}

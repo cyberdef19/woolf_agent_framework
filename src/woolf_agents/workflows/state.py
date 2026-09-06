@@ -10,6 +10,7 @@ from typing import Literal
 from src.woolf_agents.domains.artifacts.schemas.contracts import (
                                                CriticDecision,
                                                HistoricalResearchExecutionResult,
+                                               HumanReviewDecision,
                                                PlanStepStatus, 
                                                HistoricalResearchStepResult,
                                                HistoricalHypothesisEvaluationPlan, 
@@ -69,12 +70,21 @@ class SourceInterrupt(StrEnum):
     EVALUATION_PLAN = "plan_evaluation"
     NO_SOURCE = "no_source"
 
+class MASAgentStatus(StrEnum):
+    PENDING = "pending"
+    INTERRUPT = "interrupted"
+    COMPLETED = "completed"
+    RUNNING = "running"
+
 class MASAgentState(MessageAgentState, total=False):
     """Стан агента супервайзера"""
+    status: MASAgentStatus
     task_user: str
     research_result: HistoricalResearchExecutionResult
     critic_decision: CriticDecision
     verification_sources: SourceVerificationResult
+    human_decision: HumanReviewDecision
+    final_answer: str
         
 class PlanExecuteState(MessageAgentState, total=False):
     """Стан виконання плану агентом-планувальником"""

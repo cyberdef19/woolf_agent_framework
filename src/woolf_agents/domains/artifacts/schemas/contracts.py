@@ -219,7 +219,7 @@ class RetrieveHistoricalSourcesInput(BaseModel):
     query: str = Field(
         ...,
         min_length=3,
-        description="Запит для семантичного пошуку в корпусі історичних джерел.",
+        description="Запит для семантичного пошуку в корпусі історичних джерел в локальній базі.",
     )
 
     top_k: int = Field(
@@ -244,7 +244,7 @@ class GetAdjacentChunksInput(BaseModel):
     source_id: str = Field(
         ...,
         min_length=1,
-        description="ID джерела, отриманий попереднім інструментом.",
+        description="ID джерела з локальної бази, отриманий попереднім інструментом.",
     )
 
     chunk_index: int = Field(
@@ -281,7 +281,7 @@ class SearchRelatedSourcesInput(BaseModel):
     source_id: str = Field(
         ...,
         min_length=1,
-        description="ID вже знайденого історичного джерела.",
+        description="ID вже знайденого в локальній базі історичного джерела. Не в мережі інтернет",
     )
 
     chunk_index: int = Field(
@@ -312,7 +312,7 @@ class SearchWebHistoricalSourcesInput(BaseModel):
     query: str = Field(
         ...,
         min_length=3,
-        description="Пошуковий запит для пошуку історичної інформації у веб.",
+        description="Пошуковий запит для пошуку історичної інформації у мережі інтернет.",
     )
 
     max_results: int = Field(
@@ -398,6 +398,8 @@ class SourceVerificationResult(BaseExecutionResult):
     supporting_sources: list[str] = Field(default_factory=list, description="Які джерела можуть підтвердити висновки")
     conflicting_sources: list[str] = Field(default_factory=list, description="Які джерела суперечать один одному")
     reason: str = Field(description="Коротке пояснення чому прийняте таке рішення")    
+    error: str | None = None
+    status: Literal["verified", "issues_found", "failed"]
     
 class HistoricalResearchExecutionResult(BaseExecutionResult):
     answer: str = Field(
@@ -413,11 +415,17 @@ class HistoricalResearchExecutionResult(BaseExecutionResult):
         default_factory=list,
         description="Невизначеності та питання, які залишилися відкритими."
     )
+    
+    source_id: list[str] | None = Field(
+            default_factory=list,
+            description="Ідентифікатор локального джерела, на яких грунтується висновок"
+        )
+    
+    source_url: list[str] | None = Field(
+            default_factory=list,
+            description="Список URL зовнішніх джерел, на яких грунтується висновок"
+        )
 
-    sources: list[str] = Field(
-        default_factory=list,
-        description="Джерела, на яких ґрунтується висновок."
-    )
 
 class HistoricalResearchStepPlan(BasePlanStep):
     """Крок для дослідницького плану історичний домен"""
@@ -534,3 +542,5 @@ class HumanReviewDecision(BaseModel):
         "reject",
     ]
     comment: str | None = None
+    
+#class MASAgentResult(BaseExecutionResult):

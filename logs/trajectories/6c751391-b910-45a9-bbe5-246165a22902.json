@@ -1,0 +1,343 @@
+{
+  "run_id": "6c751391-b910-45a9-bbe5-246165a22902",
+  "started_at": "2026-09-06T18:17:57.539933+00:00",
+  "finished_at": "2026-09-06T18:18:58.691176+00:00",
+  "initial_state": {
+    "messages": [
+      {
+        "content": "Виконай поточний крок плану {\n  \"id\": \"step1\",\n  \"step_status\": \"pending\",\n  \"objective\": \"Знайти історичні джерела, що містять інформацію про Хаджибей\",\n  \"expected_result\": \"Отримати список історичних джерел\",\n  \"require_tools\": true,\n  \"require_reasoning\": false,\n  \"research_query\": \"Хаджибей історичні джерела\",\n  \"requires_evidence\": true,\n  \"operation\": \"retrieve_sources\"\n}",
+        "additional_kwargs": {},
+        "response_metadata": {},
+        "type": "human",
+        "name": null,
+        "id": "6d06bfa8-52ed-4ba2-ae9a-e9a4e32746a4"
+      }
+    ],
+    "execution_id": "c747e538-65fe-4f58-ac1f-cec3bfcfff59",
+    "step_count": 0,
+    "used_tokens": 0,
+    "execution_status": "pending",
+    "structured_output": null
+  },
+  "trajectory": [
+    {
+      "timestamp": "2026-09-06T18:17:58.896147+00:00",
+      "update": {
+        "messages": [
+          {
+            "content": "",
+            "additional_kwargs": {
+              "refusal": null
+            },
+            "response_metadata": {
+              "token_usage": {
+                "completion_tokens": 24,
+                "prompt_tokens": 1225,
+                "total_tokens": 1249,
+                "completion_tokens_details": {
+                  "accepted_prediction_tokens": null,
+                  "audio_tokens": 0,
+                  "reasoning_tokens": 0,
+                  "rejected_prediction_tokens": null,
+                  "image_tokens": 0
+                },
+                "prompt_tokens_details": {
+                  "audio_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0,
+                  "video_tokens": 0
+                },
+                "cost": 0.00019815,
+                "is_byok": false,
+                "cost_details": {
+                  "upstream_inference_cost": 0.00019815,
+                  "upstream_inference_prompt_cost": 0.00018375,
+                  "upstream_inference_completions_cost": 1.44e-05
+                }
+              },
+              "model_provider": "openai",
+              "model_name": "openai/gpt-4o-mini",
+              "system_fingerprint": "fp_f5dd3ac0b7",
+              "id": "gen-1788718677-knpusk9Uo9OBNsQHgnA0",
+              "finish_reason": "tool_calls",
+              "logprobs": null
+            },
+            "type": "ai",
+            "name": null,
+            "id": "lc_run--01a077f0-feab-7923-b431-86dae029fe8e-0",
+            "tool_calls": [
+              {
+                "name": "retrieve_sources",
+                "args": {
+                  "query": "Хаджибей історичні джерела"
+                },
+                "id": "call_C9uWEoYk64LixKcrRIhUcImN",
+                "type": "tool_call"
+              }
+            ],
+            "invalid_tool_calls": [],
+            "usage_metadata": {
+              "input_tokens": 1225,
+              "output_tokens": 24,
+              "total_tokens": 1249,
+              "input_token_details": {
+                "audio": 0,
+                "cache_read": 0,
+                "cache_creation": 0
+              },
+              "output_token_details": {
+                "audio": 0,
+                "reasoning": 0
+              }
+            }
+          }
+        ],
+        "step_count": 1,
+        "used_tokens": 1249
+      },
+      "agent_name": "agent"
+    },
+    {
+      "timestamp": "2026-09-06T18:17:58.901150+00:00",
+      "update": {
+        "stop_decision": {
+          "should_stop": false,
+          "reason": null,
+          "message": null
+        }
+      },
+      "agent_name": "guard"
+    },
+    {
+      "timestamp": "2026-09-06T18:18:47.939152+00:00",
+      "update": {
+        "messages": [
+          {
+            "content": [
+              {
+                "type": "text",
+                "text": "[{\"id\":\"source_06_chunk_0008\",\"metadata\":{\"publication\":\"Записки товариства імени Шевченка, Том IV\",\"title\":\"НАУКОВА ХРОНЇКА. Ювілейні виданя до істориї м. Одеси.\",\"file_name\":\"source06.txt\",\"source_type\":\"historical_scholarly_publication\",\"source_id\":\"source_06\",\"orthography\":\"желехівка\",\"chunk_index\":8,\"author\":[\"І. Андрієнко\"],\"year\":1894,\"url\":\"https://uk.wikisource.org/wiki/%D0%97%D0%B0%D0%BF%D0%B8%D1%81%D0%BA%D0%B8_%D0%9D%D0%A2%D0%A8/4/%D0%AE%D0%B2%D1%96%D0%BB%D0%B5%D0%B9%D0%BD%D1%96_%D0%B2%D0%B8%D0%B4%D0%B0%D0%BD%D1%8F_%D0%B4%D0%BE_%D1%96%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%97_%D0%BC._%D0%9E%D0%B4%D0%B5%D1%81%D0%B8\",\"language\":\"uk\",\"source\":\"I:\\\\WoolfFrameworkAgent\\\\src\\\\woolf_agents\\\\data\\\\historical_sources\\\\source06.txt\"},\"page_content\":\"Свій вислїд письменник доводить до 1791 р., себ то до Яського миру, коли Гаджибей перейшов під Росию і життя єго приняло инчий характер. Начинає автор з найдавнїйших часів. Він гадає, що місце (похил Жевахової гори та Хаджибейського лиману), де перегодом з'явилось литовсько-руське місто Качибей, за давнїйших часів було посїлками, що мали торгове значіннє. Не можна запевне визначити, коли засновано тут Качибей. Перша, найранїйша звістка про него належить до 1415 р. В сьому роцї, як сьвідчать Длуґош і Кромер, Ягайло послав з Качибея на кількох кораблях хлїб у Костантинополь, що тодї Турки держали в облозї. З отсїх звісток Длуґоша і Кромера знати тільки те, що Качибей р. 1415 був вже значним торговим портом, через него з Поділля йшов хлїб до византийських портів. Значить треба думати, що він істнував ранїйш 1415 р., себ то під кінець XIV віку. Але перш нїж зробив ся містом і портом, Качибей певне був просто селом, значить істнував ранїйш кінця XIV в. Виникає запитаннє, хто-ж першим\",\"type\":\"Document\"},{\"id\":\"source_06_chunk_0000\",\"metadata\":{\"orthography\":\"желехівка\",\"chunk_index\":0,\"source_id\":\"source_06\",\"publication\":\"Записки товариства імени Шевченка, Том IV\",\"source\":\"I:\\\\WoolfFrameworkAgent\\\\src\\\\woolf_agents\\\\data\\\\historical_sources\\\\source06.txt\",\"language\":\"uk\",\"url\":\"https://uk.wikisource.org/wiki/%D0%97%D0%B0%D0%BF%D0%B8%D1%81%D0%BA%D0%B8_%D0%9D%D0%A2%D0%A8/4/%D0%AE%D0%B2%D1%96%D0%BB%D0%B5%D0%B9%D0%BD%D1%96_%D0%B2%D0%B8%D0%B4%D0%B0%D0%BD%D1%8F_%D0%B4%D0%BE_%D1%96%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%97_%D0%BC._%D0%9E%D0%B4%D0%B5%D1%81%D0%B8\",\"author\":[\"І. Андрієнко\"],\"title\":\"НАУКОВА ХРОНЇКА. Ювілейні виданя до істориї м. Одеси.\",\"file_name\":\"source06.txt\",\"year\":1894,\"source_type\":\"historical_scholarly_publication\"},\"page_content\":\"НАУКОВА ХРОНЇКА.\\nЮвілейні виданя до істориї м. Одеси.\\nЯковлев В. „Къ исторіи заселенія Хаджибея 1789–1795 р. Одесса 1889 стор. 57.\\nМаркевич А. проф. Городъ Качибей или Гаджибей, предшественникъ г. Одессы. Одесса 1894 р., стор. 72 (окрема відбитка з XVII т. Записок Одеського товариства історич.).\\nНадлер В. К. проф. Одесса въ первыя эпохи ея существованія. Одесса 1893 р. стор. 100.\",\"type\":\"Document\"},{\"id\":\"source_01_chunk_0000\",\"metadata\":{\"source_id\":\"source_01\",\"chunk_index\":0,\"title\":\"ХАДЖИБЕЙ.Енциклопедія історії України\",\"publication\":\"Енциклопедія Історії України\",\"file_name\":\"source01.txt\",\"year\":2021,\"source\":\"I:\\\\WoolfFrameworkAgent\\\\src\\\\woolf_agents\\\\data\\\\historical_sources\\\\source01.txt\",\"url\":\"https://resource.history.org.ua/cgi-bin/eiu/history.exe?&I21DBN=EIU&P21DBN=EIU&S21STN=1&S21REF=10&S21FMT=eiu_all&C21COM=S&S21CNR=20&S21P01=0&S21P02=0&S21P03=TRN=&S21COLORTERMS=0&S21STR=khadzhybej\",\"language\":\"uk\",\"source_type\":\"academic_article\",\"author\":[\"Михайловський В.М.\",\"Середа О.Г\"]},\"page_content\":\"ХАДЖИБЕЙ (Ходжабей, Коджабей, Коцюбей, Качибеїв) — населений пункт у Пн.-Зх. Причорномор’ї, що існував у 15—18 ст.; попередник Одеси.\\nУ складі земель, які золотоординський хан Тохтамиш передав вел. кн. литов. Вітовту 1397/98, зазначена Качебіївська тьма (див. Тьма). 1415 згадується Качубеїв (Kaczubyeiow) — прикордонний порт, що належав королю польс. і найвищому кн. литов. Владиславу II Ягайлу. 29 вересня 1442 польс. та угор. король Владислав III Ягеллон передав \\\"Качебіїв, що стоїть над берегом моря\\\" ген. подільському старості Теодорикові з Бучача.1469 сини Теодорика Міхал та Ян здійснили поділ батькових маєтностей, серед іншого Янові відійшли \\\"Караул, Качибеїв, Маяк, Чорнигрод, Балабки разом із селами, митницями, портами морськими та рибними місцями\\\".\",\"type\":\"Document\"},{\"id\":\"source_01_chunk_0001\",\"metadata\":{\"source\":\"I:\\\\WoolfFrameworkAgent\\\\src\\\\woolf_agents\\\\data\\\\historical_sources\\\\source01.txt\",\"file_name\":\"source01.txt\",\"source_type\":\"academic_article\",\"language\":\"uk\",\"author\":[\"Михайловський В.М.\",\"Середа О.Г\"],\"source_id\":\"source_01\",\"publication\":\"Енциклопедія Історії України\",\"url\":\"https://resource.history.org.ua/cgi-bin/eiu/history.exe?&I21DBN=EIU&P21DBN=EIU&S21STN=1&S21REF=10&S21FMT=eiu_all&C21COM=S&S21CNR=20&S21P01=0&S21P02=0&S21P03=TRN=&S21COLORTERMS=0&S21STR=khadzhybej\",\"chunk_index\":1,\"year\":2021,\"title\":\"ХАДЖИБЕЙ.Енциклопедія історії України\"},\"page_content\":\"Наступна згадка про Х. зустрічається в осман. документах (1567), де фігурує підвладна Османській імперії фортеця Ходжабей з портом, який має кілька причалів та маяк. Поруч з османсько-турецькою назвою \\\"Ходжабей\\\" до 18 ст. використовували кримськотатар. назву \\\"Коджабей/Качибей\\\". Евлія Челебі називав його \\\"фортеця Ходжабай\\\". В подорожніх оповіданнях А.-Ж.Лафітта-Клаве це поселення згадується як \\\"Коджа-Бей, що лежить на Чорному морі, в затоці чи узмор’ї, яке утворює досить спокійний рейд\\\". Розбудова порту в Х. (1765) привела до перенаправлення сюди торг. потоків з Аджидере (нині смт Овідіополь). З Х. відправляли (передусім до Стамбула) збіжжя, шкіри, мед, олію, масло. Х. перебував у складі судово-адм. одиниці \\\"каза Акерман\\\" Акерманського санджаку Очаківсько-Сілістрійського ейялету. Адм. апарат Х. очолював емін-ага — управитель населеного пункту і митниці, також був присутній кадій (суддя). Для охорони фортеці і порту в Х. стояла залога. Від Кримського ханату в Х. для контролю за\",\"type\":\"Document\"},{\"id\":\"source_02_chunk_0011\",\"metadata\":{\"producer\":\"iLovePDF\",\"author\":[\"Гончарук Тарас\"],\"publication\":\"Чорноморська минувшина\",\"source\":\"I:\\\\WoolfFrameworkAgent\\\\src\\\\woolf_agents\\\\data\\\\historical_sources\\\\source02.pdf\",\"language\":\"uk\",\"chunk_index\":11,\"file_name\":\"source02.pdf\",\"source_type\":\"academic_article\",\"year\":2022,\"page\":2,\"creator\":\"PyPDF\",\"source_id\":\"source_02\",\"moddate\":\"2022-12-30T15:14:33+00:00\",\"page_label\":\"3\",\"creationdate\":\"\",\"url\":\"https://chm.onu.edu.ua/article/view/268837/266518\",\"total_pages\":3,\"title\":\"Коцюбіїв.Качибей чи Кочубієв.Яку назву доцільніше вживати щодо Одеси у XV-XVI ст.\"},\"page_content\":\"обґрунтованої назви, або назв, для Одеси XV – XVIІІ ст. потребує подальшого вивчення та \\nобговорення.  \\n \\nДжерела та література: \\n1. Болдирєв О.В. До питання про час заснування Одеси. Тезисы Второй областной \\nисторико-краеведческой научно-практической конференции, посвященной 200- летию \\nоснования Одессы и 25-летию создания Украинского общества охраны памятников истории и \\nкультуры.  Одесса, 1991. С. 20 - 22. \\n2. Болдирєв О. В. Одесі – 600. Одеса, 1994. 52 c. \\n3. Маркевич А.И. Город Качибей или Гаджибей – предшественник города Одессы. \\nЗаписки Одесского общества истории  та старожитностей (далі – ЗООИД). 1894. Т. 17. \\nОтд. ІІ.  С. 1-72. \\n4. Маркевич А.И. Город Качибей или Гаджибей – предшественник города Одессы. \\nДополнительные заметки к статье того же названия, напечатанной в записках Императорского \\nОдесского Общества Истории и Древностей. ЗООИД. 1895.  Т. 18. Отд. 2. С. 81 – 86. \\n5. Яковлев В.А. К истории заселения Хаджибея (1789–1795 гг.). Одесса, 1889. 56 с. \\n \\nReferences:\",\"type\":\"Document\"}]",
+                "id": "lc_8f8daccf-9a38-4077-98d8-22fde607e328"
+              }
+            ],
+            "additional_kwargs": {},
+            "response_metadata": {},
+            "type": "tool",
+            "name": "retrieve_sources",
+            "id": "522fd03b-0b08-450d-981d-90feb6c096a8",
+            "tool_call_id": "call_C9uWEoYk64LixKcrRIhUcImN",
+            "artifact": null,
+            "status": "success"
+          }
+        ]
+      },
+      "agent_name": "tools"
+    },
+    {
+      "timestamp": "2026-09-06T18:18:52.937203+00:00",
+      "update": {
+        "messages": [
+          {
+            "content": "Я знайшов кілька історичних джерел, що містять інформацію про Хаджибей. Ось список знайдених джерел:\n\n1. **Записки товариства імени Шевченка, Том IV**\n   - **Автор:** І. Андрієнко\n   - **Рік:** 1894\n   - **Зміст:** Описує історію Хаджибея до 1791 року, згадуючи про його торгове значення.\n   - **URL:** [Читати джерело](https://uk.wikisource.org/wiki/%D0%97%D0%B0%D0%BF%D0%B8%D1%81%D0%BA%D0%B8_%D0%9D%D0%A2%D0%A8/4/%D0%AE%D0%B2%D1%96%D0%BB%D0%B5%D0%B9%D0%BD%D1%96_%D0%B2%D0%B8%D0%B4%D0%B0%D0%BD%D1%8F_%D0%B4%D0%BE_%D1%96%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%97_%D0%BC._%D0%9E%D0%B4%D0%B5%D1%81%D0%B8)\n\n2. **Енциклопедія історії України**\n   - **Автори:** Михайловський В.М., Середа О.Г.\n   - **Рік:** 2021\n   - **Зміст:** Описує Хаджибей як населений пункт, його історію та значення в контексті Причорномор'я.\n   - **URL:** [Читати джерело](https://resource.history.org.ua/cgi-bin/eiu/history.exe?&I21DBN=EIU&P21DBN=EIU&S21STN=1&S21REF=10&S21FMT=eiu_all&C21COM=S&S21CNR=20&S21P01=0&S21P02=0&S21P03=TRN=&S21COLORTERMS=0&S21STR=khadzhybej)\n\n3. **Чорноморська минувшина**\n   - **Автор:** Гончарук Тарас\n   - **Рік:** 2022\n   - **Зміст:** Обговорює назви, що використовувалися для Хаджибея, та його історичне значення.\n   - **URL:** [Читати джерело](https://chm.onu.edu.ua/article/view/268837/266518)\n\nЦі джерела можуть бути корисними для подальшого дослідження історії Хаджибея.",
+            "additional_kwargs": {
+              "refusal": null
+            },
+            "response_metadata": {
+              "token_usage": {
+                "completion_tokens": 613,
+                "prompt_tokens": 4258,
+                "total_tokens": 4871,
+                "completion_tokens_details": {
+                  "accepted_prediction_tokens": null,
+                  "audio_tokens": 0,
+                  "reasoning_tokens": 0,
+                  "rejected_prediction_tokens": null,
+                  "image_tokens": 0
+                },
+                "prompt_tokens_details": {
+                  "audio_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 1152,
+                  "video_tokens": 0
+                },
+                "cost": 0.0009201,
+                "is_byok": false,
+                "cost_details": {
+                  "upstream_inference_cost": 0.0009201,
+                  "upstream_inference_prompt_cost": 0.0005523,
+                  "upstream_inference_completions_cost": 0.0003678
+                }
+              },
+              "model_provider": "openai",
+              "model_name": "openai/gpt-4o-mini",
+              "system_fingerprint": "fp_f5dd3ac0b7",
+              "id": "gen-1788718727-4v3o9OUrmO4YDAFsqfRK",
+              "finish_reason": "stop",
+              "logprobs": null
+            },
+            "type": "ai",
+            "name": null,
+            "id": "lc_run--01a077f1-c304-7d00-9c06-02f31f5531d4-0",
+            "tool_calls": [],
+            "invalid_tool_calls": [],
+            "usage_metadata": {
+              "input_tokens": 4258,
+              "output_tokens": 613,
+              "total_tokens": 4871,
+              "input_token_details": {
+                "audio": 0,
+                "cache_read": 1152,
+                "cache_creation": 0
+              },
+              "output_token_details": {
+                "audio": 0,
+                "reasoning": 0
+              }
+            }
+          }
+        ],
+        "step_count": 1,
+        "used_tokens": 4871
+      },
+      "agent_name": "agent"
+    },
+    {
+      "timestamp": "2026-09-06T18:18:52.941206+00:00",
+      "update": {
+        "stop_decision": {
+          "should_stop": false,
+          "reason": null,
+          "message": null
+        }
+      },
+      "agent_name": "guard"
+    },
+    {
+      "timestamp": "2026-09-06T18:18:58.691176+00:00",
+      "update": {
+        "structured_output": {
+          "step_id": "step1",
+          "summary": "Знайдено кілька історичних джерел про Хаджибей.",
+          "evidence": [
+            {
+              "content": "Описує історію Хаджибея до 1791 року, згадуючи про його торгове значення.",
+              "source_id": "source_06",
+              "chunk_index": 8,
+              "source_url": "https://uk.wikisource.org/wiki/%D0%97%D0%B0%D0%BF%D0%B8%D1%81%D0%BA%D0%B8_%D0%9D%D0%A2%D0%A8/4/%D0%AE%D0%B2%D1%96%D0%BB%D0%B5%D0%B9%D0%BD%D1%96_%D0%B2%D0%B8%D0%B4%D0%B0%D0%BD%D1%8F_%D0%B4%D0%BE_%D1%96%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%97_%D0%BC._%D0%9E%D0%B4%D0%B5%D1%81%D0%B8"
+            },
+            {
+              "content": "Описує Хаджибей як населений пункт, його історію та значення в контексті Причорномор'я.",
+              "source_id": "source_01",
+              "chunk_index": 0,
+              "source_url": "https://resource.history.org.ua/cgi-bin/eiu/history.exe?&I21DBN=EIU&P21DBN=EIU&S21STN=1&S21REF=10&S21FMT=eiu_all&C21COM=S&S21CNR=20&S21P01=0&S21P02=0&S21P03=TRN=&S21COLORTERMS=0&S21STR=khadzhybej"
+            },
+            {
+              "content": "Обговорює назви, що використовувалися для Хаджибея, та його історичне значення.",
+              "source_id": "source_02",
+              "chunk_index": 11,
+              "source_url": "https://chm.onu.edu.ua/article/view/268837/266518"
+            }
+          ]
+        },
+        "execution_status": "completed"
+      },
+      "agent_name": "structured_output"
+    }
+  ],
+  "final_state": {
+    "messages": [
+      {
+        "content": "Я знайшов кілька історичних джерел, що містять інформацію про Хаджибей. Ось список знайдених джерел:\n\n1. **Записки товариства імени Шевченка, Том IV**\n   - **Автор:** І. Андрієнко\n   - **Рік:** 1894\n   - **Зміст:** Описує історію Хаджибея до 1791 року, згадуючи про його торгове значення.\n   - **URL:** [Читати джерело](https://uk.wikisource.org/wiki/%D0%97%D0%B0%D0%BF%D0%B8%D1%81%D0%BA%D0%B8_%D0%9D%D0%A2%D0%A8/4/%D0%AE%D0%B2%D1%96%D0%BB%D0%B5%D0%B9%D0%BD%D1%96_%D0%B2%D0%B8%D0%B4%D0%B0%D0%BD%D1%8F_%D0%B4%D0%BE_%D1%96%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%97_%D0%BC._%D0%9E%D0%B4%D0%B5%D1%81%D0%B8)\n\n2. **Енциклопедія історії України**\n   - **Автори:** Михайловський В.М., Середа О.Г.\n   - **Рік:** 2021\n   - **Зміст:** Описує Хаджибей як населений пункт, його історію та значення в контексті Причорномор'я.\n   - **URL:** [Читати джерело](https://resource.history.org.ua/cgi-bin/eiu/history.exe?&I21DBN=EIU&P21DBN=EIU&S21STN=1&S21REF=10&S21FMT=eiu_all&C21COM=S&S21CNR=20&S21P01=0&S21P02=0&S21P03=TRN=&S21COLORTERMS=0&S21STR=khadzhybej)\n\n3. **Чорноморська минувшина**\n   - **Автор:** Гончарук Тарас\n   - **Рік:** 2022\n   - **Зміст:** Обговорює назви, що використовувалися для Хаджибея, та його історичне значення.\n   - **URL:** [Читати джерело](https://chm.onu.edu.ua/article/view/268837/266518)\n\nЦі джерела можуть бути корисними для подальшого дослідження історії Хаджибея.",
+        "additional_kwargs": {
+          "refusal": null
+        },
+        "response_metadata": {
+          "token_usage": {
+            "completion_tokens": 613,
+            "prompt_tokens": 4258,
+            "total_tokens": 4871,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cache_write_tokens": 0,
+              "cached_tokens": 1152,
+              "video_tokens": 0
+            },
+            "cost": 0.0009201,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0.0009201,
+              "upstream_inference_prompt_cost": 0.0005523,
+              "upstream_inference_completions_cost": 0.0003678
+            }
+          },
+          "model_provider": "openai",
+          "model_name": "openai/gpt-4o-mini",
+          "system_fingerprint": "fp_f5dd3ac0b7",
+          "id": "gen-1788718727-4v3o9OUrmO4YDAFsqfRK",
+          "finish_reason": "stop",
+          "logprobs": null
+        },
+        "type": "ai",
+        "name": null,
+        "id": "lc_run--01a077f1-c304-7d00-9c06-02f31f5531d4-0",
+        "tool_calls": [],
+        "invalid_tool_calls": [],
+        "usage_metadata": {
+          "input_tokens": 4258,
+          "output_tokens": 613,
+          "total_tokens": 4871,
+          "input_token_details": {
+            "audio": 0,
+            "cache_read": 1152,
+            "cache_creation": 0
+          },
+          "output_token_details": {
+            "audio": 0,
+            "reasoning": 0
+          }
+        }
+      }
+    ],
+    "execution_id": "c747e538-65fe-4f58-ac1f-cec3bfcfff59",
+    "step_count": 1,
+    "used_tokens": 4871,
+    "execution_status": "completed",
+    "structured_output": {
+      "step_id": "step1",
+      "summary": "Знайдено кілька історичних джерел про Хаджибей.",
+      "evidence": [
+        {
+          "content": "Описує історію Хаджибея до 1791 року, згадуючи про його торгове значення.",
+          "source_id": "source_06",
+          "chunk_index": 8,
+          "source_url": "https://uk.wikisource.org/wiki/%D0%97%D0%B0%D0%BF%D0%B8%D1%81%D0%BA%D0%B8_%D0%9D%D0%A2%D0%A8/4/%D0%AE%D0%B2%D1%96%D0%BB%D0%B5%D0%B9%D0%BD%D1%96_%D0%B2%D0%B8%D0%B4%D0%B0%D0%BD%D1%8F_%D0%B4%D0%BE_%D1%96%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%97_%D0%BC._%D0%9E%D0%B4%D0%B5%D1%81%D0%B8"
+        },
+        {
+          "content": "Описує Хаджибей як населений пункт, його історію та значення в контексті Причорномор'я.",
+          "source_id": "source_01",
+          "chunk_index": 0,
+          "source_url": "https://resource.history.org.ua/cgi-bin/eiu/history.exe?&I21DBN=EIU&P21DBN=EIU&S21STN=1&S21REF=10&S21FMT=eiu_all&C21COM=S&S21CNR=20&S21P01=0&S21P02=0&S21P03=TRN=&S21COLORTERMS=0&S21STR=khadzhybej"
+        },
+        {
+          "content": "Обговорює назви, що використовувалися для Хаджибея, та його історичне значення.",
+          "source_id": "source_02",
+          "chunk_index": 11,
+          "source_url": "https://chm.onu.edu.ua/article/view/268837/266518"
+        }
+      ]
+    },
+    "stop_decision": {
+      "should_stop": false,
+      "reason": null,
+      "message": null
+    }
+  },
+  "error": null
+}

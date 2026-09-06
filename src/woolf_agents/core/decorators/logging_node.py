@@ -39,8 +39,8 @@ def logging_node(name:str):
         @wraps(func)
         async def wrapper(self, state: StateT, *args, **kwargs):
             started = perf_counter()
-            print("ENTER NODE:", name)
-            logger.info(
+            #print("ENTER NODE:", name)
+            logger.debug(
                 "Node '%s' started. execution_id=%s",
                 name,
                 state.get("execution_id"),
@@ -54,20 +54,20 @@ def logging_node(name:str):
                     **kwargs,
                 )
 
-                logger.info(
+                logger.debug(
                     "Node '%s' completed in %.3f s",
                     name,
                     perf_counter() - started,
                 )
                 
-                print(
+                """ print(
                     "EXIT NODE:",
                     name,
                     "RESULT:",
                     result,
                     "TYPE:",
                     type(result),
-                )
+                )"""
 
                 return result
 

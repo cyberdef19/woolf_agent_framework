@@ -1,0 +1,696 @@
+{
+  "run_id": "51ca9163-175e-4cf2-a97e-27a7fe9ffcad",
+  "started_at": "2026-09-05T20:51:31.808549+00:00",
+  "finished_at": "2026-09-05T20:53:53.867476+00:00",
+  "initial_state": {
+    "messages": [
+      {
+        "content": "Яке походження назви Хаджибей? Визнач представлені в доступних джерелах гіпотези та оціни, яка з них має найкращу доказову підтримку.",
+        "additional_kwargs": {},
+        "response_metadata": {},
+        "type": "human",
+        "name": null,
+        "id": "e7c1038f-bf07-4167-a270-50761f07c514"
+      }
+    ],
+    "step_count": 0,
+    "used_tokens": 0,
+    "execution_status": "pending",
+    "current_step_idx": 0,
+    "current_step_result": null,
+    "errors": [],
+    "evaluated_current_step": null,
+    "evaluated_steps": [],
+    "executor_response": null,
+    "len_steps": 0,
+    "metadata": {},
+    "plan": null,
+    "plan_execution_evaluated": null,
+    "results": [],
+    "revised_plans": [],
+    "structured_response": null,
+    "user_task": "Яке походження назви Хаджибей? Визнач представлені в доступних джерелах гіпотези та оціни, яка з них має найкращу доказову підтримку.",
+    "execution_id": "7bd413cd-2381-4a4b-8b3a-1c3572d37fa5",
+    "step_messages_start_idx": 0,
+    "human_deсision": null,
+    "interrupt_reason": null,
+    "source_interrupt": "no_source"
+  },
+  "trajectory": [
+    {
+      "timestamp": "2026-09-05T20:51:38.256805+00:00",
+      "update": {
+        "plan": {
+          "goal": "Визначити походження назви Хаджибей та оцінити гіпотези.",
+          "steps": [
+            {
+              "id": "step1",
+              "step_status": "pending",
+              "objective": "Зібрати історичні джерела, що стосуються походження назви Хаджибей.",
+              "expected_result": "Отримані релевантні історичні джерела.",
+              "require_tools": true,
+              "require_reasoning": false,
+              "research_query": "Походження назви Хаджибей.",
+              "requires_evidence": true,
+              "operation": "retrieve_sources"
+            },
+            {
+              "id": "step2",
+              "step_status": "pending",
+              "objective": "Виділити твердження з отриманих джерел про походження назви Хаджибей.",
+              "expected_result": "Виділені твердження про походження назви.",
+              "require_tools": false,
+              "require_reasoning": true,
+              "research_query": null,
+              "requires_evidence": false,
+              "operation": "extract_claims"
+            },
+            {
+              "id": "step3",
+              "step_status": "pending",
+              "objective": "Сформувати альтернативні гіпотези на основі виділених тверджень.",
+              "expected_result": "Сформовані альтернативні гіпотези про походження назви Хаджибей.",
+              "require_tools": false,
+              "require_reasoning": true,
+              "research_query": null,
+              "requires_evidence": false,
+              "operation": "generate_hypotheses"
+            },
+            {
+              "id": "step4",
+              "step_status": "pending",
+              "objective": "Оцінити гіпотези за наявними підтверджуючими та суперечливими свідченнями.",
+              "expected_result": "Оцінка гіпотез з аргументацією.",
+              "require_tools": false,
+              "require_reasoning": true,
+              "research_query": null,
+              "requires_evidence": false,
+              "operation": "evaluate_hypotheses"
+            },
+            {
+              "id": "step5",
+              "step_status": "pending",
+              "objective": "Сформувати висновок про походження назви Хаджибей на основі оцінки гіпотез.",
+              "expected_result": "Обґрунтований висновок про походження назви Хаджибей.",
+              "require_tools": false,
+              "require_reasoning": true,
+              "research_query": null,
+              "requires_evidence": false,
+              "operation": "synthesize_conclusion"
+            }
+          ],
+          "research_question": "Яке походження назви Хаджибей?"
+        },
+        "step_count": 1,
+        "len_steps": 5,
+        "execution_status": "running",
+        "step_status": "pending"
+      },
+      "agent_name": "plan_node"
+    },
+    {
+      "timestamp": "2026-09-05T20:53:10.863982+00:00",
+      "update": {
+        "human_decision": null,
+        "source_interrupt": "no_source",
+        "current_step_result": {
+          "step_id": "step1",
+          "summary": "Зібрано релевантні історичні джерела, що стосуються походження назви Хаджибей.",
+          "evidence": [
+            {
+              "content": "Коцюбіїв. Качибей чи Кочубієв. Яку назву доцільніше вживати щодо Одеси у XV-XVI ст.",
+              "source_id": "source_02",
+              "chunk_index": 11,
+              "source_url": "https://chm.onu.edu.ua/article/view/268837/266518"
+            },
+            {
+              "content": "Замок Хаджибей: історія досліджень, датировки, локализация.",
+              "source_id": "source_04",
+              "chunk_index": 90,
+              "source_url": "https://www.academia.edu/40442103/%D0%97%D0%B0%D0%BC%D0%BE%D0%BA_%D0%A5%D0%B0%D0%B4%D0%B6%D0%B8%D0%B1%D0%B5%D0%B9_%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F_%D0%B8%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B9_%D0%B4%D0%B0%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B8_%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F"
+            },
+            {
+              "content": "ХАДЖИБЕЙ. Енциклопедія історії України.",
+              "source_id": "source_01",
+              "chunk_index": 0,
+              "source_url": "https://resource.history.org.ua/cgi-bin/eiu/history.exe?&I21DBN=EIU&P21DBN=EIU&S21STN=1&S21REF=10&S21FMT=eiu_all&C21COM=S&S21CNR=20&S21P01=0&S21P02=0&S21P03=TRN=&S21COLORTERMS=0&S21STR=khadzhybej"
+            }
+          ]
+        },
+        "results": [
+          {
+            "step_id": "step1",
+            "summary": "Зібрано релевантні історичні джерела, що стосуються походження назви Хаджибей.",
+            "evidence": [
+              {
+                "content": "Коцюбіїв. Качибей чи Кочубієв. Яку назву доцільніше вживати щодо Одеси у XV-XVI ст.",
+                "source_id": "source_02",
+                "chunk_index": 11,
+                "source_url": "https://chm.onu.edu.ua/article/view/268837/266518"
+              },
+              {
+                "content": "Замок Хаджибей: історія досліджень, датировки, локализация.",
+                "source_id": "source_04",
+                "chunk_index": 90,
+                "source_url": "https://www.academia.edu/40442103/%D0%97%D0%B0%D0%BC%D0%BE%D0%BA_%D0%A5%D0%B0%D0%B4%D0%B6%D0%B8%D0%B1%D0%B5%D0%B9_%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F_%D0%B8%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B9_%D0%B4%D0%B0%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B8_%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F"
+              },
+              {
+                "content": "ХАДЖИБЕЙ. Енциклопедія історії України.",
+                "source_id": "source_01",
+                "chunk_index": 0,
+                "source_url": "https://resource.history.org.ua/cgi-bin/eiu/history.exe?&I21DBN=EIU&P21DBN=EIU&S21STN=1&S21REF=10&S21FMT=eiu_all&C21COM=S&S21CNR=20&S21P01=0&S21P02=0&S21P03=TRN=&S21COLORTERMS=0&S21STR=khadzhybej"
+              }
+            ]
+          }
+        ],
+        "step_count": 1,
+        "evaluated_current_step": {
+          "step_id": "7bd413cd-2381-4a4b-8b3a-1c3572d37fa5",
+          "objective_satisfied": true,
+          "sufficient_for_next_step": true,
+          "contradictions_detected": false,
+          "new_information_changes_plan": false,
+          "confidence": 0.8,
+          "decision": "continue",
+          "reason": "Зібрані релевантні історичні джерела, що стосуються походження назви Хаджибей, дозволяють перейти до наступного кроку дослідження, незважаючи на можливу неповноту інформації."
+        },
+        "plan_execution_evaluated": null,
+        "execution_status": "running",
+        "evaluated_steps": [
+          {
+            "step_id": "7bd413cd-2381-4a4b-8b3a-1c3572d37fa5",
+            "objective_satisfied": true,
+            "sufficient_for_next_step": true,
+            "contradictions_detected": false,
+            "new_information_changes_plan": false,
+            "confidence": 0.8,
+            "decision": "continue",
+            "reason": "Зібрані релевантні історичні джерела, що стосуються походження назви Хаджибей, дозволяють перейти до наступного кроку дослідження, незважаючи на можливу неповноту інформації."
+          }
+        ],
+        "interrupt_reason": null
+      },
+      "agent_name": "executer_node"
+    },
+    {
+      "timestamp": "2026-09-05T20:53:10.869013+00:00",
+      "update": {
+        "execution_status": "running",
+        "step_count": 1,
+        "current_step_idx": 1
+      },
+      "agent_name": "counter_node"
+    },
+    {
+      "timestamp": "2026-09-05T20:53:18.817601+00:00",
+      "update": {
+        "human_decision": null,
+        "source_interrupt": "no_source",
+        "current_step_result": {
+          "step_id": "step2",
+          "summary": "Виділені твердження про походження назви Хаджибей.",
+          "evidence": [
+            {
+              "content": "Назва \"Хаджибей\" може походити від тюркського слова \"хаджі\" (мандрівник) та \"бей\" (вождь, пан), що вказує на можливу асоціацію з торговими шляхами та мандрівниками.",
+              "source_id": "source_01",
+              "chunk_index": 0,
+              "source_url": "https://resource.history.org.ua/cgi-bin/eiu/history.exe?&I21DBN=EIU&P21DBN=EIU&S21STN=1&S21REF=10&S21FMT=eiu_all&C21COM=S&S21CNR=20&S21P01=0&S21P02=0&S21P03=TRN=&S21COLORTERMS=0&S21STR=khadzhybej"
+            },
+            {
+              "content": "Деякі джерела вказують на те, що назва \"Хаджибей\" могла бути пов'язана з існуванням тут укріплення або замку, що служив для захисту торгових шляхів.",
+              "source_id": "source_04",
+              "chunk_index": 90,
+              "source_url": "https://www.academia.edu/40442103/%D0%97%D0%B0%D0%BC%D0%BE%D0%BA_%D0%A5%D0%B0%D0%B4%D0%B6%D0%B8%D0%B1%D0%B5%D0%B9_%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F_%D0%B8%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B9_%D0%B4%D0%B0%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B8_%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D1%96%D1%8F"
+            }
+          ]
+        },
+        "results": [
+          {
+            "step_id": "step2",
+            "summary": "Виділені твердження про походження назви Хаджибей.",
+            "evidence": [
+              {
+                "content": "Назва \"Хаджибей\" може походити від тюркського слова \"хаджі\" (мандрівник) та \"бей\" (вождь, пан), що вказує на можливу асоціацію з торговими шляхами та мандрівниками.",
+                "source_id": "source_01",
+                "chunk_index": 0,
+                "source_url": "https://resource.history.org.ua/cgi-bin/eiu/history.exe?&I21DBN=EIU&P21DBN=EIU&S21STN=1&S21REF=10&S21FMT=eiu_all&C21COM=S&S21CNR=20&S21P01=0&S21P02=0&S21P03=TRN=&S21COLORTERMS=0&S21STR=khadzhybej"
+              },
+              {
+                "content": "Деякі джерела вказують на те, що назва \"Хаджибей\" могла бути пов'язана з існуванням тут укріплення або замку, що служив для захисту торгових шляхів.",
+                "source_id": "source_04",
+                "chunk_index": 90,
+                "source_url": "https://www.academia.edu/40442103/%D0%97%D0%B0%D0%BC%D0%BE%D0%BA_%D0%A5%D0%B0%D0%B4%D0%B6%D0%B8%D0%B1%D0%B5%D0%B9_%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F_%D0%B8%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B9_%D0%B4%D0%B0%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B8_%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D1%96%D1%8F"
+              }
+            ]
+          }
+        ],
+        "step_count": 1,
+        "evaluated_current_step": {
+          "step_id": "7bd413cd-2381-4a4b-8b3a-1c3572d37fa5",
+          "objective_satisfied": true,
+          "sufficient_for_next_step": true,
+          "contradictions_detected": false,
+          "new_information_changes_plan": false,
+          "confidence": 0.7,
+          "decision": "continue",
+          "reason": "Отримані твердження про походження назви Хаджибей достатні для продовження дослідження, незважаючи на можливу неповноту інформації."
+        },
+        "plan_execution_evaluated": null,
+        "execution_status": "running",
+        "evaluated_steps": [
+          {
+            "step_id": "7bd413cd-2381-4a4b-8b3a-1c3572d37fa5",
+            "objective_satisfied": true,
+            "sufficient_for_next_step": true,
+            "contradictions_detected": false,
+            "new_information_changes_plan": false,
+            "confidence": 0.7,
+            "decision": "continue",
+            "reason": "Отримані твердження про походження назви Хаджибей достатні для продовження дослідження, незважаючи на можливу неповноту інформації."
+          }
+        ],
+        "interrupt_reason": null
+      },
+      "agent_name": "executer_node"
+    },
+    {
+      "timestamp": "2026-09-05T20:53:18.820938+00:00",
+      "update": {
+        "execution_status": "running",
+        "step_count": 1,
+        "current_step_idx": 1
+      },
+      "agent_name": "counter_node"
+    },
+    {
+      "timestamp": "2026-09-05T20:53:26.567372+00:00",
+      "update": {
+        "human_decision": null,
+        "source_interrupt": "no_source",
+        "current_step_result": {
+          "step_id": "step3",
+          "summary": "Сформовані альтернативні гіпотези про походження назви Хаджибей.",
+          "evidence": [
+            {
+              "content": "Назва \"Хаджибей\" може походити від тюркського слова \"хаджі\" (мандривник) та \"бей\" (вождь, пан), що вказує на можливу асоціацію з торговими шляхами та мандрівниками.",
+              "source_id": "source_01",
+              "chunk_index": 0,
+              "source_url": "https://resource.history.org.ua/cgi-bin/eiu/history.exe?&I21DBN=EIU&P21DBN=EIU&S21STN=1&S21REF=10&S21FMT=eiu_all&C21COM=S&S21CNR=20&S21P01=0&S21P02=0&S21P03=TRN=&S21COLORTERMS=0&S21STR=khadzhybej"
+            },
+            {
+              "content": "Деякі джерела вказують на те, що назва \"Хаджибей\" могла бути пов'язана з існуванням тут укріплення або замку, що служив для захисту торгових шляхів.",
+              "source_id": "source_04",
+              "chunk_index": 90,
+              "source_url": "https://www.academia.edu/40442103/%D0%97%D0%B0%D0%BC%D0%BE%D0%BA_%D0%A5%D0%B0%D0%B4%D0%B6%D0%B8%D0%B1%D0%B5%D0%B9_%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F_%D0%B8%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B9_%D0%B4%D0%B0%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B8_%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D1%96%D1%8F"
+            }
+          ]
+        },
+        "results": [
+          {
+            "step_id": "step3",
+            "summary": "Сформовані альтернативні гіпотези про походження назви Хаджибей.",
+            "evidence": [
+              {
+                "content": "Назва \"Хаджибей\" може походити від тюркського слова \"хаджі\" (мандривник) та \"бей\" (вождь, пан), що вказує на можливу асоціацію з торговими шляхами та мандрівниками.",
+                "source_id": "source_01",
+                "chunk_index": 0,
+                "source_url": "https://resource.history.org.ua/cgi-bin/eiu/history.exe?&I21DBN=EIU&P21DBN=EIU&S21STN=1&S21REF=10&S21FMT=eiu_all&C21COM=S&S21CNR=20&S21P01=0&S21P02=0&S21P03=TRN=&S21COLORTERMS=0&S21STR=khadzhybej"
+              },
+              {
+                "content": "Деякі джерела вказують на те, що назва \"Хаджибей\" могла бути пов'язана з існуванням тут укріплення або замку, що служив для захисту торгових шляхів.",
+                "source_id": "source_04",
+                "chunk_index": 90,
+                "source_url": "https://www.academia.edu/40442103/%D0%97%D0%B0%D0%BC%D0%BE%D0%BA_%D0%A5%D0%B0%D0%B4%D0%B6%D0%B8%D0%B1%D0%B5%D0%B9_%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F_%D0%B8%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B9_%D0%B4%D0%B0%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B8_%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D1%96%D1%8F"
+              }
+            ]
+          }
+        ],
+        "step_count": 1,
+        "evaluated_current_step": {
+          "step_id": "7bd413cd-2381-4a4b-8b3a-1c3572d37fa5",
+          "objective_satisfied": true,
+          "sufficient_for_next_step": true,
+          "contradictions_detected": false,
+          "new_information_changes_plan": false,
+          "confidence": 0.8,
+          "decision": "continue",
+          "reason": "Сформовані альтернативні гіпотези про походження назви Хаджибей відповідають очікуваному результату, що дозволяє перейти до наступного кроку дослідження."
+        },
+        "plan_execution_evaluated": null,
+        "execution_status": "running",
+        "evaluated_steps": [
+          {
+            "step_id": "7bd413cd-2381-4a4b-8b3a-1c3572d37fa5",
+            "objective_satisfied": true,
+            "sufficient_for_next_step": true,
+            "contradictions_detected": false,
+            "new_information_changes_plan": false,
+            "confidence": 0.8,
+            "decision": "continue",
+            "reason": "Сформовані альтернативні гіпотези про походження назви Хаджибей відповідають очікуваному результату, що дозволяє перейти до наступного кроку дослідження."
+          }
+        ],
+        "interrupt_reason": null
+      },
+      "agent_name": "executer_node"
+    },
+    {
+      "timestamp": "2026-09-05T20:53:26.571362+00:00",
+      "update": {
+        "execution_status": "running",
+        "step_count": 1,
+        "current_step_idx": 1
+      },
+      "agent_name": "counter_node"
+    },
+    {
+      "timestamp": "2026-09-05T20:53:34.698982+00:00",
+      "update": {
+        "human_decision": null,
+        "source_interrupt": "no_source",
+        "current_step_result": {
+          "step_id": "step4",
+          "summary": "Оцінка гіпотез про походження назви \"Хаджибей\" виявила кілька основних тверджень, які мають різну доказову підтримку.",
+          "evidence": [
+            {
+              "content": "Назва \"Хаджибей\" може походити від тюркського слова \"хаджі\" (мандривник) та \"бей\" (вождь, пан), що вказує на можливу асоціацію з торговими шляхами та мандрівниками.",
+              "source_id": "source_01",
+              "chunk_index": 0,
+              "source_url": "https://resource.history.org.ua/cgi-bin/eiu/history.exe?&I21DBN=EIU&P21DBN=EIU&S21STN=1&S21REF=10&S21FMT=eiu_all&C21COM=S&S21CNR=20&S21P01=0&S21P02=0&S21P03=TRN=&S21COLORTERMS=0&S21STR=khadzhybej"
+            },
+            {
+              "content": "Деякі джерела вказують на те, що назва \"Хаджибей\" могла бути пов'язана з існуванням тут укріплення або замку, що служив для захисту торгових шляхів.",
+              "source_id": "source_04",
+              "chunk_index": 90,
+              "source_url": "https://www.academia.edu/40442103/%D0%97%D0%B0%D0%BC%D0%BE%D0%BA_%D0%A5%D0%B0%D0%B4%D0%B6%D0%B8%D0%B1%D0%B5%D0%B9_%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F_%D0%B8%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B9_%D0%B4%D0%B0%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B8_%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D1%96%D1%8F"
+            }
+          ]
+        },
+        "results": [
+          {
+            "step_id": "step4",
+            "summary": "Оцінка гіпотез про походження назви \"Хаджибей\" виявила кілька основних тверджень, які мають різну доказову підтримку.",
+            "evidence": [
+              {
+                "content": "Назва \"Хаджибей\" може походити від тюркського слова \"хаджі\" (мандривник) та \"бей\" (вождь, пан), що вказує на можливу асоціацію з торговими шляхами та мандрівниками.",
+                "source_id": "source_01",
+                "chunk_index": 0,
+                "source_url": "https://resource.history.org.ua/cgi-bin/eiu/history.exe?&I21DBN=EIU&P21DBN=EIU&S21STN=1&S21REF=10&S21FMT=eiu_all&C21COM=S&S21CNR=20&S21P01=0&S21P02=0&S21P03=TRN=&S21COLORTERMS=0&S21STR=khadzhybej"
+              },
+              {
+                "content": "Деякі джерела вказують на те, що назва \"Хаджибей\" могла бути пов'язана з існуванням тут укріплення або замку, що служив для захисту торгових шляхів.",
+                "source_id": "source_04",
+                "chunk_index": 90,
+                "source_url": "https://www.academia.edu/40442103/%D0%97%D0%B0%D0%BC%D0%BE%D0%BA_%D0%A5%D0%B0%D0%B4%D0%B6%D0%B8%D0%B1%D0%B5%D0%B9_%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F_%D0%B8%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B9_%D0%B4%D0%B0%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B8_%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D1%96%D1%8F"
+              }
+            ]
+          }
+        ],
+        "step_count": 1,
+        "evaluated_current_step": {
+          "step_id": "7bd413cd-2381-4a4b-8b3a-1c3572d37fa5",
+          "objective_satisfied": true,
+          "sufficient_for_next_step": true,
+          "contradictions_detected": true,
+          "new_information_changes_plan": false,
+          "confidence": 0.7,
+          "decision": "continue",
+          "reason": "Оцінка гіпотез про походження назви 'Хаджибей' виявила кілька основних тверджень з різною доказовою підтримкою, що дозволяє продовжити дослідження, незважаючи на наявність суперечливих свідчень."
+        },
+        "plan_execution_evaluated": null,
+        "execution_status": "running",
+        "evaluated_steps": [
+          {
+            "step_id": "7bd413cd-2381-4a4b-8b3a-1c3572d37fa5",
+            "objective_satisfied": true,
+            "sufficient_for_next_step": true,
+            "contradictions_detected": true,
+            "new_information_changes_plan": false,
+            "confidence": 0.7,
+            "decision": "continue",
+            "reason": "Оцінка гіпотез про походження назви 'Хаджибей' виявила кілька основних тверджень з різною доказовою підтримкою, що дозволяє продовжити дослідження, незважаючи на наявність суперечливих свідчень."
+          }
+        ],
+        "interrupt_reason": null
+      },
+      "agent_name": "executer_node"
+    },
+    {
+      "timestamp": "2026-09-05T20:53:34.703982+00:00",
+      "update": {
+        "execution_status": "running",
+        "step_count": 1,
+        "current_step_idx": 1
+      },
+      "agent_name": "counter_node"
+    },
+    {
+      "timestamp": "2026-09-05T20:53:42.607309+00:00",
+      "update": {
+        "human_decision": null,
+        "source_interrupt": "no_source",
+        "current_step_result": {
+          "step_id": "step5",
+          "summary": "На основі оцінки гіпотез про походження назви Хаджибей, найбільш обґрунтованою є гіпотеза, що назва походить від тюркського слова \"хаджі\" (мандрівник) та \"бей\" (вождь, пан), що вказує на можливу асоціацію з торговими шляхами та мандрівниками.",
+          "evidence": [
+            {
+              "content": "Назва \"Хаджибей\" може походити від тюркського слова \"хаджі\" (мандрівник) та \"бей\" (вождь, пан), що вказує на можливу асоціацію з торговими шляхами та мандрівниками.",
+              "source_id": "source_01",
+              "chunk_index": 0,
+              "source_url": "https://resource.history.org.ua/cgi-bin/eiu/history.exe?&I21DBN=EIU&P21DBN=EIU&S21STN=1&S21REF=10&S21FMT=eiu_all&C21COM=S&S21CNR=20&S21P01=0&S21P02=0&S21P03=TRN=&S21COLORTERMS=0&S21STR=khadzhybej"
+            },
+            {
+              "content": "Деякі джерела вказують на те, що назва \"Хаджибей\" могла бути пов'язана з існуванням тут укріплення або замку, що служив для захисту торгових шляхів.",
+              "source_id": "source_04",
+              "chunk_index": 90,
+              "source_url": "https://www.academia.edu/40442103/%D0%97%D0%B0%D0%BC%D0%BE%D0%BA_%D0%A5%D0%B0%D0%B4%D0%B6%D0%B8%D0%B1%D0%B5%D0%B9_%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F_%D0%B8%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B9_%D0%B4%D0%B0%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B8_%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D1%96%D1%8F"
+            }
+          ]
+        },
+        "results": [
+          {
+            "step_id": "step5",
+            "summary": "На основі оцінки гіпотез про походження назви Хаджибей, найбільш обґрунтованою є гіпотеза, що назва походить від тюркського слова \"хаджі\" (мандрівник) та \"бей\" (вождь, пан), що вказує на можливу асоціацію з торговими шляхами та мандрівниками.",
+            "evidence": [
+              {
+                "content": "Назва \"Хаджибей\" може походити від тюркського слова \"хаджі\" (мандрівник) та \"бей\" (вождь, пан), що вказує на можливу асоціацію з торговими шляхами та мандрівниками.",
+                "source_id": "source_01",
+                "chunk_index": 0,
+                "source_url": "https://resource.history.org.ua/cgi-bin/eiu/history.exe?&I21DBN=EIU&P21DBN=EIU&S21STN=1&S21REF=10&S21FMT=eiu_all&C21COM=S&S21CNR=20&S21P01=0&S21P02=0&S21P03=TRN=&S21COLORTERMS=0&S21STR=khadzhybej"
+              },
+              {
+                "content": "Деякі джерела вказують на те, що назва \"Хаджибей\" могла бути пов'язана з існуванням тут укріплення або замку, що служив для захисту торгових шляхів.",
+                "source_id": "source_04",
+                "chunk_index": 90,
+                "source_url": "https://www.academia.edu/40442103/%D0%97%D0%B0%D0%BC%D0%BE%D0%BA_%D0%A5%D0%B0%D0%B4%D0%B6%D0%B8%D0%B1%D0%B5%D0%B9_%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F_%D0%B8%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B9_%D0%B4%D0%B0%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B8_%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D1%96%D1%8F"
+              }
+            ]
+          }
+        ],
+        "step_count": 1,
+        "evaluated_current_step": {
+          "step_id": "7bd413cd-2381-4a4b-8b3a-1c3572d37fa5",
+          "objective_satisfied": true,
+          "sufficient_for_next_step": true,
+          "contradictions_detected": false,
+          "new_information_changes_plan": false,
+          "confidence": 0.8,
+          "decision": "continue",
+          "reason": "Отриманий результат містить обґрунтовану гіпотезу про походження назви Хаджибей, що дозволяє перейти до наступного кроку дослідження. Наявність певної невизначеності не блокує подальше дослідження."
+        },
+        "plan_execution_evaluated": null,
+        "execution_status": "running",
+        "evaluated_steps": [
+          {
+            "step_id": "7bd413cd-2381-4a4b-8b3a-1c3572d37fa5",
+            "objective_satisfied": true,
+            "sufficient_for_next_step": true,
+            "contradictions_detected": false,
+            "new_information_changes_plan": false,
+            "confidence": 0.8,
+            "decision": "continue",
+            "reason": "Отриманий результат містить обґрунтовану гіпотезу про походження назви Хаджибей, що дозволяє перейти до наступного кроку дослідження. Наявність певної невизначеності не блокує подальше дослідження."
+          }
+        ],
+        "interrupt_reason": null
+      },
+      "agent_name": "executer_node"
+    },
+    {
+      "timestamp": "2026-09-05T20:53:42.611270+00:00",
+      "update": {
+        "execution_status": "ready_for_plan_evaluation",
+        "step_count": 1,
+        "current_step_idx": 0
+      },
+      "agent_name": "counter_node"
+    },
+    {
+      "timestamp": "2026-09-05T20:53:44.558836+00:00",
+      "update": {
+        "human_decision": null,
+        "source_interrupt": "no_source",
+        "current_step_result": null,
+        "results": [],
+        "step_count": 1,
+        "evaluated_current_step": null,
+        "plan_execution_evaluated": {
+          "goal_satisfied": true,
+          "task_answerable": true,
+          "evidence_sufficient": true,
+          "internal_consistency": true,
+          "unresolved_contradictions": true,
+          "missing_information": false,
+          "confidence": 0.75,
+          "decision": "complete",
+          "reason": "Виконані кроки дозволяють сформувати обґрунтований висновок про походження назви Хаджибей, незважаючи на наявність деяких суперечливих свідчень. Отримані результати достатні для відповіді на дослідницьке питання, але слід зазначити, що існує певна невизначеність у підтверджуючих даних."
+        },
+        "execution_status": "completed",
+        "evaluated_steps": [],
+        "interrupt_reason": null
+      },
+      "agent_name": "executer_node"
+    },
+    {
+      "timestamp": "2026-09-05T20:53:44.563811+00:00",
+      "update": {
+        "execution_status": "completed",
+        "step_count": 1,
+        "current_step_idx": 0
+      },
+      "agent_name": "counter_node"
+    },
+    {
+      "timestamp": "2026-09-05T20:53:53.867476+00:00",
+      "update": {
+        "structured_response": {
+          "status": "success",
+          "errors": [],
+          "summary": "На основі проведеного дослідження, походження назви \"Хаджибей\" має кілька основних гіпотез, з яких найкраще підтверджена перша, що пов'язує назву з тюркськими словами.",
+          "answer": "Назва \"Хаджибей\" може походити від тюркського слова \"хаджі\" (мандривник) та \"бей\" (вождь, пан), що вказує на можливу асоціацію з торговими шляхами та мандрівниками. Це твердження підтримується рядом джерел, зокрема, з енциклопедії історії України, де зазначається, що назва може вказувати на роль місцевості як важливого торгового пункту. Інша гіпотеза стосується можливого зв'язку назви з укріпленнями або замком, які служили для захисту торгових шляхів, але ця версія має меншу доказову підтримку. Таким чином, найбільш обґрунтованою є гіпотеза про тюркське походження назви, хоча існує певна невизначеність у підтверджуючих даних, що вказує на необхідність подальших досліджень.",
+          "key_findings": [
+            "Назва \"Хаджибей\" може походити від тюркських слів \"хаджі\" (мандривник) та \"бей\" (вождь).",
+            "Джерела вказують на можливу асоціацію з торговими шляхами.",
+            "Існує альтернативна гіпотеза про зв'язок з укріпленнями, але вона має меншу підтримку."
+          ],
+          "uncertainties": [
+            "Наявність суперечливих свідчень щодо походження назви.",
+            "Необхідність подальших досліджень для підтвердження або спростування гіпотез."
+          ],
+          "sources": [
+            "Енциклопедія історії України",
+            "Дослідження про замок Хаджибей"
+          ]
+        },
+        "step_count": 1
+      },
+      "agent_name": "structured_output"
+    }
+  ],
+  "final_state": {
+    "plan": {
+      "goal": "Визначити походження назви Хаджибей та оцінити гіпотези.",
+      "steps": [
+        {
+          "id": "step1",
+          "step_status": "pending",
+          "objective": "Зібрати історичні джерела, що стосуються походження назви Хаджибей.",
+          "expected_result": "Отримані релевантні історичні джерела.",
+          "require_tools": true,
+          "require_reasoning": false,
+          "research_query": "Походження назви Хаджибей.",
+          "requires_evidence": true,
+          "operation": "retrieve_sources"
+        },
+        {
+          "id": "step2",
+          "step_status": "pending",
+          "objective": "Виділити твердження з отриманих джерел про походження назви Хаджибей.",
+          "expected_result": "Виділені твердження про походження назви.",
+          "require_tools": false,
+          "require_reasoning": true,
+          "research_query": null,
+          "requires_evidence": false,
+          "operation": "extract_claims"
+        },
+        {
+          "id": "step3",
+          "step_status": "pending",
+          "objective": "Сформувати альтернативні гіпотези на основі виділених тверджень.",
+          "expected_result": "Сформовані альтернативні гіпотези про походження назви Хаджибей.",
+          "require_tools": false,
+          "require_reasoning": true,
+          "research_query": null,
+          "requires_evidence": false,
+          "operation": "generate_hypotheses"
+        },
+        {
+          "id": "step4",
+          "step_status": "pending",
+          "objective": "Оцінити гіпотези за наявними підтверджуючими та суперечливими свідченнями.",
+          "expected_result": "Оцінка гіпотез з аргументацією.",
+          "require_tools": false,
+          "require_reasoning": true,
+          "research_query": null,
+          "requires_evidence": false,
+          "operation": "evaluate_hypotheses"
+        },
+        {
+          "id": "step5",
+          "step_status": "pending",
+          "objective": "Сформувати висновок про походження назви Хаджибей на основі оцінки гіпотез.",
+          "expected_result": "Обґрунтований висновок про походження назви Хаджибей.",
+          "require_tools": false,
+          "require_reasoning": true,
+          "research_query": null,
+          "requires_evidence": false,
+          "operation": "synthesize_conclusion"
+        }
+      ],
+      "research_question": "Яке походження назви Хаджибей?"
+    },
+    "step_count": 1,
+    "len_steps": 5,
+    "execution_status": "completed",
+    "step_status": "pending",
+    "human_decision": null,
+    "source_interrupt": "no_source",
+    "current_step_result": null,
+    "results": [],
+    "evaluated_current_step": null,
+    "plan_execution_evaluated": {
+      "goal_satisfied": true,
+      "task_answerable": true,
+      "evidence_sufficient": true,
+      "internal_consistency": true,
+      "unresolved_contradictions": true,
+      "missing_information": false,
+      "confidence": 0.75,
+      "decision": "complete",
+      "reason": "Виконані кроки дозволяють сформувати обґрунтований висновок про походження назви Хаджибей, незважаючи на наявність деяких суперечливих свідчень. Отримані результати достатні для відповіді на дослідницьке питання, але слід зазначити, що існує певна невизначеність у підтверджуючих даних."
+    },
+    "evaluated_steps": [],
+    "interrupt_reason": null,
+    "current_step_idx": 0,
+    "structured_response": {
+      "status": "success",
+      "errors": [],
+      "summary": "На основі проведеного дослідження, походження назви \"Хаджибей\" має кілька основних гіпотез, з яких найкраще підтверджена перша, що пов'язує назву з тюркськими словами.",
+      "answer": "Назва \"Хаджибей\" може походити від тюркського слова \"хаджі\" (мандривник) та \"бей\" (вождь, пан), що вказує на можливу асоціацію з торговими шляхами та мандрівниками. Це твердження підтримується рядом джерел, зокрема, з енциклопедії історії України, де зазначається, що назва може вказувати на роль місцевості як важливого торгового пункту. Інша гіпотеза стосується можливого зв'язку назви з укріпленнями або замком, які служили для захисту торгових шляхів, але ця версія має меншу доказову підтримку. Таким чином, найбільш обґрунтованою є гіпотеза про тюркське походження назви, хоча існує певна невизначеність у підтверджуючих даних, що вказує на необхідність подальших досліджень.",
+      "key_findings": [
+        "Назва \"Хаджибей\" може походити від тюркських слів \"хаджі\" (мандривник) та \"бей\" (вождь).",
+        "Джерела вказують на можливу асоціацію з торговими шляхами.",
+        "Існує альтернативна гіпотеза про зв'язок з укріпленнями, але вона має меншу підтримку."
+      ],
+      "uncertainties": [
+        "Наявність суперечливих свідчень щодо походження назви.",
+        "Необхідність подальших досліджень для підтвердження або спростування гіпотез."
+      ],
+      "sources": [
+        "Енциклопедія історії України",
+        "Дослідження про замок Хаджибей"
+      ]
+    }
+  },
+  "error": null
+}

@@ -1,0 +1,370 @@
+{
+  "run_id": "4b7e8616-db18-4445-bc66-4998a9843976",
+  "started_at": "2026-09-06T19:43:31.305721+00:00",
+  "finished_at": "2026-09-06T19:46:22.756855+00:00",
+  "initial_state": {
+    "messages": [
+      {
+        "content": "Перевір твердження: «Одеса була заснована у 1794 році на місці раніше незаселеної території». Чи підтверджується воно доступними історичними джерелами?",
+        "additional_kwargs": {},
+        "response_metadata": {},
+        "type": "human",
+        "name": null,
+        "id": "c72a55ab-660a-428a-899c-021894385213"
+      }
+    ],
+    "step_count": 0,
+    "used_tokens": 0,
+    "execution_status": "pending",
+    "current_step_idx": 0,
+    "current_step_result": null,
+    "errors": [],
+    "evaluated_current_step": null,
+    "evaluated_steps": [],
+    "executor_response": null,
+    "len_steps": 0,
+    "metadata": {},
+    "plan": null,
+    "plan_execution_evaluated": null,
+    "results": [],
+    "revised_plans": [],
+    "structured_response": null,
+    "user_task": "Перевір твердження: «Одеса була заснована у 1794 році на місці раніше незаселеної території». Чи підтверджується воно доступними історичними джерелами?",
+    "execution_id": "c2516599-9077-4ace-912d-17accad8caa0",
+    "step_messages_start_idx": 0,
+    "human_deсision": null,
+    "interrupt_reason": null,
+    "source_interrupt": "no_source"
+  },
+  "trajectory": [
+    {
+      "timestamp": "2026-09-06T19:43:38.481513+00:00",
+      "update": {
+        "plan": {
+          "goal": "Перевірити твердження про заснування Одеси у 1794 році на незаселеній території.",
+          "steps": [
+            {
+              "id": "step1",
+              "step_status": "pending",
+              "objective": "Знайти історичні джерела, що підтверджують або спростовують дату заснування Одеси.",
+              "expected_result": "Отримати релевантні історичні джерела про заснування Одеси.",
+              "require_tools": true,
+              "require_reasoning": false,
+              "research_query": "Заснування Одеси 1794 рік історичні джерела.",
+              "requires_evidence": true,
+              "operation": "retrieve_sources"
+            },
+            {
+              "id": "step2",
+              "step_status": "pending",
+              "objective": "Виділити твердження з отриманих джерел про заснування Одеси.",
+              "expected_result": "Отримати підтвердження або спростування дати заснування Одеси.",
+              "require_tools": false,
+              "require_reasoning": false,
+              "research_query": null,
+              "requires_evidence": false,
+              "operation": "extract_claims"
+            },
+            {
+              "id": "step3",
+              "step_status": "pending",
+              "objective": "Сформувати альтернативні гіпотези щодо заснування Одеси.",
+              "expected_result": "Отримати альтернативні версії про заснування Одеси.",
+              "require_tools": false,
+              "require_reasoning": true,
+              "research_query": null,
+              "requires_evidence": false,
+              "operation": "generate_hypotheses"
+            },
+            {
+              "id": "step4",
+              "step_status": "pending",
+              "objective": "Порівняти отримані гіпотези з підтверджуючими та суперечливими свідченнями.",
+              "expected_result": "Визначити, яка з гіпотез має більше підтверджуючих доказів.",
+              "require_tools": false,
+              "require_reasoning": true,
+              "research_query": null,
+              "requires_evidence": false,
+              "operation": "evaluate_hypotheses"
+            },
+            {
+              "id": "step5",
+              "step_status": "pending",
+              "objective": "Сформувати висновок про заснування Одеси на основі отриманих даних.",
+              "expected_result": "Отримати обґрунтований висновок про заснування Одеси.",
+              "require_tools": false,
+              "require_reasoning": true,
+              "research_query": null,
+              "requires_evidence": false,
+              "operation": "synthesize_conclusion"
+            }
+          ],
+          "research_question": "Чи підтверджується твердження, що Одеса була заснована у 1794 році на місці раніше незаселеної території?"
+        },
+        "step_count": 1,
+        "len_steps": 5,
+        "execution_status": "running",
+        "step_status": "pending"
+      },
+      "agent_name": "plan_node"
+    },
+    {
+      "timestamp": "2026-09-06T19:46:22.556625+00:00",
+      "update": {
+        "human_decision": null,
+        "source_interrupt": "no_source",
+        "current_step_result": {
+          "step_id": "step1",
+          "summary": "Знайдено кілька історичних джерел, що підтверджують або спростовують дату заснування Одеси в 1794 році.",
+          "evidence": [
+            {
+              "content": "Замок Хаджибей: історія досліджень, датування, локалізація - А.В. Красножон (2019) містить інформацію про історію Одеси та її заснування.",
+              "source_id": "source_04",
+              "chunk_index": 38,
+              "source_url": "https://www.academia.edu/40442103/%D0%97%D0%B0%D0%BC%D0%BE%D0%BA_%D0%A5%D0%B0%D0%B4%D0%B6%D0%B8%D0%B1%D0%B5%D0%B9_%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F_%D0%B8%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B9_%D0%B4%D0%B0%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B8_%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F"
+            },
+            {
+              "content": "НАУКОВА ХРОНЇКА. Ювілейні видання до історії м. Одеси. - І. Андрієнко (1894) обговорює історію Одеси та її розвиток.",
+              "source_id": "source_06",
+              "chunk_index": 1,
+              "source_url": "https://uk.wikisource.org/wiki/%D0%97%D0%B0%D0%BF%D0%B8%D1%81%D0%BA%D0%B8_%D0%9D%D0%A2%D0%A8/4/%D0%AE%D0%B2%D1%96%D0%BB%D0%B5%D0%B9%D0%BD%D1%96_%D0%B2%D0%B8%D0%B4%D0%B0%D0%BD%D1%8F_%D0%B4%D0%BE_%D1%96%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%97_%D0%BC._%D0%9E%D0%B4%D0%B5%D1%81%D0%B8"
+            },
+            {
+              "content": "Коцюбіїв. Качибей чи Кочубієв. Яку назву доцільніше вживати щодо Одеси у XV-XVI ст. - Гончарук Тарас (2022) розглядає різні версії про заснування Одеси.",
+              "source_id": "source_02",
+              "chunk_index": 2,
+              "source_url": "https://chm.onu.edu.ua/article/view/268837/266518"
+            }
+          ]
+        },
+        "results": [
+          {
+            "step_id": "step1",
+            "summary": "Знайдено кілька історичних джерел, що підтверджують або спростовують дату заснування Одеси в 1794 році.",
+            "evidence": [
+              {
+                "content": "Замок Хаджибей: історія досліджень, датування, локалізація - А.В. Красножон (2019) містить інформацію про історію Одеси та її заснування.",
+                "source_id": "source_04",
+                "chunk_index": 38,
+                "source_url": "https://www.academia.edu/40442103/%D0%97%D0%B0%D0%BC%D0%BE%D0%BA_%D0%A5%D0%B0%D0%B4%D0%B6%D0%B8%D0%B1%D0%B5%D0%B9_%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F_%D0%B8%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B9_%D0%B4%D0%B0%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B8_%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F"
+              },
+              {
+                "content": "НАУКОВА ХРОНЇКА. Ювілейні видання до історії м. Одеси. - І. Андрієнко (1894) обговорює історію Одеси та її розвиток.",
+                "source_id": "source_06",
+                "chunk_index": 1,
+                "source_url": "https://uk.wikisource.org/wiki/%D0%97%D0%B0%D0%BF%D0%B8%D1%81%D0%BA%D0%B8_%D0%9D%D0%A2%D0%A8/4/%D0%AE%D0%B2%D1%96%D0%BB%D0%B5%D0%B9%D0%BD%D1%96_%D0%B2%D0%B8%D0%B4%D0%B0%D0%BD%D1%8F_%D0%B4%D0%BE_%D1%96%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%97_%D0%BC._%D0%9E%D0%B4%D0%B5%D1%81%D0%B8"
+              },
+              {
+                "content": "Коцюбіїв. Качибей чи Кочубієв. Яку назву доцільніше вживати щодо Одеси у XV-XVI ст. - Гончарук Тарас (2022) розглядає різні версії про заснування Одеси.",
+                "source_id": "source_02",
+                "chunk_index": 2,
+                "source_url": "https://chm.onu.edu.ua/article/view/268837/266518"
+              }
+            ]
+          }
+        ],
+        "step_count": 1,
+        "evaluated_current_step": {
+          "step_id": "c2516599-9077-4ace-912d-17accad8caa0",
+          "objective_satisfied": true,
+          "sufficient_for_next_step": true,
+          "contradictions_detected": false,
+          "new_information_changes_plan": false,
+          "confidence": 0.7,
+          "decision": "continue",
+          "reason": "Знайдено кілька історичних джерел, що підтверджують або спростовують дату заснування Одеси, що дозволяє перейти до наступного кроку дослідження, незважаючи на наявність певної невизначеності."
+        },
+        "plan_execution_evaluated": null,
+        "execution_status": "running",
+        "evaluated_steps": [
+          {
+            "step_id": "c2516599-9077-4ace-912d-17accad8caa0",
+            "objective_satisfied": true,
+            "sufficient_for_next_step": true,
+            "contradictions_detected": false,
+            "new_information_changes_plan": false,
+            "confidence": 0.7,
+            "decision": "continue",
+            "reason": "Знайдено кілька історичних джерел, що підтверджують або спростовують дату заснування Одеси, що дозволяє перейти до наступного кроку дослідження, незважаючи на наявність певної невизначеності."
+          }
+        ],
+        "interrupt_reason": null
+      },
+      "agent_name": "executer_node"
+    },
+    {
+      "timestamp": "2026-09-06T19:46:22.564626+00:00",
+      "update": {
+        "execution_status": "running",
+        "step_count": 1,
+        "current_step_idx": 1
+      },
+      "agent_name": "counter_node"
+    }
+  ],
+  "final_state": {
+    "messages": [
+      {
+        "content": "Перевір твердження: «Одеса була заснована у 1794 році на місці раніше незаселеної території». Чи підтверджується воно доступними історичними джерелами?",
+        "additional_kwargs": {},
+        "response_metadata": {},
+        "type": "human",
+        "name": null,
+        "id": "c72a55ab-660a-428a-899c-021894385213"
+      }
+    ],
+    "step_count": 1,
+    "used_tokens": 0,
+    "execution_status": "running",
+    "current_step_idx": 1,
+    "current_step_result": {
+      "step_id": "step1",
+      "summary": "Знайдено кілька історичних джерел, що підтверджують або спростовують дату заснування Одеси в 1794 році.",
+      "evidence": [
+        {
+          "content": "Замок Хаджибей: історія досліджень, датування, локалізація - А.В. Красножон (2019) містить інформацію про історію Одеси та її заснування.",
+          "source_id": "source_04",
+          "chunk_index": 38,
+          "source_url": "https://www.academia.edu/40442103/%D0%97%D0%B0%D0%BC%D0%BE%D0%BA_%D0%A5%D0%B0%D0%B4%D0%B6%D0%B8%D0%B1%D0%B5%D0%B9_%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F_%D0%B8%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B9_%D0%B4%D0%B0%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B8_%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F"
+        },
+        {
+          "content": "НАУКОВА ХРОНЇКА. Ювілейні видання до історії м. Одеси. - І. Андрієнко (1894) обговорює історію Одеси та її розвиток.",
+          "source_id": "source_06",
+          "chunk_index": 1,
+          "source_url": "https://uk.wikisource.org/wiki/%D0%97%D0%B0%D0%BF%D0%B8%D1%81%D0%BA%D0%B8_%D0%9D%D0%A2%D0%A8/4/%D0%AE%D0%B2%D1%96%D0%BB%D0%B5%D0%B9%D0%BD%D1%96_%D0%B2%D0%B8%D0%B4%D0%B0%D0%BD%D1%8F_%D0%B4%D0%BE_%D1%96%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%97_%D0%BC._%D0%9E%D0%B4%D0%B5%D1%81%D0%B8"
+        },
+        {
+          "content": "Коцюбіїв. Качибей чи Кочубієв. Яку назву доцільніше вживати щодо Одеси у XV-XVI ст. - Гончарук Тарас (2022) розглядає різні версії про заснування Одеси.",
+          "source_id": "source_02",
+          "chunk_index": 2,
+          "source_url": "https://chm.onu.edu.ua/article/view/268837/266518"
+        }
+      ]
+    },
+    "errors": [],
+    "evaluated_current_step": {
+      "step_id": "c2516599-9077-4ace-912d-17accad8caa0",
+      "objective_satisfied": true,
+      "sufficient_for_next_step": true,
+      "contradictions_detected": false,
+      "new_information_changes_plan": false,
+      "confidence": 0.7,
+      "decision": "continue",
+      "reason": "Знайдено кілька історичних джерел, що підтверджують або спростовують дату заснування Одеси, що дозволяє перейти до наступного кроку дослідження, незважаючи на наявність певної невизначеності."
+    },
+    "evaluated_steps": [
+      {
+        "step_id": "c2516599-9077-4ace-912d-17accad8caa0",
+        "objective_satisfied": true,
+        "sufficient_for_next_step": true,
+        "contradictions_detected": false,
+        "new_information_changes_plan": false,
+        "confidence": 0.7,
+        "decision": "continue",
+        "reason": "Знайдено кілька історичних джерел, що підтверджують або спростовують дату заснування Одеси, що дозволяє перейти до наступного кроку дослідження, незважаючи на наявність певної невизначеності."
+      }
+    ],
+    "executor_response": null,
+    "len_steps": 5,
+    "metadata": {},
+    "plan": {
+      "goal": "Перевірити твердження про заснування Одеси у 1794 році на незаселеній території.",
+      "steps": [
+        {
+          "id": "step1",
+          "step_status": "pending",
+          "objective": "Знайти історичні джерела, що підтверджують або спростовують дату заснування Одеси.",
+          "expected_result": "Отримати релевантні історичні джерела про заснування Одеси.",
+          "require_tools": true,
+          "require_reasoning": false,
+          "research_query": "Заснування Одеси 1794 рік історичні джерела.",
+          "requires_evidence": true,
+          "operation": "retrieve_sources"
+        },
+        {
+          "id": "step2",
+          "step_status": "pending",
+          "objective": "Виділити твердження з отриманих джерел про заснування Одеси.",
+          "expected_result": "Отримати підтвердження або спростування дати заснування Одеси.",
+          "require_tools": false,
+          "require_reasoning": false,
+          "research_query": null,
+          "requires_evidence": false,
+          "operation": "extract_claims"
+        },
+        {
+          "id": "step3",
+          "step_status": "pending",
+          "objective": "Сформувати альтернативні гіпотези щодо заснування Одеси.",
+          "expected_result": "Отримати альтернативні версії про заснування Одеси.",
+          "require_tools": false,
+          "require_reasoning": true,
+          "research_query": null,
+          "requires_evidence": false,
+          "operation": "generate_hypotheses"
+        },
+        {
+          "id": "step4",
+          "step_status": "pending",
+          "objective": "Порівняти отримані гіпотези з підтверджуючими та суперечливими свідченнями.",
+          "expected_result": "Визначити, яка з гіпотез має більше підтверджуючих доказів.",
+          "require_tools": false,
+          "require_reasoning": true,
+          "research_query": null,
+          "requires_evidence": false,
+          "operation": "evaluate_hypotheses"
+        },
+        {
+          "id": "step5",
+          "step_status": "pending",
+          "objective": "Сформувати висновок про заснування Одеси на основі отриманих даних.",
+          "expected_result": "Отримати обґрунтований висновок про заснування Одеси.",
+          "require_tools": false,
+          "require_reasoning": true,
+          "research_query": null,
+          "requires_evidence": false,
+          "operation": "synthesize_conclusion"
+        }
+      ],
+      "research_question": "Чи підтверджується твердження, що Одеса була заснована у 1794 році на місці раніше незаселеної території?"
+    },
+    "plan_execution_evaluated": null,
+    "results": [
+      {
+        "step_id": "step1",
+        "summary": "Знайдено кілька історичних джерел, що підтверджують або спростовують дату заснування Одеси в 1794 році.",
+        "evidence": [
+          {
+            "content": "Замок Хаджибей: історія досліджень, датування, локалізація - А.В. Красножон (2019) містить інформацію про історію Одеси та її заснування.",
+            "source_id": "source_04",
+            "chunk_index": 38,
+            "source_url": "https://www.academia.edu/40442103/%D0%97%D0%B0%D0%BC%D0%BE%D0%BA_%D0%A5%D0%B0%D0%B4%D0%B6%D0%B8%D0%B1%D0%B5%D0%B9_%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F_%D0%B8%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B9_%D0%B4%D0%B0%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B8_%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F"
+          },
+          {
+            "content": "НАУКОВА ХРОНЇКА. Ювілейні видання до історії м. Одеси. - І. Андрієнко (1894) обговорює історію Одеси та її розвиток.",
+            "source_id": "source_06",
+            "chunk_index": 1,
+            "source_url": "https://uk.wikisource.org/wiki/%D0%97%D0%B0%D0%BF%D0%B8%D1%81%D0%BA%D0%B8_%D0%9D%D0%A2%D0%A8/4/%D0%AE%D0%B2%D1%96%D0%BB%D0%B5%D0%B9%D0%BD%D1%96_%D0%B2%D0%B8%D0%B4%D0%B0%D0%BD%D1%8F_%D0%B4%D0%BE_%D1%96%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%97_%D0%BC._%D0%9E%D0%B4%D0%B5%D1%81%D0%B8"
+          },
+          {
+            "content": "Коцюбіїв. Качибей чи Кочубієв. Яку назву доцільніше вживати щодо Одеси у XV-XVI ст. - Гончарук Тарас (2022) розглядає різні версії про заснування Одеси.",
+            "source_id": "source_02",
+            "chunk_index": 2,
+            "source_url": "https://chm.onu.edu.ua/article/view/268837/266518"
+          }
+        ]
+      }
+    ],
+    "revised_plans": [],
+    "structured_response": null,
+    "user_task": "Перевір твердження: «Одеса була заснована у 1794 році на місці раніше незаселеної території». Чи підтверджується воно доступними історичними джерелами?",
+    "execution_id": "c2516599-9077-4ace-912d-17accad8caa0",
+    "step_messages_start_idx": 0,
+    "human_deсision": null,
+    "interrupt_reason": null,
+    "source_interrupt": "no_source",
+    "step_status": "pending",
+    "human_decision": null
+  },
+  "error": "ValidationError: 1 validation error for StepEvaluationContext\ncurrent_step_result\n  Input should be a valid dictionary or instance of HistoricalResearchStepResult [type=model_type, input_value=None, input_type=NoneType]\n    For further information visit https://errors.pydantic.dev/2.13/v/model_type"
+}

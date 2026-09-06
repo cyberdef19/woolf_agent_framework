@@ -51,16 +51,21 @@ class ChromaVectorStoreProvider(VectorStoreProvider):
         return await self._vector_store.aadd_documents(documents=documents, ids=ids)
     
     async def similarity_search(self, query, top_k)->list[Document]:
-        """_summary_
+        """
            Пошук схожих документів
         Args:
-            query (_type_): _description_
-            top_k (_type_): _description_
+            query (_type_): Запит на пошук документів
+            top_k (_type_): Максимальна кількість документів
 
         Returns:
-             list[Document]: _description_ список 
+             list[Document]: _description_ Повертає список знайдених документів
         """        
         return await self._vector_store.asimilarity_search(
             query=query,
             k=top_k
+        )
+    async def get_by_ids(self,  ids: list[str])->list[Document]:
+        """Пошук документів за ідентифікторами"""
+        return await self._vector_store.aget_by_ids(
+            ids
         )

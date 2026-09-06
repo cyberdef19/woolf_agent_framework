@@ -1,9 +1,13 @@
 from pathlib import Path
 
+CONFIG_AGENT_DB = Path(__file__).resolve().parents[1]
+PERSIST_DIRECTORY_CHROMA = CONFIG_AGENT_DB / "data" / "chroma"
+
+
 configdb = {
     "chromadb":{
         "provider": "chroma",
-        "persist_directory": Path("I:\\WoolfFrameworkAgent\\src\\woolf_agents\\data\\chroma"),
+        "persist_directory": PERSIST_DIRECTORY_CHROMA, #Path("I:\\WoolfFrameworkAgent\\src\\woolf_agents\\data\\chroma"),
         "collection_name": "history_sources",
         "embeddings": {
             "model_bge": "BAAI/bge-m3",

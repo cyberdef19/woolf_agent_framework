@@ -1,3 +1,4 @@
+import asyncio
 import hashlib
 import mimetypes
 import unicodedata
@@ -248,8 +249,8 @@ class HistoricalRetrieverService:
     
     async def get_by_ids(self, ids: list[str]) -> list[Document]:
 
-        return await self._vector_store.aget_by_ids(
-            ids=ids,
+        return await self._vector_store.get_by_ids(
+            ids = ids
         )
     
     async def search_related_sources(
@@ -263,7 +264,7 @@ class HistoricalRetrieverService:
             f"{source_id}_chunk_{chunk_index:04d}"
         )
 
-        documents = await self._vector_store.get_by_ids(
+        documents = await self.get_by_ids(
             ids=[chunk_id],
         )
 

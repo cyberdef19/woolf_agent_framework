@@ -1,0 +1,299 @@
+{
+  "run_id": "b9ad998e-93d3-45df-a68a-7ba4553d1cf4",
+  "started_at": "2026-09-06T10:07:12.474776+00:00",
+  "finished_at": "2026-09-06T10:08:02.455407+00:00",
+  "initial_state": {
+    "messages": [
+      {
+        "content": "Виконай поточний крок плану {\n  \"id\": \"step1\",\n  \"step_status\": \"pending\",\n  \"objective\": \"Знайти історичні джерела, що містять інформацію про походження назви Хаджибей.\",\n  \"expected_result\": \"Отримати список джерел, що стосуються походження назви Хаджибей.\",\n  \"require_tools\": true,\n  \"require_reasoning\": false,\n  \"research_query\": \"походження назви Хаджибей.\",\n  \"requires_evidence\": true,\n  \"operation\": \"retrieve_sources\"\n}",
+        "additional_kwargs": {},
+        "response_metadata": {},
+        "type": "human",
+        "name": null,
+        "id": "ef3d889b-86fd-4146-855b-ce0f96f8916a"
+      }
+    ],
+    "execution_id": "55157566-b0c4-4531-b417-306930105bf0",
+    "step_count": 0,
+    "used_tokens": 0,
+    "execution_status": "pending",
+    "structured_output": null
+  },
+  "trajectory": [
+    {
+      "timestamp": "2026-09-06T10:07:13.759947+00:00",
+      "update": {
+        "messages": [
+          {
+            "content": "",
+            "additional_kwargs": {
+              "refusal": null
+            },
+            "response_metadata": {
+              "token_usage": {
+                "completion_tokens": 24,
+                "prompt_tokens": 1240,
+                "total_tokens": 1264,
+                "completion_tokens_details": {
+                  "accepted_prediction_tokens": null,
+                  "audio_tokens": 0,
+                  "reasoning_tokens": 0,
+                  "rejected_prediction_tokens": null,
+                  "image_tokens": 0
+                },
+                "prompt_tokens_details": {
+                  "audio_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0,
+                  "video_tokens": 0
+                },
+                "cost": 0.0002004,
+                "is_byok": false,
+                "cost_details": {
+                  "upstream_inference_cost": 0.0002004,
+                  "upstream_inference_prompt_cost": 0.000186,
+                  "upstream_inference_completions_cost": 1.44e-05
+                }
+              },
+              "model_provider": "openai",
+              "model_name": "openai/gpt-4o-mini",
+              "system_fingerprint": "fp_f5dd3ac0b7",
+              "id": "gen-1788689232-s55ItcceJvpgU87WyqV2",
+              "finish_reason": "tool_calls",
+              "logprobs": null
+            },
+            "type": "ai",
+            "name": null,
+            "id": "lc_run--01a0762f-b299-7241-a2b0-011192396646-0",
+            "tool_calls": [
+              {
+                "name": "retrieve_sources",
+                "args": {
+                  "query": "походження назви Хаджибей."
+                },
+                "id": "call_AZK9olXfnSX2qDg1dgZxnNZm",
+                "type": "tool_call"
+              }
+            ],
+            "invalid_tool_calls": [],
+            "usage_metadata": {
+              "input_tokens": 1240,
+              "output_tokens": 24,
+              "total_tokens": 1264,
+              "input_token_details": {
+                "audio": 0,
+                "cache_read": 0,
+                "cache_creation": 0
+              },
+              "output_token_details": {
+                "audio": 0,
+                "reasoning": 0
+              }
+            }
+          }
+        ],
+        "step_count": 1,
+        "used_tokens": 1264
+      },
+      "agent_name": "agent"
+    },
+    {
+      "timestamp": "2026-09-06T10:07:13.763916+00:00",
+      "update": {
+        "stop_decision": {
+          "should_stop": false,
+          "reason": null,
+          "message": null
+        }
+      },
+      "agent_name": "guard"
+    },
+    {
+      "timestamp": "2026-09-06T10:08:00.326406+00:00",
+      "update": {
+        "messages": [
+          {
+            "content": [],
+            "additional_kwargs": {},
+            "response_metadata": {},
+            "type": "tool",
+            "name": "retrieve_sources",
+            "id": "c9bfa74c-aa22-4b7c-b182-18878176c3a4",
+            "tool_call_id": "call_AZK9olXfnSX2qDg1dgZxnNZm",
+            "artifact": null,
+            "status": "success"
+          }
+        ]
+      },
+      "agent_name": "tools"
+    },
+    {
+      "timestamp": "2026-09-06T10:08:01.333650+00:00",
+      "update": {
+        "messages": [
+          {
+            "content": "Не вдалося знайти жодних історичних джерел, що містять інформацію про походження назви Хаджибей.",
+            "additional_kwargs": {
+              "refusal": null
+            },
+            "response_metadata": {
+              "token_usage": {
+                "completion_tokens": 31,
+                "prompt_tokens": 1272,
+                "total_tokens": 1303,
+                "completion_tokens_details": {
+                  "accepted_prediction_tokens": null,
+                  "audio_tokens": 0,
+                  "reasoning_tokens": 0,
+                  "rejected_prediction_tokens": null,
+                  "image_tokens": 0
+                },
+                "prompt_tokens_details": {
+                  "audio_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 1152,
+                  "video_tokens": 0
+                },
+                "cost": 0.000123,
+                "is_byok": false,
+                "cost_details": {
+                  "upstream_inference_cost": 0.000123,
+                  "upstream_inference_prompt_cost": 0.0001044,
+                  "upstream_inference_completions_cost": 1.86e-05
+                }
+              },
+              "model_provider": "openai",
+              "model_name": "openai/gpt-4o-mini",
+              "system_fingerprint": "fp_f5dd3ac0b7",
+              "id": "gen-1788689280-0bDT8NzkrQiEK7HP9vHg",
+              "finish_reason": "stop",
+              "logprobs": null
+            },
+            "type": "ai",
+            "name": null,
+            "id": "lc_run--01a07630-6d48-71e0-82e2-20bb17e19fe9-0",
+            "tool_calls": [],
+            "invalid_tool_calls": [],
+            "usage_metadata": {
+              "input_tokens": 1272,
+              "output_tokens": 31,
+              "total_tokens": 1303,
+              "input_token_details": {
+                "audio": 0,
+                "cache_read": 1152,
+                "cache_creation": 0
+              },
+              "output_token_details": {
+                "audio": 0,
+                "reasoning": 0
+              }
+            }
+          }
+        ],
+        "step_count": 1,
+        "used_tokens": 1303
+      },
+      "agent_name": "agent"
+    },
+    {
+      "timestamp": "2026-09-06T10:08:01.336649+00:00",
+      "update": {
+        "stop_decision": {
+          "should_stop": false,
+          "reason": null,
+          "message": null
+        }
+      },
+      "agent_name": "guard"
+    },
+    {
+      "timestamp": "2026-09-06T10:08:02.454434+00:00",
+      "update": {
+        "structured_output": {
+          "step_id": "step1",
+          "summary": "Не вдалося знайти жодних історичних джерел, що містять інформацію про походження назви Хаджибей.",
+          "evidence": []
+        },
+        "execution_status": "completed"
+      },
+      "agent_name": "structured_output"
+    }
+  ],
+  "final_state": {
+    "messages": [
+      {
+        "content": "Не вдалося знайти жодних історичних джерел, що містять інформацію про походження назви Хаджибей.",
+        "additional_kwargs": {
+          "refusal": null
+        },
+        "response_metadata": {
+          "token_usage": {
+            "completion_tokens": 31,
+            "prompt_tokens": 1272,
+            "total_tokens": 1303,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cache_write_tokens": 0,
+              "cached_tokens": 1152,
+              "video_tokens": 0
+            },
+            "cost": 0.000123,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0.000123,
+              "upstream_inference_prompt_cost": 0.0001044,
+              "upstream_inference_completions_cost": 1.86e-05
+            }
+          },
+          "model_provider": "openai",
+          "model_name": "openai/gpt-4o-mini",
+          "system_fingerprint": "fp_f5dd3ac0b7",
+          "id": "gen-1788689280-0bDT8NzkrQiEK7HP9vHg",
+          "finish_reason": "stop",
+          "logprobs": null
+        },
+        "type": "ai",
+        "name": null,
+        "id": "lc_run--01a07630-6d48-71e0-82e2-20bb17e19fe9-0",
+        "tool_calls": [],
+        "invalid_tool_calls": [],
+        "usage_metadata": {
+          "input_tokens": 1272,
+          "output_tokens": 31,
+          "total_tokens": 1303,
+          "input_token_details": {
+            "audio": 0,
+            "cache_read": 1152,
+            "cache_creation": 0
+          },
+          "output_token_details": {
+            "audio": 0,
+            "reasoning": 0
+          }
+        }
+      }
+    ],
+    "execution_id": "55157566-b0c4-4531-b417-306930105bf0",
+    "step_count": 1,
+    "used_tokens": 1303,
+    "execution_status": "completed",
+    "structured_output": {
+      "step_id": "step1",
+      "summary": "Не вдалося знайти жодних історичних джерел, що містять інформацію про походження назви Хаджибей.",
+      "evidence": []
+    },
+    "stop_decision": {
+      "should_stop": false,
+      "reason": null,
+      "message": null
+    }
+  },
+  "error": null
+}

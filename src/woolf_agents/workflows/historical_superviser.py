@@ -3,7 +3,7 @@ from langgraph.types import Command
 from langgraph.constants import END
 
 from src.woolf_agents.domains.artifacts.schemas.contracts import CriticDecision, HistoricalResearchExecutionResult, SourceVerificationResult
-from src.woolf_agents.workflows.state import MASAgentState
+from src.woolf_agents.workflows.state import MASAgentState, MASAgentStatus
 
 
 
@@ -16,6 +16,7 @@ class HistoricalSuperviser:
                                                     Literal
                                                     [
                                                         "plan_executor",
+                                                        "verification_agent",
                                                         "critical_agent",
                                                         "human_review",
                                                         "__end__"
@@ -40,10 +41,16 @@ class HistoricalSuperviser:
         
         if decision.decision == "approve":
             return Command(
+                update ={
+                  "status": MASAgentStatus.COMPLETED  
+                },
                 goto="__end__"
             )
         
         if decision.decision == "human_decision":
             return Command(
+                update={
+                    "status": MASAgentStatus.INTERRUPT
+                },
                 goto="human_review"
             )

@@ -1,0 +1,25 @@
+{
+  "run_id": "e7c88ba7-aa0a-4d63-afe4-d5270ad24757",
+  "started_at": "2026-09-05T23:55:35.105326+00:00",
+  "finished_at": "2026-09-05T23:58:44.152158+00:00",
+  "initial_state": {
+    "task_user": "Яке походження назви Хаджибей? Визнач представлені в доступних джерелах гіпотези та оціни, яка з них має найкращу доказову підтримку.",
+    "research_result": null,
+    "critic_decision": null,
+    "human_decision": null
+  },
+  "trajectory": [
+    {
+      "timestamp": "2026-09-05T23:55:35.307098+00:00",
+      "update": null,
+      "agent_name": "superviser"
+    }
+  ],
+  "final_state": {
+    "task_user": "Яке походження назви Хаджибей? Визнач представлені в доступних джерелах гіпотези та оціни, яка з них має найкращу доказову підтримку.",
+    "research_result": null,
+    "critic_decision": null,
+    "human_decision": null
+  },
+  "error": "AgentRecursionLimitError: LangGraph перевищив аварійний ліміт кроків (45)."
+}
